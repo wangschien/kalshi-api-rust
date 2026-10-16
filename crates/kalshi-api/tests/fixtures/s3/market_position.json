@@ -1,0 +1,15 @@
+{
+  "type": "market_position",
+  "sid": 1,
+  "msg": {
+    "user_id": "00000000-0000-4000-8000-000000000004",
+    "market_ticker": "SYNTH-1",
+    "position_fp": "1.00",
+    "position_cost_dollars": "0.5600",
+    "realized_pnl_dollars": "0.0000",
+    "fees_paid_dollars": "0.0000",
+    "position_fee_cost_dollars": "0.0000",
+    "volume_fp": "1.00",
+    "subaccount": 1
+  }
+}

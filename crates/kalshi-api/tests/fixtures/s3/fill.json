@@ -1,0 +1,24 @@
+{
+  "type": "fill",
+  "sid": 1,
+  "msg": {
+    "trade_id": "00000000-0000-4000-8000-000000000002",
+    "order_id": "00000000-0000-4000-8000-000000000003",
+    "market_ticker": "SYNTH-1",
+    "exchange_index": 0,
+    "is_taker": true,
+    "side": "yes",
+    "yes_price_dollars": "0.5600",
+    "count_fp": "1.00",
+    "fee_cost": "0.0000",
+    "action": "buy",
+    "outcome_side": "yes",
+    "book_side": "bid",
+    "ts": 1767225600,
+    "ts_ms": 1767225600000,
+    "post_position_fp": "1.00",
+    "purchased_side": "yes",
+    "client_order_id": "cid-synthetic",
+    "subaccount": 1
+  }
+}

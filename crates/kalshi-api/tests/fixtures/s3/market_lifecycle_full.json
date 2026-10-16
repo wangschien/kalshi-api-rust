@@ -1,0 +1,36 @@
+{
+  "type": "market_lifecycle_v2",
+  "sid": 1,
+  "seq": 2,
+  "msg": {
+    "market_ticker": "SYNTH-1",
+    "exchange_index": 0,
+    "open_ts": 1700000000,
+    "close_ts": 1700000100,
+    "determination_ts": 1700000200,
+    "settled_ts": 1700000300,
+    "result": "yes",
+    "settlement_value": "1.0000",
+    "is_deactivated": false,
+    "additional_metadata": {
+      "name": "synthetic",
+      "title": "synthetic",
+      "yes_sub_title": "yes",
+      "no_sub_title": "no",
+      "rules_primary": "primary",
+      "rules_secondary": "secondary",
+      "can_close_early": true,
+      "event_ticker": "SYNTH",
+      "expected_expiration_ts": 1700000400,
+      "strike_type": "greater",
+      "floor_strike": 1.5,
+      "cap_strike": 2,
+      "custom_strike": {"k": "v"}
+    },
+    "event_type": "created",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+      {"start": "0.0000", "end": "1.0000", "step": "0.0100"}
+    ]
+  }
+}

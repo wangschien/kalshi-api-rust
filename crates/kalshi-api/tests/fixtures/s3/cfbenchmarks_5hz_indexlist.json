@@ -1,0 +1,9 @@
+{
+  "type": "cfbenchmarks_value_5hz_indexlist",
+  "id": 2,
+  "sid": 1,
+  "seq": 1,
+  "msg": {
+    "index_ids": ["BRTI", "ETHUSD_RTI"]
+  }
+}

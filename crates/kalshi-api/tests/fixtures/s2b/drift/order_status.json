@@ -1,0 +1,26 @@
+{
+  "orders": [
+    {
+      "order_id": "ord-synthetic-1",
+      "user_id": "user-synthetic",
+      "client_order_id": "cid-synthetic",
+      "ticker": "SYNTH-1",
+      "side": "yes",
+      "action": "buy",
+      "outcome_side": "yes",
+      "book_side": "bid",
+      "type": "limit",
+      "status": "weird",
+      "yes_price_dollars": "0.5600",
+      "no_price_dollars": "0.4400",
+      "fill_count_fp": "0.00",
+      "remaining_count_fp": "1.00",
+      "initial_count_fp": "1.00",
+      "taker_fill_cost_dollars": "0.0000",
+      "maker_fill_cost_dollars": "0.0000",
+      "taker_fees_dollars": "0.0000",
+      "maker_fees_dollars": "0.0000"
+    }
+  ],
+  "cursor": ""
+}

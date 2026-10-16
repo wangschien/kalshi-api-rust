@@ -1,0 +1,18 @@
+{
+  "orders": [
+    {
+      "order_id": "ord-synthetic-1",
+      "client_order_id": "cid-synthetic",
+      "reduced_by": "1.00",
+      "ts_ms": 0
+    },
+    {
+      "order_id": "ord-synthetic-2",
+      "reduced_by": "0.00",
+      "error": {
+        "code": "synthetic",
+        "message": "synthetic"
+      }
+    }
+  ]
+}

@@ -1,0 +1,834 @@
+{
+  "count": 138,
+  "named_schema_properties": 133,
+  "fields": [
+    {
+      "struct": "AccountApiUsageLevelVolumeGoal",
+      "field": "earn_volume_goal_fp",
+      "schema": "AccountApiUsageLevelVolumeGoal",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "AccountApiUsageLevelVolumeGoal",
+      "field": "keep_volume_goal_fp",
+      "schema": "AccountApiUsageLevelVolumeGoal",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "AccountApiUsageLevelVolumeProgress",
+      "field": "trailing_30d_volume_fp",
+      "schema": "AccountApiUsageLevelVolumeProgress",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "AmendOrderRequest",
+      "field": "count_fp",
+      "schema": "AmendOrderRequest",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "AmendOrderRequest",
+      "field": "no_price_dollars",
+      "schema": "AmendOrderRequest",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "AmendOrderRequest",
+      "field": "yes_price_dollars",
+      "schema": "AmendOrderRequest",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "AmendOrderV2Request",
+      "field": "count",
+      "schema": "AmendOrderV2Request",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "AmendOrderV2Request",
+      "field": "price",
+      "schema": "AmendOrderV2Request",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "AmendOrderV2Response",
+      "field": "average_fee_paid",
+      "schema": "AmendOrderV2Response",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "AmendOrderV2Response",
+      "field": "average_fill_price",
+      "schema": "AmendOrderV2Response",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "AmendOrderV2Response",
+      "field": "fill_count",
+      "schema": "AmendOrderV2Response",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "AmendOrderV2Response",
+      "field": "remaining_count",
+      "schema": "AmendOrderV2Response",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "BatchCancelOrdersIndividualResponse",
+      "field": "reduced_by_fp",
+      "schema": "BatchCancelOrdersIndividualResponse",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "BatchCancelOrdersV2ResponseOrdersInner",
+      "field": "reduced_by",
+      "schema": "BatchCancelOrdersV2Response.orders[]",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "BatchCreateOrdersV2ResponseOrdersInner",
+      "field": "average_fee_paid",
+      "schema": "BatchCreateOrdersV2Response.orders[]",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "BatchCreateOrdersV2ResponseOrdersInner",
+      "field": "average_fill_price",
+      "schema": "BatchCreateOrdersV2Response.orders[]",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "BatchCreateOrdersV2ResponseOrdersInner",
+      "field": "fill_count",
+      "schema": "BatchCreateOrdersV2Response.orders[]",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "BatchCreateOrdersV2ResponseOrdersInner",
+      "field": "remaining_count",
+      "schema": "BatchCreateOrdersV2Response.orders[]",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "BidAskDistribution",
+      "field": "close_dollars",
+      "schema": "BidAskDistribution",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "BidAskDistribution",
+      "field": "high_dollars",
+      "schema": "BidAskDistribution",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "BidAskDistribution",
+      "field": "low_dollars",
+      "schema": "BidAskDistribution",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "BidAskDistribution",
+      "field": "open_dollars",
+      "schema": "BidAskDistribution",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "BidAskDistributionHistorical",
+      "field": "close",
+      "schema": "BidAskDistributionHistorical",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "BidAskDistributionHistorical",
+      "field": "high",
+      "schema": "BidAskDistributionHistorical",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "BidAskDistributionHistorical",
+      "field": "low",
+      "schema": "BidAskDistributionHistorical",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "BidAskDistributionHistorical",
+      "field": "open",
+      "schema": "BidAskDistributionHistorical",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "CancelOrderV2Response",
+      "field": "reduced_by",
+      "schema": "CancelOrderV2Response",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "CreateOrderGroupRequest",
+      "field": "contracts_limit_fp",
+      "schema": "CreateOrderGroupRequest",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "CreateOrderRequest",
+      "field": "count_fp",
+      "schema": "CreateOrderRequest",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "CreateOrderRequest",
+      "field": "no_price_dollars",
+      "schema": "CreateOrderRequest",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "CreateOrderRequest",
+      "field": "yes_price_dollars",
+      "schema": "CreateOrderRequest",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "CreateOrderV2Request",
+      "field": "count",
+      "schema": "CreateOrderV2Request",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "CreateOrderV2Request",
+      "field": "price",
+      "schema": "CreateOrderV2Request",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "CreateOrderV2Response",
+      "field": "average_fee_paid",
+      "schema": "CreateOrderV2Response",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "CreateOrderV2Response",
+      "field": "average_fill_price",
+      "schema": "CreateOrderV2Response",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "CreateOrderV2Response",
+      "field": "fill_count",
+      "schema": "CreateOrderV2Response",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "CreateOrderV2Response",
+      "field": "remaining_count",
+      "schema": "CreateOrderV2Response",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "CreateQuoteRequest",
+      "field": "no_bid",
+      "schema": "CreateQuoteRequest",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "CreateQuoteRequest",
+      "field": "yes_bid",
+      "schema": "CreateQuoteRequest",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "CreateRfqRequest",
+      "field": "contracts_fp",
+      "schema": "CreateRFQRequest",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "CreateRfqRequest",
+      "field": "target_cost_dollars",
+      "schema": "CreateRFQRequest",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "DecreaseOrderV2Request",
+      "field": "reduce_by",
+      "schema": "DecreaseOrderV2Request",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "DecreaseOrderV2Request",
+      "field": "reduce_to",
+      "schema": "DecreaseOrderV2Request",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "DecreaseOrderV2Response",
+      "field": "remaining_count",
+      "schema": "DecreaseOrderV2Response",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "EventPosition",
+      "field": "event_exposure_dollars",
+      "schema": "EventPosition",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "EventPosition",
+      "field": "fees_paid_dollars",
+      "schema": "EventPosition",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "EventPosition",
+      "field": "realized_pnl_dollars",
+      "schema": "EventPosition",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "EventPosition",
+      "field": "total_cost_dollars",
+      "schema": "EventPosition",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "EventPosition",
+      "field": "total_cost_shares_fp",
+      "schema": "EventPosition",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "FcmFill",
+      "field": "count_fp",
+      "schema": "FcmFill",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "FcmFill",
+      "field": "maker_fee_cost",
+      "schema": "FcmFill",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "FcmFill",
+      "field": "taker_fee_cost",
+      "schema": "FcmFill",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "FcmFill",
+      "field": "yes_price_dollars",
+      "schema": "FcmFill",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Fill",
+      "field": "count_fp",
+      "schema": "Fill",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "Fill",
+      "field": "fee_cost",
+      "schema": "Fill",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Fill",
+      "field": "no_price_dollars",
+      "schema": "Fill",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Fill",
+      "field": "yes_price_dollars",
+      "schema": "Fill",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "GetBalanceResponse",
+      "field": "balance_dollars",
+      "schema": "GetBalanceResponse",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "GetFcmEventContractDailyCapResponse",
+      "field": "executed_utilization",
+      "schema": "GetFCMEventContractDailyCapResponse",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "GetFcmEventContractDailyCapResponse",
+      "field": "limit",
+      "schema": "GetFCMEventContractDailyCapResponse",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "GetFcmEventContractDailyCapResponse",
+      "field": "pending_order_utilization",
+      "schema": "GetFCMEventContractDailyCapResponse",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "GetFcmEventContractDailyCapResponse",
+      "field": "resting_order_utilization",
+      "schema": "GetFCMEventContractDailyCapResponse",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "GetOrderGroupResponse",
+      "field": "contracts_limit_fp",
+      "schema": "GetOrderGroupResponse",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "GetOrderQueuePositionResponse",
+      "field": "queue_position_fp",
+      "schema": "GetOrderQueuePositionResponse",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "IncentiveProgram",
+      "field": "target_size_fp",
+      "schema": "IncentiveProgram",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "IndexedBalance",
+      "field": "balance",
+      "schema": "IndexedBalance",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "IntraExchangeInstanceTransfer",
+      "field": "amount",
+      "schema": "IntraExchangeInstanceTransfer",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Market",
+      "field": "last_price_dollars",
+      "schema": "Market",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Market",
+      "field": "no_ask_dollars",
+      "schema": "Market",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Market",
+      "field": "no_bid_dollars",
+      "schema": "Market",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Market",
+      "field": "notional_value_dollars",
+      "schema": "Market",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Market",
+      "field": "open_interest_fp",
+      "schema": "Market",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "Market",
+      "field": "previous_price_dollars",
+      "schema": "Market",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Market",
+      "field": "previous_yes_ask_dollars",
+      "schema": "Market",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Market",
+      "field": "previous_yes_bid_dollars",
+      "schema": "Market",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Market",
+      "field": "settlement_floor_dollars",
+      "schema": "Market",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Market",
+      "field": "settlement_value_dollars",
+      "schema": "Market",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Market",
+      "field": "volume_24h_fp",
+      "schema": "Market",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "Market",
+      "field": "volume_fp",
+      "schema": "Market",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "Market",
+      "field": "yes_ask_dollars",
+      "schema": "Market",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Market",
+      "field": "yes_ask_size_fp",
+      "schema": "Market",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "Market",
+      "field": "yes_bid_dollars",
+      "schema": "Market",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Market",
+      "field": "yes_bid_size_fp",
+      "schema": "Market",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "MarketCandlestick",
+      "field": "open_interest_fp",
+      "schema": "MarketCandlestick",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "MarketCandlestick",
+      "field": "volume_fp",
+      "schema": "MarketCandlestick",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "MarketCandlestickHistorical",
+      "field": "open_interest",
+      "schema": "MarketCandlestickHistorical",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "MarketCandlestickHistorical",
+      "field": "volume",
+      "schema": "MarketCandlestickHistorical",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "MarketPosition",
+      "field": "fees_paid_dollars",
+      "schema": "MarketPosition",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "MarketPosition",
+      "field": "market_exposure_dollars",
+      "schema": "MarketPosition",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "MarketPosition",
+      "field": "position_fp",
+      "schema": "MarketPosition",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "MarketPosition",
+      "field": "realized_pnl_dollars",
+      "schema": "MarketPosition",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "MarketPosition",
+      "field": "total_traded_dollars",
+      "schema": "MarketPosition",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "MveSelectedLeg",
+      "field": "yes_settlement_value_dollars",
+      "schema": "MveSelectedLeg",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Order",
+      "field": "fill_count_fp",
+      "schema": "Order",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "Order",
+      "field": "initial_count_fp",
+      "schema": "Order",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "Order",
+      "field": "maker_fees_dollars",
+      "schema": "Order",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Order",
+      "field": "maker_fill_cost_dollars",
+      "schema": "Order",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Order",
+      "field": "no_price_dollars",
+      "schema": "Order",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Order",
+      "field": "remaining_count_fp",
+      "schema": "Order",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "Order",
+      "field": "taker_fees_dollars",
+      "schema": "Order",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Order",
+      "field": "taker_fill_cost_dollars",
+      "schema": "Order",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Order",
+      "field": "yes_price_dollars",
+      "schema": "Order",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "OrderGroup",
+      "field": "contracts_limit_fp",
+      "schema": "OrderGroup",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "OrderQueuePosition",
+      "field": "queue_position_fp",
+      "schema": "OrderQueuePosition",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "PriceDistribution",
+      "field": "close_dollars",
+      "schema": "PriceDistribution",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "PriceDistribution",
+      "field": "high_dollars",
+      "schema": "PriceDistribution",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "PriceDistribution",
+      "field": "low_dollars",
+      "schema": "PriceDistribution",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "PriceDistribution",
+      "field": "max_dollars",
+      "schema": "PriceDistribution",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "PriceDistribution",
+      "field": "mean_dollars",
+      "schema": "PriceDistribution",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "PriceDistribution",
+      "field": "min_dollars",
+      "schema": "PriceDistribution",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "PriceDistribution",
+      "field": "open_dollars",
+      "schema": "PriceDistribution",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "PriceDistribution",
+      "field": "previous_dollars",
+      "schema": "PriceDistribution",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "PriceDistributionHistorical",
+      "field": "close",
+      "schema": "PriceDistributionHistorical",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "PriceDistributionHistorical",
+      "field": "high",
+      "schema": "PriceDistributionHistorical",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "PriceDistributionHistorical",
+      "field": "low",
+      "schema": "PriceDistributionHistorical",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "PriceDistributionHistorical",
+      "field": "mean",
+      "schema": "PriceDistributionHistorical",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "PriceDistributionHistorical",
+      "field": "open",
+      "schema": "PriceDistributionHistorical",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "PriceDistributionHistorical",
+      "field": "previous",
+      "schema": "PriceDistributionHistorical",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Quote",
+      "field": "contracts_fp",
+      "schema": "Quote",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "Quote",
+      "field": "no_bid_dollars",
+      "schema": "Quote",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Quote",
+      "field": "no_contracts_fp",
+      "schema": "Quote",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "Quote",
+      "field": "rfq_target_cost_dollars",
+      "schema": "Quote",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Quote",
+      "field": "yes_bid_dollars",
+      "schema": "Quote",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Quote",
+      "field": "yes_contracts_fp",
+      "schema": "Quote",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "Rfq",
+      "field": "contracts_fp",
+      "schema": "RFQ",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "Rfq",
+      "field": "target_cost_dollars",
+      "schema": "RFQ",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Series",
+      "field": "volume_fp",
+      "schema": "Series",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "Settlement",
+      "field": "fee_cost",
+      "schema": "Settlement",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Settlement",
+      "field": "no_count_fp",
+      "schema": "Settlement",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "Settlement",
+      "field": "no_total_cost_dollars",
+      "schema": "Settlement",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Settlement",
+      "field": "yes_count_fp",
+      "schema": "Settlement",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "Settlement",
+      "field": "yes_total_cost_dollars",
+      "schema": "Settlement",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "SubaccountBalance",
+      "field": "balance",
+      "schema": "SubaccountBalance",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Trade",
+      "field": "count_fp",
+      "schema": "Trade",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "Trade",
+      "field": "no_price_dollars",
+      "schema": "Trade",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "Trade",
+      "field": "yes_price_dollars",
+      "schema": "Trade",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "UpdateFcmEventContractDailyCapRequest",
+      "field": "limit",
+      "schema": "UpdateFCMEventContractDailyCapRequest",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "UpdateOrderGroupLimitRequest",
+      "field": "contracts_limit_fp",
+      "schema": "UpdateOrderGroupLimitRequest",
+      "kind": "FixedPointCount"
+    }
+  ]
+}

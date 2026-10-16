@@ -1,0 +1,354 @@
+{
+  "count": 29,
+  "rows": [
+    {
+      "operation": "AcceptBlockTradeProposal",
+      "rust_name": "accept_block_trade_proposal",
+      "method": null,
+      "pointer": "body.subaccount",
+      "sentence": "User-managed subaccount number to accept as (0 for primary, 1-63 for numbered subaccounts). Provide either this or subtrader_id, not both.",
+      "omission": "recorded",
+      "param_type": null,
+      "exchange_index_sentences": [],
+      "wrapped": false
+    },
+    {
+      "operation": "AmendOrderV2",
+      "rust_name": "amend_order_v2",
+      "method": "amend_order_v2",
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "omission": "primary",
+      "param_type": "Subaccount",
+      "exchange_index_sentences": [
+        "Exchange shard index. If omitted, auto-routes when ticker is provided; otherwise defaults to 0. Use -1 to require auto-routing by ticker."
+      ],
+      "wrapped": true
+    },
+    {
+      "operation": "BatchCancelOrdersV2",
+      "rust_name": "batch_cancel_orders_v2",
+      "method": "batch_cancel_orders_v2",
+      "pointer": "body.orders[].subaccount",
+      "sentence": "Optional subaccount number to use for this cancellation (0 for primary, 1-63 for subaccounts). Subaccount-restricted API keys must omit this field or pass their locked subaccount.",
+      "omission": "choice",
+      "param_type": "SubaccountChoice",
+      "exchange_index_sentences": [
+        "Exchange shard index. If omitted, auto-routes when market_ticker is provided; otherwise defaults to 0. Use -1 to require auto-routing. The market_ticker field is required for auto-routing."
+      ],
+      "wrapped": true
+    },
+    {
+      "operation": "BatchCreateOrdersV2",
+      "rust_name": "batch_create_orders_v2",
+      "method": "batch_create_orders_v2",
+      "pointer": "body.orders[].subaccount",
+      "sentence": "The subaccount number to use for this order. 0 is the primary subaccount. Subaccount-restricted API keys must omit this field or pass their locked subaccount.",
+      "omission": "choice",
+      "param_type": "SubaccountChoice",
+      "exchange_index_sentences": [
+        "Exchange shard index. If omitted, auto-routes when ticker is provided; otherwise defaults to 0. Use -1 to require auto-routing by ticker."
+      ],
+      "wrapped": true
+    },
+    {
+      "operation": "CancelAllOrders",
+      "rust_name": "cancel_all_orders",
+      "method": null,
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). If omitted, defaults to all subaccounts.",
+      "omission": "all",
+      "param_type": null,
+      "exchange_index_sentences": [],
+      "wrapped": false
+    },
+    {
+      "operation": "CancelOrderV2",
+      "rust_name": "cancel_order_v2",
+      "method": "cancel_order_v2",
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "omission": "primary",
+      "param_type": "Subaccount",
+      "exchange_index_sentences": [
+        "Exchange shard index. If omitted, auto-routes when market_ticker is provided; otherwise defaults to 0. Use -1 to require auto-routing. The market_ticker parameter is required for auto-routing."
+      ],
+      "wrapped": true
+    },
+    {
+      "operation": "CreateApiKey",
+      "rust_name": "create_api_key",
+      "method": null,
+      "pointer": "body.subaccount",
+      "sentence": "If set, restricts the API key to a single sub-account (0-63) that you own. A restricted key may only read and trade on that sub-account; it cannot act on other sub-accounts, transfer funds between sub-accounts, or create sub-accounts. Omit to leave the key unrestricted. Mutually exclusive with fcm_subtrader_id.",
+      "omission": "recorded",
+      "param_type": null,
+      "exchange_index_sentences": [],
+      "wrapped": false
+    },
+    {
+      "operation": "CreateOrderGroup",
+      "rust_name": "create_order_group",
+      "method": null,
+      "pointer": "body.subaccount",
+      "sentence": "Optional subaccount number to use for this order group (0 for primary, 1-63 for subaccounts). Subaccount-restricted API keys must omit this field or pass their locked subaccount.",
+      "omission": "choice",
+      "param_type": null,
+      "exchange_index_sentences": [
+        "Identifier for an exchange shard. Defaults to 0."
+      ],
+      "wrapped": false
+    },
+    {
+      "operation": "CreateOrderV2",
+      "rust_name": "create_order_v2",
+      "method": "create_order_v2",
+      "pointer": "body.subaccount",
+      "sentence": "The subaccount number to use for this order. 0 is the primary subaccount. Subaccount-restricted API keys must omit this field or pass their locked subaccount.",
+      "omission": "choice",
+      "param_type": "SubaccountChoice",
+      "exchange_index_sentences": [
+        "Exchange shard index. If omitted, auto-routes when ticker is provided; otherwise defaults to 0. Use -1 to require auto-routing by ticker."
+      ],
+      "wrapped": true
+    },
+    {
+      "operation": "CreateQuote",
+      "rust_name": "create_quote",
+      "method": null,
+      "pointer": "body.subaccount",
+      "sentence": "Optional subaccount number to place the quote under (0 for primary, 1-63 for subaccounts)",
+      "omission": "recorded",
+      "param_type": null,
+      "exchange_index_sentences": [],
+      "wrapped": false
+    },
+    {
+      "operation": "CreateRFQ",
+      "rust_name": "create_rfq",
+      "method": null,
+      "pointer": "body.subaccount",
+      "sentence": "The subaccount number to create the RFQ for (direct members only; 0 for primary, 1-63 for subaccounts)",
+      "omission": "recorded",
+      "param_type": null,
+      "exchange_index_sentences": [],
+      "wrapped": false
+    },
+    {
+      "operation": "DecreaseOrderV2",
+      "rust_name": "decrease_order_v2",
+      "method": "decrease_order_v2",
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "omission": "primary",
+      "param_type": "Subaccount",
+      "exchange_index_sentences": [
+        "Exchange shard index. If omitted, auto-routes when market_ticker is provided; otherwise defaults to 0. Use -1 to require auto-routing by market ticker."
+      ],
+      "wrapped": true
+    },
+    {
+      "operation": "DeleteOrderGroup",
+      "rust_name": "delete_order_group",
+      "method": null,
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "omission": "primary",
+      "param_type": null,
+      "exchange_index_sentences": [
+        "Identifier for an exchange shard. Defaults to 0."
+      ],
+      "wrapped": false
+    },
+    {
+      "operation": "GenerateApiKey",
+      "rust_name": "generate_api_key",
+      "method": null,
+      "pointer": "body.subaccount",
+      "sentence": "If set, restricts the API key to a single sub-account (0-63) that you own. A restricted key may only read and trade on that sub-account; it cannot act on other sub-accounts, transfer funds between sub-accounts, or create sub-accounts. Omit to leave the key unrestricted. Mutually exclusive with fcm_subtrader_id.",
+      "omission": "recorded",
+      "param_type": null,
+      "exchange_index_sentences": [],
+      "wrapped": false
+    },
+    {
+      "operation": "GetBalance",
+      "rust_name": "get_balance",
+      "method": "get_balance",
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "omission": "primary",
+      "param_type": "Subaccount",
+      "exchange_index_sentences": [
+        "Exchange index used to scope the balance and portfolio value. If omitted, both include all exchange indexes."
+      ],
+      "wrapped": true
+    },
+    {
+      "operation": "GetFills",
+      "rust_name": "get_fills",
+      "method": "get_fills",
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). If omitted, defaults to all subaccounts.",
+      "omission": "all",
+      "param_type": "SubaccountFilter",
+      "exchange_index_sentences": [
+        "Filter results by exchange shard. Omit to return results from all exchange shards."
+      ],
+      "wrapped": true
+    },
+    {
+      "operation": "GetFillsHistorical",
+      "rust_name": "get_fills_historical",
+      "method": null,
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). If omitted, defaults to all subaccounts.",
+      "omission": "all",
+      "param_type": null,
+      "exchange_index_sentences": [],
+      "wrapped": false
+    },
+    {
+      "operation": "GetHistoricalOrders",
+      "rust_name": "get_historical_orders",
+      "method": null,
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). If omitted, defaults to all subaccounts.",
+      "omission": "all",
+      "param_type": null,
+      "exchange_index_sentences": [],
+      "wrapped": false
+    },
+    {
+      "operation": "GetHistoricalPositions",
+      "rust_name": "get_historical_positions",
+      "method": null,
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "omission": "primary",
+      "param_type": null,
+      "exchange_index_sentences": [],
+      "wrapped": false
+    },
+    {
+      "operation": "GetOrderGroup",
+      "rust_name": "get_order_group",
+      "method": null,
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). If omitted, defaults to all subaccounts.",
+      "omission": "all",
+      "param_type": null,
+      "exchange_index_sentences": [],
+      "wrapped": false
+    },
+    {
+      "operation": "GetOrderGroups",
+      "rust_name": "get_order_groups",
+      "method": null,
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). If omitted, defaults to all subaccounts.",
+      "omission": "all",
+      "param_type": null,
+      "exchange_index_sentences": [],
+      "wrapped": false
+    },
+    {
+      "operation": "GetOrderQueuePositions",
+      "rust_name": "get_order_queue_positions",
+      "method": "get_order_queue_positions",
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "omission": "primary",
+      "param_type": "Subaccount",
+      "exchange_index_sentences": [],
+      "wrapped": true
+    },
+    {
+      "operation": "GetOrders",
+      "rust_name": "get_orders",
+      "method": "get_orders",
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). If omitted, defaults to all subaccounts.",
+      "omission": "all",
+      "param_type": "SubaccountFilter",
+      "exchange_index_sentences": [
+        "Filter results by exchange shard. Omit to return results from all exchange shards."
+      ],
+      "wrapped": true
+    },
+    {
+      "operation": "GetPositions",
+      "rust_name": "get_positions",
+      "method": "get_positions",
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "omission": "primary",
+      "param_type": "Subaccount",
+      "exchange_index_sentences": [
+        "Filter results by exchange shard. Omit to return results from all exchange shards."
+      ],
+      "wrapped": true
+    },
+    {
+      "operation": "GetRFQs",
+      "rust_name": "get_rf_qs",
+      "method": null,
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). If omitted, defaults to all subaccounts.",
+      "omission": "all",
+      "param_type": null,
+      "exchange_index_sentences": [],
+      "wrapped": false
+    },
+    {
+      "operation": "GetSettlements",
+      "rust_name": "get_settlements",
+      "method": null,
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). If omitted, defaults to all subaccounts.",
+      "omission": "all",
+      "param_type": null,
+      "exchange_index_sentences": [],
+      "wrapped": false
+    },
+    {
+      "operation": "ResetOrderGroup",
+      "rust_name": "reset_order_group",
+      "method": null,
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "omission": "primary",
+      "param_type": null,
+      "exchange_index_sentences": [
+        "Identifier for an exchange shard. Defaults to 0."
+      ],
+      "wrapped": false
+    },
+    {
+      "operation": "TriggerOrderGroup",
+      "rust_name": "trigger_order_group",
+      "method": null,
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "omission": "primary",
+      "param_type": null,
+      "exchange_index_sentences": [
+        "Identifier for an exchange shard. Defaults to 0."
+      ],
+      "wrapped": false
+    },
+    {
+      "operation": "UpdateOrderGroupLimit",
+      "rust_name": "update_order_group_limit",
+      "method": null,
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "omission": "primary",
+      "param_type": null,
+      "exchange_index_sentences": [
+        "Identifier for an exchange shard. Defaults to 0."
+      ],
+      "wrapped": false
+    }
+  ]
+}

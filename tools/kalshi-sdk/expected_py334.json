@@ -1,0 +1,10 @@
+{
+  "field_python_only": {},
+  "field_rust_only": {},
+  "required_python_only": {},
+  "required_rust_only": {},
+  "enum_python_only": {},
+  "enum_rust_only": {},
+  "python_only_models": [],
+  "rust_only_models": []
+}

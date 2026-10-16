@@ -1,0 +1,88 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: dtolnay/rust-toolchain@02cb101ec7c40f2c49e1d9714d64511d8e1b74de # master
+        with:
+          toolchain: 1.93.1
+          components: rustfmt, clippy
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: public content
+        run: tools/kalshi-sdk/public_content_grep.sh
+
+      - name: generator jar
+        run: |
+          set -euo pipefail
+          python3 - << 'PY'
+          import hashlib, os, pathlib, tomllib, urllib.request
+          pins = tomllib.loads(pathlib.Path("tools/kalshi-sdk/pins.toml").read_text())
+          dest = pathlib.Path(os.environ["RUNNER_TEMP"]) / "openapi-generator-cli.jar"
+          urllib.request.urlretrieve(pins["generator"]["jar_url"], dest)
+          digest = hashlib.sha256(dest.read_bytes()).hexdigest()
+          if digest != pins["generator"]["jar_sha256"]:
+              raise SystemExit(f"jar sha256 {digest}")
+          path = os.environ["GITHUB_ENV"]
+          with open(path, "a", encoding="utf-8") as handle:
+              handle.write(f"KALSHI_GENERATOR_JAR={dest}\n")
+          PY
+
+      - name: drift
+        run: tools/kalshi-sdk/drift.sh
+
+      - name: python models
+        run: |
+          set -euo pipefail
+          python3 - << 'PY'
+          import hashlib, os, pathlib, tomllib, urllib.request, zipfile
+          pins = tomllib.loads(pathlib.Path("tools/kalshi-sdk/pins.toml").read_text())
+          unpacked = pathlib.Path(os.environ["RUNNER_TEMP"]) / "py"
+          path = os.environ["GITHUB_ENV"]
+          lines = []
+          for key, env_name in (("python_sdk", "KALSHI_PYTHON_SDK"),):
+              pin = pins[key]
+              dest = pathlib.Path(os.environ["RUNNER_TEMP"]) / f"{pin['distribution']}.whl"
+              urllib.request.urlretrieve(pin["wheel_url"], dest)
+              digest = hashlib.sha256(dest.read_bytes()).hexdigest()
+              if digest != pin["wheel_sha256"]:
+                  raise SystemExit(f"{pin['distribution']} sha256 {digest}")
+              with zipfile.ZipFile(dest) as archive:
+                  archive.extractall(unpacked)
+              lines.append(f"{env_name}={unpacked / pin['distribution']}")
+          with open(path, "a", encoding="utf-8") as handle:
+              handle.write("\n".join(lines) + "\n")
+          PY
+
+      - name: conformance
+        run: |
+          python3 tools/kalshi-sdk/conformance.py \
+            --python "$KALSHI_PYTHON_SDK" \
+            --rust crates/kalshi-api-openapi/src/models \
+            --rust-api crates/kalshi-api-openapi/src/apis \
+            --expected tools/kalshi-sdk/expected_py334.json \
+            --api-expected tools/kalshi-sdk/expected_api_async.json
+
+      - name: ws schemas
+        run: |
+          python3 -m venv "${RUNNER_TEMP}/ws-schema"
+          "${RUNNER_TEMP}/ws-schema/bin/pip" install 'jsonschema==4.10.3' 'PyYAML==6.0.1'
+          "${RUNNER_TEMP}/ws-schema/bin/python" tools/kalshi-sdk/ws_schema.py --check
+
+      - name: fmt
+        run: cargo fmt --all --check
+
+      - name: clippy
+        run: cargo clippy --locked --workspace --all-targets -- -D warnings
+
+      - name: test
+        run: cargo test --locked --workspace --all-targets

@@ -1,0 +1,24 @@
+{
+  "market_positions": [
+    {
+      "ticker": "SYNTH-1",
+      "exchange_index": 0,
+      "total_traded_dollars": "0.5600",
+      "position_fp": "1.00",
+      "market_exposure_dollars": "0.5600",
+      "realized_pnl_dollars": "0.0000",
+      "fees_paid_dollars": "0.0000",
+      "last_updated_ts": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "event_positions": [
+    {
+      "event_ticker": "SYNTH",
+      "total_cost_dollars": "0.5600",
+      "total_cost_shares_fp": "1.00",
+      "event_exposure_dollars": "0.5600",
+      "realized_pnl_dollars": "0.0000",
+      "fees_paid_dollars": "0.0000"
+    }
+  ]
+}

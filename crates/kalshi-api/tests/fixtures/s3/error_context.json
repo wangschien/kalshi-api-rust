@@ -1,0 +1,12 @@
+{
+  "type": "error",
+  "id": 77,
+  "sid": 91,
+  "seq": 3,
+  "msg": {
+    "code": 8,
+    "msg": "synthetic error",
+    "market_ticker": "SYNTH-1",
+    "market_tickers": ["SYNTH-1"]
+  }
+}

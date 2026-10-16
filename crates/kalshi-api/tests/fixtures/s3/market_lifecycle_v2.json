@@ -1,0 +1,9 @@
+{
+  "type": "market_lifecycle_v2",
+  "sid": 1,
+  "seq": 1,
+  "msg": {
+    "market_ticker": "SYNTH-1",
+    "event_type": "created"
+  }
+}

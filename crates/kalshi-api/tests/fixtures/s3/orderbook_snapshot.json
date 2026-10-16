@@ -1,0 +1,10 @@
+{
+  "type": "orderbook_snapshot",
+  "sid": 1,
+  "seq": 1,
+  "msg": {
+    "market_ticker": "SYNTH-1",
+    "market_id": "00000000-0000-4000-8000-000000000001",
+    "yes_dollars_fp": [["0.5600", "1.00"]]
+  }
+}

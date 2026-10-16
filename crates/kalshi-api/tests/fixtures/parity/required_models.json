@@ -1,0 +1,946 @@
+{
+  "AcceptBlockTradeProposalRequest": [],
+  "AcceptQuoteRequest": [
+    "accepted_side"
+  ],
+  "AccountApiUsageLevelVolumeGoal": [
+    "level",
+    "earn_volume_goal_fp",
+    "keep_volume_goal_fp"
+  ],
+  "AccountApiUsageLevelVolumeProgress": [
+    "computed_ts",
+    "trailing_30d_volume_fp",
+    "goals"
+  ],
+  "AmendOrderRequest": [
+    "ticker",
+    "side",
+    "action"
+  ],
+  "AmendOrderResponse": [
+    "old_order",
+    "order"
+  ],
+  "AmendOrderV2Request": [
+    "ticker",
+    "side",
+    "price",
+    "count"
+  ],
+  "AmendOrderV2Response": [
+    "order_id",
+    "ts_ms"
+  ],
+  "ApiKey": [
+    "api_key_id",
+    "name",
+    "scopes"
+  ],
+  "ApiKeyScope": [],
+  "ApiKeyType": [],
+  "ApiUsageLevelGrant": [
+    "exchange_instance",
+    "level",
+    "source"
+  ],
+  "ApplySubaccountTransferRequest": [
+    "client_transfer_id",
+    "from_subaccount",
+    "to_subaccount",
+    "amount_cents"
+  ],
+  "AssociatedEvent": [
+    "ticker",
+    "is_yes_only",
+    "active_quoters"
+  ],
+  "BatchCancelOrdersIndividualResponse": [
+    "order_id",
+    "reduced_by_fp"
+  ],
+  "BatchCancelOrdersRequest": [],
+  "BatchCancelOrdersRequestOrder": [
+    "order_id"
+  ],
+  "BatchCancelOrdersResponse": [
+    "orders"
+  ],
+  "BatchCancelOrdersV2Request": [
+    "orders"
+  ],
+  "BatchCancelOrdersV2RequestOrdersInner": [
+    "order_id"
+  ],
+  "BatchCancelOrdersV2Response": [
+    "orders"
+  ],
+  "BatchCancelOrdersV2ResponseOrdersInner": [
+    "order_id",
+    "reduced_by"
+  ],
+  "BatchCreateOrdersIndividualResponse": [],
+  "BatchCreateOrdersRequest": [
+    "orders"
+  ],
+  "BatchCreateOrdersResponse": [
+    "orders"
+  ],
+  "BatchCreateOrdersV2Request": [
+    "orders"
+  ],
+  "BatchCreateOrdersV2Response": [
+    "orders"
+  ],
+  "BatchCreateOrdersV2ResponseOrdersInner": [],
+  "BatchGetMarketCandlesticksResponse": [
+    "markets"
+  ],
+  "BidAskDistribution": [
+    "open_dollars",
+    "low_dollars",
+    "high_dollars",
+    "close_dollars"
+  ],
+  "BidAskDistributionHistorical": [
+    "open",
+    "low",
+    "high",
+    "close"
+  ],
+  "BlockTradeProposal": [
+    "id",
+    "proposer_user_id",
+    "buyer_user_id",
+    "seller_user_id",
+    "market_ticker",
+    "price_centi_cents",
+    "centicount",
+    "maker_side",
+    "expiration_ts",
+    "status",
+    "created_ts",
+    "updated_ts",
+    "buyer_accepted",
+    "seller_accepted"
+  ],
+  "BookSide": [],
+  "BucketLimit": [
+    "refill_rate",
+    "bucket_capacity"
+  ],
+  "CancelOrderV2Response": [
+    "order_id",
+    "reduced_by",
+    "ts_ms"
+  ],
+  "CreateApiKeyRequest": [
+    "name",
+    "public_key"
+  ],
+  "CreateApiKeyResponse": [
+    "api_key_id"
+  ],
+  "CreateFCMPositionTransferRequest": [
+    "source_subtrader_id",
+    "target_subtrader_id",
+    "market_ticker",
+    "position_centicount",
+    "price_centicents"
+  ],
+  "CreateFCMPositionTransferResponse": [
+    "position_transfer_id"
+  ],
+  "CreateFCMSubtraderRequest": [
+    "subtrader_suffix"
+  ],
+  "CreateFCMSubtraderResponse": [
+    "subtrader_id"
+  ],
+  "CreateMarketInMultivariateEventCollectionRequest": [
+    "selected_markets"
+  ],
+  "CreateMarketInMultivariateEventCollectionResponse": [
+    "event_ticker",
+    "market_ticker"
+  ],
+  "CreateOrderGroupRequest": [],
+  "CreateOrderGroupResponse": [
+    "order_group_id",
+    "subaccount"
+  ],
+  "CreateOrderRequest": [
+    "ticker",
+    "side",
+    "action"
+  ],
+  "CreateOrderResponse": [
+    "order"
+  ],
+  "CreateOrderV2Request": [
+    "ticker",
+    "side",
+    "count",
+    "price",
+    "time_in_force",
+    "self_trade_prevention_type"
+  ],
+  "CreateOrderV2Response": [
+    "order_id",
+    "fill_count",
+    "remaining_count",
+    "ts_ms"
+  ],
+  "CreateQuoteRequest": [
+    "rfq_id",
+    "yes_bid",
+    "no_bid",
+    "rest_remainder"
+  ],
+  "CreateQuoteResponse": [
+    "id"
+  ],
+  "CreateRFQRequest": [
+    "market_ticker",
+    "rest_remainder"
+  ],
+  "CreateRFQResponse": [
+    "id"
+  ],
+  "CreateSubaccountRequest": [],
+  "CreateSubaccountResponse": [
+    "subaccount_number"
+  ],
+  "DailySchedule": [
+    "open_time",
+    "close_time"
+  ],
+  "DecreaseOrderV2Request": [],
+  "DecreaseOrderV2Response": [
+    "order_id",
+    "remaining_count",
+    "ts_ms"
+  ],
+  "Deposit": [
+    "id",
+    "status",
+    "type",
+    "amount_cents",
+    "fee_cents",
+    "created_ts"
+  ],
+  "EndpointTokenCost": [
+    "method",
+    "path",
+    "cost"
+  ],
+  "ErrorResponse": [],
+  "EventData": [
+    "event_ticker",
+    "series_ticker",
+    "sub_title",
+    "title",
+    "collateral_return_type",
+    "mutually_exclusive",
+    "settlement_sources"
+  ],
+  "EventFeeChange": [
+    "id",
+    "event_ticker",
+    "series_ticker",
+    "fee_type_override",
+    "fee_multiplier_override",
+    "scheduled_ts"
+  ],
+  "EventLiveData": [
+    "type",
+    "details"
+  ],
+  "EventPosition": [
+    "event_ticker",
+    "total_cost_dollars",
+    "total_cost_shares_fp",
+    "event_exposure_dollars",
+    "realized_pnl_dollars",
+    "fees_paid_dollars"
+  ],
+  "ExchangeIndexStatus": [
+    "exchange_index",
+    "description",
+    "exchange_active",
+    "trading_active",
+    "intra_exchange_transfers_active"
+  ],
+  "ExchangeInstance": [],
+  "ExchangeStatus": [
+    "exchange_active",
+    "trading_active"
+  ],
+  "FCMSubtrader": [
+    "subtrader_id",
+    "exchange_indices",
+    "trading_blocked",
+    "fcm_trading_blocked",
+    "propagation_pending"
+  ],
+  "FcmFill": [
+    "fill_id",
+    "exchange_index",
+    "ticker",
+    "taker_outcome_side",
+    "count_fp",
+    "yes_price_dollars"
+  ],
+  "FeeType": [],
+  "Fill": [
+    "fill_id",
+    "exchange_index",
+    "trade_id",
+    "order_id",
+    "ticker",
+    "market_ticker",
+    "outcome_side",
+    "book_side",
+    "count_fp",
+    "yes_price_dollars",
+    "no_price_dollars",
+    "is_taker",
+    "fee_cost"
+  ],
+  "ForecastPercentilesPoint": [
+    "event_ticker",
+    "end_period_ts",
+    "period_interval",
+    "percentile_points"
+  ],
+  "GenerateApiKeyRequest": [
+    "name"
+  ],
+  "GenerateApiKeyResponse": [
+    "api_key_id",
+    "private_key"
+  ],
+  "GetAccountApiLimitsResponse": [
+    "usage_tier",
+    "read",
+    "write",
+    "grants"
+  ],
+  "GetAccountApiUsageLevelVolumeProgressResponse": [
+    "volume_progress"
+  ],
+  "GetAccountEndpointCostsResponse": [
+    "default_cost",
+    "endpoint_costs"
+  ],
+  "GetApiKeysResponse": [
+    "api_keys"
+  ],
+  "GetBalanceResponse": [
+    "balance",
+    "balance_dollars",
+    "portfolio_value",
+    "updated_ts"
+  ],
+  "GetBlockTradeProposalsResponse": [
+    "block_trade_proposals"
+  ],
+  "GetCommunicationsIDResponse": [
+    "communications_id"
+  ],
+  "GetDepositsResponse": [
+    "deposits"
+  ],
+  "GetEventCandlesticksResponse": [
+    "market_tickers",
+    "market_candlesticks",
+    "adjusted_end_ts"
+  ],
+  "GetEventFeeChangesResponse": [
+    "event_fee_changes",
+    "cursor"
+  ],
+  "GetEventForecastPercentilesHistoryResponse": [
+    "forecast_history"
+  ],
+  "GetEventLiveDataResponse": [
+    "live_data"
+  ],
+  "GetEventMetadataResponse": [
+    "image_url",
+    "market_details",
+    "settlement_sources"
+  ],
+  "GetEventResponse": [
+    "event",
+    "markets"
+  ],
+  "GetEventsResponse": [
+    "events",
+    "cursor"
+  ],
+  "GetExchangeScheduleResponse": [
+    "schedule"
+  ],
+  "GetFCMEventContractDailyCapResponse": [
+    "subtrader_id",
+    "limit",
+    "executed_utilization",
+    "resting_order_utilization",
+    "pending_order_utilization",
+    "cap_date"
+  ],
+  "GetFCMSubtraderBlockedCategoriesResponse": [
+    "categories"
+  ],
+  "GetFcmFillsResponse": [
+    "fills",
+    "cursor"
+  ],
+  "GetFillsResponse": [
+    "fills",
+    "cursor"
+  ],
+  "GetFiltersBySportsResponse": [
+    "filters_by_sports",
+    "sport_ordering"
+  ],
+  "GetGameStatsResponse": [],
+  "GetHistoricalCutoffResponse": [
+    "market_settled_ts",
+    "trades_created_ts",
+    "orders_updated_ts"
+  ],
+  "GetIncentiveProgramsResponse": [
+    "incentive_programs"
+  ],
+  "GetIntraExchangeInstanceTransferResponse": [
+    "transfer"
+  ],
+  "GetIntraExchangeInstanceTransfersResponse": [
+    "transfers"
+  ],
+  "GetLiveDataResponse": [
+    "live_data"
+  ],
+  "GetLiveDatasResponse": [
+    "live_datas"
+  ],
+  "GetMarketCandlesticksHistoricalResponse": [
+    "ticker",
+    "candlesticks"
+  ],
+  "GetMarketCandlesticksResponse": [
+    "ticker",
+    "candlesticks"
+  ],
+  "GetMarketOrderbookResponse": [
+    "orderbook_fp"
+  ],
+  "GetMarketOrderbooksResponse": [
+    "orderbooks"
+  ],
+  "GetMarketResponse": [
+    "market"
+  ],
+  "GetMarketsResponse": [
+    "markets",
+    "cursor"
+  ],
+  "GetMilestoneResponse": [
+    "milestone"
+  ],
+  "GetMilestonesResponse": [
+    "milestones"
+  ],
+  "GetMultivariateEventCollectionResponse": [
+    "multivariate_contract"
+  ],
+  "GetMultivariateEventCollectionsResponse": [
+    "multivariate_contracts"
+  ],
+  "GetMultivariateEventsResponse": [
+    "events",
+    "cursor"
+  ],
+  "GetOrderGroupResponse": [
+    "is_auto_cancel_enabled",
+    "orders"
+  ],
+  "GetOrderGroupsResponse": [],
+  "GetOrderQueuePositionResponse": [
+    "queue_position_fp"
+  ],
+  "GetOrderQueuePositionsResponse": [
+    "queue_positions"
+  ],
+  "GetOrderResponse": [
+    "order"
+  ],
+  "GetOrdersResponse": [
+    "orders",
+    "cursor"
+  ],
+  "GetPortfolioRestingOrderTotalValueResponse": [
+    "total_resting_order_value",
+    "resting_order_value_breakdown"
+  ],
+  "GetPositionsResponse": [
+    "market_positions",
+    "event_positions"
+  ],
+  "GetQuoteResponse": [
+    "quote"
+  ],
+  "GetQuotesResponse": [
+    "quotes"
+  ],
+  "GetRFQResponse": [
+    "rfq"
+  ],
+  "GetRFQsResponse": [
+    "rfqs"
+  ],
+  "GetSeriesFeeChangesResponse": [
+    "series_fee_change_arr"
+  ],
+  "GetSeriesListResponse": [
+    "series"
+  ],
+  "GetSeriesResponse": [
+    "series"
+  ],
+  "GetSettlementsResponse": [
+    "settlements"
+  ],
+  "GetStructuredTargetResponse": [],
+  "GetStructuredTargetsResponse": [],
+  "GetSubaccountBalancesResponse": [
+    "subaccount_balances"
+  ],
+  "GetSubaccountNettingResponse": [
+    "netting_configs"
+  ],
+  "GetSubaccountTransfersResponse": [
+    "transfers"
+  ],
+  "GetTagsForSeriesCategoriesResponse": [
+    "tags_by_categories"
+  ],
+  "GetTargetBalanceAllocationResponse": [
+    "allocations",
+    "resting_margin_reservation"
+  ],
+  "GetTradesResponse": [
+    "trades",
+    "cursor"
+  ],
+  "GetUserDataTimestampResponse": [
+    "as_of_time"
+  ],
+  "GetWeatherIndexCalibrationsResponse": [
+    "city",
+    "units",
+    "calibrations"
+  ],
+  "GetWeatherIndexResponse": [
+    "city",
+    "units",
+    "timeseries"
+  ],
+  "GetWithdrawalsResponse": [
+    "withdrawals"
+  ],
+  "IncentiveProgram": [
+    "id",
+    "market_id",
+    "market_ticker",
+    "incentive_type",
+    "incentive_description",
+    "start_date",
+    "end_date",
+    "period_reward",
+    "paid_out"
+  ],
+  "IndexedBalance": [
+    "exchange_index",
+    "balance"
+  ],
+  "IntraExchangeInstanceTransfer": [
+    "transfer_id",
+    "source",
+    "destination",
+    "source_exchange_shard",
+    "destination_exchange_shard",
+    "amount",
+    "status",
+    "created_ts"
+  ],
+  "IntraExchangeInstanceTransferRequest": [
+    "source",
+    "destination",
+    "amount"
+  ],
+  "IntraExchangeInstanceTransferResponse": [
+    "transfer_id"
+  ],
+  "IntraExchangeInstanceTransferStatus": [],
+  "ListFCMSubtradersResponse": [
+    "subtraders"
+  ],
+  "LiveData": [
+    "type",
+    "details",
+    "milestone_id"
+  ],
+  "MaintenanceWindow": [
+    "start_datetime",
+    "end_datetime"
+  ],
+  "Market": [
+    "ticker",
+    "event_ticker",
+    "market_type",
+    "yes_sub_title",
+    "no_sub_title",
+    "created_time",
+    "updated_time",
+    "open_time",
+    "close_time",
+    "latest_expiration_time",
+    "settlement_timer_seconds",
+    "status",
+    "yes_bid_dollars",
+    "yes_bid_size_fp",
+    "yes_ask_dollars",
+    "yes_ask_size_fp",
+    "no_bid_dollars",
+    "no_ask_dollars",
+    "last_price_dollars",
+    "volume_fp",
+    "volume_24h_fp",
+    "result",
+    "can_close_early",
+    "open_interest_fp",
+    "notional_value_dollars",
+    "previous_yes_bid_dollars",
+    "previous_yes_ask_dollars",
+    "previous_price_dollars",
+    "settlement_bounds_type",
+    "expiration_value",
+    "rules_primary",
+    "rules_secondary",
+    "price_level_structure",
+    "price_ranges"
+  ],
+  "MarketCandlestick": [
+    "end_period_ts",
+    "yes_bid",
+    "yes_ask",
+    "price",
+    "volume_fp",
+    "open_interest_fp"
+  ],
+  "MarketCandlestickHistorical": [
+    "end_period_ts",
+    "yes_bid",
+    "yes_ask",
+    "price",
+    "volume",
+    "open_interest"
+  ],
+  "MarketCandlesticksResponse": [
+    "market_ticker",
+    "candlesticks"
+  ],
+  "MarketMetadata": [
+    "market_ticker",
+    "image_url",
+    "color_code"
+  ],
+  "MarketOrderbookFp": [
+    "ticker",
+    "orderbook_fp"
+  ],
+  "MarketPosition": [
+    "ticker",
+    "exchange_index",
+    "total_traded_dollars",
+    "position_fp",
+    "market_exposure_dollars",
+    "realized_pnl_dollars",
+    "fees_paid_dollars",
+    "last_updated_ts"
+  ],
+  "Milestone": [
+    "id",
+    "category",
+    "type",
+    "start_date",
+    "related_event_tickers",
+    "title",
+    "notification_message",
+    "details",
+    "primary_event_tickers",
+    "last_updated_ts"
+  ],
+  "MultivariateEventCollection": [
+    "collection_ticker",
+    "series_ticker",
+    "title",
+    "description",
+    "open_date",
+    "close_date",
+    "associated_events",
+    "associated_event_tickers",
+    "is_ordered",
+    "is_single_market_per_event",
+    "is_all_yes",
+    "size_min",
+    "size_max",
+    "functional_description",
+    "price_level_structure",
+    "price_ranges"
+  ],
+  "MveSelectedLeg": [],
+  "Order": [
+    "order_id",
+    "user_id",
+    "client_order_id",
+    "ticker",
+    "outcome_side",
+    "book_side",
+    "type",
+    "status",
+    "yes_price_dollars",
+    "no_price_dollars",
+    "fill_count_fp",
+    "remaining_count_fp",
+    "initial_count_fp",
+    "taker_fill_cost_dollars",
+    "maker_fill_cost_dollars",
+    "taker_fees_dollars",
+    "maker_fees_dollars"
+  ],
+  "OrderGroup": [
+    "id",
+    "is_auto_cancel_enabled"
+  ],
+  "OrderQueuePosition": [
+    "order_id",
+    "market_ticker",
+    "queue_position_fp"
+  ],
+  "OrderStatus": [],
+  "OrderbookCountFp": [
+    "yes_dollars",
+    "no_dollars"
+  ],
+  "OutcomeSide": [],
+  "PercentilePoint": [
+    "percentile",
+    "raw_numerical_forecast",
+    "numerical_forecast",
+    "formatted_forecast"
+  ],
+  "PlayByPlay": [],
+  "PlayByPlayPeriodsInner": [],
+  "PriceDistribution": [],
+  "PriceDistributionHistorical": [
+    "open",
+    "low",
+    "high",
+    "close",
+    "mean",
+    "previous"
+  ],
+  "PriceRange": [
+    "start",
+    "end",
+    "step"
+  ],
+  "ProposeBlockTradeRequest": [
+    "buyer_user_id",
+    "seller_user_id",
+    "market_ticker",
+    "price_centi_cents",
+    "centicount",
+    "maker_side",
+    "expiration_ts"
+  ],
+  "ProposeBlockTradeResponse": [
+    "block_trade_proposal_id"
+  ],
+  "Quote": [
+    "id",
+    "rfq_id",
+    "creator_id",
+    "rfq_creator_id",
+    "market_ticker",
+    "contracts_fp",
+    "yes_bid_dollars",
+    "no_bid_dollars",
+    "created_ts",
+    "updated_ts",
+    "status"
+  ],
+  "RFQ": [
+    "id",
+    "creator_id",
+    "market_ticker",
+    "contracts_fp",
+    "status",
+    "created_ts"
+  ],
+  "RestingMarginReservation": [],
+  "Schedule": [
+    "standard_hours",
+    "maintenance_windows"
+  ],
+  "ScopeList": [
+    "scopes"
+  ],
+  "SelfTradePreventionType": [],
+  "Series": [
+    "ticker",
+    "frequency",
+    "title",
+    "category",
+    "categories",
+    "tags",
+    "settlement_sources",
+    "contract_url",
+    "contract_terms_url",
+    "fee_type",
+    "fee_multiplier",
+    "additional_prohibitions"
+  ],
+  "SeriesFeeChange": [
+    "id",
+    "series_ticker",
+    "fee_type",
+    "fee_multiplier",
+    "scheduled_ts"
+  ],
+  "SetTargetBalanceAllocationRequest": [
+    "allocations"
+  ],
+  "Settlement": [
+    "ticker",
+    "exchange_index",
+    "event_ticker",
+    "market_result",
+    "yes_count_fp",
+    "yes_total_cost_dollars",
+    "no_count_fp",
+    "no_total_cost_dollars",
+    "revenue",
+    "settled_time",
+    "fee_cost"
+  ],
+  "SettlementSource": [],
+  "SportFilterDetails": [
+    "scopes",
+    "competitions"
+  ],
+  "StructuredTarget": [],
+  "SubaccountBalance": [
+    "subaccount_number",
+    "exchange_index",
+    "balance",
+    "updated_ts"
+  ],
+  "SubaccountNettingConfig": [
+    "subaccount_number",
+    "enabled",
+    "exchange_index"
+  ],
+  "SubaccountTransfer": [
+    "transfer_id",
+    "from_subaccount",
+    "to_subaccount",
+    "amount_cents",
+    "created_ts",
+    "exchange_index"
+  ],
+  "TargetBalanceAllocation": [
+    "exchange_index",
+    "percent"
+  ],
+  "TargetBalanceAllocationInput": [
+    "exchange_index",
+    "percent"
+  ],
+  "TickerPair": [
+    "market_ticker",
+    "event_ticker",
+    "side"
+  ],
+  "Trade": [
+    "trade_id",
+    "ticker",
+    "count_fp",
+    "yes_price_dollars",
+    "no_price_dollars",
+    "taker_outcome_side",
+    "taker_book_side",
+    "created_time",
+    "is_block_trade"
+  ],
+  "UpdateFCMEventContractDailyCapRequest": [
+    "subtrader_id",
+    "limit"
+  ],
+  "UpdateFCMSubtraderBlockedCategoriesRequest": [
+    "subtrader_id",
+    "category",
+    "blocked"
+  ],
+  "UpdateFCMSubtraderBlockedCategoriesResponse": [
+    "categories"
+  ],
+  "UpdateOrderGroupLimitRequest": [],
+  "UpdateSubaccountNettingRequest": [
+    "subaccount_number",
+    "enabled"
+  ],
+  "UserFilter": [],
+  "WeatherIndexCalibration": [
+    "config_version",
+    "effective_at_ms",
+    "city_reference_c",
+    "stations"
+  ],
+  "WeatherIndexCalibrationStation": [
+    "station_id",
+    "weight",
+    "offset_c"
+  ],
+  "WeatherIndexPoint": [
+    "t",
+    "status"
+  ],
+  "WeatherIndexStationReading": [
+    "station_id",
+    "code"
+  ],
+  "WeeklySchedule": [
+    "start_time",
+    "end_time",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "sunday"
+  ],
+  "Withdrawal": [
+    "id",
+    "status",
+    "type",
+    "amount_cents",
+    "fee_cents",
+    "created_ts"
+  ]
+}

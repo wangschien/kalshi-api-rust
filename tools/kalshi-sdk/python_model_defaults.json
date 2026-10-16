@@ -1,0 +1,21 @@
+{
+  "AmendOrderRequest": {
+    "subaccount": 0
+  },
+  "BatchCancelOrdersRequestOrder": {
+    "subaccount": 0
+  },
+  "CreateOrderRequest": {
+    "subaccount": 0
+  },
+  "CreateRFQRequest": {
+    "obscure_creator_id": false,
+    "replace_existing": false
+  },
+  "IntraExchangeInstanceTransferRequest": {
+    "destination_exchange_shard": 0,
+    "destination_subaccount": 0,
+    "source_exchange_shard": 0,
+    "source_subaccount": 0
+  }
+}

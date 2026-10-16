@@ -1,0 +1,12 @@
+{
+  "type": "cfbenchmarks_value_5hz",
+  "sid": 1,
+  "seq": 42,
+  "msg": {
+    "index_id": "BRTI",
+    "value_usd": "68000.12000000",
+    "source_ts_ms": 1710000000323,
+    "received_at": 1710000000341,
+    "data": "{\"type\":\"value\",\"id\":\"BRTI\",\"time\":1710000000323,\"value\":\"68000.12\"}"
+  }
+}

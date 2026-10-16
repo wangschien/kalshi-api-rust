@@ -1,0 +1,7 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/kalshi-api-openapi",
+    "crates/kalshi-api-pins",
+    "crates/kalshi-api",
+]

@@ -1,0 +1,60 @@
+[openapi]
+openapi = "3.0.0"
+info_version = "3.34.0"
+sha256 = "a33d05aaa5deab319674407d543b5c0027d41adbf2c4f8a11dab708a0debd35a"
+path = "spec/openapi.yaml"
+source = "https://docs.kalshi.com/openapi.yaml"
+operation_count = 118
+servers = [
+  "https://external-api.kalshi.com/trade-api/v2",
+  "https://api.elections.kalshi.com/trade-api/v2",
+  "https://external-api.demo.kalshi.co/trade-api/v2",
+  "https://demo-api.kalshi.co/trade-api/v2",
+]
+
+[asyncapi]
+asyncapi = "3.0.0"
+info_version = "2.0.0"
+sha256 = "3c86bae7d89b44baba1119b3a097a54054c1d851e1dcd8ad894c7cb35b9890b6"
+path = "spec/asyncapi.yaml"
+source = "https://docs.kalshi.com/asyncapi.yaml"
+channel_count = 15
+message_count = 44
+schema_count = 50
+
+[generator]
+coordinate = "org.openapitools:openapi-generator-cli:7.17.0"
+version = "7.17.0"
+jar_sha256 = "25d6bd8273dd2be99979d544b62ea43f0ce1975f1aa582678b5093d1e7fcfce8"
+jar_bytes = 30971683
+jar_url = "https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.17.0/openapi-generator-cli-7.17.0.jar"
+jdk_major = 21
+generator_name = "rust"
+package_name = "kalshi-api-openapi"
+package_version = "3.34.0"
+additional_properties = "library=reqwest,supportAsync=true,packageVersion=3.34.0,preferUnsignedInt=false,bestFitInt=false,useSingleRequestParameter=true,supportMiddleware=true,avoidBoxedModels=true"
+
+[overlay]
+reason = "openapi-generator 7.17.0 rust client emits i32 for an integer that omits format and ignores a type mapping of integer to i64"
+inserted_format = "int64"
+entry_count = 71
+effective_openapi_sha256 = "c2d5b10b267310ffa7c3d6b34e27583e6c621b011e0e17f58935cac8ed1e81d1"
+
+[python_sdk]
+defaults_path = "tools/kalshi-sdk/python_model_defaults.json"
+defaults_sha256 = "574390b7fdc70ad8d0c7a3d9b19f7d8b1e4e4e54122d59a46566b53765bf53a6"
+distribution = "kalshi_python_async"
+version = "3.34.0"
+openapi_info_version = "3.34.0"
+generator_version = "7.17.0"
+wheel_sha256 = "41574846e0e367b1b2929e7e094bf6c6407d09246e39cb31161bd7ced2825b33"
+wheel_url = "https://files.pythonhosted.org/packages/de/ed/fbbddf1fa96a66d9693bf36962ab181c10ccfa620e702bd3eb73b7b8ebb8/kalshi_python_async-3.34.0-py3-none-any.whl"
+source = "https://pypi.org/pypi/kalshi_python_async/json"
+
+[python_sdk_sync]
+distribution = "kalshi_python_sync"
+version = "3.30.0"
+wheel_sha256 = "b65e08cfc4225da1bf84fc783348ab8d7bbe78c7f9b486c198eb071dfedfe19f"
+wheel_url = "https://files.pythonhosted.org/packages/10/1f/dc06a25bed4d246a45eff9daf5a947e7572a04e94c696820ce011ad2f327/kalshi_python_sync-3.30.0-py3-none-any.whl"
+source = "https://pypi.org/pypi/kalshi_python_sync/json"
+note = "After the package name is normalized, model sources must match kalshi_python_async."

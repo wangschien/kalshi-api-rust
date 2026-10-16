@@ -1,0 +1,7 @@
+{
+  "id": 3,
+  "cmd": "unsubscribe",
+  "params": {
+    "sids": [1]
+  }
+}

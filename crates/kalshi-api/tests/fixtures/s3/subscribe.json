@@ -1,0 +1,8 @@
+{
+  "id": 1,
+  "cmd": "subscribe",
+  "params": {
+    "channels": ["orderbook_delta"],
+    "market_ticker": "SYNTH-1"
+  }
+}

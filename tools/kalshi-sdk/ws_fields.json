@@ -1,0 +1,2507 @@
+{
+  "count": 417,
+  "fields": [
+    {
+      "owner": "CfBenchmarksAvgData",
+      "field": "value",
+      "presence": "required",
+      "schema": "cfbenchmarksValuePayload.msg.avg_60s_data"
+    },
+    {
+      "owner": "CfBenchmarksAvgData",
+      "field": "value",
+      "presence": "required",
+      "schema": "cfbenchmarksValuePayload.msg.last_60s_windowed_average_15min"
+    },
+    {
+      "owner": "CfBenchmarksAvgData",
+      "field": "window_end_ts_exclusive",
+      "presence": "required",
+      "schema": "cfbenchmarksValuePayload.msg.avg_60s_data"
+    },
+    {
+      "owner": "CfBenchmarksAvgData",
+      "field": "window_end_ts_exclusive",
+      "presence": "required",
+      "schema": "cfbenchmarksValuePayload.msg.last_60s_windowed_average_15min"
+    },
+    {
+      "owner": "CfBenchmarksAvgData",
+      "field": "window_size",
+      "presence": "required",
+      "schema": "cfbenchmarksValuePayload.msg.avg_60s_data"
+    },
+    {
+      "owner": "CfBenchmarksAvgData",
+      "field": "window_size",
+      "presence": "required",
+      "schema": "cfbenchmarksValuePayload.msg.last_60s_windowed_average_15min"
+    },
+    {
+      "owner": "CfBenchmarksAvgData",
+      "field": "window_start_ts_ms",
+      "presence": "required",
+      "schema": "cfbenchmarksValuePayload.msg.avg_60s_data"
+    },
+    {
+      "owner": "CfBenchmarksAvgData",
+      "field": "window_start_ts_ms",
+      "presence": "required",
+      "schema": "cfbenchmarksValuePayload.msg.last_60s_windowed_average_15min"
+    },
+    {
+      "owner": "CfBenchmarksIndexListBody",
+      "field": "index_ids",
+      "presence": "required",
+      "schema": "cfbenchmarks5HzIndexListPayload.msg"
+    },
+    {
+      "owner": "CfBenchmarksIndexListBody",
+      "field": "index_ids",
+      "presence": "required",
+      "schema": "cfbenchmarksIndexListPayload.msg"
+    },
+    {
+      "owner": "CfBenchmarksIndexListBody",
+      "field": "index_ids",
+      "presence": "required",
+      "schema": "subscribedIndicesResponsePayload.msg"
+    },
+    {
+      "owner": "CfBenchmarksValue5HzBody",
+      "field": "data",
+      "presence": "required",
+      "schema": "cfbenchmarksValue5HzPayload.msg"
+    },
+    {
+      "owner": "CfBenchmarksValue5HzBody",
+      "field": "index_id",
+      "presence": "required",
+      "schema": "cfbenchmarksValue5HzPayload.msg"
+    },
+    {
+      "owner": "CfBenchmarksValue5HzBody",
+      "field": "received_at",
+      "presence": "required",
+      "schema": "cfbenchmarksValue5HzPayload.msg"
+    },
+    {
+      "owner": "CfBenchmarksValue5HzBody",
+      "field": "source_ts_ms",
+      "presence": "required",
+      "schema": "cfbenchmarksValue5HzPayload.msg"
+    },
+    {
+      "owner": "CfBenchmarksValue5HzBody",
+      "field": "value_usd",
+      "presence": "required",
+      "schema": "cfbenchmarksValue5HzPayload.msg"
+    },
+    {
+      "owner": "CfBenchmarksValueBody",
+      "field": "avg_60s_data",
+      "presence": "required",
+      "schema": "cfbenchmarksValuePayload.msg"
+    },
+    {
+      "owner": "CfBenchmarksValueBody",
+      "field": "data",
+      "presence": "required",
+      "schema": "cfbenchmarksValuePayload.msg"
+    },
+    {
+      "owner": "CfBenchmarksValueBody",
+      "field": "index_id",
+      "presence": "required",
+      "schema": "cfbenchmarksValuePayload.msg"
+    },
+    {
+      "owner": "CfBenchmarksValueBody",
+      "field": "last_60s_windowed_average_15min",
+      "presence": "optional",
+      "schema": "cfbenchmarksValuePayload.msg"
+    },
+    {
+      "owner": "CfBenchmarksValueBody",
+      "field": "received_at",
+      "presence": "required",
+      "schema": "cfbenchmarksValuePayload.msg"
+    },
+    {
+      "owner": "ClientCommand::ListSubscriptions",
+      "field": "id",
+      "presence": "required",
+      "schema": "listSubscriptionsCommandPayload"
+    },
+    {
+      "owner": "ClientCommand::Subscribe",
+      "field": "id",
+      "presence": "required",
+      "schema": "subscribeCommandPayload"
+    },
+    {
+      "owner": "ClientCommand::Subscribe",
+      "field": "params",
+      "presence": "required",
+      "schema": "subscribeCommandPayload"
+    },
+    {
+      "owner": "ClientCommand::Unsubscribe",
+      "field": "id",
+      "presence": "required",
+      "schema": "unsubscribeCommandPayload"
+    },
+    {
+      "owner": "ClientCommand::Unsubscribe",
+      "field": "params",
+      "presence": "required",
+      "schema": "unsubscribeCommandPayload"
+    },
+    {
+      "owner": "ClientCommand::UpdateSubscription",
+      "field": "id",
+      "presence": "required",
+      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload"
+    },
+    {
+      "owner": "ClientCommand::UpdateSubscription",
+      "field": "id",
+      "presence": "required",
+      "schema": "pythUpdateSubscriptionCommandPayload"
+    },
+    {
+      "owner": "ClientCommand::UpdateSubscription",
+      "field": "id",
+      "presence": "required",
+      "schema": "updateSubscriptionCommandPayload"
+    },
+    {
+      "owner": "ClientCommand::UpdateSubscription",
+      "field": "params",
+      "presence": "required",
+      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload"
+    },
+    {
+      "owner": "ClientCommand::UpdateSubscription",
+      "field": "params",
+      "presence": "required",
+      "schema": "pythUpdateSubscriptionCommandPayload"
+    },
+    {
+      "owner": "ClientCommand::UpdateSubscription",
+      "field": "params",
+      "presence": "required",
+      "schema": "updateSubscriptionCommandPayload"
+    },
+    {
+      "owner": "ErrorBody",
+      "field": "code",
+      "presence": "required",
+      "schema": "errorResponsePayload.msg"
+    },
+    {
+      "owner": "ErrorBody",
+      "field": "market_ticker",
+      "presence": "optional",
+      "schema": "errorResponsePayload.msg"
+    },
+    {
+      "owner": "ErrorBody",
+      "field": "market_tickers",
+      "presence": "optional",
+      "schema": "errorResponsePayload.msg"
+    },
+    {
+      "owner": "ErrorBody",
+      "field": "msg",
+      "presence": "required",
+      "schema": "errorResponsePayload.msg"
+    },
+    {
+      "owner": "EventFeeBody",
+      "field": "event_ticker",
+      "presence": "required",
+      "schema": "eventFeeUpdatePayload.msg"
+    },
+    {
+      "owner": "EventFeeBody",
+      "field": "fee_multiplier_override",
+      "presence": "required_nullable",
+      "schema": "eventFeeUpdatePayload.msg"
+    },
+    {
+      "owner": "EventFeeBody",
+      "field": "fee_type_override",
+      "presence": "required_nullable",
+      "schema": "eventFeeUpdatePayload.msg"
+    },
+    {
+      "owner": "EventLifecycleBody",
+      "field": "collateral_return_type",
+      "presence": "required",
+      "schema": "eventLifecyclePayload.msg"
+    },
+    {
+      "owner": "EventLifecycleBody",
+      "field": "event_ticker",
+      "presence": "required",
+      "schema": "eventLifecyclePayload.msg"
+    },
+    {
+      "owner": "EventLifecycleBody",
+      "field": "exchange_index",
+      "presence": "required",
+      "schema": "eventLifecyclePayload.msg"
+    },
+    {
+      "owner": "EventLifecycleBody",
+      "field": "series_ticker",
+      "presence": "required",
+      "schema": "eventLifecyclePayload.msg"
+    },
+    {
+      "owner": "EventLifecycleBody",
+      "field": "strike_date",
+      "presence": "optional",
+      "schema": "eventLifecyclePayload.msg"
+    },
+    {
+      "owner": "EventLifecycleBody",
+      "field": "strike_period",
+      "presence": "optional",
+      "schema": "eventLifecyclePayload.msg"
+    },
+    {
+      "owner": "EventLifecycleBody",
+      "field": "subtitle",
+      "presence": "required",
+      "schema": "eventLifecyclePayload.msg"
+    },
+    {
+      "owner": "EventLifecycleBody",
+      "field": "title",
+      "presence": "required",
+      "schema": "eventLifecyclePayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "action",
+      "presence": "required",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "book_side",
+      "presence": "required",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "client_order_id",
+      "presence": "optional",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "count_fp",
+      "presence": "required",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "exchange_index",
+      "presence": "required",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "fee_cost",
+      "presence": "required",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "is_taker",
+      "presence": "required",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "order_id",
+      "presence": "required",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "outcome_side",
+      "presence": "required",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "post_position_fp",
+      "presence": "required",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "purchased_side",
+      "presence": "required",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "side",
+      "presence": "required",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "subaccount",
+      "presence": "optional",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "trade_id",
+      "presence": "required",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "ts",
+      "presence": "required",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "ts_ms",
+      "presence": "required",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "FillBody",
+      "field": "yes_price_dollars",
+      "presence": "required",
+      "schema": "fillPayload.msg"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksIndexList",
+      "field": "id",
+      "presence": "optional",
+      "schema": "cfbenchmarksIndexListPayload"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksIndexList",
+      "field": "msg",
+      "presence": "required",
+      "schema": "cfbenchmarksIndexListPayload"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksIndexList",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "cfbenchmarksIndexListPayload"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksIndexList",
+      "field": "seq",
+      "presence": "required",
+      "schema": "cfbenchmarksIndexListPayload"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksIndexList",
+      "field": "sid",
+      "presence": "required",
+      "schema": "cfbenchmarksIndexListPayload"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksIndexList5Hz",
+      "field": "id",
+      "presence": "optional",
+      "schema": "cfbenchmarks5HzIndexListPayload"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksIndexList5Hz",
+      "field": "msg",
+      "presence": "required",
+      "schema": "cfbenchmarks5HzIndexListPayload"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksIndexList5Hz",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "cfbenchmarks5HzIndexListPayload"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksIndexList5Hz",
+      "field": "seq",
+      "presence": "required",
+      "schema": "cfbenchmarks5HzIndexListPayload"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksIndexList5Hz",
+      "field": "sid",
+      "presence": "required",
+      "schema": "cfbenchmarks5HzIndexListPayload"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksValue",
+      "field": "msg",
+      "presence": "required",
+      "schema": "cfbenchmarksValuePayload"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksValue",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "cfbenchmarksValuePayload"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksValue",
+      "field": "seq",
+      "presence": "required",
+      "schema": "cfbenchmarksValuePayload"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksValue",
+      "field": "sid",
+      "presence": "required",
+      "schema": "cfbenchmarksValuePayload"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksValue5Hz",
+      "field": "msg",
+      "presence": "required",
+      "schema": "cfbenchmarksValue5HzPayload"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksValue5Hz",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "cfbenchmarksValue5HzPayload"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksValue5Hz",
+      "field": "seq",
+      "presence": "required",
+      "schema": "cfbenchmarksValue5HzPayload"
+    },
+    {
+      "owner": "Incoming::CfBenchmarksValue5Hz",
+      "field": "sid",
+      "presence": "required",
+      "schema": "cfbenchmarksValue5HzPayload"
+    },
+    {
+      "owner": "Incoming::Error",
+      "field": "id",
+      "presence": "optional",
+      "schema": "errorResponsePayload"
+    },
+    {
+      "owner": "Incoming::Error",
+      "field": "msg",
+      "presence": "required",
+      "schema": "errorResponsePayload"
+    },
+    {
+      "owner": "Incoming::Error",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "errorResponsePayload"
+    },
+    {
+      "owner": "Incoming::Error",
+      "field": "seq",
+      "presence": "optional",
+      "schema": "errorResponsePayload"
+    },
+    {
+      "owner": "Incoming::Error",
+      "field": "sid",
+      "presence": "optional",
+      "schema": "errorResponsePayload"
+    },
+    {
+      "owner": "Incoming::EventFeeUpdate",
+      "field": "msg",
+      "presence": "required",
+      "schema": "eventFeeUpdatePayload"
+    },
+    {
+      "owner": "Incoming::EventFeeUpdate",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "eventFeeUpdatePayload"
+    },
+    {
+      "owner": "Incoming::EventFeeUpdate",
+      "field": "seq",
+      "presence": "required",
+      "schema": "eventFeeUpdatePayload"
+    },
+    {
+      "owner": "Incoming::EventFeeUpdate",
+      "field": "sid",
+      "presence": "required",
+      "schema": "eventFeeUpdatePayload"
+    },
+    {
+      "owner": "Incoming::EventLifecycle",
+      "field": "msg",
+      "presence": "required",
+      "schema": "eventLifecyclePayload"
+    },
+    {
+      "owner": "Incoming::EventLifecycle",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "eventLifecyclePayload"
+    },
+    {
+      "owner": "Incoming::EventLifecycle",
+      "field": "seq",
+      "presence": "required",
+      "schema": "eventLifecyclePayload"
+    },
+    {
+      "owner": "Incoming::EventLifecycle",
+      "field": "sid",
+      "presence": "required",
+      "schema": "eventLifecyclePayload"
+    },
+    {
+      "owner": "Incoming::Fill",
+      "field": "msg",
+      "presence": "required",
+      "schema": "fillPayload"
+    },
+    {
+      "owner": "Incoming::Fill",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "fillPayload"
+    },
+    {
+      "owner": "Incoming::Fill",
+      "field": "sid",
+      "presence": "required",
+      "schema": "fillPayload"
+    },
+    {
+      "owner": "Incoming::MarketLifecycleV2",
+      "field": "msg",
+      "presence": "required",
+      "schema": "marketLifecycleV2Payload"
+    },
+    {
+      "owner": "Incoming::MarketLifecycleV2",
+      "field": "msg",
+      "presence": "required",
+      "schema": "marketMetadataUpdatedPayload"
+    },
+    {
+      "owner": "Incoming::MarketLifecycleV2",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "marketLifecycleV2Payload"
+    },
+    {
+      "owner": "Incoming::MarketLifecycleV2",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "marketMetadataUpdatedPayload"
+    },
+    {
+      "owner": "Incoming::MarketLifecycleV2",
+      "field": "seq",
+      "presence": "required",
+      "schema": "marketLifecycleV2Payload"
+    },
+    {
+      "owner": "Incoming::MarketLifecycleV2",
+      "field": "seq",
+      "presence": "required",
+      "schema": "marketMetadataUpdatedPayload"
+    },
+    {
+      "owner": "Incoming::MarketLifecycleV2",
+      "field": "sid",
+      "presence": "required",
+      "schema": "marketLifecycleV2Payload"
+    },
+    {
+      "owner": "Incoming::MarketLifecycleV2",
+      "field": "sid",
+      "presence": "required",
+      "schema": "marketMetadataUpdatedPayload"
+    },
+    {
+      "owner": "Incoming::MarketPosition",
+      "field": "msg",
+      "presence": "required",
+      "schema": "marketPositionPayload"
+    },
+    {
+      "owner": "Incoming::MarketPosition",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "marketPositionPayload"
+    },
+    {
+      "owner": "Incoming::MarketPosition",
+      "field": "sid",
+      "presence": "required",
+      "schema": "marketPositionPayload"
+    },
+    {
+      "owner": "Incoming::MultivariateMarketLifecycle",
+      "field": "msg",
+      "presence": "required",
+      "schema": "multivariateMarketLifecyclePayload"
+    },
+    {
+      "owner": "Incoming::MultivariateMarketLifecycle",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "multivariateMarketLifecyclePayload"
+    },
+    {
+      "owner": "Incoming::MultivariateMarketLifecycle",
+      "field": "seq",
+      "presence": "required",
+      "schema": "multivariateMarketLifecyclePayload"
+    },
+    {
+      "owner": "Incoming::MultivariateMarketLifecycle",
+      "field": "sid",
+      "presence": "required",
+      "schema": "multivariateMarketLifecyclePayload"
+    },
+    {
+      "owner": "Incoming::Ok",
+      "field": "id",
+      "presence": "optional",
+      "schema": "okResponsePayload"
+    },
+    {
+      "owner": "Incoming::Ok",
+      "field": "msg",
+      "presence": "optional",
+      "schema": "okResponsePayload"
+    },
+    {
+      "owner": "Incoming::Ok",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "okResponsePayload"
+    },
+    {
+      "owner": "Incoming::Ok",
+      "field": "seq",
+      "presence": "optional",
+      "schema": "okResponsePayload"
+    },
+    {
+      "owner": "Incoming::Ok",
+      "field": "sid",
+      "presence": "optional",
+      "schema": "okResponsePayload"
+    },
+    {
+      "owner": "Incoming::OrderGroupUpdates",
+      "field": "msg",
+      "presence": "required",
+      "schema": "orderGroupUpdatesPayload"
+    },
+    {
+      "owner": "Incoming::OrderGroupUpdates",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "orderGroupUpdatesPayload"
+    },
+    {
+      "owner": "Incoming::OrderGroupUpdates",
+      "field": "seq",
+      "presence": "required",
+      "schema": "orderGroupUpdatesPayload"
+    },
+    {
+      "owner": "Incoming::OrderGroupUpdates",
+      "field": "sid",
+      "presence": "required",
+      "schema": "orderGroupUpdatesPayload"
+    },
+    {
+      "owner": "Incoming::OrderbookDelta",
+      "field": "msg",
+      "presence": "required",
+      "schema": "orderbookDeltaPayload"
+    },
+    {
+      "owner": "Incoming::OrderbookDelta",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "orderbookDeltaPayload"
+    },
+    {
+      "owner": "Incoming::OrderbookDelta",
+      "field": "seq",
+      "presence": "required",
+      "schema": "orderbookDeltaPayload"
+    },
+    {
+      "owner": "Incoming::OrderbookDelta",
+      "field": "sid",
+      "presence": "required",
+      "schema": "orderbookDeltaPayload"
+    },
+    {
+      "owner": "Incoming::OrderbookSnapshot",
+      "field": "id",
+      "presence": "optional",
+      "schema": "orderbookSnapshotPayload"
+    },
+    {
+      "owner": "Incoming::OrderbookSnapshot",
+      "field": "msg",
+      "presence": "required",
+      "schema": "orderbookSnapshotPayload"
+    },
+    {
+      "owner": "Incoming::OrderbookSnapshot",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "orderbookSnapshotPayload"
+    },
+    {
+      "owner": "Incoming::OrderbookSnapshot",
+      "field": "seq",
+      "presence": "required",
+      "schema": "orderbookSnapshotPayload"
+    },
+    {
+      "owner": "Incoming::OrderbookSnapshot",
+      "field": "sid",
+      "presence": "required",
+      "schema": "orderbookSnapshotPayload"
+    },
+    {
+      "owner": "Incoming::PythUnderlyingList",
+      "field": "id",
+      "presence": "optional",
+      "schema": "pythUnderlyingListPayload"
+    },
+    {
+      "owner": "Incoming::PythUnderlyingList",
+      "field": "msg",
+      "presence": "required",
+      "schema": "pythUnderlyingListPayload"
+    },
+    {
+      "owner": "Incoming::PythUnderlyingList",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "pythUnderlyingListPayload"
+    },
+    {
+      "owner": "Incoming::PythUnderlyingList",
+      "field": "seq",
+      "presence": "required",
+      "schema": "pythUnderlyingListPayload"
+    },
+    {
+      "owner": "Incoming::PythUnderlyingList",
+      "field": "sid",
+      "presence": "required",
+      "schema": "pythUnderlyingListPayload"
+    },
+    {
+      "owner": "Incoming::PythValue",
+      "field": "msg",
+      "presence": "required",
+      "schema": "pythValuePayload"
+    },
+    {
+      "owner": "Incoming::PythValue",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "pythValuePayload"
+    },
+    {
+      "owner": "Incoming::PythValue",
+      "field": "seq",
+      "presence": "required",
+      "schema": "pythValuePayload"
+    },
+    {
+      "owner": "Incoming::PythValue",
+      "field": "sid",
+      "presence": "required",
+      "schema": "pythValuePayload"
+    },
+    {
+      "owner": "Incoming::QuoteAccepted",
+      "field": "msg",
+      "presence": "required",
+      "schema": "quoteAcceptedPayload"
+    },
+    {
+      "owner": "Incoming::QuoteAccepted",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "quoteAcceptedPayload"
+    },
+    {
+      "owner": "Incoming::QuoteAccepted",
+      "field": "seq",
+      "presence": "required",
+      "schema": "quoteAcceptedPayload"
+    },
+    {
+      "owner": "Incoming::QuoteAccepted",
+      "field": "sid",
+      "presence": "required",
+      "schema": "quoteAcceptedPayload"
+    },
+    {
+      "owner": "Incoming::QuoteCreated",
+      "field": "msg",
+      "presence": "required",
+      "schema": "quoteCreatedPayload"
+    },
+    {
+      "owner": "Incoming::QuoteCreated",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "quoteCreatedPayload"
+    },
+    {
+      "owner": "Incoming::QuoteCreated",
+      "field": "seq",
+      "presence": "required",
+      "schema": "quoteCreatedPayload"
+    },
+    {
+      "owner": "Incoming::QuoteCreated",
+      "field": "sid",
+      "presence": "required",
+      "schema": "quoteCreatedPayload"
+    },
+    {
+      "owner": "Incoming::QuoteExecuted",
+      "field": "msg",
+      "presence": "required",
+      "schema": "quoteExecutedPayload"
+    },
+    {
+      "owner": "Incoming::QuoteExecuted",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "quoteExecutedPayload"
+    },
+    {
+      "owner": "Incoming::QuoteExecuted",
+      "field": "seq",
+      "presence": "required",
+      "schema": "quoteExecutedPayload"
+    },
+    {
+      "owner": "Incoming::QuoteExecuted",
+      "field": "sid",
+      "presence": "required",
+      "schema": "quoteExecutedPayload"
+    },
+    {
+      "owner": "Incoming::RfqCreated",
+      "field": "msg",
+      "presence": "required",
+      "schema": "rfqCreatedPayload"
+    },
+    {
+      "owner": "Incoming::RfqCreated",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "rfqCreatedPayload"
+    },
+    {
+      "owner": "Incoming::RfqCreated",
+      "field": "seq",
+      "presence": "required",
+      "schema": "rfqCreatedPayload"
+    },
+    {
+      "owner": "Incoming::RfqCreated",
+      "field": "sid",
+      "presence": "required",
+      "schema": "rfqCreatedPayload"
+    },
+    {
+      "owner": "Incoming::RfqDeleted",
+      "field": "msg",
+      "presence": "required",
+      "schema": "rfqDeletedPayload"
+    },
+    {
+      "owner": "Incoming::RfqDeleted",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "rfqDeletedPayload"
+    },
+    {
+      "owner": "Incoming::RfqDeleted",
+      "field": "seq",
+      "presence": "required",
+      "schema": "rfqDeletedPayload"
+    },
+    {
+      "owner": "Incoming::RfqDeleted",
+      "field": "sid",
+      "presence": "required",
+      "schema": "rfqDeletedPayload"
+    },
+    {
+      "owner": "Incoming::Subscribed",
+      "field": "id",
+      "presence": "optional",
+      "schema": "subscribedResponsePayload"
+    },
+    {
+      "owner": "Incoming::Subscribed",
+      "field": "msg",
+      "presence": "required",
+      "schema": "subscribedResponsePayload"
+    },
+    {
+      "owner": "Incoming::Subscribed",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "subscribedResponsePayload"
+    },
+    {
+      "owner": "Incoming::Ticker",
+      "field": "msg",
+      "presence": "required",
+      "schema": "tickerPayload"
+    },
+    {
+      "owner": "Incoming::Ticker",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "tickerPayload"
+    },
+    {
+      "owner": "Incoming::Ticker",
+      "field": "sid",
+      "presence": "required",
+      "schema": "tickerPayload"
+    },
+    {
+      "owner": "Incoming::Trade",
+      "field": "msg",
+      "presence": "required",
+      "schema": "tradePayload"
+    },
+    {
+      "owner": "Incoming::Trade",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "tradePayload"
+    },
+    {
+      "owner": "Incoming::Trade",
+      "field": "seq",
+      "presence": "required",
+      "schema": "tradePayload"
+    },
+    {
+      "owner": "Incoming::Trade",
+      "field": "sid",
+      "presence": "required",
+      "schema": "tradePayload"
+    },
+    {
+      "owner": "Incoming::Unsubscribed",
+      "field": "id",
+      "presence": "optional",
+      "schema": "unsubscribedResponsePayload"
+    },
+    {
+      "owner": "Incoming::Unsubscribed",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "unsubscribedResponsePayload"
+    },
+    {
+      "owner": "Incoming::Unsubscribed",
+      "field": "seq",
+      "presence": "required",
+      "schema": "unsubscribedResponsePayload"
+    },
+    {
+      "owner": "Incoming::Unsubscribed",
+      "field": "sid",
+      "presence": "required",
+      "schema": "unsubscribedResponsePayload"
+    },
+    {
+      "owner": "Incoming::UserOrder",
+      "field": "msg",
+      "presence": "required",
+      "schema": "userOrderPayload"
+    },
+    {
+      "owner": "Incoming::UserOrder",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "userOrderPayload"
+    },
+    {
+      "owner": "Incoming::UserOrder",
+      "field": "sid",
+      "presence": "required",
+      "schema": "userOrderPayload"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "can_close_early",
+      "presence": "required",
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "can_close_early",
+      "presence": "required",
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "cap_strike",
+      "presence": "optional",
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "cap_strike",
+      "presence": "optional",
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "custom_strike",
+      "presence": "optional",
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "custom_strike",
+      "presence": "optional",
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "event_ticker",
+      "presence": "required",
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "event_ticker",
+      "presence": "required",
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "expected_expiration_ts",
+      "presence": "required",
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "expected_expiration_ts",
+      "presence": "required",
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "floor_strike",
+      "presence": "optional",
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "floor_strike",
+      "presence": "optional",
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "name",
+      "presence": "required",
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "name",
+      "presence": "required",
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "no_sub_title",
+      "presence": "required",
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "no_sub_title",
+      "presence": "required",
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "rules_primary",
+      "presence": "required",
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "rules_primary",
+      "presence": "required",
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "rules_secondary",
+      "presence": "required",
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "rules_secondary",
+      "presence": "required",
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "strike_type",
+      "presence": "optional",
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "strike_type",
+      "presence": "optional",
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "title",
+      "presence": "required",
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "title",
+      "presence": "required",
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "yes_sub_title",
+      "presence": "required",
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+    },
+    {
+      "owner": "LifecycleAdditionalMetadata",
+      "field": "yes_sub_title",
+      "presence": "required",
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+    },
+    {
+      "owner": "MarketLifecycleBody",
+      "field": "additional_metadata",
+      "presence": "optional",
+      "schema": "marketLifecycleV2Payload.msg"
+    },
+    {
+      "owner": "MarketLifecycleBody",
+      "field": "close_ts",
+      "presence": "optional",
+      "schema": "marketLifecycleV2Payload.msg"
+    },
+    {
+      "owner": "MarketLifecycleBody",
+      "field": "determination_ts",
+      "presence": "optional",
+      "schema": "marketLifecycleV2Payload.msg"
+    },
+    {
+      "owner": "MarketLifecycleBody",
+      "field": "event_type",
+      "presence": "required",
+      "schema": "marketLifecycleV2Payload.msg"
+    },
+    {
+      "owner": "MarketLifecycleBody",
+      "field": "exchange_index",
+      "presence": "optional",
+      "schema": "marketLifecycleV2Payload.msg"
+    },
+    {
+      "owner": "MarketLifecycleBody",
+      "field": "is_deactivated",
+      "presence": "optional",
+      "schema": "marketLifecycleV2Payload.msg"
+    },
+    {
+      "owner": "MarketLifecycleBody",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "marketLifecycleV2Payload.msg"
+    },
+    {
+      "owner": "MarketLifecycleBody",
+      "field": "open_ts",
+      "presence": "optional",
+      "schema": "marketLifecycleV2Payload.msg"
+    },
+    {
+      "owner": "MarketLifecycleBody",
+      "field": "price_level_structure",
+      "presence": "optional",
+      "schema": "marketLifecycleV2Payload.msg"
+    },
+    {
+      "owner": "MarketLifecycleBody",
+      "field": "price_ranges",
+      "presence": "optional",
+      "schema": "marketLifecycleV2Payload.msg"
+    },
+    {
+      "owner": "MarketLifecycleBody",
+      "field": "result",
+      "presence": "optional",
+      "schema": "marketLifecycleV2Payload.msg"
+    },
+    {
+      "owner": "MarketLifecycleBody",
+      "field": "settled_ts",
+      "presence": "optional",
+      "schema": "marketLifecycleV2Payload.msg"
+    },
+    {
+      "owner": "MarketLifecycleBody",
+      "field": "settlement_value",
+      "presence": "optional",
+      "schema": "marketLifecycleV2Payload.msg"
+    },
+    {
+      "owner": "MarketMetadataBody",
+      "field": "cap_strike",
+      "presence": "optional",
+      "schema": "marketMetadataUpdatedPayload.msg"
+    },
+    {
+      "owner": "MarketMetadataBody",
+      "field": "custom_strike",
+      "presence": "optional",
+      "schema": "marketMetadataUpdatedPayload.msg"
+    },
+    {
+      "owner": "MarketMetadataBody",
+      "field": "event_type",
+      "presence": "required",
+      "schema": "marketMetadataUpdatedPayload.msg"
+    },
+    {
+      "owner": "MarketMetadataBody",
+      "field": "floor_strike",
+      "presence": "optional",
+      "schema": "marketMetadataUpdatedPayload.msg"
+    },
+    {
+      "owner": "MarketMetadataBody",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "marketMetadataUpdatedPayload.msg"
+    },
+    {
+      "owner": "MarketMetadataBody",
+      "field": "strike_type",
+      "presence": "optional",
+      "schema": "marketMetadataUpdatedPayload.msg"
+    },
+    {
+      "owner": "MarketMetadataBody",
+      "field": "yes_sub_title",
+      "presence": "optional",
+      "schema": "marketMetadataUpdatedPayload.msg"
+    },
+    {
+      "owner": "MarketPositionBody",
+      "field": "fees_paid_dollars",
+      "presence": "required",
+      "schema": "marketPositionPayload.msg"
+    },
+    {
+      "owner": "MarketPositionBody",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "marketPositionPayload.msg"
+    },
+    {
+      "owner": "MarketPositionBody",
+      "field": "position_cost_dollars",
+      "presence": "required",
+      "schema": "marketPositionPayload.msg"
+    },
+    {
+      "owner": "MarketPositionBody",
+      "field": "position_fee_cost_dollars",
+      "presence": "required",
+      "schema": "marketPositionPayload.msg"
+    },
+    {
+      "owner": "MarketPositionBody",
+      "field": "position_fp",
+      "presence": "required",
+      "schema": "marketPositionPayload.msg"
+    },
+    {
+      "owner": "MarketPositionBody",
+      "field": "realized_pnl_dollars",
+      "presence": "required",
+      "schema": "marketPositionPayload.msg"
+    },
+    {
+      "owner": "MarketPositionBody",
+      "field": "subaccount",
+      "presence": "optional",
+      "schema": "marketPositionPayload.msg"
+    },
+    {
+      "owner": "MarketPositionBody",
+      "field": "user_id",
+      "presence": "required",
+      "schema": "marketPositionPayload.msg"
+    },
+    {
+      "owner": "MarketPositionBody",
+      "field": "volume_fp",
+      "presence": "required",
+      "schema": "marketPositionPayload.msg"
+    },
+    {
+      "owner": "MultivariateLifecycleBody",
+      "field": "additional_metadata",
+      "presence": "optional",
+      "schema": "multivariateMarketLifecyclePayload.msg"
+    },
+    {
+      "owner": "MultivariateLifecycleBody",
+      "field": "close_ts",
+      "presence": "optional",
+      "schema": "multivariateMarketLifecyclePayload.msg"
+    },
+    {
+      "owner": "MultivariateLifecycleBody",
+      "field": "determination_ts",
+      "presence": "optional",
+      "schema": "multivariateMarketLifecyclePayload.msg"
+    },
+    {
+      "owner": "MultivariateLifecycleBody",
+      "field": "event_type",
+      "presence": "required",
+      "schema": "multivariateMarketLifecyclePayload.msg"
+    },
+    {
+      "owner": "MultivariateLifecycleBody",
+      "field": "exchange_index",
+      "presence": "optional",
+      "schema": "multivariateMarketLifecyclePayload.msg"
+    },
+    {
+      "owner": "MultivariateLifecycleBody",
+      "field": "is_deactivated",
+      "presence": "optional",
+      "schema": "multivariateMarketLifecyclePayload.msg"
+    },
+    {
+      "owner": "MultivariateLifecycleBody",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "multivariateMarketLifecyclePayload.msg"
+    },
+    {
+      "owner": "MultivariateLifecycleBody",
+      "field": "open_ts",
+      "presence": "optional",
+      "schema": "multivariateMarketLifecyclePayload.msg"
+    },
+    {
+      "owner": "MultivariateLifecycleBody",
+      "field": "price_level_structure",
+      "presence": "optional",
+      "schema": "multivariateMarketLifecyclePayload.msg"
+    },
+    {
+      "owner": "MultivariateLifecycleBody",
+      "field": "result",
+      "presence": "optional",
+      "schema": "multivariateMarketLifecyclePayload.msg"
+    },
+    {
+      "owner": "MultivariateLifecycleBody",
+      "field": "settled_ts",
+      "presence": "optional",
+      "schema": "multivariateMarketLifecyclePayload.msg"
+    },
+    {
+      "owner": "MultivariateLifecycleBody",
+      "field": "settlement_value",
+      "presence": "optional",
+      "schema": "multivariateMarketLifecyclePayload.msg"
+    },
+    {
+      "owner": "OkMarketsBody",
+      "field": "market_ids",
+      "presence": "optional",
+      "schema": "okResponsePayload.msg"
+    },
+    {
+      "owner": "OkMarketsBody",
+      "field": "market_tickers",
+      "presence": "optional",
+      "schema": "okResponsePayload.msg"
+    },
+    {
+      "owner": "OrderGroupBody",
+      "field": "contracts_limit_fp",
+      "presence": "optional",
+      "schema": "orderGroupUpdatesPayload.msg"
+    },
+    {
+      "owner": "OrderGroupBody",
+      "field": "event_type",
+      "presence": "required",
+      "schema": "orderGroupUpdatesPayload.msg"
+    },
+    {
+      "owner": "OrderGroupBody",
+      "field": "order_group_id",
+      "presence": "required",
+      "schema": "orderGroupUpdatesPayload.msg"
+    },
+    {
+      "owner": "OrderGroupBody",
+      "field": "ts_ms",
+      "presence": "required",
+      "schema": "orderGroupUpdatesPayload.msg"
+    },
+    {
+      "owner": "OrderbookDeltaBody",
+      "field": "client_order_id",
+      "presence": "optional",
+      "schema": "orderbookDeltaPayload.msg"
+    },
+    {
+      "owner": "OrderbookDeltaBody",
+      "field": "delta_fp",
+      "presence": "required",
+      "schema": "orderbookDeltaPayload.msg"
+    },
+    {
+      "owner": "OrderbookDeltaBody",
+      "field": "market_id",
+      "presence": "required",
+      "schema": "orderbookDeltaPayload.msg"
+    },
+    {
+      "owner": "OrderbookDeltaBody",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "orderbookDeltaPayload.msg"
+    },
+    {
+      "owner": "OrderbookDeltaBody",
+      "field": "price_dollars",
+      "presence": "required",
+      "schema": "orderbookDeltaPayload.msg"
+    },
+    {
+      "owner": "OrderbookDeltaBody",
+      "field": "side",
+      "presence": "required",
+      "schema": "orderbookDeltaPayload.msg"
+    },
+    {
+      "owner": "OrderbookDeltaBody",
+      "field": "subaccount",
+      "presence": "optional",
+      "schema": "orderbookDeltaPayload.msg"
+    },
+    {
+      "owner": "OrderbookDeltaBody",
+      "field": "ts",
+      "presence": "optional",
+      "schema": "orderbookDeltaPayload.msg"
+    },
+    {
+      "owner": "OrderbookDeltaBody",
+      "field": "ts_ms",
+      "presence": "optional",
+      "schema": "orderbookDeltaPayload.msg"
+    },
+    {
+      "owner": "OrderbookSnapshotBody",
+      "field": "market_id",
+      "presence": "required",
+      "schema": "orderbookSnapshotPayload.msg"
+    },
+    {
+      "owner": "OrderbookSnapshotBody",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "orderbookSnapshotPayload.msg"
+    },
+    {
+      "owner": "OrderbookSnapshotBody",
+      "field": "no_dollars_fp",
+      "presence": "optional",
+      "schema": "orderbookSnapshotPayload.msg"
+    },
+    {
+      "owner": "OrderbookSnapshotBody",
+      "field": "yes_dollars_fp",
+      "presence": "optional",
+      "schema": "orderbookSnapshotPayload.msg"
+    },
+    {
+      "owner": "PriceRange",
+      "field": "end",
+      "presence": "required",
+      "schema": "marketLifecycleV2Payload.msg.price_ranges"
+    },
+    {
+      "owner": "PriceRange",
+      "field": "start",
+      "presence": "required",
+      "schema": "marketLifecycleV2Payload.msg.price_ranges"
+    },
+    {
+      "owner": "PriceRange",
+      "field": "step",
+      "presence": "required",
+      "schema": "marketLifecycleV2Payload.msg.price_ranges"
+    },
+    {
+      "owner": "PythValueBody",
+      "field": "received_at",
+      "presence": "required",
+      "schema": "pythValuePayload.msg"
+    },
+    {
+      "owner": "PythValueBody",
+      "field": "source_ts_ms",
+      "presence": "required",
+      "schema": "pythValuePayload.msg"
+    },
+    {
+      "owner": "PythValueBody",
+      "field": "underlying_ticker",
+      "presence": "required",
+      "schema": "pythValuePayload.msg"
+    },
+    {
+      "owner": "PythValueBody",
+      "field": "value_usd",
+      "presence": "required",
+      "schema": "pythValuePayload.msg"
+    },
+    {
+      "owner": "QuoteAcceptedBody",
+      "field": "accepted_side",
+      "presence": "optional",
+      "schema": "quoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "QuoteAcceptedBody",
+      "field": "contracts_accepted_fp",
+      "presence": "optional",
+      "schema": "quoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "QuoteAcceptedBody",
+      "field": "event_ticker",
+      "presence": "optional",
+      "schema": "quoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "QuoteAcceptedBody",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "quoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "QuoteAcceptedBody",
+      "field": "no_bid_dollars",
+      "presence": "required",
+      "schema": "quoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "QuoteAcceptedBody",
+      "field": "no_contracts_offered_fp",
+      "presence": "optional",
+      "schema": "quoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "QuoteAcceptedBody",
+      "field": "quote_creator_id",
+      "presence": "required",
+      "schema": "quoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "QuoteAcceptedBody",
+      "field": "quote_id",
+      "presence": "required",
+      "schema": "quoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "QuoteAcceptedBody",
+      "field": "rfq_creator_id",
+      "presence": "required",
+      "schema": "quoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "QuoteAcceptedBody",
+      "field": "rfq_id",
+      "presence": "required",
+      "schema": "quoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "QuoteAcceptedBody",
+      "field": "rfq_target_cost_dollars",
+      "presence": "optional",
+      "schema": "quoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "QuoteAcceptedBody",
+      "field": "subaccount",
+      "presence": "optional",
+      "schema": "quoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "QuoteAcceptedBody",
+      "field": "yes_bid_dollars",
+      "presence": "required",
+      "schema": "quoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "QuoteAcceptedBody",
+      "field": "yes_contracts_offered_fp",
+      "presence": "optional",
+      "schema": "quoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "QuoteCreatedBody",
+      "field": "created_ts",
+      "presence": "required",
+      "schema": "quoteCreatedPayload.msg"
+    },
+    {
+      "owner": "QuoteCreatedBody",
+      "field": "event_ticker",
+      "presence": "optional",
+      "schema": "quoteCreatedPayload.msg"
+    },
+    {
+      "owner": "QuoteCreatedBody",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "quoteCreatedPayload.msg"
+    },
+    {
+      "owner": "QuoteCreatedBody",
+      "field": "no_bid_dollars",
+      "presence": "required",
+      "schema": "quoteCreatedPayload.msg"
+    },
+    {
+      "owner": "QuoteCreatedBody",
+      "field": "no_contracts_offered_fp",
+      "presence": "optional",
+      "schema": "quoteCreatedPayload.msg"
+    },
+    {
+      "owner": "QuoteCreatedBody",
+      "field": "quote_creator_id",
+      "presence": "required",
+      "schema": "quoteCreatedPayload.msg"
+    },
+    {
+      "owner": "QuoteCreatedBody",
+      "field": "quote_id",
+      "presence": "required",
+      "schema": "quoteCreatedPayload.msg"
+    },
+    {
+      "owner": "QuoteCreatedBody",
+      "field": "rfq_creator_id",
+      "presence": "required",
+      "schema": "quoteCreatedPayload.msg"
+    },
+    {
+      "owner": "QuoteCreatedBody",
+      "field": "rfq_id",
+      "presence": "required",
+      "schema": "quoteCreatedPayload.msg"
+    },
+    {
+      "owner": "QuoteCreatedBody",
+      "field": "rfq_target_cost_dollars",
+      "presence": "optional",
+      "schema": "quoteCreatedPayload.msg"
+    },
+    {
+      "owner": "QuoteCreatedBody",
+      "field": "subaccount",
+      "presence": "optional",
+      "schema": "quoteCreatedPayload.msg"
+    },
+    {
+      "owner": "QuoteCreatedBody",
+      "field": "yes_bid_dollars",
+      "presence": "required",
+      "schema": "quoteCreatedPayload.msg"
+    },
+    {
+      "owner": "QuoteCreatedBody",
+      "field": "yes_contracts_offered_fp",
+      "presence": "optional",
+      "schema": "quoteCreatedPayload.msg"
+    },
+    {
+      "owner": "QuoteExecutedBody",
+      "field": "client_order_id",
+      "presence": "required",
+      "schema": "quoteExecutedPayload.msg"
+    },
+    {
+      "owner": "QuoteExecutedBody",
+      "field": "executed_ts",
+      "presence": "required",
+      "schema": "quoteExecutedPayload.msg"
+    },
+    {
+      "owner": "QuoteExecutedBody",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "quoteExecutedPayload.msg"
+    },
+    {
+      "owner": "QuoteExecutedBody",
+      "field": "order_id",
+      "presence": "required",
+      "schema": "quoteExecutedPayload.msg"
+    },
+    {
+      "owner": "QuoteExecutedBody",
+      "field": "quote_creator_id",
+      "presence": "required",
+      "schema": "quoteExecutedPayload.msg"
+    },
+    {
+      "owner": "QuoteExecutedBody",
+      "field": "quote_id",
+      "presence": "required",
+      "schema": "quoteExecutedPayload.msg"
+    },
+    {
+      "owner": "QuoteExecutedBody",
+      "field": "rfq_creator_id",
+      "presence": "required",
+      "schema": "quoteExecutedPayload.msg"
+    },
+    {
+      "owner": "QuoteExecutedBody",
+      "field": "rfq_id",
+      "presence": "required",
+      "schema": "quoteExecutedPayload.msg"
+    },
+    {
+      "owner": "QuoteExecutedBody",
+      "field": "subaccount",
+      "presence": "optional",
+      "schema": "quoteExecutedPayload.msg"
+    },
+    {
+      "owner": "RfqCreatedBody",
+      "field": "contracts_fp",
+      "presence": "optional",
+      "schema": "rfqCreatedPayload.msg"
+    },
+    {
+      "owner": "RfqCreatedBody",
+      "field": "created_ts",
+      "presence": "required",
+      "schema": "rfqCreatedPayload.msg"
+    },
+    {
+      "owner": "RfqCreatedBody",
+      "field": "creator_id",
+      "presence": "required",
+      "schema": "rfqCreatedPayload.msg"
+    },
+    {
+      "owner": "RfqCreatedBody",
+      "field": "event_ticker",
+      "presence": "optional",
+      "schema": "rfqCreatedPayload.msg"
+    },
+    {
+      "owner": "RfqCreatedBody",
+      "field": "id",
+      "presence": "required",
+      "schema": "rfqCreatedPayload.msg"
+    },
+    {
+      "owner": "RfqCreatedBody",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "rfqCreatedPayload.msg"
+    },
+    {
+      "owner": "RfqCreatedBody",
+      "field": "mve_collection_ticker",
+      "presence": "optional",
+      "schema": "rfqCreatedPayload.msg"
+    },
+    {
+      "owner": "RfqCreatedBody",
+      "field": "mve_selected_legs",
+      "presence": "optional",
+      "schema": "rfqCreatedPayload.msg"
+    },
+    {
+      "owner": "RfqCreatedBody",
+      "field": "target_cost_dollars",
+      "presence": "optional",
+      "schema": "rfqCreatedPayload.msg"
+    },
+    {
+      "owner": "RfqDeletedBody",
+      "field": "contracts_fp",
+      "presence": "optional",
+      "schema": "rfqDeletedPayload.msg"
+    },
+    {
+      "owner": "RfqDeletedBody",
+      "field": "creator_id",
+      "presence": "required",
+      "schema": "rfqDeletedPayload.msg"
+    },
+    {
+      "owner": "RfqDeletedBody",
+      "field": "deleted_ts",
+      "presence": "required",
+      "schema": "rfqDeletedPayload.msg"
+    },
+    {
+      "owner": "RfqDeletedBody",
+      "field": "event_ticker",
+      "presence": "optional",
+      "schema": "rfqDeletedPayload.msg"
+    },
+    {
+      "owner": "RfqDeletedBody",
+      "field": "id",
+      "presence": "required",
+      "schema": "rfqDeletedPayload.msg"
+    },
+    {
+      "owner": "RfqDeletedBody",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "rfqDeletedPayload.msg"
+    },
+    {
+      "owner": "RfqDeletedBody",
+      "field": "target_cost_dollars",
+      "presence": "optional",
+      "schema": "rfqDeletedPayload.msg"
+    },
+    {
+      "owner": "SelectedLeg",
+      "field": "event_ticker",
+      "presence": "required",
+      "schema": "rfqCreatedPayload.msg.mve_selected_legs"
+    },
+    {
+      "owner": "SelectedLeg",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "rfqCreatedPayload.msg.mve_selected_legs"
+    },
+    {
+      "owner": "SelectedLeg",
+      "field": "side",
+      "presence": "required",
+      "schema": "rfqCreatedPayload.msg.mve_selected_legs"
+    },
+    {
+      "owner": "SelectedLeg",
+      "field": "yes_settlement_value_dollars",
+      "presence": "optional",
+      "schema": "rfqCreatedPayload.msg.mve_selected_legs"
+    },
+    {
+      "owner": "SubscribeParams",
+      "field": "channels",
+      "presence": "required",
+      "schema": "subscribeCommandPayload.params"
+    },
+    {
+      "owner": "SubscribeParams",
+      "field": "index_ids",
+      "presence": "optional",
+      "schema": "subscribeCommandPayload.params"
+    },
+    {
+      "owner": "SubscribeParams",
+      "field": "market_id",
+      "presence": "optional",
+      "schema": "subscribeCommandPayload.params"
+    },
+    {
+      "owner": "SubscribeParams",
+      "field": "market_ids",
+      "presence": "optional",
+      "schema": "subscribeCommandPayload.params"
+    },
+    {
+      "owner": "SubscribeParams",
+      "field": "market_ticker",
+      "presence": "optional",
+      "schema": "subscribeCommandPayload.params"
+    },
+    {
+      "owner": "SubscribeParams",
+      "field": "market_tickers",
+      "presence": "optional",
+      "schema": "subscribeCommandPayload.params"
+    },
+    {
+      "owner": "SubscribeParams",
+      "field": "send_initial_snapshot",
+      "presence": "optional",
+      "schema": "subscribeCommandPayload.params"
+    },
+    {
+      "owner": "SubscribeParams",
+      "field": "shard_factor",
+      "presence": "optional",
+      "schema": "subscribeCommandPayload.params"
+    },
+    {
+      "owner": "SubscribeParams",
+      "field": "shard_key",
+      "presence": "optional",
+      "schema": "subscribeCommandPayload.params"
+    },
+    {
+      "owner": "SubscribeParams",
+      "field": "skip_ticker_ack",
+      "presence": "optional",
+      "schema": "subscribeCommandPayload.params"
+    },
+    {
+      "owner": "SubscribeParams",
+      "field": "underlying_tickers",
+      "presence": "optional",
+      "schema": "subscribeCommandPayload.params"
+    },
+    {
+      "owner": "SubscribeParams",
+      "field": "use_yes_price",
+      "presence": "optional",
+      "schema": "subscribeCommandPayload.params"
+    },
+    {
+      "owner": "SubscribeParams",
+      "field": "user_filter",
+      "presence": "optional",
+      "schema": "subscribeCommandPayload.params"
+    },
+    {
+      "owner": "SubscribedBody",
+      "field": "channel",
+      "presence": "required",
+      "schema": "listSubscriptionsResponsePayload.msg"
+    },
+    {
+      "owner": "SubscribedBody",
+      "field": "channel",
+      "presence": "required",
+      "schema": "subscribedResponsePayload.msg"
+    },
+    {
+      "owner": "SubscribedBody",
+      "field": "sid",
+      "presence": "required",
+      "schema": "listSubscriptionsResponsePayload.msg"
+    },
+    {
+      "owner": "SubscribedBody",
+      "field": "sid",
+      "presence": "required",
+      "schema": "subscribedResponsePayload.msg"
+    },
+    {
+      "owner": "TickerBody",
+      "field": "dollar_open_interest",
+      "presence": "required",
+      "schema": "tickerPayload.msg"
+    },
+    {
+      "owner": "TickerBody",
+      "field": "dollar_volume",
+      "presence": "required",
+      "schema": "tickerPayload.msg"
+    },
+    {
+      "owner": "TickerBody",
+      "field": "last_trade_size_fp",
+      "presence": "required",
+      "schema": "tickerPayload.msg"
+    },
+    {
+      "owner": "TickerBody",
+      "field": "market_id",
+      "presence": "required",
+      "schema": "tickerPayload.msg"
+    },
+    {
+      "owner": "TickerBody",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "tickerPayload.msg"
+    },
+    {
+      "owner": "TickerBody",
+      "field": "open_interest_fp",
+      "presence": "required",
+      "schema": "tickerPayload.msg"
+    },
+    {
+      "owner": "TickerBody",
+      "field": "price_dollars",
+      "presence": "required",
+      "schema": "tickerPayload.msg"
+    },
+    {
+      "owner": "TickerBody",
+      "field": "time",
+      "presence": "required",
+      "schema": "tickerPayload.msg"
+    },
+    {
+      "owner": "TickerBody",
+      "field": "ts",
+      "presence": "required",
+      "schema": "tickerPayload.msg"
+    },
+    {
+      "owner": "TickerBody",
+      "field": "ts_ms",
+      "presence": "required",
+      "schema": "tickerPayload.msg"
+    },
+    {
+      "owner": "TickerBody",
+      "field": "volume_fp",
+      "presence": "required",
+      "schema": "tickerPayload.msg"
+    },
+    {
+      "owner": "TickerBody",
+      "field": "yes_ask_dollars",
+      "presence": "required",
+      "schema": "tickerPayload.msg"
+    },
+    {
+      "owner": "TickerBody",
+      "field": "yes_ask_size_fp",
+      "presence": "required",
+      "schema": "tickerPayload.msg"
+    },
+    {
+      "owner": "TickerBody",
+      "field": "yes_bid_dollars",
+      "presence": "required",
+      "schema": "tickerPayload.msg"
+    },
+    {
+      "owner": "TickerBody",
+      "field": "yes_bid_size_fp",
+      "presence": "required",
+      "schema": "tickerPayload.msg"
+    },
+    {
+      "owner": "TradeBody",
+      "field": "count_fp",
+      "presence": "required",
+      "schema": "tradePayload.msg"
+    },
+    {
+      "owner": "TradeBody",
+      "field": "is_block_trade",
+      "presence": "required",
+      "schema": "tradePayload.msg"
+    },
+    {
+      "owner": "TradeBody",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "tradePayload.msg"
+    },
+    {
+      "owner": "TradeBody",
+      "field": "no_price_dollars",
+      "presence": "required",
+      "schema": "tradePayload.msg"
+    },
+    {
+      "owner": "TradeBody",
+      "field": "taker_book_side",
+      "presence": "required",
+      "schema": "tradePayload.msg"
+    },
+    {
+      "owner": "TradeBody",
+      "field": "taker_outcome_side",
+      "presence": "required",
+      "schema": "tradePayload.msg"
+    },
+    {
+      "owner": "TradeBody",
+      "field": "taker_side",
+      "presence": "required",
+      "schema": "tradePayload.msg"
+    },
+    {
+      "owner": "TradeBody",
+      "field": "trade_id",
+      "presence": "required",
+      "schema": "tradePayload.msg"
+    },
+    {
+      "owner": "TradeBody",
+      "field": "ts",
+      "presence": "required",
+      "schema": "tradePayload.msg"
+    },
+    {
+      "owner": "TradeBody",
+      "field": "ts_ms",
+      "presence": "required",
+      "schema": "tradePayload.msg"
+    },
+    {
+      "owner": "TradeBody",
+      "field": "yes_price_dollars",
+      "presence": "required",
+      "schema": "tradePayload.msg"
+    },
+    {
+      "owner": "UnderlyingListBody",
+      "field": "underlying_tickers",
+      "presence": "required",
+      "schema": "pythUnderlyingListPayload.msg"
+    },
+    {
+      "owner": "UnderlyingListBody",
+      "field": "underlying_tickers",
+      "presence": "required",
+      "schema": "subscribedUnderlyingsResponsePayload.msg"
+    },
+    {
+      "owner": "UnsubscribeParams",
+      "field": "sids",
+      "presence": "required",
+      "schema": "unsubscribeCommandPayload.params"
+    },
+    {
+      "owner": "UpdateSubscriptionParams",
+      "field": "action",
+      "presence": "required",
+      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload.params"
+    },
+    {
+      "owner": "UpdateSubscriptionParams",
+      "field": "action",
+      "presence": "required",
+      "schema": "pythUpdateSubscriptionCommandPayload.params"
+    },
+    {
+      "owner": "UpdateSubscriptionParams",
+      "field": "action",
+      "presence": "required",
+      "schema": "updateSubscriptionCommandPayload.params"
+    },
+    {
+      "owner": "UpdateSubscriptionParams",
+      "field": "index_ids",
+      "presence": "optional",
+      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload.params"
+    },
+    {
+      "owner": "UpdateSubscriptionParams",
+      "field": "market_id",
+      "presence": "optional",
+      "schema": "updateSubscriptionCommandPayload.params"
+    },
+    {
+      "owner": "UpdateSubscriptionParams",
+      "field": "market_ids",
+      "presence": "optional",
+      "schema": "updateSubscriptionCommandPayload.params"
+    },
+    {
+      "owner": "UpdateSubscriptionParams",
+      "field": "market_ticker",
+      "presence": "optional",
+      "schema": "updateSubscriptionCommandPayload.params"
+    },
+    {
+      "owner": "UpdateSubscriptionParams",
+      "field": "market_tickers",
+      "presence": "optional",
+      "schema": "updateSubscriptionCommandPayload.params"
+    },
+    {
+      "owner": "UpdateSubscriptionParams",
+      "field": "send_initial_snapshot",
+      "presence": "optional",
+      "schema": "updateSubscriptionCommandPayload.params"
+    },
+    {
+      "owner": "UpdateSubscriptionParams",
+      "field": "sid",
+      "presence": "optional",
+      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload.params"
+    },
+    {
+      "owner": "UpdateSubscriptionParams",
+      "field": "sid",
+      "presence": "optional",
+      "schema": "pythUpdateSubscriptionCommandPayload.params"
+    },
+    {
+      "owner": "UpdateSubscriptionParams",
+      "field": "sid",
+      "presence": "optional",
+      "schema": "updateSubscriptionCommandPayload.params"
+    },
+    {
+      "owner": "UpdateSubscriptionParams",
+      "field": "sids",
+      "presence": "optional",
+      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload.params"
+    },
+    {
+      "owner": "UpdateSubscriptionParams",
+      "field": "sids",
+      "presence": "optional",
+      "schema": "pythUpdateSubscriptionCommandPayload.params"
+    },
+    {
+      "owner": "UpdateSubscriptionParams",
+      "field": "sids",
+      "presence": "optional",
+      "schema": "updateSubscriptionCommandPayload.params"
+    },
+    {
+      "owner": "UpdateSubscriptionParams",
+      "field": "underlying_tickers",
+      "presence": "optional",
+      "schema": "pythUpdateSubscriptionCommandPayload.params"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "book_side",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "client_order_id",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "created_time",
+      "presence": "required_nullable",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "created_ts_ms",
+      "presence": "required_nullable",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "exchange_index",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "expiration_time",
+      "presence": "optional",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "expiration_ts_ms",
+      "presence": "optional",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "fill_count_fp",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "initial_count_fp",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "is_yes",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "last_update_reason",
+      "presence": "optional",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "last_update_time",
+      "presence": "optional",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "last_updated_ts_ms",
+      "presence": "optional",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "maker_fees_dollars",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "maker_fill_cost_dollars",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "order_group_id",
+      "presence": "optional",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "order_id",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "outcome_side",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "remaining_count_fp",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "self_trade_prevention_type",
+      "presence": "optional",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "side",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "status",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "subaccount_number",
+      "presence": "optional",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "taker_fees_dollars",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "taker_fill_cost_dollars",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "ticker",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "user_id",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    },
+    {
+      "owner": "UserOrderBody",
+      "field": "yes_price_dollars",
+      "presence": "required",
+      "schema": "userOrderPayload.msg"
+    }
+  ]
+}

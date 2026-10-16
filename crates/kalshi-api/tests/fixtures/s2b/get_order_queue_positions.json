@@ -1,0 +1,9 @@
+{
+  "queue_positions": [
+    {
+      "order_id": "ord-synthetic-1",
+      "market_ticker": "SYNTH-1",
+      "queue_position_fp": "1.00"
+    }
+  ]
+}

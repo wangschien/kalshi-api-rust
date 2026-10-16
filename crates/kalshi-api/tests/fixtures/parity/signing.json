@@ -1,0 +1,112 @@
+[
+  {
+    "algorithm": "rsa",
+    "headers": {
+      "KALSHI-ACCESS-KEY": "synthetic-key",
+      "KALSHI-ACCESS-SIGNATURE": "A1vA+GkYlE0+TRx8VTTEF5Koh9J2lk7hqfyypD13Qzap0iUEgaWwYPJfyC2pxvb7gjPO7K4vU5wVioM1yWFMP++FxLfcTEPhVWeHK6r3Tr74l5egxppvdEZOUzsLwClDty5MIMn3I+tRmM57o6vaHnZLGjwRQeZss45pQWW8veiilUJPOV9GbyHUtBmcAMm9AH1kfF7sF/YsHQX87KHJXUk6mCVKG80IsvM6DGv4RdsdqtTZrcWoQo5vWJp4GrD07E0J97m71DiRpmcLEyQMCUvNM5LJo42XPR7fFm1/mk+W1lXxfQJ7RMGm0Deq/qWUb9XCHOv2HIKL0gfkkGOOMw==",
+      "KALSHI-ACCESS-TIMESTAMP": "1700000000000"
+    },
+    "message": "1700000000000GET/trade-api/v2/markets",
+    "method": "get",
+    "path": "/trade-api/v2/markets?limit=1"
+  },
+  {
+    "algorithm": "rsa",
+    "headers": {
+      "KALSHI-ACCESS-KEY": "synthetic-key",
+      "KALSHI-ACCESS-SIGNATURE": "I3X+b4yiXfqGCPLAA2+mXYDCHzDqUkJEuA4FhfFHd+Qd97jv7v8CuIXipGgIc0PD6FBQ+i82GXYG14ZOfNhLZrk/OjtRw4sRNHUgxYi4JkL97K33PqJs9ruLRGZQEI6hP6DcWDk6yjbkEgI6DMWs/1AHq0Pu1TKp2CKQ8uSuSsS/Ts7k9z+jkdZisXOSB1jVrR9zYyLvnqnkrm/GeQ3GujmBYK2hFOKow5xFtc9+FBJly97k9cTdQM/63xqoCYdEf2i4ZqyU2MXRMxBJb9S1YiAmOybe5N1Txgon0ppVc18spJ9kmNZwxPGWuy7xrBnDLv1vJAVkNTGxvKmrepm5Cg==",
+      "KALSHI-ACCESS-TIMESTAMP": "1700000000000"
+    },
+    "message": "1700000000000POST/trade-api/v2/portfolio/events/orders",
+    "method": "POST",
+    "path": "/trade-api/v2/portfolio/events/orders"
+  },
+  {
+    "algorithm": "rsa",
+    "headers": {
+      "KALSHI-ACCESS-KEY": "synthetic-key",
+      "KALSHI-ACCESS-SIGNATURE": "dQF0xkntRKkiNnj4/l6N1gtfLkwDz0r5GZOQrx3z36h/T3dKxgloRu+52xs4+Oa5JRP/YJa3Y4vUxmubPsez5btOf7tFrVFm8mKLP6Pvo4W2FwH/spVc/4suzZiE/7K90dY6/qx0rLXwiI1lAIQQsaylhYsVtJfiXqi/qr5GIqLUZWaGn1oYjfURI2B0JEkUe3T8KIT1PpONI+PPXxmBJyliDLTAy530mqLWr49+Yts/5G7cDUSVwa4N3m+v913NrHVQUiaKlHJ/+1WCTWfzo8KKsc0HkYhOxi2yVPAjNfLIXtGPTKbg6hQU18t/hjUtOj27jM9yegvTsq83bYggVg==",
+      "KALSHI-ACCESS-TIMESTAMP": "1700000000000"
+    },
+    "message": "1700000000000GET/trade-api/ws/v2",
+    "method": "GET",
+    "path": "/trade-api/ws/v2"
+  },
+  {
+    "algorithm": "rsa",
+    "headers": {
+      "KALSHI-ACCESS-KEY": "synthetic-key",
+      "KALSHI-ACCESS-SIGNATURE": "KCI6k+GlqZ89FLLaiP7GvYQPzR7e1NXxr4FOvH6cUBHIOZ742b9n6V147Riuqf6dhfMotefJNTfHCexyx3VL1JkhB139sr+fIZpd04FQbm8u0WBZcpoDPdSvi3PjEkzYSpGPfitFrER7tM8CiaXmneOZlkanlcG0apXP91yagRsgsoDNIng9EPfe/0xOthxPfrPvxn+JTvvd1xNrLR7sLlGx7FxGN7heVdhOkJhM1ZJhxFMr9FNZ8KApSoVHg0UOELj8R60gtq9lDw9pPk1YZ9u3l3Ccn/9D2Fy+xoPvCG79SnX0JG4v18aM9KksPqmGnxf+8YsabsPL+VHQ3N/3jQ==",
+      "KALSHI-ACCESS-TIMESTAMP": "1700000000000"
+    },
+    "message": "1700000000000GET/trade-api/v2/path%2Fencoded",
+    "method": "GET",
+    "path": "/trade-api/v2/path%2Fencoded?x=1"
+  },
+  {
+    "algorithm": "rsa",
+    "headers": {
+      "KALSHI-ACCESS-KEY": "synthetic-key",
+      "KALSHI-ACCESS-SIGNATURE": "X6p0pMQUzbAb/qCbGDDxP8fwGQeJ1psEQRLaIujxLNX7fNP6jDowKuorSKu96zXF8YxR2g22SuxpwViE0EM5S/jG7Iy2/q5TXUEOwJJTCmhsrW8erXf22I+VdAWhrpzKrJyshqe4YlalHbsvYwgkbxnSP/BSxuYQmjgZAISMyxwLHcFC4EzvmFP1FSOV45ibtvbwJ1yniL3gKZpEwYQuhP6Xta2E8wkkU97ma2DlkXYVzbsfST/vHV1XFOHyV+nfkzU5Cbq+DFD2gNlVXbjy5gEuVA7uAp8jVOKb45o0luIQ78b/YttWElMXjwbVP+JgXJOZv3S6wHdVYtRI9O22Zg==",
+      "KALSHI-ACCESS-TIMESTAMP": "1700000000000"
+    },
+    "message": "1700000000000GET/trade-api/v2/path#literal",
+    "method": "get",
+    "path": "/trade-api/v2/path#literal"
+  },
+  {
+    "algorithm": "ed25519",
+    "headers": {
+      "KALSHI-ACCESS-KEY": "synthetic-key",
+      "KALSHI-ACCESS-SIGNATURE": "6BTAeC2lVIpVm8P2bmbGxmhQjNVWVZF1wqFwj0htcHi1wi4HBds96E5zKqlo7ZwtlAv1VdK65QYy4B8rq0E0Bw==",
+      "KALSHI-ACCESS-TIMESTAMP": "1700000000000"
+    },
+    "message": "1700000000000GET/trade-api/v2/markets",
+    "method": "get",
+    "path": "/trade-api/v2/markets?limit=1"
+  },
+  {
+    "algorithm": "ed25519",
+    "headers": {
+      "KALSHI-ACCESS-KEY": "synthetic-key",
+      "KALSHI-ACCESS-SIGNATURE": "tnOBB/aFVQ9NwCdo1yhnQWJlqRuQpY/q7sES1/A0f2xESnaSTcxny4dmyOskoCL81vliRCL5x1+NHXF4B9LlAA==",
+      "KALSHI-ACCESS-TIMESTAMP": "1700000000000"
+    },
+    "message": "1700000000000POST/trade-api/v2/portfolio/events/orders",
+    "method": "POST",
+    "path": "/trade-api/v2/portfolio/events/orders"
+  },
+  {
+    "algorithm": "ed25519",
+    "headers": {
+      "KALSHI-ACCESS-KEY": "synthetic-key",
+      "KALSHI-ACCESS-SIGNATURE": "egcgDPUqjH+e/WBQ9PLWE+STIe0KSmTzfiqvwqhSO+z6VzoMDrI8urlf1+4D8KcKMKdPeVK/BKcygTcGXZEuAQ==",
+      "KALSHI-ACCESS-TIMESTAMP": "1700000000000"
+    },
+    "message": "1700000000000GET/trade-api/ws/v2",
+    "method": "GET",
+    "path": "/trade-api/ws/v2"
+  },
+  {
+    "algorithm": "ed25519",
+    "headers": {
+      "KALSHI-ACCESS-KEY": "synthetic-key",
+      "KALSHI-ACCESS-SIGNATURE": "hvGIYlha7KUfxnBfVqsecTVcCJFOf66Ie9RWRf0FyNKYIpmkfZIL4Hooul6aNboyDvrK6wR6KDU5bGC1X7yEAQ==",
+      "KALSHI-ACCESS-TIMESTAMP": "1700000000000"
+    },
+    "message": "1700000000000GET/trade-api/v2/path%2Fencoded",
+    "method": "GET",
+    "path": "/trade-api/v2/path%2Fencoded?x=1"
+  },
+  {
+    "algorithm": "ed25519",
+    "headers": {
+      "KALSHI-ACCESS-KEY": "synthetic-key",
+      "KALSHI-ACCESS-SIGNATURE": "s7L9Xt8RpGmorilqhFH6ApO8I6JJ17M4fpM04L/W+NaoGimc+9brGJnoHLpQhkVc6adoVfvxjcf00u3H//4TDA==",
+      "KALSHI-ACCESS-TIMESTAMP": "1700000000000"
+    },
+    "message": "1700000000000GET/trade-api/v2/path#literal",
+    "method": "get",
+    "path": "/trade-api/v2/path#literal"
+  }
+]

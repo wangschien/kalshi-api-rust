@@ -1,0 +1,28 @@
+{
+  "schedule": {
+    "standard_hours": [
+      {
+        "start_time": "2026-01-01T00:00:00Z",
+        "end_time": "2026-12-31T00:00:00Z",
+        "monday": [
+          {
+            "open_time": "09:00",
+            "close_time": "17:00"
+          }
+        ],
+        "tuesday": [],
+        "wednesday": [],
+        "thursday": [],
+        "friday": [],
+        "saturday": [],
+        "sunday": []
+      }
+    ],
+    "maintenance_windows": [
+      {
+        "start_datetime": "2026-01-02T00:00:00Z",
+        "end_datetime": "2026-01-02T01:00:00Z"
+      }
+    ]
+  }
+}

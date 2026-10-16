@@ -1,0 +1,9 @@
+{
+  "type": "error",
+  "id": 1,
+  "sid": 1,
+  "msg": {
+    "code": 1,
+    "msg": "synthetic"
+  }
+}

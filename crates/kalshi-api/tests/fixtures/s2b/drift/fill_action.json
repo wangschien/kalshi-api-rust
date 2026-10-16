@@ -1,0 +1,22 @@
+{
+  "fills": [
+    {
+      "fill_id": "fill-synthetic-1",
+      "exchange_index": 0,
+      "trade_id": "fill-synthetic-1",
+      "order_id": "ord-synthetic-1",
+      "ticker": "SYNTH-1",
+      "market_ticker": "SYNTH-1",
+      "side": "yes",
+      "action": "hold",
+      "outcome_side": "yes",
+      "book_side": "bid",
+      "count_fp": "1.00",
+      "yes_price_dollars": "0.5600",
+      "no_price_dollars": "0.4400",
+      "is_taker": true,
+      "fee_cost": "0.0000"
+    }
+  ],
+  "cursor": ""
+}

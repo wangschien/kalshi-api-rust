@@ -1,0 +1,44 @@
+{
+  "param_python_only": {
+    "get_weather_index": [
+      "var_from"
+    ],
+    "get_weather_index_with_http_info": [
+      "var_from"
+    ],
+    "get_weather_index_without_preload_content": [
+      "var_from"
+    ]
+  },
+  "param_rust_only": {
+    "get_event": [
+      "exclude_markets"
+    ],
+    "get_event_with_http_info": [
+      "exclude_markets"
+    ],
+    "get_event_without_preload_content": [
+      "exclude_markets"
+    ],
+    "get_multivariate_events": [
+      "tickers"
+    ],
+    "get_multivariate_events_with_http_info": [
+      "tickers"
+    ],
+    "get_multivariate_events_without_preload_content": [
+      "tickers"
+    ],
+    "get_weather_index": [
+      "from"
+    ],
+    "get_weather_index_with_http_info": [
+      "from"
+    ],
+    "get_weather_index_without_preload_content": [
+      "from"
+    ]
+  },
+  "python_only_methods": [],
+  "rust_only_methods": []
+}

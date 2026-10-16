@@ -1,0 +1,9 @@
+{
+  "id": 2,
+  "cmd": "update_subscription",
+  "params": {
+    "action": "get_snapshot",
+    "sid": 1,
+    "market_tickers": ["SYNTH-1"]
+  }
+}

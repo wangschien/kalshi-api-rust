@@ -1,0 +1,11 @@
+[package]
+name = "kalshi-api-pins"
+version = "3.34.0"
+edition = "2021"
+publish = false
+license = "MIT"
+description = "Type pins for the generated Kalshi Trade API client"
+
+[dependencies]
+kalshi-api-openapi = { version = "3.34.0", path = "../kalshi-api-openapi" }
+serde_json = "1"
