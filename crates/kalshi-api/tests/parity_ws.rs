@@ -5,7 +5,7 @@ use serde_json::Value;
 fn official_ws_examples_and_every_payload_roundtrip_without_field_loss() {
     let fixtures: Vec<Value> =
         serde_json::from_str(include_str!("fixtures/parity/ws.json")).unwrap();
-    assert_eq!(fixtures.len(), 143);
+    assert_eq!(fixtures.len(), 165);
     let mut failures = Vec::new();
     for fixture in fixtures {
         let value = fixture["value"].clone();

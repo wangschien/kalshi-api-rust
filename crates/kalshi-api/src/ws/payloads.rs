@@ -255,4 +255,159 @@ pub struct QuoteExecutedBody {
     pub executed_ts: String,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub subaccount: Option<i64>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub rfq_batch_id: Option<String>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct RfqBatchChildRfq {
+    pub id: String,
+    pub market_ticker: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub event_ticker: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub contracts_fp: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub target_cost_dollars: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub mve_collection_ticker: Option<String>,
+    pub leg_indices: Vec<i64>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct RfqBatchCreatedBody {
+    pub id: String,
+    pub creator_id: String,
+    pub created_ts: String,
+    pub legs: Vec<SelectedLeg>,
+    pub rfqs: Vec<RfqBatchChildRfq>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct RfqBatchDeletedBody {
+    pub id: String,
+    pub creator_id: String,
+    pub rfq_ids: Vec<String>,
+    pub deleted_ts: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct BatchQuoteCreatedChild {
+    pub quote_id: String,
+    pub rfq_id: String,
+    pub market_ticker: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub event_ticker: Option<String>,
+    pub yes_bid_dollars: String,
+    pub no_bid_dollars: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub yes_contracts_offered_fp: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub no_contracts_offered_fp: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub rfq_target_cost_dollars: Option<String>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct BatchQuoteCreatedBody {
+    pub batch_quote_id: String,
+    pub rfq_batch_id: String,
+    pub quote_creator_id: String,
+    pub created_ts: String,
+    pub quotes: Vec<BatchQuoteCreatedChild>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub subaccount: Option<i64>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct RfqBatchBestQuote {
+    pub rfq_id: String,
+    pub market_ticker: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub event_ticker: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub yes_bid_dollars: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub no_bid_dollars: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub contracts_fp: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub yes_contracts_offered_fp: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub no_contracts_offered_fp: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub rfq_target_cost_dollars: Option<String>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct RfqBatchBestQuotesBody {
+    pub rfq_batch_id: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub client_batch_id: Option<String>,
+    pub version: i64,
+    pub updated_ts: String,
+    pub yes_complete: bool,
+    pub no_complete: bool,
+    pub rfqs: Vec<RfqBatchBestQuote>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub subaccount: Option<i64>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct BatchQuoteAcceptedChild {
+    pub quote_id: String,
+    pub rfq_id: String,
+    pub market_ticker: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub event_ticker: Option<String>,
+    pub yes_bid_dollars: String,
+    pub no_bid_dollars: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub contracts_accepted_fp: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub yes_contracts_offered_fp: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub no_contracts_offered_fp: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub rfq_target_cost_dollars: Option<String>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct BatchQuoteAcceptedBody {
+    pub batch_quote_id: String,
+    pub rfq_batch_id: String,
+    pub quote_creator_id: String,
+    pub rfq_creator_id: String,
+    pub accepted_side: MarketSide,
+    pub accepted_ts: String,
+    pub quotes: Vec<BatchQuoteAcceptedChild>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub subaccount: Option<i64>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct RfqBatchExecutedBody {
+    pub rfq_batch_id: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub client_batch_id: Option<String>,
+    pub rfq_creator_id: String,
+    pub executed_rfq_ids: Vec<String>,
+    pub failed_rfq_ids: Vec<String>,
+    pub executed_ts: String,
+    pub close_reason: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub subaccount: Option<i64>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct BatchQuoteExecutedBody {
+    pub batch_quote_id: String,
+    pub rfq_batch_id: String,
+    pub rfq_creator_id: String,
+    pub executed_rfq_ids: Vec<String>,
+    pub failed_rfq_ids: Vec<String>,
+    pub executed_ts: String,
+    pub close_reason: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub subaccount: Option<i64>,
 }

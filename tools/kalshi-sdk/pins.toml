@@ -15,12 +15,12 @@ servers = [
 [asyncapi]
 asyncapi = "3.0.0"
 info_version = "2.0.0"
-sha256 = "3c86bae7d89b44baba1119b3a097a54054c1d851e1dcd8ad894c7cb35b9890b6"
+sha256 = "6b27304fe63969da55b326864d82bb0ea13ac53235f324c24d2dec4a544d7021"
 path = "spec/asyncapi.yaml"
 source = "https://docs.kalshi.com/asyncapi.yaml"
-channel_count = 15
-message_count = 44
-schema_count = 50
+channel_count = 16
+message_count = 51
+schema_count = 57
 
 [generator]
 coordinate = "org.openapitools:openapi-generator-cli:7.17.0"

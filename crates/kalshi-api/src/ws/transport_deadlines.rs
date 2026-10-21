@@ -4,7 +4,7 @@ use crate::ws::UnsubscribeParams;
 
 const DEADLINE: Duration = Duration::from_millis(20);
 const OBSERVE_BY: Duration = Duration::from_millis(80);
-const DELTA: &str = r#"{"type":"orderbook_delta","sid":7,"seq":41,"msg":{"market_ticker":"SYNTHETIC","market_id":"synthetic","price_dollars":"0.1200","delta_fp":"2.50","side":"yes"}}"#;
+const DELTA: &str = r#"{"type":"orderbook_delta","sid":7,"seq":41,"msg":{"market_ticker":"SYNTHETIC","market_id":"synthetic","clock":1,"price_dollars":"0.1200","delta_fp":"2.50","side":"yes"}}"#;
 
 #[tokio::test(start_paused = true)]
 async fn stalled_sends_end_session_with_ready_update_and_full_queue() {

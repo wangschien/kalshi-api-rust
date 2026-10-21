@@ -1,6 +1,252 @@
 {
-  "count": 417,
+  "count": 534,
   "fields": [
+    {
+      "owner": "BatchQuoteAcceptedBody",
+      "field": "accepted_side",
+      "presence": "required",
+      "schema": "batchQuoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteAcceptedBody",
+      "field": "accepted_ts",
+      "presence": "required",
+      "schema": "batchQuoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteAcceptedBody",
+      "field": "batch_quote_id",
+      "presence": "required",
+      "schema": "batchQuoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteAcceptedBody",
+      "field": "quote_creator_id",
+      "presence": "required",
+      "schema": "batchQuoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteAcceptedBody",
+      "field": "quotes",
+      "presence": "required",
+      "schema": "batchQuoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteAcceptedBody",
+      "field": "rfq_batch_id",
+      "presence": "required",
+      "schema": "batchQuoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteAcceptedBody",
+      "field": "rfq_creator_id",
+      "presence": "required",
+      "schema": "batchQuoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteAcceptedBody",
+      "field": "subaccount",
+      "presence": "optional",
+      "schema": "batchQuoteAcceptedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteAcceptedChild",
+      "field": "contracts_accepted_fp",
+      "presence": "optional",
+      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteAcceptedChild",
+      "field": "event_ticker",
+      "presence": "optional",
+      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteAcceptedChild",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteAcceptedChild",
+      "field": "no_bid_dollars",
+      "presence": "required",
+      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteAcceptedChild",
+      "field": "no_contracts_offered_fp",
+      "presence": "optional",
+      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteAcceptedChild",
+      "field": "quote_id",
+      "presence": "required",
+      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteAcceptedChild",
+      "field": "rfq_id",
+      "presence": "required",
+      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteAcceptedChild",
+      "field": "rfq_target_cost_dollars",
+      "presence": "optional",
+      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteAcceptedChild",
+      "field": "yes_bid_dollars",
+      "presence": "required",
+      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteAcceptedChild",
+      "field": "yes_contracts_offered_fp",
+      "presence": "optional",
+      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteCreatedBody",
+      "field": "batch_quote_id",
+      "presence": "required",
+      "schema": "batchQuoteCreatedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteCreatedBody",
+      "field": "created_ts",
+      "presence": "required",
+      "schema": "batchQuoteCreatedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteCreatedBody",
+      "field": "quote_creator_id",
+      "presence": "required",
+      "schema": "batchQuoteCreatedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteCreatedBody",
+      "field": "quotes",
+      "presence": "required",
+      "schema": "batchQuoteCreatedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteCreatedBody",
+      "field": "rfq_batch_id",
+      "presence": "required",
+      "schema": "batchQuoteCreatedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteCreatedBody",
+      "field": "subaccount",
+      "presence": "optional",
+      "schema": "batchQuoteCreatedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteCreatedChild",
+      "field": "event_ticker",
+      "presence": "optional",
+      "schema": "batchQuoteCreatedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteCreatedChild",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "batchQuoteCreatedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteCreatedChild",
+      "field": "no_bid_dollars",
+      "presence": "required",
+      "schema": "batchQuoteCreatedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteCreatedChild",
+      "field": "no_contracts_offered_fp",
+      "presence": "optional",
+      "schema": "batchQuoteCreatedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteCreatedChild",
+      "field": "quote_id",
+      "presence": "required",
+      "schema": "batchQuoteCreatedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteCreatedChild",
+      "field": "rfq_id",
+      "presence": "required",
+      "schema": "batchQuoteCreatedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteCreatedChild",
+      "field": "rfq_target_cost_dollars",
+      "presence": "optional",
+      "schema": "batchQuoteCreatedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteCreatedChild",
+      "field": "yes_bid_dollars",
+      "presence": "required",
+      "schema": "batchQuoteCreatedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteCreatedChild",
+      "field": "yes_contracts_offered_fp",
+      "presence": "optional",
+      "schema": "batchQuoteCreatedPayload.msg.quotes"
+    },
+    {
+      "owner": "BatchQuoteExecutedBody",
+      "field": "batch_quote_id",
+      "presence": "required",
+      "schema": "batchQuoteExecutedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteExecutedBody",
+      "field": "close_reason",
+      "presence": "required",
+      "schema": "batchQuoteExecutedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteExecutedBody",
+      "field": "executed_rfq_ids",
+      "presence": "required",
+      "schema": "batchQuoteExecutedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteExecutedBody",
+      "field": "executed_ts",
+      "presence": "required",
+      "schema": "batchQuoteExecutedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteExecutedBody",
+      "field": "failed_rfq_ids",
+      "presence": "required",
+      "schema": "batchQuoteExecutedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteExecutedBody",
+      "field": "rfq_batch_id",
+      "presence": "required",
+      "schema": "batchQuoteExecutedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteExecutedBody",
+      "field": "rfq_creator_id",
+      "presence": "required",
+      "schema": "batchQuoteExecutedPayload.msg"
+    },
+    {
+      "owner": "BatchQuoteExecutedBody",
+      "field": "subaccount",
+      "presence": "optional",
+      "schema": "batchQuoteExecutedPayload.msg"
+    },
     {
       "owner": "CfBenchmarksAvgData",
       "field": "value",
@@ -392,6 +638,78 @@
       "schema": "fillPayload.msg"
     },
     {
+      "owner": "Incoming::BatchQuoteAccepted",
+      "field": "msg",
+      "presence": "required",
+      "schema": "batchQuoteAcceptedPayload"
+    },
+    {
+      "owner": "Incoming::BatchQuoteAccepted",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "batchQuoteAcceptedPayload"
+    },
+    {
+      "owner": "Incoming::BatchQuoteAccepted",
+      "field": "seq",
+      "presence": "required",
+      "schema": "batchQuoteAcceptedPayload"
+    },
+    {
+      "owner": "Incoming::BatchQuoteAccepted",
+      "field": "sid",
+      "presence": "required",
+      "schema": "batchQuoteAcceptedPayload"
+    },
+    {
+      "owner": "Incoming::BatchQuoteCreated",
+      "field": "msg",
+      "presence": "required",
+      "schema": "batchQuoteCreatedPayload"
+    },
+    {
+      "owner": "Incoming::BatchQuoteCreated",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "batchQuoteCreatedPayload"
+    },
+    {
+      "owner": "Incoming::BatchQuoteCreated",
+      "field": "seq",
+      "presence": "required",
+      "schema": "batchQuoteCreatedPayload"
+    },
+    {
+      "owner": "Incoming::BatchQuoteCreated",
+      "field": "sid",
+      "presence": "required",
+      "schema": "batchQuoteCreatedPayload"
+    },
+    {
+      "owner": "Incoming::BatchQuoteExecuted",
+      "field": "msg",
+      "presence": "required",
+      "schema": "batchQuoteExecutedPayload"
+    },
+    {
+      "owner": "Incoming::BatchQuoteExecuted",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "batchQuoteExecutedPayload"
+    },
+    {
+      "owner": "Incoming::BatchQuoteExecuted",
+      "field": "seq",
+      "presence": "required",
+      "schema": "batchQuoteExecutedPayload"
+    },
+    {
+      "owner": "Incoming::BatchQuoteExecuted",
+      "field": "sid",
+      "presence": "required",
+      "schema": "batchQuoteExecutedPayload"
+    },
+    {
       "owner": "Incoming::CfBenchmarksIndexList",
       "field": "id",
       "presence": "optional",
@@ -918,6 +1236,102 @@
       "field": "sid",
       "presence": "required",
       "schema": "quoteExecutedPayload"
+    },
+    {
+      "owner": "Incoming::RfqBatchBestQuotes",
+      "field": "msg",
+      "presence": "required",
+      "schema": "rfqBatchBestQuotesPayload"
+    },
+    {
+      "owner": "Incoming::RfqBatchBestQuotes",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "rfqBatchBestQuotesPayload"
+    },
+    {
+      "owner": "Incoming::RfqBatchBestQuotes",
+      "field": "seq",
+      "presence": "required",
+      "schema": "rfqBatchBestQuotesPayload"
+    },
+    {
+      "owner": "Incoming::RfqBatchBestQuotes",
+      "field": "sid",
+      "presence": "required",
+      "schema": "rfqBatchBestQuotesPayload"
+    },
+    {
+      "owner": "Incoming::RfqBatchCreated",
+      "field": "msg",
+      "presence": "required",
+      "schema": "rfqBatchCreatedPayload"
+    },
+    {
+      "owner": "Incoming::RfqBatchCreated",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "rfqBatchCreatedPayload"
+    },
+    {
+      "owner": "Incoming::RfqBatchCreated",
+      "field": "seq",
+      "presence": "required",
+      "schema": "rfqBatchCreatedPayload"
+    },
+    {
+      "owner": "Incoming::RfqBatchCreated",
+      "field": "sid",
+      "presence": "required",
+      "schema": "rfqBatchCreatedPayload"
+    },
+    {
+      "owner": "Incoming::RfqBatchDeleted",
+      "field": "msg",
+      "presence": "required",
+      "schema": "rfqBatchDeletedPayload"
+    },
+    {
+      "owner": "Incoming::RfqBatchDeleted",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "rfqBatchDeletedPayload"
+    },
+    {
+      "owner": "Incoming::RfqBatchDeleted",
+      "field": "seq",
+      "presence": "required",
+      "schema": "rfqBatchDeletedPayload"
+    },
+    {
+      "owner": "Incoming::RfqBatchDeleted",
+      "field": "sid",
+      "presence": "required",
+      "schema": "rfqBatchDeletedPayload"
+    },
+    {
+      "owner": "Incoming::RfqBatchExecuted",
+      "field": "msg",
+      "presence": "required",
+      "schema": "rfqBatchExecutedPayload"
+    },
+    {
+      "owner": "Incoming::RfqBatchExecuted",
+      "field": "sending_ts_ms",
+      "presence": "optional",
+      "schema": "rfqBatchExecutedPayload"
+    },
+    {
+      "owner": "Incoming::RfqBatchExecuted",
+      "field": "seq",
+      "presence": "required",
+      "schema": "rfqBatchExecutedPayload"
+    },
+    {
+      "owner": "Incoming::RfqBatchExecuted",
+      "field": "sid",
+      "presence": "required",
+      "schema": "rfqBatchExecutedPayload"
     },
     {
       "owner": "Incoming::RfqCreated",
@@ -1515,6 +1929,12 @@
     },
     {
       "owner": "OrderbookDeltaBody",
+      "field": "clock",
+      "presence": "required",
+      "schema": "orderbookDeltaPayload.msg"
+    },
+    {
+      "owner": "OrderbookDeltaBody",
       "field": "delta_fp",
       "presence": "required",
       "schema": "orderbookDeltaPayload.msg"
@@ -1560,6 +1980,12 @@
       "field": "ts_ms",
       "presence": "optional",
       "schema": "orderbookDeltaPayload.msg"
+    },
+    {
+      "owner": "OrderbookSnapshotBody",
+      "field": "clock",
+      "presence": "required",
+      "schema": "orderbookSnapshotPayload.msg"
     },
     {
       "owner": "OrderbookSnapshotBody",
@@ -1827,6 +2253,12 @@
     },
     {
       "owner": "QuoteExecutedBody",
+      "field": "rfq_batch_id",
+      "presence": "optional",
+      "schema": "quoteExecutedPayload.msg"
+    },
+    {
+      "owner": "QuoteExecutedBody",
       "field": "rfq_creator_id",
       "presence": "required",
       "schema": "quoteExecutedPayload.msg"
@@ -1842,6 +2274,252 @@
       "field": "subaccount",
       "presence": "optional",
       "schema": "quoteExecutedPayload.msg"
+    },
+    {
+      "owner": "RfqBatchBestQuote",
+      "field": "contracts_fp",
+      "presence": "optional",
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+    },
+    {
+      "owner": "RfqBatchBestQuote",
+      "field": "event_ticker",
+      "presence": "optional",
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+    },
+    {
+      "owner": "RfqBatchBestQuote",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+    },
+    {
+      "owner": "RfqBatchBestQuote",
+      "field": "no_bid_dollars",
+      "presence": "optional",
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+    },
+    {
+      "owner": "RfqBatchBestQuote",
+      "field": "no_contracts_offered_fp",
+      "presence": "optional",
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+    },
+    {
+      "owner": "RfqBatchBestQuote",
+      "field": "rfq_id",
+      "presence": "required",
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+    },
+    {
+      "owner": "RfqBatchBestQuote",
+      "field": "rfq_target_cost_dollars",
+      "presence": "optional",
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+    },
+    {
+      "owner": "RfqBatchBestQuote",
+      "field": "yes_bid_dollars",
+      "presence": "optional",
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+    },
+    {
+      "owner": "RfqBatchBestQuote",
+      "field": "yes_contracts_offered_fp",
+      "presence": "optional",
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+    },
+    {
+      "owner": "RfqBatchBestQuotesBody",
+      "field": "client_batch_id",
+      "presence": "optional",
+      "schema": "rfqBatchBestQuotesPayload.msg"
+    },
+    {
+      "owner": "RfqBatchBestQuotesBody",
+      "field": "no_complete",
+      "presence": "required",
+      "schema": "rfqBatchBestQuotesPayload.msg"
+    },
+    {
+      "owner": "RfqBatchBestQuotesBody",
+      "field": "rfq_batch_id",
+      "presence": "required",
+      "schema": "rfqBatchBestQuotesPayload.msg"
+    },
+    {
+      "owner": "RfqBatchBestQuotesBody",
+      "field": "rfqs",
+      "presence": "required",
+      "schema": "rfqBatchBestQuotesPayload.msg"
+    },
+    {
+      "owner": "RfqBatchBestQuotesBody",
+      "field": "subaccount",
+      "presence": "optional",
+      "schema": "rfqBatchBestQuotesPayload.msg"
+    },
+    {
+      "owner": "RfqBatchBestQuotesBody",
+      "field": "updated_ts",
+      "presence": "required",
+      "schema": "rfqBatchBestQuotesPayload.msg"
+    },
+    {
+      "owner": "RfqBatchBestQuotesBody",
+      "field": "version",
+      "presence": "required",
+      "schema": "rfqBatchBestQuotesPayload.msg"
+    },
+    {
+      "owner": "RfqBatchBestQuotesBody",
+      "field": "yes_complete",
+      "presence": "required",
+      "schema": "rfqBatchBestQuotesPayload.msg"
+    },
+    {
+      "owner": "RfqBatchChildRfq",
+      "field": "contracts_fp",
+      "presence": "optional",
+      "schema": "rfqBatchCreatedPayload.msg.rfqs"
+    },
+    {
+      "owner": "RfqBatchChildRfq",
+      "field": "event_ticker",
+      "presence": "optional",
+      "schema": "rfqBatchCreatedPayload.msg.rfqs"
+    },
+    {
+      "owner": "RfqBatchChildRfq",
+      "field": "id",
+      "presence": "required",
+      "schema": "rfqBatchCreatedPayload.msg.rfqs"
+    },
+    {
+      "owner": "RfqBatchChildRfq",
+      "field": "leg_indices",
+      "presence": "required",
+      "schema": "rfqBatchCreatedPayload.msg.rfqs"
+    },
+    {
+      "owner": "RfqBatchChildRfq",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "rfqBatchCreatedPayload.msg.rfqs"
+    },
+    {
+      "owner": "RfqBatchChildRfq",
+      "field": "mve_collection_ticker",
+      "presence": "optional",
+      "schema": "rfqBatchCreatedPayload.msg.rfqs"
+    },
+    {
+      "owner": "RfqBatchChildRfq",
+      "field": "target_cost_dollars",
+      "presence": "optional",
+      "schema": "rfqBatchCreatedPayload.msg.rfqs"
+    },
+    {
+      "owner": "RfqBatchCreatedBody",
+      "field": "created_ts",
+      "presence": "required",
+      "schema": "rfqBatchCreatedPayload.msg"
+    },
+    {
+      "owner": "RfqBatchCreatedBody",
+      "field": "creator_id",
+      "presence": "required",
+      "schema": "rfqBatchCreatedPayload.msg"
+    },
+    {
+      "owner": "RfqBatchCreatedBody",
+      "field": "id",
+      "presence": "required",
+      "schema": "rfqBatchCreatedPayload.msg"
+    },
+    {
+      "owner": "RfqBatchCreatedBody",
+      "field": "legs",
+      "presence": "required",
+      "schema": "rfqBatchCreatedPayload.msg"
+    },
+    {
+      "owner": "RfqBatchCreatedBody",
+      "field": "rfqs",
+      "presence": "required",
+      "schema": "rfqBatchCreatedPayload.msg"
+    },
+    {
+      "owner": "RfqBatchDeletedBody",
+      "field": "creator_id",
+      "presence": "required",
+      "schema": "rfqBatchDeletedPayload.msg"
+    },
+    {
+      "owner": "RfqBatchDeletedBody",
+      "field": "deleted_ts",
+      "presence": "required",
+      "schema": "rfqBatchDeletedPayload.msg"
+    },
+    {
+      "owner": "RfqBatchDeletedBody",
+      "field": "id",
+      "presence": "required",
+      "schema": "rfqBatchDeletedPayload.msg"
+    },
+    {
+      "owner": "RfqBatchDeletedBody",
+      "field": "rfq_ids",
+      "presence": "required",
+      "schema": "rfqBatchDeletedPayload.msg"
+    },
+    {
+      "owner": "RfqBatchExecutedBody",
+      "field": "client_batch_id",
+      "presence": "optional",
+      "schema": "rfqBatchExecutedPayload.msg"
+    },
+    {
+      "owner": "RfqBatchExecutedBody",
+      "field": "close_reason",
+      "presence": "required",
+      "schema": "rfqBatchExecutedPayload.msg"
+    },
+    {
+      "owner": "RfqBatchExecutedBody",
+      "field": "executed_rfq_ids",
+      "presence": "required",
+      "schema": "rfqBatchExecutedPayload.msg"
+    },
+    {
+      "owner": "RfqBatchExecutedBody",
+      "field": "executed_ts",
+      "presence": "required",
+      "schema": "rfqBatchExecutedPayload.msg"
+    },
+    {
+      "owner": "RfqBatchExecutedBody",
+      "field": "failed_rfq_ids",
+      "presence": "required",
+      "schema": "rfqBatchExecutedPayload.msg"
+    },
+    {
+      "owner": "RfqBatchExecutedBody",
+      "field": "rfq_batch_id",
+      "presence": "required",
+      "schema": "rfqBatchExecutedPayload.msg"
+    },
+    {
+      "owner": "RfqBatchExecutedBody",
+      "field": "rfq_creator_id",
+      "presence": "required",
+      "schema": "rfqBatchExecutedPayload.msg"
+    },
+    {
+      "owner": "RfqBatchExecutedBody",
+      "field": "subaccount",
+      "presence": "optional",
+      "schema": "rfqBatchExecutedPayload.msg"
     },
     {
       "owner": "RfqCreatedBody",
@@ -1943,7 +2621,19 @@
       "owner": "SelectedLeg",
       "field": "event_ticker",
       "presence": "required",
+      "schema": "rfqBatchCreatedPayload.msg.legs"
+    },
+    {
+      "owner": "SelectedLeg",
+      "field": "event_ticker",
+      "presence": "required",
       "schema": "rfqCreatedPayload.msg.mve_selected_legs"
+    },
+    {
+      "owner": "SelectedLeg",
+      "field": "market_ticker",
+      "presence": "required",
+      "schema": "rfqBatchCreatedPayload.msg.legs"
     },
     {
       "owner": "SelectedLeg",
@@ -1955,7 +2645,19 @@
       "owner": "SelectedLeg",
       "field": "side",
       "presence": "required",
+      "schema": "rfqBatchCreatedPayload.msg.legs"
+    },
+    {
+      "owner": "SelectedLeg",
+      "field": "side",
+      "presence": "required",
       "schema": "rfqCreatedPayload.msg.mve_selected_legs"
+    },
+    {
+      "owner": "SelectedLeg",
+      "field": "yes_settlement_value_dollars",
+      "presence": "optional",
+      "schema": "rfqBatchCreatedPayload.msg.legs"
     },
     {
       "owner": "SelectedLeg",

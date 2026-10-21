@@ -123,6 +123,8 @@ pub enum Channel {
     MultivariateMarketLifecycle,
     #[serde(rename = "communications")]
     Communications,
+    #[serde(rename = "batch_communications")]
+    BatchCommunications,
     #[serde(rename = "order_group_updates")]
     OrderGroupUpdates,
     #[serde(rename = "pyth_value")]
@@ -288,6 +290,7 @@ pub struct OkMarketsBody {
 pub struct OrderbookSnapshotBody {
     pub market_ticker: String,
     pub market_id: String,
+    pub clock: i64,
     #[serde(
         default,
         skip_serializing_if = "Option::is_none",
@@ -302,6 +305,7 @@ pub struct OrderbookSnapshotBody {
 pub struct OrderbookDeltaBody {
     pub market_ticker: String,
     pub market_id: String,
+    pub clock: i64,
     pub price_dollars: String,
     pub delta_fp: String,
     pub side: MarketSide,
@@ -733,6 +737,62 @@ pub enum Incoming {
         #[serde(default, skip_serializing_if = "Option::is_none")]
         sending_ts_ms: Option<i64>,
     },
+    #[serde(rename = "rfq_batch_created")]
+    RfqBatchCreated {
+        sid: u64,
+        seq: u64,
+        msg: RfqBatchCreatedBody,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        sending_ts_ms: Option<i64>,
+    },
+    #[serde(rename = "rfq_batch_deleted")]
+    RfqBatchDeleted {
+        sid: u64,
+        seq: u64,
+        msg: RfqBatchDeletedBody,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        sending_ts_ms: Option<i64>,
+    },
+    #[serde(rename = "batch_quote_created")]
+    BatchQuoteCreated {
+        sid: u64,
+        seq: u64,
+        msg: BatchQuoteCreatedBody,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        sending_ts_ms: Option<i64>,
+    },
+    #[serde(rename = "rfq_batch_best_quotes")]
+    RfqBatchBestQuotes {
+        sid: u64,
+        seq: u64,
+        msg: RfqBatchBestQuotesBody,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        sending_ts_ms: Option<i64>,
+    },
+    #[serde(rename = "batch_quote_accepted")]
+    BatchQuoteAccepted {
+        sid: u64,
+        seq: u64,
+        msg: BatchQuoteAcceptedBody,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        sending_ts_ms: Option<i64>,
+    },
+    #[serde(rename = "rfq_batch_executed")]
+    RfqBatchExecuted {
+        sid: u64,
+        seq: u64,
+        msg: RfqBatchExecutedBody,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        sending_ts_ms: Option<i64>,
+    },
+    #[serde(rename = "batch_quote_executed")]
+    BatchQuoteExecuted {
+        sid: u64,
+        seq: u64,
+        msg: BatchQuoteExecutedBody,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        sending_ts_ms: Option<i64>,
+    },
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -808,8 +868,28 @@ mod tests {
     }
 
     #[test]
+    fn orderbook_clock_is_required() {
+        let snapshot = r#"{"type":"orderbook_snapshot","sid":1,"seq":1,"msg":{"market_ticker":"SYNTH-1","market_id":"m","clock":4182057}}"#;
+        match parse_incoming(snapshot).unwrap() {
+            Incoming::OrderbookSnapshot { msg, .. } => assert_eq!(msg.clock, 4182057),
+            other => panic!("unexpected {other:?}"),
+        }
+        let delta = r#"{"type":"orderbook_delta","sid":1,"seq":2,"msg":{"market_ticker":"SYNTH-1","market_id":"m","clock":4182061,"price_dollars":"0.5600","delta_fp":"1.00","side":"yes"}}"#;
+        match parse_incoming(delta).unwrap() {
+            Incoming::OrderbookDelta { msg, .. } => assert_eq!(msg.clock, 4182061),
+            other => panic!("unexpected {other:?}"),
+        }
+        for frame in [
+            r#"{"type":"orderbook_snapshot","sid":1,"seq":1,"msg":{"market_ticker":"SYNTH-1","market_id":"m"}}"#,
+            r#"{"type":"orderbook_delta","sid":1,"seq":2,"msg":{"market_ticker":"SYNTH-1","market_id":"m","price_dollars":"0.5600","delta_fp":"1.00","side":"yes"}}"#,
+        ] {
+            assert!(parse_incoming(frame).is_err(), "{frame}");
+        }
+    }
+
+    #[test]
     fn old_orderbook_dollars_alias_is_kept() {
-        let frame = r#"{"type":"orderbook_snapshot","sid":1,"seq":1,"msg":{"market_ticker":"SYNTH-1","market_id":"m","yes_dollars":[["0.5600","1.00"]],"no_dollars":[["0.4400","2.00"]]}}"#;
+        let frame = r#"{"type":"orderbook_snapshot","sid":1,"seq":1,"msg":{"market_ticker":"SYNTH-1","market_id":"m","clock":0,"yes_dollars":[["0.5600","1.00"]],"no_dollars":[["0.4400","2.00"]]}}"#;
         match parse_incoming(frame).unwrap() {
             Incoming::OrderbookSnapshot { msg, .. } => {
                 assert_eq!(
