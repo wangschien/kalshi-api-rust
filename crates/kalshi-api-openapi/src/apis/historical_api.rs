@@ -78,7 +78,7 @@ pub struct GetHistoricalPositionsParams {
     pub ticker: Option<String>,
     /// Event ticker to filter by. Only a single event ticker is supported.
     pub event_ticker: Option<String>,
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     pub subaccount: Option<i64>,
     /// Number of results per page. Defaults to 100.
     pub limit: Option<i64>,

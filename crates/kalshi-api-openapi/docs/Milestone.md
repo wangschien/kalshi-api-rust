@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **notification_message** | **String** | Notification message for the milestone. | 
 **source_id** | Option<**String**> | Source id of milestone if available. | [optional]
 **source_ids** | Option<**std::collections::HashMap<String, String>**> | Source ids of milestone if available. | [optional]
-**details** | [**std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) | Additional details about the milestone. | 
+**details** | [**std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) | Additional details about the milestone. `details.status`, when present, is maintained by a periodic background job. It lags the game's live state and may be stale or inaccurate, for example remaining `live` after the game ends. For game status, prefer live data, which is updated far more often: `live_data.details.status` from `GET /live_data/milestone/{milestone_id}`, or each entry's `details.status` from `GET /live_data/batch`. Scores are in the sport-specific fields of that live data `details` object. | 
 **primary_event_tickers** | **Vec<String>** | List of event tickers directly related to the outcome of this milestone. | 
 **last_updated_ts** | **String** | Last time this structured target was updated. | 
 

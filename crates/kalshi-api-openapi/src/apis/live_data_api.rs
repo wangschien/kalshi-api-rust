@@ -369,7 +369,7 @@ pub async fn get_live_data_without_preload_content(
     configuration.client.execute(req).await.map_err(Error::from)
 }
 
-/// Get live data for a specific milestone.
+/// Get live data for a specific milestone. The response's `live_data.details.status` is updated far more often than the milestone's own `details.status` and is the preferred source for game status. It is not guaranteed to be current: if the provider feed falls behind, a cached board may still be served, with `live_data.details.live_data_delayed` set to `true` only once it is significantly stale (some feeds never set it), so a missing flag does not by itself mean the data is current.
 pub async fn get_live_data_by_milestone(
     configuration: &configuration::Configuration,
     params: GetLiveDataByMilestoneParams,
@@ -447,7 +447,7 @@ pub async fn get_live_data_by_milestone_without_preload_content(
     configuration.client.execute(req).await.map_err(Error::from)
 }
 
-/// Get live data for multiple milestones
+/// Get live data for multiple milestones. Each entry's `details.status` is updated far more often than the milestone's own `details.status` and is the preferred source for game status. It is not guaranteed to be current: if the provider feed falls behind, a cached board may still be served, with `details.live_data_delayed` set to `true` only once it is significantly stale (some feeds never set it), so a missing flag does not by itself mean the data is current.
 pub async fn get_live_datas(
     configuration: &configuration::Configuration,
     params: GetLiveDatasParams,

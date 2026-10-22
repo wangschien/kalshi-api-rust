@@ -1,6 +1,6 @@
 {
-  "count": 138,
-  "named_schema_properties": 133,
+  "count": 147,
+  "named_schema_properties": 142,
   "fields": [
     {
       "struct": "AccountApiUsageLevelVolumeGoal",
@@ -234,6 +234,18 @@
       "struct": "CreateQuoteRequest",
       "field": "yes_bid",
       "schema": "CreateQuoteRequest",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "CreateRfqBatchRequest",
+      "field": "contracts_fp",
+      "schema": "CreateRFQBatchRequest",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "CreateRfqBatchRequest",
+      "field": "target_cost_dollars",
+      "schema": "CreateRFQBatchRequest",
       "kind": "FixedPointDollars"
     },
     {
@@ -756,6 +768,48 @@
       "struct": "Rfq",
       "field": "target_cost_dollars",
       "schema": "RFQ",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "RfqBatchAcceptLimit",
+      "field": "bid_dollars",
+      "schema": "RFQBatchAcceptLimit",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "RfqBatchBestQuote",
+      "field": "no_bid_dollars",
+      "schema": "RFQBatchBestQuote",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "RfqBatchBestQuote",
+      "field": "no_contracts_offered_fp",
+      "schema": "RFQBatchBestQuote",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "RfqBatchBestQuote",
+      "field": "yes_bid_dollars",
+      "schema": "RFQBatchBestQuote",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "RfqBatchBestQuote",
+      "field": "yes_contracts_offered_fp",
+      "schema": "RFQBatchBestQuote",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "RfqBatchQuoteEntry",
+      "field": "no_bid",
+      "schema": "RFQBatchQuoteEntry",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "RfqBatchQuoteEntry",
+      "field": "yes_bid",
+      "schema": "RFQBatchQuoteEntry",
       "kind": "FixedPointDollars"
     },
     {

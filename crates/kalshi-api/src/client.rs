@@ -257,7 +257,7 @@ impl Client {
         finish_raw(&slot)
     }
 
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     ///
     /// Filter results by exchange shard. Omit to return results from all exchange shards.
     ///
@@ -276,7 +276,7 @@ impl Client {
         .await
     }
 
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     ///
     /// Filter results by exchange shard. Omit to return results from all exchange shards.
     ///
@@ -323,7 +323,7 @@ impl Client {
         finish_raw(&slot)
     }
 
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     ///
     /// Exchange shard index. If omitted, auto-routes when ticker is provided; otherwise defaults to 0. Use -1 to require auto-routing by ticker.
     ///
@@ -352,7 +352,7 @@ impl Client {
         .await
     }
 
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     ///
     /// Exchange shard index. If omitted, auto-routes when ticker is provided; otherwise defaults to 0. Use -1 to require auto-routing by ticker.
     ///
@@ -380,7 +380,7 @@ impl Client {
         finish_raw(&slot)
     }
 
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     ///
     /// Exchange shard index. If omitted, auto-routes when market_ticker is provided; otherwise defaults to 0. Use -1 to require auto-routing by market ticker.
     ///
@@ -409,7 +409,7 @@ impl Client {
         .await
     }
 
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     ///
     /// Exchange shard index. If omitted, auto-routes when market_ticker is provided; otherwise defaults to 0. Use -1 to require auto-routing by market ticker.
     ///
@@ -437,7 +437,7 @@ impl Client {
         finish_raw(&slot)
     }
 
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     ///
     /// Exchange shard index. If omitted, auto-routes when market_ticker is provided; otherwise defaults to 0. Use -1 to require auto-routing. The market_ticker parameter is required for auto-routing.
     ///
@@ -468,7 +468,7 @@ impl Client {
         .await
     }
 
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     ///
     /// Exchange shard index. If omitted, auto-routes when market_ticker is provided; otherwise defaults to 0. Use -1 to require auto-routing. The market_ticker parameter is required for auto-routing.
     ///
@@ -626,7 +626,7 @@ impl Client {
         finish_raw(&slot)
     }
 
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     ///
     /// The official Python SDK leaves subaccount optional. This argument is required.
     /// `Subaccount::Primary` sends `0`.
@@ -643,7 +643,7 @@ impl Client {
         .await
     }
 
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     ///
     /// `None` omits the query, and the spec then uses the primary account.
     pub async fn get_order_queue_positions_raw(
@@ -661,7 +661,7 @@ impl Client {
         finish_raw(&slot)
     }
 
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     ///
     /// Exchange index used to scope the balance and portfolio value. If omitted, both include all exchange indexes.
     ///
@@ -686,7 +686,7 @@ impl Client {
         .await
     }
 
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     ///
     /// Exchange index used to scope the balance and portfolio value. If omitted, both include all exchange indexes.
     ///

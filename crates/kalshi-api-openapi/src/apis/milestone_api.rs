@@ -64,7 +64,7 @@ pub enum GetMilestonesError {
     UnknownValue(serde_json::Value),
 }
 
-///  Endpoint for getting data about a specific milestone by its ID.
+/// Endpoint for getting data about a specific milestone by its ID. The milestone's `details.status`, when present, is maintained by a periodic background job. It lags the game's live state and may be stale or inaccurate, for example remaining `live` after the game ends. For game status, prefer live data, which is updated far more often: `live_data.details.status` from `GET /live_data/milestone/{milestone_id}`, or each entry's `details.status` from `GET /live_data/batch`. Scores are in the sport-specific fields of that live data `details` object.
 pub async fn get_milestone(
     configuration: &configuration::Configuration,
     params: GetMilestoneParams,
@@ -139,7 +139,7 @@ pub async fn get_milestone_without_preload_content(
     configuration.client.execute(req).await.map_err(Error::from)
 }
 
-/// Minimum start date to filter milestones. Format: RFC3339 timestamp
+/// Endpoint for listing milestones. A milestone's `details.status`, when present, is maintained by a periodic background job. It lags the game's live state and may be stale or inaccurate, for example remaining `live` after the game ends. For game status, prefer live data, which is updated far more often: `live_data.details.status` from `GET /live_data/milestone/{milestone_id}`, or each entry's `details.status` from `GET /live_data/batch`. Scores are in the sport-specific fields of that live data `details` object.
 pub async fn get_milestones(
     configuration: &configuration::Configuration,
     params: GetMilestonesParams,

@@ -1,5 +1,5 @@
 {
-  "count": 29,
+  "count": 32,
   "rows": [
     {
       "operation": "AcceptBlockTradeProposal",
@@ -17,7 +17,7 @@
       "rust_name": "amend_order_v2",
       "method": "amend_order_v2",
       "pointer": "query.subaccount",
-      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.",
       "omission": "primary",
       "param_type": "Subaccount",
       "exchange_index_sentences": [
@@ -67,7 +67,7 @@
       "rust_name": "cancel_order_v2",
       "method": "cancel_order_v2",
       "pointer": "query.subaccount",
-      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.",
       "omission": "primary",
       "param_type": "Subaccount",
       "exchange_index_sentences": [
@@ -135,11 +135,33 @@
       "wrapped": false
     },
     {
+      "operation": "CreateRFQBatch",
+      "rust_name": "create_rfq_batch",
+      "method": null,
+      "pointer": "body.subaccount",
+      "sentence": "The subaccount number to create the RFQ batch for (direct members only; 0 for primary, 1-63 for subaccounts)",
+      "omission": "recorded",
+      "param_type": null,
+      "exchange_index_sentences": [],
+      "wrapped": false
+    },
+    {
+      "operation": "CreateRFQBatchQuote",
+      "rust_name": "create_rfq_batch_quote",
+      "method": null,
+      "pointer": "body.subaccount",
+      "sentence": "Optional subaccount number to place the batch quote under (0 for primary, 1-63 for subaccounts)",
+      "omission": "recorded",
+      "param_type": null,
+      "exchange_index_sentences": [],
+      "wrapped": false
+    },
+    {
       "operation": "DecreaseOrderV2",
       "rust_name": "decrease_order_v2",
       "method": "decrease_order_v2",
       "pointer": "query.subaccount",
-      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.",
       "omission": "primary",
       "param_type": "Subaccount",
       "exchange_index_sentences": [
@@ -152,7 +174,7 @@
       "rust_name": "delete_order_group",
       "method": null,
       "pointer": "query.subaccount",
-      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.",
       "omission": "primary",
       "param_type": null,
       "exchange_index_sentences": [
@@ -176,7 +198,7 @@
       "rust_name": "get_balance",
       "method": "get_balance",
       "pointer": "query.subaccount",
-      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.",
       "omission": "primary",
       "param_type": "Subaccount",
       "exchange_index_sentences": [
@@ -224,7 +246,7 @@
       "rust_name": "get_historical_positions",
       "method": null,
       "pointer": "query.subaccount",
-      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.",
       "omission": "primary",
       "param_type": null,
       "exchange_index_sentences": [],
@@ -257,7 +279,7 @@
       "rust_name": "get_order_queue_positions",
       "method": "get_order_queue_positions",
       "pointer": "query.subaccount",
-      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.",
       "omission": "primary",
       "param_type": "Subaccount",
       "exchange_index_sentences": [],
@@ -281,13 +303,24 @@
       "rust_name": "get_positions",
       "method": "get_positions",
       "pointer": "query.subaccount",
-      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.",
       "omission": "primary",
       "param_type": "Subaccount",
       "exchange_index_sentences": [
         "Filter results by exchange shard. Omit to return results from all exchange shards."
       ],
       "wrapped": true
+    },
+    {
+      "operation": "GetRFQBatches",
+      "rust_name": "get_rfq_batches",
+      "method": null,
+      "pointer": "query.subaccount",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). If omitted, defaults to all subaccounts.",
+      "omission": "all",
+      "param_type": null,
+      "exchange_index_sentences": [],
+      "wrapped": false
     },
     {
       "operation": "GetRFQs",
@@ -316,7 +349,7 @@
       "rust_name": "reset_order_group",
       "method": null,
       "pointer": "query.subaccount",
-      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.",
       "omission": "primary",
       "param_type": null,
       "exchange_index_sentences": [
@@ -329,7 +362,7 @@
       "rust_name": "trigger_order_group",
       "method": null,
       "pointer": "query.subaccount",
-      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.",
       "omission": "primary",
       "param_type": null,
       "exchange_index_sentences": [
@@ -342,7 +375,7 @@
       "rust_name": "update_order_group_limit",
       "method": null,
       "pointer": "query.subaccount",
-      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.",
+      "sentence": "Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.",
       "omission": "primary",
       "param_type": null,
       "exchange_index_sentences": [

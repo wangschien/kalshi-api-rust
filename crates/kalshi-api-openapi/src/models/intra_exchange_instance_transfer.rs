@@ -16,6 +16,9 @@ pub struct IntraExchangeInstanceTransfer {
     /// Unique transfer id
     #[serde(rename = "transfer_id")]
     pub transfer_id: String,
+    /// The client_transfer_id provided when the transfer was created. Omitted if none was provided.
+    #[serde(rename = "client_transfer_id", skip_serializing_if = "Option::is_none")]
+    pub client_transfer_id: Option<String>,
     #[serde(rename = "source")]
     pub source: models::ExchangeInstance,
     #[serde(rename = "destination")]
@@ -49,6 +52,7 @@ impl IntraExchangeInstanceTransfer {
     ) -> IntraExchangeInstanceTransfer {
         IntraExchangeInstanceTransfer {
             transfer_id,
+            client_transfer_id: None,
             source,
             destination,
             source_exchange_shard,

@@ -19,7 +19,7 @@ pub struct AmendOrderV2Params {
     /// Order ID
     pub order_id: String,
     pub amend_order_v2_request: models::AmendOrderV2Request,
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     pub subaccount: Option<i64>,
 }
 
@@ -47,7 +47,7 @@ pub struct CancelAllOrdersParams {
 pub struct CancelOrderV2Params {
     /// Order ID
     pub order_id: String,
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     pub subaccount: Option<i64>,
     /// Exchange shard index. If omitted, auto-routes when market_ticker is provided; otherwise defaults to 0. Use -1 to require auto-routing. The market_ticker parameter is required for auto-routing.
     pub exchange_index: Option<i64>,
@@ -67,7 +67,7 @@ pub struct DecreaseOrderV2Params {
     /// Order ID
     pub order_id: String,
     pub decrease_order_v2_request: models::DecreaseOrderV2Request,
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     pub subaccount: Option<i64>,
 }
 
@@ -92,7 +92,7 @@ pub struct GetOrderQueuePositionsParams {
     pub market_tickers: Option<String>,
     /// Event ticker to filter by
     pub event_ticker: Option<String>,
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     pub subaccount: Option<i64>,
 }
 
@@ -101,7 +101,7 @@ pub struct GetOrderQueuePositionsParams {
 pub struct GetOrdersParams {
     /// Filter by market ticker
     pub ticker: Option<String>,
-    /// Event tickers to filter by, as a comma-separated list (maximum 10).
+    /// Event tickers to filter by, as a comma-separated list (maximum 100). Events with no markets return no orders.
     pub event_ticker: Option<String>,
     /// Filter items after this Unix timestamp
     pub min_ts: Option<i64>,

@@ -28,7 +28,7 @@ pub struct CreateSubaccountParams {
 /// struct for passing parameters to the method [`get_balance`]
 #[derive(Clone, Debug)]
 pub struct GetBalanceParams {
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     pub subaccount: Option<i64>,
     /// Exchange index used to scope the balance and portfolio value. If omitted, both include all exchange indexes.
     pub exchange_index: Option<i64>,
@@ -95,7 +95,7 @@ pub struct GetPositionsParams {
     pub ticker: Option<String>,
     /// Event ticker to filter by. Only a single event ticker is supported.
     pub event_ticker: Option<String>,
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     pub subaccount: Option<i64>,
     /// Filter results by exchange shard. Omit to return results from all exchange shards.
     pub exchange_index: Option<i32>,
@@ -308,6 +308,7 @@ pub enum IntraExchangeInstanceTransferError {
     Status400(models::ErrorResponse),
     Status401(models::ErrorResponse),
     Status403(models::ErrorResponse),
+    Status409(models::ErrorResponse),
     Status500(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }

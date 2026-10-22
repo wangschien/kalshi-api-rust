@@ -24,7 +24,7 @@ pub struct CreateOrderGroupParams {
 pub struct DeleteOrderGroupParams {
     /// Order group ID
     pub order_group_id: String,
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     pub subaccount: Option<i64>,
     /// Identifier for an exchange shard. Defaults to 0.
     pub exchange_index: Option<i64>,
@@ -51,7 +51,7 @@ pub struct GetOrderGroupsParams {
 pub struct ResetOrderGroupParams {
     /// Order group ID
     pub order_group_id: String,
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     pub subaccount: Option<i64>,
     /// Identifier for an exchange shard. Defaults to 0.
     pub exchange_index: Option<i64>,
@@ -63,7 +63,7 @@ pub struct ResetOrderGroupParams {
 pub struct TriggerOrderGroupParams {
     /// Order group ID
     pub order_group_id: String,
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     pub subaccount: Option<i64>,
     /// Identifier for an exchange shard. Defaults to 0.
     pub exchange_index: Option<i64>,
@@ -76,7 +76,7 @@ pub struct UpdateOrderGroupLimitParams {
     /// Order group ID
     pub order_group_id: String,
     pub update_order_group_limit_request: models::UpdateOrderGroupLimitRequest,
-    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0.
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
     pub subaccount: Option<i64>,
     /// Identifier for an exchange shard. Defaults to 0.
     pub exchange_index: Option<i64>,

@@ -32,7 +32,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **order_id** | **String** | Order ID | [required] |
 **amend_order_v2_request** | [**AmendOrderV2Request**](AmendOrderV2Request.md) |  | [required] |
-**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. |  |
+**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount. |  |
 
 ### Return type
 
@@ -153,7 +153,7 @@ Endpoint for cancelling event-market orders using the V2 response shape. To auto
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **order_id** | **String** | Order ID | [required] |
-**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. |  |
+**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount. |  |
 **exchange_index** | Option<**i64**> | Exchange shard index. If omitted, auto-routes when market_ticker is provided; otherwise defaults to 0. Use -1 to require auto-routing. The market_ticker parameter is required for auto-routing. |  |
 **market_ticker** | Option<**String**> | Market ticker. Required for auto-routing when exchange_index is omitted or -1. |  |
 
@@ -217,7 +217,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **order_id** | **String** | Order ID | [required] |
 **decrease_order_v2_request** | [**DecreaseOrderV2Request**](DecreaseOrderV2Request.md) |  | [required] |
-**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. |  |
+**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount. |  |
 
 ### Return type
 
@@ -309,7 +309,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **market_tickers** | Option<**String**> | Comma-separated list of market tickers to filter by |  |
 **event_ticker** | Option<**String**> | Event ticker to filter by |  |
-**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. |  |
+**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount. |  |
 
 ### Return type
 
@@ -340,7 +340,7 @@ Restricts the response to orders that have a certain status: resting, canceled, 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **ticker** | Option<**String**> | Filter by market ticker |  |
-**event_ticker** | Option<**String**> | Event tickers to filter by, as a comma-separated list (maximum 10). |  |
+**event_ticker** | Option<**String**> | Event tickers to filter by, as a comma-separated list (maximum 100). Events with no markets return no orders. |  |
 **min_ts** | Option<**i64**> | Filter items after this Unix timestamp |  |
 **max_ts** | Option<**i64**> | Filter items before this Unix timestamp |  |
 **status** | Option<**String**> | Filter by status. Possible values depend on the endpoint. |  |

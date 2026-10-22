@@ -57,7 +57,7 @@ Delete Order Group
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **order_group_id** | **String** | Order group ID | [required] |
-**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. |  |
+**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount. |  |
 **exchange_index** | Option<**i64**> | Identifier for an exchange shard. Defaults to 0. |  |
 
 ### Return type
@@ -150,7 +150,7 @@ Reset Order Group
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **order_group_id** | **String** | Order group ID | [required] |
-**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. |  |
+**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount. |  |
 **exchange_index** | Option<**i64**> | Identifier for an exchange shard. Defaults to 0. |  |
 **body** | Option<**serde_json::Value**> |  |  |
 
@@ -183,7 +183,7 @@ Trigger Order Group
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **order_group_id** | **String** | Order group ID | [required] |
-**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. |  |
+**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount. |  |
 **exchange_index** | Option<**i64**> | Identifier for an exchange shard. Defaults to 0. |  |
 **body** | Option<**serde_json::Value**> |  |  |
 
@@ -217,7 +217,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **order_group_id** | **String** | Order group ID | [required] |
 **update_order_group_limit_request** | [**UpdateOrderGroupLimitRequest**](UpdateOrderGroupLimitRequest.md) |  | [required] |
-**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. |  |
+**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount. |  |
 **exchange_index** | Option<**i64**> | Identifier for an exchange shard. Defaults to 0. |  |
 
 ### Return type

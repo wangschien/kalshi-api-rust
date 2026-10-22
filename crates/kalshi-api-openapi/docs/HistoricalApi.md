@@ -191,7 +191,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **ticker** | Option<**String**> | Filter by market ticker |  |
 **event_ticker** | Option<**String**> | Event ticker to filter by. Only a single event ticker is supported. |  |
-**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. |  |
+**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount. |  |
 **limit** | Option<**i64**> | Number of results per page. Defaults to 100. |  |[default to 100]
 **cursor** | Option<**String**> | Pagination cursor. Use the cursor value returned from the previous response to get the next page of results. Leave empty for the first page. |  |
 

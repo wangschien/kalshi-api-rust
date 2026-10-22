@@ -29,6 +29,14 @@ pub struct AcceptQuoteParams {
     pub accept_quote_request: models::AcceptQuoteRequest,
 }
 
+/// struct for passing parameters to the method [`accept_rfq_batch`]
+#[derive(Clone, Debug)]
+pub struct AcceptRfqBatchParams {
+    /// RFQ batch UUID returned when the batch was created. Pass it unchanged; malformed IDs return HTTP 400.
+    pub rfq_batch_id: String,
+    pub accept_rfq_batch_request: models::AcceptRfqBatchRequest,
+}
+
 /// struct for passing parameters to the method [`accept_rfq_quote`]
 #[derive(Clone, Debug)]
 pub struct AcceptRfqQuoteParams {
@@ -44,6 +52,16 @@ pub struct AcceptRfqQuoteParams {
 pub struct ConfirmQuoteParams {
     /// Quote UUID. Pass the ID exactly as received when the quote was created; malformed IDs return HTTP 400.
     pub quote_id: String,
+    pub body: Option<serde_json::Value>,
+}
+
+/// struct for passing parameters to the method [`confirm_rfq_batch_quote`]
+#[derive(Clone, Debug)]
+pub struct ConfirmRfqBatchQuoteParams {
+    /// RFQ batch UUID returned when the batch was created. Pass it unchanged; malformed IDs return HTTP 400.
+    pub rfq_batch_id: String,
+    /// Batch quote UUID returned when the batch quote was created. Pass it unchanged; malformed IDs return HTTP 400.
+    pub batch_quote_id: String,
     pub body: Option<serde_json::Value>,
 }
 
@@ -69,6 +87,20 @@ pub struct CreateRfqParams {
     pub create_rfq_request: models::CreateRfqRequest,
 }
 
+/// struct for passing parameters to the method [`create_rfq_batch`]
+#[derive(Clone, Debug)]
+pub struct CreateRfqBatchParams {
+    pub create_rfq_batch_request: models::CreateRfqBatchRequest,
+}
+
+/// struct for passing parameters to the method [`create_rfq_batch_quote`]
+#[derive(Clone, Debug)]
+pub struct CreateRfqBatchQuoteParams {
+    /// RFQ batch UUID returned when the batch was created. Pass it unchanged; malformed IDs return HTTP 400.
+    pub rfq_batch_id: String,
+    pub create_rfq_batch_quote_request: models::CreateRfqBatchQuoteRequest,
+}
+
 /// struct for passing parameters to the method [`delete_quote`]
 #[derive(Clone, Debug)]
 pub struct DeleteQuoteParams {
@@ -81,6 +113,22 @@ pub struct DeleteQuoteParams {
 pub struct DeleteRfqParams {
     /// RFQ UUID returned when the RFQ was created. Pass it unchanged; malformed IDs return HTTP 400.
     pub rfq_id: String,
+}
+
+/// struct for passing parameters to the method [`delete_rfq_batch`]
+#[derive(Clone, Debug)]
+pub struct DeleteRfqBatchParams {
+    /// RFQ batch UUID returned when the batch was created. Pass it unchanged; malformed IDs return HTTP 400.
+    pub rfq_batch_id: String,
+}
+
+/// struct for passing parameters to the method [`delete_rfq_batch_quote`]
+#[derive(Clone, Debug)]
+pub struct DeleteRfqBatchQuoteParams {
+    /// RFQ batch UUID returned when the batch was created. Pass it unchanged; malformed IDs return HTTP 400.
+    pub rfq_batch_id: String,
+    /// Batch quote UUID returned when the batch quote was created. Pass it unchanged; malformed IDs return HTTP 400.
+    pub batch_quote_id: String,
 }
 
 /// struct for passing parameters to the method [`delete_rfq_quote`]
@@ -146,6 +194,41 @@ pub struct GetRfqParams {
     pub rfq_id: String,
 }
 
+/// struct for passing parameters to the method [`get_rfq_batch`]
+#[derive(Clone, Debug)]
+pub struct GetRfqBatchParams {
+    /// RFQ batch UUID returned when the batch was created. Pass it unchanged; malformed IDs return HTTP 400.
+    pub rfq_batch_id: String,
+}
+
+/// struct for passing parameters to the method [`get_rfq_batch_best_quotes`]
+#[derive(Clone, Debug)]
+pub struct GetRfqBatchBestQuotesParams {
+    /// RFQ batch UUID returned when the batch was created. Pass it unchanged; malformed IDs return HTTP 400.
+    pub rfq_batch_id: String,
+}
+
+/// struct for passing parameters to the method [`get_rfq_batch_quotes`]
+#[derive(Clone, Debug)]
+pub struct GetRfqBatchQuotesParams {
+    /// RFQ batch UUID returned when the batch was created. Pass it unchanged; malformed IDs return HTTP 400.
+    pub rfq_batch_id: String,
+}
+
+/// struct for passing parameters to the method [`get_rfq_batches`]
+#[derive(Clone, Debug)]
+pub struct GetRfqBatchesParams {
+    /// Pagination cursor. Use the cursor value returned from the previous response to get the next page of results. Leave empty for the first page.
+    pub cursor: Option<String>,
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). If omitted, defaults to all subaccounts.
+    pub subaccount: Option<i64>,
+    /// Maximum number of batches per page. Defaults to 20. A page also stops before its child RFQs would exceed 100.
+    pub limit: Option<i32>,
+    /// Filter RFQ batches by status
+    pub status: Option<models::RfqBatchStatus>,
+    pub user_filter: Option<models::UserFilter>,
+}
+
 /// struct for passing parameters to the method [`get_rfq_quote`]
 #[derive(Clone, Debug)]
 pub struct GetRfqQuoteParams {
@@ -203,6 +286,19 @@ pub enum AcceptQuoteError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`accept_rfq_batch`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AcceptRfqBatchError {
+    Status400(models::ErrorResponse),
+    Status401(models::ErrorResponse),
+    Status403(models::ErrorResponse),
+    Status404(models::ErrorResponse),
+    Status409(models::ErrorResponse),
+    Status500(models::ErrorResponse),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`accept_rfq_quote`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -221,6 +317,18 @@ pub enum ConfirmQuoteError {
     Status400(models::ErrorResponse),
     Status401(models::ErrorResponse),
     Status404(models::ErrorResponse),
+    Status500(models::ErrorResponse),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`confirm_rfq_batch_quote`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ConfirmRfqBatchQuoteError {
+    Status400(models::ErrorResponse),
+    Status401(models::ErrorResponse),
+    Status404(models::ErrorResponse),
+    Status409(models::ErrorResponse),
     Status500(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
@@ -257,6 +365,31 @@ pub enum CreateRfqError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`create_rfq_batch`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum CreateRfqBatchError {
+    Status400(models::ErrorResponse),
+    Status401(models::ErrorResponse),
+    Status403(models::ErrorResponse),
+    Status409(models::ErrorResponse),
+    Status500(models::ErrorResponse),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`create_rfq_batch_quote`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum CreateRfqBatchQuoteError {
+    Status400(models::ErrorResponse),
+    Status401(models::ErrorResponse),
+    Status403(models::ErrorResponse),
+    Status404(models::ErrorResponse),
+    Status409(models::ErrorResponse),
+    Status500(models::ErrorResponse),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`delete_quote`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -272,6 +405,28 @@ pub enum DeleteQuoteError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteRfqError {
+    Status400(models::ErrorResponse),
+    Status401(models::ErrorResponse),
+    Status404(models::ErrorResponse),
+    Status500(models::ErrorResponse),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`delete_rfq_batch`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeleteRfqBatchError {
+    Status400(models::ErrorResponse),
+    Status401(models::ErrorResponse),
+    Status404(models::ErrorResponse),
+    Status500(models::ErrorResponse),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`delete_rfq_batch_quote`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeleteRfqBatchQuoteError {
     Status400(models::ErrorResponse),
     Status401(models::ErrorResponse),
     Status404(models::ErrorResponse),
@@ -337,6 +492,50 @@ pub enum GetRfqError {
     Status400(models::ErrorResponse),
     Status401(models::ErrorResponse),
     Status404(models::ErrorResponse),
+    Status500(models::ErrorResponse),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_rfq_batch`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetRfqBatchError {
+    Status400(models::ErrorResponse),
+    Status401(models::ErrorResponse),
+    Status404(models::ErrorResponse),
+    Status500(models::ErrorResponse),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_rfq_batch_best_quotes`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetRfqBatchBestQuotesError {
+    Status400(models::ErrorResponse),
+    Status401(models::ErrorResponse),
+    Status403(models::ErrorResponse),
+    Status404(models::ErrorResponse),
+    Status500(models::ErrorResponse),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_rfq_batch_quotes`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetRfqBatchQuotesError {
+    Status400(models::ErrorResponse),
+    Status401(models::ErrorResponse),
+    Status404(models::ErrorResponse),
+    Status500(models::ErrorResponse),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_rfq_batches`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetRfqBatchesError {
+    Status400(models::ErrorResponse),
+    Status401(models::ErrorResponse),
     Status500(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
@@ -558,6 +757,107 @@ pub async fn accept_quote_without_preload_content(
     configuration.client.execute(req).await.map_err(Error::from)
 }
 
+/// Accept every child RFQ of your RFQ batch on one side, each from the maker quoting it best on that side. Either every child is accepted or none is, and your balance must cover all of them. min_bids protects your price: give every child the best bid you were shown. If a child's best bid is now worse, the accept fails with rfq_batch_quotes_changed and lists that child; a better bid fills at the better price. Each winning maker then confirms its children. They execute once every winner has confirmed, and a missed confirmation closes the whole batch. An accepted batch cannot be cancelled.
+pub async fn accept_rfq_batch(
+    configuration: &configuration::Configuration,
+    params: AcceptRfqBatchParams,
+) -> Result<models::AcceptRfqBatchResponse, Error<AcceptRfqBatchError>> {
+    accept_rfq_batch_with_http_info(configuration, params)
+        .await
+        .map(|response| response.data)
+}
+
+/// Returns the decoded response together with its status, headers, and original body.
+pub async fn accept_rfq_batch_with_http_info(
+    configuration: &configuration::Configuration,
+    params: AcceptRfqBatchParams,
+) -> Result<super::ApiResponse<models::AcceptRfqBatchResponse>, Error<AcceptRfqBatchError>> {
+    let resp = accept_rfq_batch_without_preload_content(configuration, params).await?;
+    let status = resp.status();
+    let headers = resp.headers().clone();
+    let raw_data = resp.bytes().await?.to_vec();
+    let content = String::from_utf8_lossy(&raw_data).into_owned();
+    let data: Result<models::AcceptRfqBatchResponse, Error<AcceptRfqBatchError>> = {
+        let content_type = headers
+            .get("content-type")
+            .and_then(|v| v.to_str().ok())
+            .unwrap_or("application/octet-stream");
+        let content_type = super::ContentType::from(content_type);
+
+        if status.is_success() {
+            let content = content.clone();
+            match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AcceptRfqBatchResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AcceptRfqBatchResponse`")))),
+        }
+        } else {
+            let content = content.clone();
+            let entity: Option<AcceptRfqBatchError> = serde_json::from_str(&content).ok();
+            Err(Error::ResponseError(ResponseContent {
+                status,
+                content,
+                entity,
+            }))
+        }
+    };
+    data.map(|data| super::ApiResponse {
+        status,
+        headers,
+        data,
+        raw_data,
+    })
+}
+
+/// Returns the HTTP response without reading its body or interpreting its status.
+pub async fn accept_rfq_batch_without_preload_content(
+    configuration: &configuration::Configuration,
+    params: AcceptRfqBatchParams,
+) -> Result<reqwest::Response, Error<AcceptRfqBatchError>> {
+    let uri_str = format!(
+        "{}/communications/rfq_batches/{rfq_batch_id}/accept",
+        configuration.base_path,
+        rfq_batch_id = crate::apis::urlencode(params.rfq_batch_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    req_builder = req_builder.header(reqwest::header::ACCEPT, "application/json");
+    req_builder = req_builder.header(reqwest::header::CONTENT_TYPE, "application/json");
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-SIGNATURE", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-KEY", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
+    };
+    req_builder = req_builder.json(&params.accept_rfq_batch_request);
+
+    let req = req_builder.timeout(configuration.request_timeout).build()?;
+
+    configuration.client.execute(req).await.map_err(Error::from)
+}
+
 ///  Endpoint for accepting a quote scoped to its RFQ. This will require the quoter to confirm.
 pub async fn accept_rfq_quote(
     configuration: &configuration::Configuration,
@@ -700,6 +1000,99 @@ pub async fn confirm_quote_without_preload_content(
         "{}/communications/quotes/{quote_id}/confirm",
         configuration.base_path,
         quote_id = crate::apis::urlencode(params.quote_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    req_builder = req_builder.header(reqwest::header::ACCEPT, "application/json");
+    req_builder = req_builder.header(reqwest::header::CONTENT_TYPE, "application/json");
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-SIGNATURE", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-KEY", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
+    };
+    if let Some(ref body) = params.body {
+        req_builder = req_builder.json(body);
+    }
+
+    let req = req_builder.timeout(configuration.request_timeout).build()?;
+
+    configuration.client.execute(req).await.map_err(Error::from)
+}
+
+/// Confirm the children your batch quote won, all at once. Nothing executes until every winning maker of the batch has confirmed; the last confirmation starts the execution timer for every child, and each child executes as its own trade. If any winner misses the confirmation deadline, the whole batch closes without trading.
+pub async fn confirm_rfq_batch_quote(
+    configuration: &configuration::Configuration,
+    params: ConfirmRfqBatchQuoteParams,
+) -> Result<(), Error<ConfirmRfqBatchQuoteError>> {
+    confirm_rfq_batch_quote_with_http_info(configuration, params)
+        .await
+        .map(|response| response.data)
+}
+
+/// Returns the decoded response together with its status, headers, and original body.
+pub async fn confirm_rfq_batch_quote_with_http_info(
+    configuration: &configuration::Configuration,
+    params: ConfirmRfqBatchQuoteParams,
+) -> Result<super::ApiResponse<()>, Error<ConfirmRfqBatchQuoteError>> {
+    let resp = confirm_rfq_batch_quote_without_preload_content(configuration, params).await?;
+    let status = resp.status();
+    let headers = resp.headers().clone();
+    let raw_data = resp.bytes().await?.to_vec();
+    let content = String::from_utf8_lossy(&raw_data).into_owned();
+    let data: Result<(), Error<ConfirmRfqBatchQuoteError>> = {
+        if status.is_success() {
+            Ok(())
+        } else {
+            let content = content.clone();
+            let entity: Option<ConfirmRfqBatchQuoteError> = serde_json::from_str(&content).ok();
+            Err(Error::ResponseError(ResponseContent {
+                status,
+                content,
+                entity,
+            }))
+        }
+    };
+    data.map(|data| super::ApiResponse {
+        status,
+        headers,
+        data,
+        raw_data,
+    })
+}
+
+/// Returns the HTTP response without reading its body or interpreting its status.
+pub async fn confirm_rfq_batch_quote_without_preload_content(
+    configuration: &configuration::Configuration,
+    params: ConfirmRfqBatchQuoteParams,
+) -> Result<reqwest::Response, Error<ConfirmRfqBatchQuoteError>> {
+    let uri_str = format!(
+        "{}/communications/rfq_batches/{rfq_batch_id}/quotes/{batch_quote_id}/confirm",
+        configuration.base_path,
+        rfq_batch_id = crate::apis::urlencode(params.rfq_batch_id),
+        batch_quote_id = crate::apis::urlencode(params.batch_quote_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1033,6 +1426,209 @@ pub async fn create_rfq_without_preload_content(
     configuration.client.execute(req).await.map_err(Error::from)
 }
 
+/// Request quotes on several combos at once, for example every parlay of a round robin. Each child is an ordinary RFQ on one combo market. Makers quote the whole batch, but each child is accepted from whichever maker quotes it best on your side, so the batch may fill from several makers. Accepting fills every child or none, and each child then executes as its own trade. Name each child's combo by its market ticker, or by its legs to look up or create the combo in mve_collection_ticker. Every child is sized the same way.
+pub async fn create_rfq_batch(
+    configuration: &configuration::Configuration,
+    params: CreateRfqBatchParams,
+) -> Result<models::CreateRfqBatchResponse, Error<CreateRfqBatchError>> {
+    create_rfq_batch_with_http_info(configuration, params)
+        .await
+        .map(|response| response.data)
+}
+
+/// Returns the decoded response together with its status, headers, and original body.
+pub async fn create_rfq_batch_with_http_info(
+    configuration: &configuration::Configuration,
+    params: CreateRfqBatchParams,
+) -> Result<super::ApiResponse<models::CreateRfqBatchResponse>, Error<CreateRfqBatchError>> {
+    let resp = create_rfq_batch_without_preload_content(configuration, params).await?;
+    let status = resp.status();
+    let headers = resp.headers().clone();
+    let raw_data = resp.bytes().await?.to_vec();
+    let content = String::from_utf8_lossy(&raw_data).into_owned();
+    let data: Result<models::CreateRfqBatchResponse, Error<CreateRfqBatchError>> = {
+        let content_type = headers
+            .get("content-type")
+            .and_then(|v| v.to_str().ok())
+            .unwrap_or("application/octet-stream");
+        let content_type = super::ContentType::from(content_type);
+
+        if status.is_success() {
+            let content = content.clone();
+            match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateRfqBatchResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateRfqBatchResponse`")))),
+        }
+        } else {
+            let content = content.clone();
+            let entity: Option<CreateRfqBatchError> = serde_json::from_str(&content).ok();
+            Err(Error::ResponseError(ResponseContent {
+                status,
+                content,
+                entity,
+            }))
+        }
+    };
+    data.map(|data| super::ApiResponse {
+        status,
+        headers,
+        data,
+        raw_data,
+    })
+}
+
+/// Returns the HTTP response without reading its body or interpreting its status.
+pub async fn create_rfq_batch_without_preload_content(
+    configuration: &configuration::Configuration,
+    params: CreateRfqBatchParams,
+) -> Result<reqwest::Response, Error<CreateRfqBatchError>> {
+    let uri_str = format!("{}/communications/rfq_batches", configuration.base_path);
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    req_builder = req_builder.header(reqwest::header::ACCEPT, "application/json");
+    req_builder = req_builder.header(reqwest::header::CONTENT_TYPE, "application/json");
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-SIGNATURE", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-KEY", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
+    };
+    req_builder = req_builder.json(&params.create_rfq_batch_request);
+
+    let req = req_builder.timeout(configuration.request_timeout).build()?;
+
+    configuration.client.execute(req).await.map_err(Error::from)
+}
+
+/// Quote every child RFQ of an RFQ batch, each exactly once. Each child is accepted from the maker bidding best on the requester's side, with ties going to the earliest bid, so you may win some children and not others; you then confirm the children you won. A new batch quote replaces your previous one on the same batch, and a child resent at an unchanged price keeps its time priority. A batch quote can win children only within 30 seconds of when you last sent it, so resend it to stay eligible.
+pub async fn create_rfq_batch_quote(
+    configuration: &configuration::Configuration,
+    params: CreateRfqBatchQuoteParams,
+) -> Result<models::CreateRfqBatchQuoteResponse, Error<CreateRfqBatchQuoteError>> {
+    create_rfq_batch_quote_with_http_info(configuration, params)
+        .await
+        .map(|response| response.data)
+}
+
+/// Returns the decoded response together with its status, headers, and original body.
+pub async fn create_rfq_batch_quote_with_http_info(
+    configuration: &configuration::Configuration,
+    params: CreateRfqBatchQuoteParams,
+) -> Result<super::ApiResponse<models::CreateRfqBatchQuoteResponse>, Error<CreateRfqBatchQuoteError>>
+{
+    let resp = create_rfq_batch_quote_without_preload_content(configuration, params).await?;
+    let status = resp.status();
+    let headers = resp.headers().clone();
+    let raw_data = resp.bytes().await?.to_vec();
+    let content = String::from_utf8_lossy(&raw_data).into_owned();
+    let data: Result<models::CreateRfqBatchQuoteResponse, Error<CreateRfqBatchQuoteError>> = {
+        let content_type = headers
+            .get("content-type")
+            .and_then(|v| v.to_str().ok())
+            .unwrap_or("application/octet-stream");
+        let content_type = super::ContentType::from(content_type);
+
+        if status.is_success() {
+            let content = content.clone();
+            match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateRfqBatchQuoteResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateRfqBatchQuoteResponse`")))),
+        }
+        } else {
+            let content = content.clone();
+            let entity: Option<CreateRfqBatchQuoteError> = serde_json::from_str(&content).ok();
+            Err(Error::ResponseError(ResponseContent {
+                status,
+                content,
+                entity,
+            }))
+        }
+    };
+    data.map(|data| super::ApiResponse {
+        status,
+        headers,
+        data,
+        raw_data,
+    })
+}
+
+/// Returns the HTTP response without reading its body or interpreting its status.
+pub async fn create_rfq_batch_quote_without_preload_content(
+    configuration: &configuration::Configuration,
+    params: CreateRfqBatchQuoteParams,
+) -> Result<reqwest::Response, Error<CreateRfqBatchQuoteError>> {
+    let uri_str = format!(
+        "{}/communications/rfq_batches/{rfq_batch_id}/quotes",
+        configuration.base_path,
+        rfq_batch_id = crate::apis::urlencode(params.rfq_batch_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    req_builder = req_builder.header(reqwest::header::ACCEPT, "application/json");
+    req_builder = req_builder.header(reqwest::header::CONTENT_TYPE, "application/json");
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-SIGNATURE", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-KEY", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
+    };
+    req_builder = req_builder.json(&params.create_rfq_batch_quote_request);
+
+    let req = req_builder.timeout(configuration.request_timeout).build()?;
+
+    configuration.client.execute(req).await.map_err(Error::from)
+}
+
 /// DEPRECATED: Use DELETE /communications/rfqs/{rfq_id}/quotes/{quote_id} instead. Endpoint for deleting a quote, which means it can no longer be accepted.
 #[deprecated]
 pub async fn delete_quote(
@@ -1174,6 +1770,187 @@ pub async fn delete_rfq_without_preload_content(
         "{}/communications/rfqs/{rfq_id}",
         configuration.base_path,
         rfq_id = crate::apis::urlencode(params.rfq_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::DELETE, &uri_str);
+
+    req_builder = req_builder.header(reqwest::header::ACCEPT, "application/json");
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-SIGNATURE", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-KEY", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
+    };
+
+    let req = req_builder.timeout(configuration.request_timeout).build()?;
+
+    configuration.client.execute(req).await.map_err(Error::from)
+}
+
+/// Close an RFQ batch and all of its child RFQs. Open batch quotes on it are cancelled. An accepted batch can no longer be closed: it executes or expires as a unit.
+pub async fn delete_rfq_batch(
+    configuration: &configuration::Configuration,
+    params: DeleteRfqBatchParams,
+) -> Result<(), Error<DeleteRfqBatchError>> {
+    delete_rfq_batch_with_http_info(configuration, params)
+        .await
+        .map(|response| response.data)
+}
+
+/// Returns the decoded response together with its status, headers, and original body.
+pub async fn delete_rfq_batch_with_http_info(
+    configuration: &configuration::Configuration,
+    params: DeleteRfqBatchParams,
+) -> Result<super::ApiResponse<()>, Error<DeleteRfqBatchError>> {
+    let resp = delete_rfq_batch_without_preload_content(configuration, params).await?;
+    let status = resp.status();
+    let headers = resp.headers().clone();
+    let raw_data = resp.bytes().await?.to_vec();
+    let content = String::from_utf8_lossy(&raw_data).into_owned();
+    let data: Result<(), Error<DeleteRfqBatchError>> = {
+        if status.is_success() {
+            Ok(())
+        } else {
+            let content = content.clone();
+            let entity: Option<DeleteRfqBatchError> = serde_json::from_str(&content).ok();
+            Err(Error::ResponseError(ResponseContent {
+                status,
+                content,
+                entity,
+            }))
+        }
+    };
+    data.map(|data| super::ApiResponse {
+        status,
+        headers,
+        data,
+        raw_data,
+    })
+}
+
+/// Returns the HTTP response without reading its body or interpreting its status.
+pub async fn delete_rfq_batch_without_preload_content(
+    configuration: &configuration::Configuration,
+    params: DeleteRfqBatchParams,
+) -> Result<reqwest::Response, Error<DeleteRfqBatchError>> {
+    let uri_str = format!(
+        "{}/communications/rfq_batches/{rfq_batch_id}",
+        configuration.base_path,
+        rfq_batch_id = crate::apis::urlencode(params.rfq_batch_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::DELETE, &uri_str);
+
+    req_builder = req_builder.header(reqwest::header::ACCEPT, "application/json");
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-SIGNATURE", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-KEY", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
+    };
+
+    let req = req_builder.timeout(configuration.request_timeout).build()?;
+
+    configuration.client.execute(req).await.map_err(Error::from)
+}
+
+///  Endpoint for withdrawing one of your open batch quotes, which means it can no longer be accepted.
+pub async fn delete_rfq_batch_quote(
+    configuration: &configuration::Configuration,
+    params: DeleteRfqBatchQuoteParams,
+) -> Result<(), Error<DeleteRfqBatchQuoteError>> {
+    delete_rfq_batch_quote_with_http_info(configuration, params)
+        .await
+        .map(|response| response.data)
+}
+
+/// Returns the decoded response together with its status, headers, and original body.
+pub async fn delete_rfq_batch_quote_with_http_info(
+    configuration: &configuration::Configuration,
+    params: DeleteRfqBatchQuoteParams,
+) -> Result<super::ApiResponse<()>, Error<DeleteRfqBatchQuoteError>> {
+    let resp = delete_rfq_batch_quote_without_preload_content(configuration, params).await?;
+    let status = resp.status();
+    let headers = resp.headers().clone();
+    let raw_data = resp.bytes().await?.to_vec();
+    let content = String::from_utf8_lossy(&raw_data).into_owned();
+    let data: Result<(), Error<DeleteRfqBatchQuoteError>> = {
+        if status.is_success() {
+            Ok(())
+        } else {
+            let content = content.clone();
+            let entity: Option<DeleteRfqBatchQuoteError> = serde_json::from_str(&content).ok();
+            Err(Error::ResponseError(ResponseContent {
+                status,
+                content,
+                entity,
+            }))
+        }
+    };
+    data.map(|data| super::ApiResponse {
+        status,
+        headers,
+        data,
+        raw_data,
+    })
+}
+
+/// Returns the HTTP response without reading its body or interpreting its status.
+pub async fn delete_rfq_batch_quote_without_preload_content(
+    configuration: &configuration::Configuration,
+    params: DeleteRfqBatchQuoteParams,
+) -> Result<reqwest::Response, Error<DeleteRfqBatchQuoteError>> {
+    let uri_str = format!(
+        "{}/communications/rfq_batches/{rfq_batch_id}/quotes/{batch_quote_id}",
+        configuration.base_path,
+        rfq_batch_id = crate::apis::urlencode(params.rfq_batch_id),
+        batch_quote_id = crate::apis::urlencode(params.batch_quote_id)
     );
     let mut req_builder = configuration
         .client
@@ -1803,6 +2580,416 @@ pub async fn get_rfq_without_preload_content(
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
+    req_builder = req_builder.header(reqwest::header::ACCEPT, "application/json");
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-SIGNATURE", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-KEY", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
+    };
+
+    let req = req_builder.timeout(configuration.request_timeout).build()?;
+
+    configuration.client.execute(req).await.map_err(Error::from)
+}
+
+///  Endpoint for getting a single RFQ batch, with its child RFQs in request order.
+pub async fn get_rfq_batch(
+    configuration: &configuration::Configuration,
+    params: GetRfqBatchParams,
+) -> Result<models::GetRfqBatchResponse, Error<GetRfqBatchError>> {
+    get_rfq_batch_with_http_info(configuration, params)
+        .await
+        .map(|response| response.data)
+}
+
+/// Returns the decoded response together with its status, headers, and original body.
+pub async fn get_rfq_batch_with_http_info(
+    configuration: &configuration::Configuration,
+    params: GetRfqBatchParams,
+) -> Result<super::ApiResponse<models::GetRfqBatchResponse>, Error<GetRfqBatchError>> {
+    let resp = get_rfq_batch_without_preload_content(configuration, params).await?;
+    let status = resp.status();
+    let headers = resp.headers().clone();
+    let raw_data = resp.bytes().await?.to_vec();
+    let content = String::from_utf8_lossy(&raw_data).into_owned();
+    let data: Result<models::GetRfqBatchResponse, Error<GetRfqBatchError>> = {
+        let content_type = headers
+            .get("content-type")
+            .and_then(|v| v.to_str().ok())
+            .unwrap_or("application/octet-stream");
+        let content_type = super::ContentType::from(content_type);
+
+        if status.is_success() {
+            let content = content.clone();
+            match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetRfqBatchResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetRfqBatchResponse`")))),
+        }
+        } else {
+            let content = content.clone();
+            let entity: Option<GetRfqBatchError> = serde_json::from_str(&content).ok();
+            Err(Error::ResponseError(ResponseContent {
+                status,
+                content,
+                entity,
+            }))
+        }
+    };
+    data.map(|data| super::ApiResponse {
+        status,
+        headers,
+        data,
+        raw_data,
+    })
+}
+
+/// Returns the HTTP response without reading its body or interpreting its status.
+pub async fn get_rfq_batch_without_preload_content(
+    configuration: &configuration::Configuration,
+    params: GetRfqBatchParams,
+) -> Result<reqwest::Response, Error<GetRfqBatchError>> {
+    let uri_str = format!(
+        "{}/communications/rfq_batches/{rfq_batch_id}",
+        configuration.base_path,
+        rfq_batch_id = crate::apis::urlencode(params.rfq_batch_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    req_builder = req_builder.header(reqwest::header::ACCEPT, "application/json");
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-SIGNATURE", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-KEY", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
+    };
+
+    let req = req_builder.timeout(configuration.request_timeout).build()?;
+
+    configuration.client.execute(req).await.map_err(Error::from)
+}
+
+/// Get the best open bid on each side of every child of your RFQ batch, across makers. Accepting the batch fills at these prices. Makers are not identified. Only the batch creator can read the best quotes, and a batch that is no longer open has none.
+pub async fn get_rfq_batch_best_quotes(
+    configuration: &configuration::Configuration,
+    params: GetRfqBatchBestQuotesParams,
+) -> Result<models::GetRfqBatchBestQuotesResponse, Error<GetRfqBatchBestQuotesError>> {
+    get_rfq_batch_best_quotes_with_http_info(configuration, params)
+        .await
+        .map(|response| response.data)
+}
+
+/// Returns the decoded response together with its status, headers, and original body.
+pub async fn get_rfq_batch_best_quotes_with_http_info(
+    configuration: &configuration::Configuration,
+    params: GetRfqBatchBestQuotesParams,
+) -> Result<
+    super::ApiResponse<models::GetRfqBatchBestQuotesResponse>,
+    Error<GetRfqBatchBestQuotesError>,
+> {
+    let resp = get_rfq_batch_best_quotes_without_preload_content(configuration, params).await?;
+    let status = resp.status();
+    let headers = resp.headers().clone();
+    let raw_data = resp.bytes().await?.to_vec();
+    let content = String::from_utf8_lossy(&raw_data).into_owned();
+    let data: Result<models::GetRfqBatchBestQuotesResponse, Error<GetRfqBatchBestQuotesError>> = {
+        let content_type = headers
+            .get("content-type")
+            .and_then(|v| v.to_str().ok())
+            .unwrap_or("application/octet-stream");
+        let content_type = super::ContentType::from(content_type);
+
+        if status.is_success() {
+            let content = content.clone();
+            match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetRfqBatchBestQuotesResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetRfqBatchBestQuotesResponse`")))),
+        }
+        } else {
+            let content = content.clone();
+            let entity: Option<GetRfqBatchBestQuotesError> = serde_json::from_str(&content).ok();
+            Err(Error::ResponseError(ResponseContent {
+                status,
+                content,
+                entity,
+            }))
+        }
+    };
+    data.map(|data| super::ApiResponse {
+        status,
+        headers,
+        data,
+        raw_data,
+    })
+}
+
+/// Returns the HTTP response without reading its body or interpreting its status.
+pub async fn get_rfq_batch_best_quotes_without_preload_content(
+    configuration: &configuration::Configuration,
+    params: GetRfqBatchBestQuotesParams,
+) -> Result<reqwest::Response, Error<GetRfqBatchBestQuotesError>> {
+    let uri_str = format!(
+        "{}/communications/rfq_batches/{rfq_batch_id}/best_quotes",
+        configuration.base_path,
+        rfq_batch_id = crate::apis::urlencode(params.rfq_batch_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    req_builder = req_builder.header(reqwest::header::ACCEPT, "application/json");
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-SIGNATURE", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-KEY", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
+    };
+
+    let req = req_builder.timeout(configuration.request_timeout).build()?;
+
+    configuration.client.execute(req).await.map_err(Error::from)
+}
+
+/// List the batch quotes on an RFQ batch that are visible to you. A maker sees its own batch quote; once the batch is accepted, it lists only the children that maker won. Once the batch is accepted, the batch creator sees each winning maker's batch quote on the children it won. While the batch is open, the creator reads the best quotes across makers with Get RFQ Batch Best Quotes instead.
+pub async fn get_rfq_batch_quotes(
+    configuration: &configuration::Configuration,
+    params: GetRfqBatchQuotesParams,
+) -> Result<models::GetRfqBatchQuotesResponse, Error<GetRfqBatchQuotesError>> {
+    get_rfq_batch_quotes_with_http_info(configuration, params)
+        .await
+        .map(|response| response.data)
+}
+
+/// Returns the decoded response together with its status, headers, and original body.
+pub async fn get_rfq_batch_quotes_with_http_info(
+    configuration: &configuration::Configuration,
+    params: GetRfqBatchQuotesParams,
+) -> Result<super::ApiResponse<models::GetRfqBatchQuotesResponse>, Error<GetRfqBatchQuotesError>> {
+    let resp = get_rfq_batch_quotes_without_preload_content(configuration, params).await?;
+    let status = resp.status();
+    let headers = resp.headers().clone();
+    let raw_data = resp.bytes().await?.to_vec();
+    let content = String::from_utf8_lossy(&raw_data).into_owned();
+    let data: Result<models::GetRfqBatchQuotesResponse, Error<GetRfqBatchQuotesError>> = {
+        let content_type = headers
+            .get("content-type")
+            .and_then(|v| v.to_str().ok())
+            .unwrap_or("application/octet-stream");
+        let content_type = super::ContentType::from(content_type);
+
+        if status.is_success() {
+            let content = content.clone();
+            match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetRfqBatchQuotesResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetRfqBatchQuotesResponse`")))),
+        }
+        } else {
+            let content = content.clone();
+            let entity: Option<GetRfqBatchQuotesError> = serde_json::from_str(&content).ok();
+            Err(Error::ResponseError(ResponseContent {
+                status,
+                content,
+                entity,
+            }))
+        }
+    };
+    data.map(|data| super::ApiResponse {
+        status,
+        headers,
+        data,
+        raw_data,
+    })
+}
+
+/// Returns the HTTP response without reading its body or interpreting its status.
+pub async fn get_rfq_batch_quotes_without_preload_content(
+    configuration: &configuration::Configuration,
+    params: GetRfqBatchQuotesParams,
+) -> Result<reqwest::Response, Error<GetRfqBatchQuotesError>> {
+    let uri_str = format!(
+        "{}/communications/rfq_batches/{rfq_batch_id}/quotes",
+        configuration.base_path,
+        rfq_batch_id = crate::apis::urlencode(params.rfq_batch_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    req_builder = req_builder.header(reqwest::header::ACCEPT, "application/json");
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-SIGNATURE", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-KEY", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
+    };
+
+    let req = req_builder.timeout(configuration.request_timeout).build()?;
+
+    configuration.client.execute(req).await.map_err(Error::from)
+}
+
+/// List RFQ batches, most recently updated first, each with its child RFQs in request order. A page holds at most limit batches and stops before its child RFQs would exceed 100; a batch is never split across pages. Pass pagination cursors back unchanged; a malformed cursor returns HTTP 400. Use user_filter=self to list only your own batches.
+pub async fn get_rfq_batches(
+    configuration: &configuration::Configuration,
+    params: GetRfqBatchesParams,
+) -> Result<models::GetRfqBatchesResponse, Error<GetRfqBatchesError>> {
+    get_rfq_batches_with_http_info(configuration, params)
+        .await
+        .map(|response| response.data)
+}
+
+/// Returns the decoded response together with its status, headers, and original body.
+pub async fn get_rfq_batches_with_http_info(
+    configuration: &configuration::Configuration,
+    params: GetRfqBatchesParams,
+) -> Result<super::ApiResponse<models::GetRfqBatchesResponse>, Error<GetRfqBatchesError>> {
+    let resp = get_rfq_batches_without_preload_content(configuration, params).await?;
+    let status = resp.status();
+    let headers = resp.headers().clone();
+    let raw_data = resp.bytes().await?.to_vec();
+    let content = String::from_utf8_lossy(&raw_data).into_owned();
+    let data: Result<models::GetRfqBatchesResponse, Error<GetRfqBatchesError>> = {
+        let content_type = headers
+            .get("content-type")
+            .and_then(|v| v.to_str().ok())
+            .unwrap_or("application/octet-stream");
+        let content_type = super::ContentType::from(content_type);
+
+        if status.is_success() {
+            let content = content.clone();
+            match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetRfqBatchesResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetRfqBatchesResponse`")))),
+        }
+        } else {
+            let content = content.clone();
+            let entity: Option<GetRfqBatchesError> = serde_json::from_str(&content).ok();
+            Err(Error::ResponseError(ResponseContent {
+                status,
+                content,
+                entity,
+            }))
+        }
+    };
+    data.map(|data| super::ApiResponse {
+        status,
+        headers,
+        data,
+        raw_data,
+    })
+}
+
+/// Returns the HTTP response without reading its body or interpreting its status.
+pub async fn get_rfq_batches_without_preload_content(
+    configuration: &configuration::Configuration,
+    params: GetRfqBatchesParams,
+) -> Result<reqwest::Response, Error<GetRfqBatchesError>> {
+    let uri_str = format!("{}/communications/rfq_batches", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = params.cursor {
+        req_builder = req_builder.query(&[("cursor", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.subaccount {
+        req_builder = req_builder.query(&[("subaccount", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.limit {
+        req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.status {
+        req_builder = req_builder.query(&[("status", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.user_filter {
+        req_builder = req_builder.query(&[("user_filter", &param_value.to_string())]);
+    }
     req_builder = req_builder.header(reqwest::header::ACCEPT, "application/json");
 
     if let Some(ref user_agent) = configuration.user_agent {

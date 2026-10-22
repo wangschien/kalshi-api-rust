@@ -130,7 +130,11 @@ def main():
     ops = operations(args.python)
     py_models = models(args.python)
     official_ops = {(m.upper(), p): value for p, item in spec["paths"].items() for m, value in item.items() if m in {"get", "post", "put", "delete", "patch", "head", "options"}}
-    assert {(row["http"], row["path"]) for row in ops} == set(official_ops), "Python and OpenAPI operation sets differ"
+    # OpenAPI may be ahead of the pinned Python SDK; every Python operation must
+    # still appear in the pinned OpenAPI. Extra OpenAPI operations are covered by
+    # conformance rust_only_methods, not by this Python census.
+    py_ops = {(row["http"], row["path"]) for row in ops}
+    assert py_ops <= set(official_ops), "Python operations missing from OpenAPI"
     rows = []
     for operation in ops:
         node = official_ops[operation["http"], operation["path"]]
@@ -146,7 +150,9 @@ def main():
         rust_name, rust = rust_fold.get(name.casefold(), (name, None))
         matches = rust is not None and (set(rust.get("values", [])) == set(value["enum"]) if value["enum"] else set(rust.get("fields", [])) == set(value["fields"]) and set(rust.get("required", [])) == {field for field, shape in value["fields"].items() if shape["required"]})
         rows.append({"model": name, **value, "rust": f"kalshi_api_openapi::models::{rust_name}", "rust_fields": rust.get("types", {}) if rust else {}, "decimal_fields": sorted(fixed_point_fields.get(name.casefold(), [])), "status": "same" if matches else "changed" if rust else "missing", "test_id": f"parity_models::every_python_model_roundtrips_without_field_loss/{name}"})
-    assert sum(len(row["decimal_fields"]) for row in rows) == len(fixed_point_rows), "a declared fixed-point field has no model parity row"
+    py_model_keys = {name.casefold() for name in py_models}
+    fp_in_python = [field for field in fixed_point_rows if field["struct"].casefold() in py_model_keys]
+    assert sum(len(row["decimal_fields"]) for row in rows) == len(fp_in_python), "a declared fixed-point field has no model parity row"
     write_table(args.output / "parity_models.tsv", ["model", "fields", "rust_fields", "enum", "decimal_fields", "rust", "status", "test_id", "source"], rows)
     types = "\n".join(path.read_text() for path in (args.root / "crates/kalshi-api/src/ws").glob("*.rs"))
     ws_mapping = module(args.root / "tools/kalshi-sdk/ws_fields.py")

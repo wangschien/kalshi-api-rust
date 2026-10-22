@@ -112,7 +112,7 @@ No authorization required
 > models::GetLiveDataResponse get_live_data_by_milestone(milestone_id, include_player_stats)
 Get Live Data
 
-Get live data for a specific milestone.
+Get live data for a specific milestone. The response's `live_data.details.status` is updated far more often than the milestone's own `details.status` and is the preferred source for game status. It is not guaranteed to be current: if the provider feed falls behind, a cached board may still be served, with `live_data.details.live_data_delayed` set to `true` only once it is significantly stale (some feeds never set it), so a missing flag does not by itself mean the data is current.
 
 ### Parameters
 
@@ -143,7 +143,7 @@ No authorization required
 > models::GetLiveDatasResponse get_live_datas(milestone_ids, include_player_stats)
 Get Multiple Live Data
 
-Get live data for multiple milestones
+Get live data for multiple milestones. Each entry's `details.status` is updated far more often than the milestone's own `details.status` and is the preferred source for game status. It is not guaranteed to be current: if the provider feed falls behind, a cached board may still be served, with `details.live_data_delayed` set to `true` only once it is significantly stale (some feeds never set it), so a missing flag does not by itself mean the data is current.
 
 ### Parameters
 

@@ -1,10 +1,34 @@
 {
-  "field_python_only": {},
-  "field_rust_only": {},
-  "required_python_only": {},
-  "required_rust_only": {},
   "enum_python_only": {},
   "enum_rust_only": {},
+  "field_python_only": {},
+  "field_rust_only": {
+    "IntraExchangeInstanceTransfer": [
+      "client_transfer_id"
+    ]
+  },
   "python_only_models": [],
-  "rust_only_models": []
+  "required_python_only": {},
+  "required_rust_only": {},
+  "rust_only_models": [
+    "AcceptRfqBatchRequest",
+    "AcceptRfqBatchResponse",
+    "CreateRfqBatchChild",
+    "CreateRfqBatchQuoteRequest",
+    "CreateRfqBatchQuoteResponse",
+    "CreateRfqBatchRequest",
+    "CreateRfqBatchResponse",
+    "GetRfqBatchBestQuotesResponse",
+    "GetRfqBatchQuotesResponse",
+    "GetRfqBatchResponse",
+    "GetRfqBatchesResponse",
+    "RfqBatch",
+    "RfqBatchAcceptLimit",
+    "RfqBatchBestQuote",
+    "RfqBatchBestQuotes",
+    "RfqBatchQuote",
+    "RfqBatchQuoteEntry",
+    "RfqBatchQuoteStatus",
+    "RfqBatchStatus"
+  ]
 }

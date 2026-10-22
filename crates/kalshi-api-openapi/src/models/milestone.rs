@@ -53,7 +53,7 @@ pub struct Milestone {
     /// Source ids of milestone if available.
     #[serde(rename = "source_ids", skip_serializing_if = "Option::is_none")]
     pub source_ids: Option<std::collections::HashMap<String, String>>,
-    /// Additional details about the milestone.
+    /// Additional details about the milestone. `details.status`, when present, is maintained by a periodic background job. It lags the game's live state and may be stale or inaccurate, for example remaining `live` after the game ends. For game status, prefer live data, which is updated far more often: `live_data.details.status` from `GET /live_data/milestone/{milestone_id}`, or each entry's `details.status` from `GET /live_data/batch`. Scores are in the sport-specific fields of that live data `details` object.
     #[serde(rename = "details")]
     pub details: std::collections::HashMap<String, serde_json::Value>,
     /// List of event tickers directly related to the outcome of this milestone.

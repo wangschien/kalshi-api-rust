@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **transfer_id** | **String** | Unique transfer id | 
+**client_transfer_id** | Option<**String**> | The client_transfer_id provided when the transfer was created. Omitted if none was provided. | [optional]
 **source** | [**models::ExchangeInstance**](ExchangeInstance.md) |  | 
 **destination** | [**models::ExchangeInstance**](ExchangeInstance.md) |  | 
 **source_exchange_shard** | **i64** | Source exchange shard index | 

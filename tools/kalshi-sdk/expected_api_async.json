@@ -40,5 +40,36 @@
     ]
   },
   "python_only_methods": [],
-  "rust_only_methods": []
+  "rust_only_methods": [
+    "accept_rfq_batch",
+    "accept_rfq_batch_with_http_info",
+    "accept_rfq_batch_without_preload_content",
+    "confirm_rfq_batch_quote",
+    "confirm_rfq_batch_quote_with_http_info",
+    "confirm_rfq_batch_quote_without_preload_content",
+    "create_rfq_batch",
+    "create_rfq_batch_quote",
+    "create_rfq_batch_quote_with_http_info",
+    "create_rfq_batch_quote_without_preload_content",
+    "create_rfq_batch_with_http_info",
+    "create_rfq_batch_without_preload_content",
+    "delete_rfq_batch",
+    "delete_rfq_batch_quote",
+    "delete_rfq_batch_quote_with_http_info",
+    "delete_rfq_batch_quote_without_preload_content",
+    "delete_rfq_batch_with_http_info",
+    "delete_rfq_batch_without_preload_content",
+    "get_rfq_batch",
+    "get_rfq_batch_best_quotes",
+    "get_rfq_batch_best_quotes_with_http_info",
+    "get_rfq_batch_best_quotes_without_preload_content",
+    "get_rfq_batch_quotes",
+    "get_rfq_batch_quotes_with_http_info",
+    "get_rfq_batch_quotes_without_preload_content",
+    "get_rfq_batch_with_http_info",
+    "get_rfq_batch_without_preload_content",
+    "get_rfq_batches",
+    "get_rfq_batches_with_http_info",
+    "get_rfq_batches_without_preload_content"
+  ]
 }

@@ -93,6 +93,11 @@ ENTRIES: tuple[str, ...] = (
     "/components/schemas/CreateOrderV2Request/properties/subaccount",
     "/components/schemas/BatchCancelOrdersV2Request/properties/orders/items/properties/subaccount",
     "/components/schemas/Market/properties/settlement_timer_seconds",
+    "/components/schemas/CreateRFQBatchQuoteRequest/properties/subaccount",
+    "/components/schemas/CreateRFQBatchRequest/properties/subaccount",
+    "/components/schemas/RFQBatch/properties/creator_subaccount",
+    "/components/schemas/RFQBatchQuote/properties/creator_subaccount",
+    "/components/schemas/RFQBatchQuote/properties/rfq_creator_subaccount",
 )
 
 

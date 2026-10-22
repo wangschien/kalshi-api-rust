@@ -97,7 +97,7 @@ Returns the balance and portfolio value for a member. Both values include all ex
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. |  |
+**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount. |  |
 **exchange_index** | Option<**i64**> | Exchange index used to scope the balance and portfolio value. If omitted, both include all exchange indexes. |  |
 
 ### Return type
@@ -290,7 +290,7 @@ Name | Type | Description  | Required | Notes
 **settlement_status** | Option<**String**> | Return unsettled positions by default, settled positions that have not yet been archived, or all positions in the live data set. |  |[default to unsettled]
 **ticker** | Option<**String**> | Filter by market ticker |  |
 **event_ticker** | Option<**String**> | Event ticker to filter by. Only a single event ticker is supported. |  |
-**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. |  |
+**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount. |  |
 **exchange_index** | Option<**i32**> | Filter results by exchange shard. Omit to return results from all exchange shards. |  |
 
 ### Return type

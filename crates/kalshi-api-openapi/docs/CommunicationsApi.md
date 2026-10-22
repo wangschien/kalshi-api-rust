@@ -6,19 +6,29 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**accept_block_trade_proposal**](CommunicationsApi.md#accept_block_trade_proposal) | **POST** /communications/block-trade-proposals/{block_trade_proposal_id}/accept | Accept Block Trade Proposal
 [**accept_quote**](CommunicationsApi.md#accept_quote) | **PUT** /communications/quotes/{quote_id}/accept | Accept Quote
+[**accept_rfq_batch**](CommunicationsApi.md#accept_rfq_batch) | **PUT** /communications/rfq_batches/{rfq_batch_id}/accept | Accept RFQ Batch
 [**accept_rfq_quote**](CommunicationsApi.md#accept_rfq_quote) | **PUT** /communications/rfqs/{rfq_id}/quotes/{quote_id}/accept | Accept RFQ Quote
 [**confirm_quote**](CommunicationsApi.md#confirm_quote) | **PUT** /communications/quotes/{quote_id}/confirm | Confirm Quote
+[**confirm_rfq_batch_quote**](CommunicationsApi.md#confirm_rfq_batch_quote) | **PUT** /communications/rfq_batches/{rfq_batch_id}/quotes/{batch_quote_id}/confirm | Confirm RFQ Batch Quote
 [**confirm_rfq_quote**](CommunicationsApi.md#confirm_rfq_quote) | **PUT** /communications/rfqs/{rfq_id}/quotes/{quote_id}/confirm | Confirm RFQ Quote
 [**create_quote**](CommunicationsApi.md#create_quote) | **POST** /communications/quotes | Create Quote
 [**create_rfq**](CommunicationsApi.md#create_rfq) | **POST** /communications/rfqs | Create RFQ
+[**create_rfq_batch**](CommunicationsApi.md#create_rfq_batch) | **POST** /communications/rfq_batches | Create RFQ Batch
+[**create_rfq_batch_quote**](CommunicationsApi.md#create_rfq_batch_quote) | **POST** /communications/rfq_batches/{rfq_batch_id}/quotes | Create RFQ Batch Quote
 [**delete_quote**](CommunicationsApi.md#delete_quote) | **DELETE** /communications/quotes/{quote_id} | Delete Quote
 [**delete_rfq**](CommunicationsApi.md#delete_rfq) | **DELETE** /communications/rfqs/{rfq_id} | Delete RFQ
+[**delete_rfq_batch**](CommunicationsApi.md#delete_rfq_batch) | **DELETE** /communications/rfq_batches/{rfq_batch_id} | Delete RFQ Batch
+[**delete_rfq_batch_quote**](CommunicationsApi.md#delete_rfq_batch_quote) | **DELETE** /communications/rfq_batches/{rfq_batch_id}/quotes/{batch_quote_id} | Delete RFQ Batch Quote
 [**delete_rfq_quote**](CommunicationsApi.md#delete_rfq_quote) | **DELETE** /communications/rfqs/{rfq_id}/quotes/{quote_id} | Delete RFQ Quote
 [**get_block_trade_proposals**](CommunicationsApi.md#get_block_trade_proposals) | **GET** /communications/block-trade-proposals | Get Block Trade Proposals
 [**get_communications_id**](CommunicationsApi.md#get_communications_id) | **GET** /communications/id | Get Communications ID
 [**get_quote**](CommunicationsApi.md#get_quote) | **GET** /communications/quotes/{quote_id} | Get Quote
 [**get_quotes**](CommunicationsApi.md#get_quotes) | **GET** /communications/quotes | Get Quotes
 [**get_rfq**](CommunicationsApi.md#get_rfq) | **GET** /communications/rfqs/{rfq_id} | Get RFQ
+[**get_rfq_batch**](CommunicationsApi.md#get_rfq_batch) | **GET** /communications/rfq_batches/{rfq_batch_id} | Get RFQ Batch
+[**get_rfq_batch_best_quotes**](CommunicationsApi.md#get_rfq_batch_best_quotes) | **GET** /communications/rfq_batches/{rfq_batch_id}/best_quotes | Get RFQ Batch Best Quotes
+[**get_rfq_batch_quotes**](CommunicationsApi.md#get_rfq_batch_quotes) | **GET** /communications/rfq_batches/{rfq_batch_id}/quotes | Get RFQ Batch Quotes
+[**get_rfq_batches**](CommunicationsApi.md#get_rfq_batches) | **GET** /communications/rfq_batches | Get RFQ Batches
 [**get_rfq_quote**](CommunicationsApi.md#get_rfq_quote) | **GET** /communications/rfqs/{rfq_id}/quotes/{quote_id} | Get RFQ Quote
 [**get_rfqs**](CommunicationsApi.md#get_rfqs) | **GET** /communications/rfqs | Get RFQs
 [**propose_block_trade**](CommunicationsApi.md#propose_block_trade) | **POST** /communications/block-trade-proposals | Propose Block Trade
@@ -87,6 +97,37 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## accept_rfq_batch
+
+> models::AcceptRfqBatchResponse accept_rfq_batch(rfq_batch_id, accept_rfq_batch_request)
+Accept RFQ Batch
+
+Accept every child RFQ of your RFQ batch on one side, each from the maker quoting it best on that side. Either every child is accepted or none is, and your balance must cover all of them. min_bids protects your price: give every child the best bid you were shown. If a child's best bid is now worse, the accept fails with rfq_batch_quotes_changed and lists that child; a better bid fills at the better price. Each winning maker then confirms its children. They execute once every winner has confirmed, and a missed confirmation closes the whole batch. An accepted batch cannot be cancelled.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**rfq_batch_id** | **String** | RFQ batch UUID returned when the batch was created. Pass it unchanged; malformed IDs return HTTP 400. | [required] |
+**accept_rfq_batch_request** | [**AcceptRfqBatchRequest**](AcceptRfqBatchRequest.md) |  | [required] |
+
+### Return type
+
+[**models::AcceptRfqBatchResponse**](AcceptRFQBatchResponse.md)
+
+### Authorization
+
+[kalshiAccessSignature](../README.md#kalshiAccessSignature), [kalshiAccessKey](../README.md#kalshiAccessKey), [kalshiAccessTimestamp](../README.md#kalshiAccessTimestamp)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## accept_rfq_quote
 
 > accept_rfq_quote(rfq_id, quote_id, accept_quote_request)
@@ -132,6 +173,38 @@ DEPRECATED: Use PUT /communications/rfqs/{rfq_id}/quotes/{quote_id}/confirm inst
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **quote_id** | **String** | Quote UUID. Pass the ID exactly as received when the quote was created; malformed IDs return HTTP 400. | [required] |
+**body** | Option<**serde_json::Value**> |  |  |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[kalshiAccessSignature](../README.md#kalshiAccessSignature), [kalshiAccessKey](../README.md#kalshiAccessKey), [kalshiAccessTimestamp](../README.md#kalshiAccessTimestamp)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## confirm_rfq_batch_quote
+
+> confirm_rfq_batch_quote(rfq_batch_id, batch_quote_id, body)
+Confirm RFQ Batch Quote
+
+Confirm the children your batch quote won, all at once. Nothing executes until every winning maker of the batch has confirmed; the last confirmation starts the execution timer for every child, and each child executes as its own trade. If any winner misses the confirmation deadline, the whole batch closes without trading.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**rfq_batch_id** | **String** | RFQ batch UUID returned when the batch was created. Pass it unchanged; malformed IDs return HTTP 400. | [required] |
+**batch_quote_id** | **String** | Batch quote UUID returned when the batch quote was created. Pass it unchanged; malformed IDs return HTTP 400. | [required] |
 **body** | Option<**serde_json::Value**> |  |  |
 
 ### Return type
@@ -242,6 +315,67 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## create_rfq_batch
+
+> models::CreateRfqBatchResponse create_rfq_batch(create_rfq_batch_request)
+Create RFQ Batch
+
+Request quotes on several combos at once, for example every parlay of a round robin. Each child is an ordinary RFQ on one combo market. Makers quote the whole batch, but each child is accepted from whichever maker quotes it best on your side, so the batch may fill from several makers. Accepting fills every child or none, and each child then executes as its own trade. Name each child's combo by its market ticker, or by its legs to look up or create the combo in mve_collection_ticker. Every child is sized the same way.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**create_rfq_batch_request** | [**CreateRfqBatchRequest**](CreateRfqBatchRequest.md) |  | [required] |
+
+### Return type
+
+[**models::CreateRfqBatchResponse**](CreateRFQBatchResponse.md)
+
+### Authorization
+
+[kalshiAccessSignature](../README.md#kalshiAccessSignature), [kalshiAccessKey](../README.md#kalshiAccessKey), [kalshiAccessTimestamp](../README.md#kalshiAccessTimestamp)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## create_rfq_batch_quote
+
+> models::CreateRfqBatchQuoteResponse create_rfq_batch_quote(rfq_batch_id, create_rfq_batch_quote_request)
+Create RFQ Batch Quote
+
+Quote every child RFQ of an RFQ batch, each exactly once. Each child is accepted from the maker bidding best on the requester's side, with ties going to the earliest bid, so you may win some children and not others; you then confirm the children you won. A new batch quote replaces your previous one on the same batch, and a child resent at an unchanged price keeps its time priority. A batch quote can win children only within 30 seconds of when you last sent it, so resend it to stay eligible.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**rfq_batch_id** | **String** | RFQ batch UUID returned when the batch was created. Pass it unchanged; malformed IDs return HTTP 400. | [required] |
+**create_rfq_batch_quote_request** | [**CreateRfqBatchQuoteRequest**](CreateRfqBatchQuoteRequest.md) |  | [required] |
+
+### Return type
+
+[**models::CreateRfqBatchQuoteResponse**](CreateRFQBatchQuoteResponse.md)
+
+### Authorization
+
+[kalshiAccessSignature](../README.md#kalshiAccessSignature), [kalshiAccessKey](../README.md#kalshiAccessKey), [kalshiAccessTimestamp](../README.md#kalshiAccessTimestamp)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## delete_quote
 
 > delete_quote(quote_id)
@@ -285,6 +419,67 @@ Delete RFQ
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **rfq_id** | **String** | RFQ UUID returned when the RFQ was created. Pass it unchanged; malformed IDs return HTTP 400. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[kalshiAccessSignature](../README.md#kalshiAccessSignature), [kalshiAccessKey](../README.md#kalshiAccessKey), [kalshiAccessTimestamp](../README.md#kalshiAccessTimestamp)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## delete_rfq_batch
+
+> delete_rfq_batch(rfq_batch_id)
+Delete RFQ Batch
+
+Close an RFQ batch and all of its child RFQs. Open batch quotes on it are cancelled. An accepted batch can no longer be closed: it executes or expires as a unit.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**rfq_batch_id** | **String** | RFQ batch UUID returned when the batch was created. Pass it unchanged; malformed IDs return HTTP 400. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[kalshiAccessSignature](../README.md#kalshiAccessSignature), [kalshiAccessKey](../README.md#kalshiAccessKey), [kalshiAccessTimestamp](../README.md#kalshiAccessTimestamp)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## delete_rfq_batch_quote
+
+> delete_rfq_batch_quote(rfq_batch_id, batch_quote_id)
+Delete RFQ Batch Quote
+
+ Endpoint for withdrawing one of your open batch quotes, which means it can no longer be accepted.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**rfq_batch_id** | **String** | RFQ batch UUID returned when the batch was created. Pass it unchanged; malformed IDs return HTTP 400. | [required] |
+**batch_quote_id** | **String** | Batch quote UUID returned when the batch quote was created. Pass it unchanged; malformed IDs return HTTP 400. | [required] |
 
 ### Return type
 
@@ -480,6 +675,130 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::GetRfqResponse**](GetRFQResponse.md)
+
+### Authorization
+
+[kalshiAccessSignature](../README.md#kalshiAccessSignature), [kalshiAccessKey](../README.md#kalshiAccessKey), [kalshiAccessTimestamp](../README.md#kalshiAccessTimestamp)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_rfq_batch
+
+> models::GetRfqBatchResponse get_rfq_batch(rfq_batch_id)
+Get RFQ Batch
+
+ Endpoint for getting a single RFQ batch, with its child RFQs in request order.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**rfq_batch_id** | **String** | RFQ batch UUID returned when the batch was created. Pass it unchanged; malformed IDs return HTTP 400. | [required] |
+
+### Return type
+
+[**models::GetRfqBatchResponse**](GetRFQBatchResponse.md)
+
+### Authorization
+
+[kalshiAccessSignature](../README.md#kalshiAccessSignature), [kalshiAccessKey](../README.md#kalshiAccessKey), [kalshiAccessTimestamp](../README.md#kalshiAccessTimestamp)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_rfq_batch_best_quotes
+
+> models::GetRfqBatchBestQuotesResponse get_rfq_batch_best_quotes(rfq_batch_id)
+Get RFQ Batch Best Quotes
+
+Get the best open bid on each side of every child of your RFQ batch, across makers. Accepting the batch fills at these prices. Makers are not identified. Only the batch creator can read the best quotes, and a batch that is no longer open has none.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**rfq_batch_id** | **String** | RFQ batch UUID returned when the batch was created. Pass it unchanged; malformed IDs return HTTP 400. | [required] |
+
+### Return type
+
+[**models::GetRfqBatchBestQuotesResponse**](GetRFQBatchBestQuotesResponse.md)
+
+### Authorization
+
+[kalshiAccessSignature](../README.md#kalshiAccessSignature), [kalshiAccessKey](../README.md#kalshiAccessKey), [kalshiAccessTimestamp](../README.md#kalshiAccessTimestamp)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_rfq_batch_quotes
+
+> models::GetRfqBatchQuotesResponse get_rfq_batch_quotes(rfq_batch_id)
+Get RFQ Batch Quotes
+
+List the batch quotes on an RFQ batch that are visible to you. A maker sees its own batch quote; once the batch is accepted, it lists only the children that maker won. Once the batch is accepted, the batch creator sees each winning maker's batch quote on the children it won. While the batch is open, the creator reads the best quotes across makers with Get RFQ Batch Best Quotes instead.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**rfq_batch_id** | **String** | RFQ batch UUID returned when the batch was created. Pass it unchanged; malformed IDs return HTTP 400. | [required] |
+
+### Return type
+
+[**models::GetRfqBatchQuotesResponse**](GetRFQBatchQuotesResponse.md)
+
+### Authorization
+
+[kalshiAccessSignature](../README.md#kalshiAccessSignature), [kalshiAccessKey](../README.md#kalshiAccessKey), [kalshiAccessTimestamp](../README.md#kalshiAccessTimestamp)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_rfq_batches
+
+> models::GetRfqBatchesResponse get_rfq_batches(cursor, subaccount, limit, status, user_filter)
+Get RFQ Batches
+
+List RFQ batches, most recently updated first, each with its child RFQs in request order. A page holds at most limit batches and stops before its child RFQs would exceed 100; a batch is never split across pages. Pass pagination cursors back unchanged; a malformed cursor returns HTTP 400. Use user_filter=self to list only your own batches.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**cursor** | Option<**String**> | Pagination cursor. Use the cursor value returned from the previous response to get the next page of results. Leave empty for the first page. |  |
+**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). If omitted, defaults to all subaccounts. |  |
+**limit** | Option<**i32**> | Maximum number of batches per page. Defaults to 20. A page also stops before its child RFQs would exceed 100. |  |[default to 20]
+**status** | Option<[**RfqBatchStatus**](.md)> | Filter RFQ batches by status |  |
+**user_filter** | Option<[**UserFilter**](.md)> |  |  |
+
+### Return type
+
+[**models::GetRfqBatchesResponse**](GetRFQBatchesResponse.md)
 
 ### Authorization
 

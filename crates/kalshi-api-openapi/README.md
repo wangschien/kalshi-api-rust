@@ -36,19 +36,29 @@ Class | Method | HTTP request | Description
 *ApiKeysApi* | [**get_api_keys**](docs/ApiKeysApi.md#get_api_keys) | **GET** /api_keys | Get API Keys
 *CommunicationsApi* | [**accept_block_trade_proposal**](docs/CommunicationsApi.md#accept_block_trade_proposal) | **POST** /communications/block-trade-proposals/{block_trade_proposal_id}/accept | Accept Block Trade Proposal
 *CommunicationsApi* | [**accept_quote**](docs/CommunicationsApi.md#accept_quote) | **PUT** /communications/quotes/{quote_id}/accept | Accept Quote
+*CommunicationsApi* | [**accept_rfq_batch**](docs/CommunicationsApi.md#accept_rfq_batch) | **PUT** /communications/rfq_batches/{rfq_batch_id}/accept | Accept RFQ Batch
 *CommunicationsApi* | [**accept_rfq_quote**](docs/CommunicationsApi.md#accept_rfq_quote) | **PUT** /communications/rfqs/{rfq_id}/quotes/{quote_id}/accept | Accept RFQ Quote
 *CommunicationsApi* | [**confirm_quote**](docs/CommunicationsApi.md#confirm_quote) | **PUT** /communications/quotes/{quote_id}/confirm | Confirm Quote
+*CommunicationsApi* | [**confirm_rfq_batch_quote**](docs/CommunicationsApi.md#confirm_rfq_batch_quote) | **PUT** /communications/rfq_batches/{rfq_batch_id}/quotes/{batch_quote_id}/confirm | Confirm RFQ Batch Quote
 *CommunicationsApi* | [**confirm_rfq_quote**](docs/CommunicationsApi.md#confirm_rfq_quote) | **PUT** /communications/rfqs/{rfq_id}/quotes/{quote_id}/confirm | Confirm RFQ Quote
 *CommunicationsApi* | [**create_quote**](docs/CommunicationsApi.md#create_quote) | **POST** /communications/quotes | Create Quote
 *CommunicationsApi* | [**create_rfq**](docs/CommunicationsApi.md#create_rfq) | **POST** /communications/rfqs | Create RFQ
+*CommunicationsApi* | [**create_rfq_batch**](docs/CommunicationsApi.md#create_rfq_batch) | **POST** /communications/rfq_batches | Create RFQ Batch
+*CommunicationsApi* | [**create_rfq_batch_quote**](docs/CommunicationsApi.md#create_rfq_batch_quote) | **POST** /communications/rfq_batches/{rfq_batch_id}/quotes | Create RFQ Batch Quote
 *CommunicationsApi* | [**delete_quote**](docs/CommunicationsApi.md#delete_quote) | **DELETE** /communications/quotes/{quote_id} | Delete Quote
 *CommunicationsApi* | [**delete_rfq**](docs/CommunicationsApi.md#delete_rfq) | **DELETE** /communications/rfqs/{rfq_id} | Delete RFQ
+*CommunicationsApi* | [**delete_rfq_batch**](docs/CommunicationsApi.md#delete_rfq_batch) | **DELETE** /communications/rfq_batches/{rfq_batch_id} | Delete RFQ Batch
+*CommunicationsApi* | [**delete_rfq_batch_quote**](docs/CommunicationsApi.md#delete_rfq_batch_quote) | **DELETE** /communications/rfq_batches/{rfq_batch_id}/quotes/{batch_quote_id} | Delete RFQ Batch Quote
 *CommunicationsApi* | [**delete_rfq_quote**](docs/CommunicationsApi.md#delete_rfq_quote) | **DELETE** /communications/rfqs/{rfq_id}/quotes/{quote_id} | Delete RFQ Quote
 *CommunicationsApi* | [**get_block_trade_proposals**](docs/CommunicationsApi.md#get_block_trade_proposals) | **GET** /communications/block-trade-proposals | Get Block Trade Proposals
 *CommunicationsApi* | [**get_communications_id**](docs/CommunicationsApi.md#get_communications_id) | **GET** /communications/id | Get Communications ID
 *CommunicationsApi* | [**get_quote**](docs/CommunicationsApi.md#get_quote) | **GET** /communications/quotes/{quote_id} | Get Quote
 *CommunicationsApi* | [**get_quotes**](docs/CommunicationsApi.md#get_quotes) | **GET** /communications/quotes | Get Quotes
 *CommunicationsApi* | [**get_rfq**](docs/CommunicationsApi.md#get_rfq) | **GET** /communications/rfqs/{rfq_id} | Get RFQ
+*CommunicationsApi* | [**get_rfq_batch**](docs/CommunicationsApi.md#get_rfq_batch) | **GET** /communications/rfq_batches/{rfq_batch_id} | Get RFQ Batch
+*CommunicationsApi* | [**get_rfq_batch_best_quotes**](docs/CommunicationsApi.md#get_rfq_batch_best_quotes) | **GET** /communications/rfq_batches/{rfq_batch_id}/best_quotes | Get RFQ Batch Best Quotes
+*CommunicationsApi* | [**get_rfq_batch_quotes**](docs/CommunicationsApi.md#get_rfq_batch_quotes) | **GET** /communications/rfq_batches/{rfq_batch_id}/quotes | Get RFQ Batch Quotes
+*CommunicationsApi* | [**get_rfq_batches**](docs/CommunicationsApi.md#get_rfq_batches) | **GET** /communications/rfq_batches | Get RFQ Batches
 *CommunicationsApi* | [**get_rfq_quote**](docs/CommunicationsApi.md#get_rfq_quote) | **GET** /communications/rfqs/{rfq_id}/quotes/{quote_id} | Get RFQ Quote
 *CommunicationsApi* | [**get_rfqs**](docs/CommunicationsApi.md#get_rfqs) | **GET** /communications/rfqs | Get RFQs
 *CommunicationsApi* | [**propose_block_trade**](docs/CommunicationsApi.md#propose_block_trade) | **POST** /communications/block-trade-proposals | Propose Block Trade
@@ -150,6 +160,8 @@ Class | Method | HTTP request | Description
 
  - [AcceptBlockTradeProposalRequest](docs/AcceptBlockTradeProposalRequest.md)
  - [AcceptQuoteRequest](docs/AcceptQuoteRequest.md)
+ - [AcceptRfqBatchRequest](docs/AcceptRfqBatchRequest.md)
+ - [AcceptRfqBatchResponse](docs/AcceptRfqBatchResponse.md)
  - [AccountApiUsageLevelVolumeGoal](docs/AccountApiUsageLevelVolumeGoal.md)
  - [AccountApiUsageLevelVolumeProgress](docs/AccountApiUsageLevelVolumeProgress.md)
  - [AmendOrderRequest](docs/AmendOrderRequest.md)
@@ -199,6 +211,11 @@ Class | Method | HTTP request | Description
  - [CreateOrderV2Response](docs/CreateOrderV2Response.md)
  - [CreateQuoteRequest](docs/CreateQuoteRequest.md)
  - [CreateQuoteResponse](docs/CreateQuoteResponse.md)
+ - [CreateRfqBatchChild](docs/CreateRfqBatchChild.md)
+ - [CreateRfqBatchQuoteRequest](docs/CreateRfqBatchQuoteRequest.md)
+ - [CreateRfqBatchQuoteResponse](docs/CreateRfqBatchQuoteResponse.md)
+ - [CreateRfqBatchRequest](docs/CreateRfqBatchRequest.md)
+ - [CreateRfqBatchResponse](docs/CreateRfqBatchResponse.md)
  - [CreateRfqRequest](docs/CreateRfqRequest.md)
  - [CreateRfqResponse](docs/CreateRfqResponse.md)
  - [CreateSubaccountRequest](docs/CreateSubaccountRequest.md)
@@ -272,6 +289,10 @@ Class | Method | HTTP request | Description
  - [GetPositionsResponse](docs/GetPositionsResponse.md)
  - [GetQuoteResponse](docs/GetQuoteResponse.md)
  - [GetQuotesResponse](docs/GetQuotesResponse.md)
+ - [GetRfqBatchBestQuotesResponse](docs/GetRfqBatchBestQuotesResponse.md)
+ - [GetRfqBatchQuotesResponse](docs/GetRfqBatchQuotesResponse.md)
+ - [GetRfqBatchResponse](docs/GetRfqBatchResponse.md)
+ - [GetRfqBatchesResponse](docs/GetRfqBatchesResponse.md)
  - [GetRfqResponse](docs/GetRfqResponse.md)
  - [GetRfqsResponse](docs/GetRfqsResponse.md)
  - [GetSeriesFeeChangesResponse](docs/GetSeriesFeeChangesResponse.md)
@@ -326,6 +347,14 @@ Class | Method | HTTP request | Description
  - [Quote](docs/Quote.md)
  - [RestingMarginReservation](docs/RestingMarginReservation.md)
  - [Rfq](docs/Rfq.md)
+ - [RfqBatch](docs/RfqBatch.md)
+ - [RfqBatchAcceptLimit](docs/RfqBatchAcceptLimit.md)
+ - [RfqBatchBestQuote](docs/RfqBatchBestQuote.md)
+ - [RfqBatchBestQuotes](docs/RfqBatchBestQuotes.md)
+ - [RfqBatchQuote](docs/RfqBatchQuote.md)
+ - [RfqBatchQuoteEntry](docs/RfqBatchQuoteEntry.md)
+ - [RfqBatchQuoteStatus](docs/RfqBatchQuoteStatus.md)
+ - [RfqBatchStatus](docs/RfqBatchStatus.md)
  - [Schedule](docs/Schedule.md)
  - [ScopeList](docs/ScopeList.md)
  - [SelfTradePreventionType](docs/SelfTradePreventionType.md)
