@@ -21,8 +21,6 @@ cargo add kalshi-api
 ## Getting Started
 
 ```rust,no_run
-use std::time::Duration;
-
 use kalshi_api::{Client, ClientConfig, Environment, Subaccount};
 
 #[tokio::main]
@@ -32,10 +30,12 @@ async fn main() -> anyhow::Result<()> {
         base_url: Environment::Prod.base_url().to_owned(),
         key_id: "your-api-key-id".to_owned(),
         private_key_pem,
-        connect_timeout: Some(Duration::from_secs(5)),
-        request_timeout: Some(Duration::from_secs(30)),
-        max_body_bytes: Some(1_048_576),
-        max_capture_bytes: 1_048_576,
+        // The caller chooses these values. `None` sets no local bound; a
+        // `Some` value should cite the source it comes from.
+        connect_timeout: None,
+        request_timeout: None,
+        max_body_bytes: None,
+        max_capture_bytes: 0,
     })?;
     let balance = client.get_balance(Subaccount::Primary, None).await?;
     println!("Balance: ${}", balance.balance_dollars);
@@ -43,7 +43,7 @@ async fn main() -> anyhow::Result<()> {
 }
 ```
 
-The generated client uses `Configuration::new(connect_timeout, request_timeout)?`, with both values supplied as `Option<Duration>`; there is no default configuration. `None` sets no local deadline, and `ClientConfig::max_body_bytes: None` sets no response body limit. The SDK has no default number for any of them. A request deadline that is set stays on each request when the middleware client is replaced. WebSocket sessions require a caller-supplied `send_timeout` and end with `WsEvent::SendTimedOut` if a write stalls.
+The generated client uses `Configuration::new(connect_timeout, request_timeout)?`, with both values supplied as `Option<Duration>`; there is no default configuration. `None` sets no local deadline, and `ClientConfig::max_body_bytes: None` sets no response body limit. The SDK has no default number for any of them, and this README suggests none: the caller chooses each value and should cite the source for any `Some` value it sets. A request deadline that is set stays on each request when the middleware client is replaced. WebSocket sessions require a caller-supplied `send_timeout` and end with `WsEvent::SendTimedOut` if a write stalls.
 
 ## Documentation
 

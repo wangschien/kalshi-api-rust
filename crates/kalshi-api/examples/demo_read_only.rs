@@ -18,14 +18,27 @@ async fn main() -> anyhow::Result<()> {
     let key_path =
         std::env::var("KALSHI_DEMO_FILE_PATH").context("KALSHI_DEMO_FILE_PATH is required")?;
     let pem = std::fs::read_to_string(key_path).context("cannot read demo key")?;
+    // The caller supplies every duration and should cite its source.
+    let millis = |name: &str| -> anyhow::Result<Duration> {
+        let value = std::env::var(name).with_context(|| format!("{name} is required"))?;
+        Ok(Duration::from_millis(
+            value
+                .parse()
+                .with_context(|| format!("{name} must be milliseconds"))?,
+        ))
+    };
+    let send_timeout = millis("KALSHI_DEMO_WS_SEND_TIMEOUT_MS")?;
+    let listen_for = millis("KALSHI_DEMO_LISTEN_MS")?;
     let client = Client::new(ClientConfig {
         base_url: Environment::Demo.base_url().to_owned(),
         key_id: key_id.clone(),
         private_key_pem: pem.clone(),
-        connect_timeout: Some(Duration::from_secs(10)),
-        request_timeout: Some(Duration::from_secs(20)),
-        max_body_bytes: Some(4 * 1024 * 1024),
-        max_capture_bytes: 64 * 1024,
+        // The caller chooses these bounds; `None` sets none. A `Some` value
+        // should cite the source it comes from.
+        connect_timeout: None,
+        request_timeout: None,
+        max_body_bytes: None,
+        max_capture_bytes: 0,
     })?;
     let status = client.get_exchange_status().await?;
     let markets = client
@@ -46,17 +59,14 @@ async fn main() -> anyhow::Result<()> {
         "market ticker did not match"
     );
     let _ = client.get_market_orderbook(ticker, Some(1)).await?;
-    let mut socket = tokio::time::timeout(
-        Duration::from_secs(20),
-        WsSession::connect(
-            WsHost::Demo,
-            key_id,
-            pem,
-            Arc::new(SystemClock),
-            Duration::from_secs(10),
-        ),
+    let mut socket = WsSession::connect(
+        WsHost::Demo,
+        key_id,
+        pem,
+        Arc::new(SystemClock),
+        send_timeout,
     )
-    .await??;
+    .await?;
     socket
         .send(ClientCommand::Subscribe {
             id: 1,
@@ -78,7 +88,7 @@ async fn main() -> anyhow::Result<()> {
         })
         .await?;
     let started = tokio::time::Instant::now();
-    let deadline = started + Duration::from_secs(30);
+    let deadline = started + listen_for;
     let mut subscribed = false;
     let mut snapshots = 0;
     let mut deltas = 0;

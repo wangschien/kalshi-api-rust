@@ -24,7 +24,7 @@ To run the static source comparison and Rust checks, unpack the pinned wheel, se
 
 The SDK does not retry. The OpenAPI document specifies no retry or backoff policy, so a server error, a rate-limit response, or a transport error is returned to the caller on the first attempt. Both `ClientConfig` and generated `Configuration::new(connect_timeout, request_timeout)` take caller-supplied `Option<Duration>` values; `None` sets no local deadline. `ClientConfig::max_body_bytes` is `Option<usize>`; `None` sets no response body limit. The SDK has no default number for any of them: the Kalshi documents give none. Generated configuration has no `Default`. Its constructor applies the bounds that are set; every generated request also sets `request_timeout` when it is `Some`, including when a caller replaces the middleware client. The request deadline covers response headers and body consumption, including the unread response variant.
 
-The `demo_read_only` example reads `KALSHI_DEMO_ID` and `KALSHI_DEMO_FILE_PATH`. It performs four GETs and a 30-second orderbook subscription on fixed demo hosts, and reports a JSON receipt. It has no order-writing path.
+The `demo_read_only` example reads `KALSHI_DEMO_ID` and `KALSHI_DEMO_FILE_PATH`. It also requires `KALSHI_DEMO_WS_SEND_TIMEOUT_MS` and `KALSHI_DEMO_LISTEN_MS`; the caller chooses those durations and should cite their source. It sets no REST deadline or body limit. It performs four GETs and an orderbook subscription for the chosen duration on fixed demo hosts, and reports a JSON receipt. It has no order-writing path.
 
 ## Known spec inconsistencies
 

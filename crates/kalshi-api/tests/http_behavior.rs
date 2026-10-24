@@ -917,6 +917,14 @@ async fn silent_server() -> String {
 
 #[tokio::test]
 async fn raw_writes_without_a_reply_are_timeouts_not_connect_failures() {
+    // Test-harness bound: if the SDK stops applying the request deadline,
+    // this fails instead of hanging.
+    tokio::time::timeout(Duration::from_secs(30), raw_writes_without_a_reply_body())
+        .await
+        .expect("raw writes did not end within the harness bound");
+}
+
+async fn raw_writes_without_a_reply_body() {
     let (pem, _) = key_pair();
     let base = silent_server().await;
     let client = Client::new(config(
