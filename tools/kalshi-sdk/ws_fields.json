@@ -5,3205 +5,3934 @@
       "owner": "BatchQuoteAcceptedBody",
       "field": "accepted_side",
       "presence": "required",
-      "schema": "batchQuoteAcceptedPayload.msg"
+      "schema": "batchQuoteAcceptedPayload.msg",
+      "deprecated": false,
+      "enum": [
+        "yes",
+        "no"
+      ]
     },
     {
       "owner": "BatchQuoteAcceptedBody",
       "field": "accepted_ts",
       "presence": "required",
-      "schema": "batchQuoteAcceptedPayload.msg"
+      "schema": "batchQuoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteAcceptedBody",
       "field": "batch_quote_id",
       "presence": "required",
-      "schema": "batchQuoteAcceptedPayload.msg"
+      "schema": "batchQuoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteAcceptedBody",
       "field": "quote_creator_id",
       "presence": "required",
-      "schema": "batchQuoteAcceptedPayload.msg"
+      "schema": "batchQuoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteAcceptedBody",
       "field": "quotes",
       "presence": "required",
-      "schema": "batchQuoteAcceptedPayload.msg"
+      "schema": "batchQuoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteAcceptedBody",
       "field": "rfq_batch_id",
       "presence": "required",
-      "schema": "batchQuoteAcceptedPayload.msg"
+      "schema": "batchQuoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteAcceptedBody",
       "field": "rfq_creator_id",
       "presence": "required",
-      "schema": "batchQuoteAcceptedPayload.msg"
+      "schema": "batchQuoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteAcceptedBody",
       "field": "subaccount",
       "presence": "optional",
-      "schema": "batchQuoteAcceptedPayload.msg"
+      "schema": "batchQuoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteAcceptedChild",
       "field": "contracts_accepted_fp",
       "presence": "optional",
-      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+      "schema": "batchQuoteAcceptedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteAcceptedChild",
       "field": "event_ticker",
       "presence": "optional",
-      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+      "schema": "batchQuoteAcceptedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteAcceptedChild",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+      "schema": "batchQuoteAcceptedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteAcceptedChild",
       "field": "no_bid_dollars",
       "presence": "required",
-      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+      "schema": "batchQuoteAcceptedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteAcceptedChild",
       "field": "no_contracts_offered_fp",
       "presence": "optional",
-      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+      "schema": "batchQuoteAcceptedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteAcceptedChild",
       "field": "quote_id",
       "presence": "required",
-      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+      "schema": "batchQuoteAcceptedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteAcceptedChild",
       "field": "rfq_id",
       "presence": "required",
-      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+      "schema": "batchQuoteAcceptedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteAcceptedChild",
       "field": "rfq_target_cost_dollars",
       "presence": "optional",
-      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+      "schema": "batchQuoteAcceptedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteAcceptedChild",
       "field": "yes_bid_dollars",
       "presence": "required",
-      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+      "schema": "batchQuoteAcceptedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteAcceptedChild",
       "field": "yes_contracts_offered_fp",
       "presence": "optional",
-      "schema": "batchQuoteAcceptedPayload.msg.quotes"
+      "schema": "batchQuoteAcceptedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteCreatedBody",
       "field": "batch_quote_id",
       "presence": "required",
-      "schema": "batchQuoteCreatedPayload.msg"
+      "schema": "batchQuoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteCreatedBody",
       "field": "created_ts",
       "presence": "required",
-      "schema": "batchQuoteCreatedPayload.msg"
+      "schema": "batchQuoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteCreatedBody",
       "field": "quote_creator_id",
       "presence": "required",
-      "schema": "batchQuoteCreatedPayload.msg"
+      "schema": "batchQuoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteCreatedBody",
       "field": "quotes",
       "presence": "required",
-      "schema": "batchQuoteCreatedPayload.msg"
+      "schema": "batchQuoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteCreatedBody",
       "field": "rfq_batch_id",
       "presence": "required",
-      "schema": "batchQuoteCreatedPayload.msg"
+      "schema": "batchQuoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteCreatedBody",
       "field": "subaccount",
       "presence": "optional",
-      "schema": "batchQuoteCreatedPayload.msg"
+      "schema": "batchQuoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteCreatedChild",
       "field": "event_ticker",
       "presence": "optional",
-      "schema": "batchQuoteCreatedPayload.msg.quotes"
+      "schema": "batchQuoteCreatedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteCreatedChild",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "batchQuoteCreatedPayload.msg.quotes"
+      "schema": "batchQuoteCreatedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteCreatedChild",
       "field": "no_bid_dollars",
       "presence": "required",
-      "schema": "batchQuoteCreatedPayload.msg.quotes"
+      "schema": "batchQuoteCreatedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteCreatedChild",
       "field": "no_contracts_offered_fp",
       "presence": "optional",
-      "schema": "batchQuoteCreatedPayload.msg.quotes"
+      "schema": "batchQuoteCreatedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteCreatedChild",
       "field": "quote_id",
       "presence": "required",
-      "schema": "batchQuoteCreatedPayload.msg.quotes"
+      "schema": "batchQuoteCreatedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteCreatedChild",
       "field": "rfq_id",
       "presence": "required",
-      "schema": "batchQuoteCreatedPayload.msg.quotes"
+      "schema": "batchQuoteCreatedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteCreatedChild",
       "field": "rfq_target_cost_dollars",
       "presence": "optional",
-      "schema": "batchQuoteCreatedPayload.msg.quotes"
+      "schema": "batchQuoteCreatedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteCreatedChild",
       "field": "yes_bid_dollars",
       "presence": "required",
-      "schema": "batchQuoteCreatedPayload.msg.quotes"
+      "schema": "batchQuoteCreatedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteCreatedChild",
       "field": "yes_contracts_offered_fp",
       "presence": "optional",
-      "schema": "batchQuoteCreatedPayload.msg.quotes"
+      "schema": "batchQuoteCreatedPayload.msg.quotes",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteExecutedBody",
       "field": "batch_quote_id",
       "presence": "required",
-      "schema": "batchQuoteExecutedPayload.msg"
+      "schema": "batchQuoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteExecutedBody",
       "field": "close_reason",
       "presence": "required",
-      "schema": "batchQuoteExecutedPayload.msg"
+      "schema": "batchQuoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteExecutedBody",
       "field": "executed_rfq_ids",
       "presence": "required",
-      "schema": "batchQuoteExecutedPayload.msg"
+      "schema": "batchQuoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteExecutedBody",
       "field": "executed_ts",
       "presence": "required",
-      "schema": "batchQuoteExecutedPayload.msg"
+      "schema": "batchQuoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteExecutedBody",
       "field": "failed_rfq_ids",
       "presence": "required",
-      "schema": "batchQuoteExecutedPayload.msg"
+      "schema": "batchQuoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteExecutedBody",
       "field": "rfq_batch_id",
       "presence": "required",
-      "schema": "batchQuoteExecutedPayload.msg"
+      "schema": "batchQuoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteExecutedBody",
       "field": "rfq_creator_id",
       "presence": "required",
-      "schema": "batchQuoteExecutedPayload.msg"
+      "schema": "batchQuoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "BatchQuoteExecutedBody",
       "field": "subaccount",
       "presence": "optional",
-      "schema": "batchQuoteExecutedPayload.msg"
+      "schema": "batchQuoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksAvgData",
       "field": "value",
       "presence": "required",
-      "schema": "cfbenchmarksValuePayload.msg.avg_60s_data"
+      "schema": "cfbenchmarksValuePayload.msg.avg_60s_data",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksAvgData",
       "field": "value",
       "presence": "required",
-      "schema": "cfbenchmarksValuePayload.msg.last_60s_windowed_average_15min"
+      "schema": "cfbenchmarksValuePayload.msg.last_60s_windowed_average_15min",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksAvgData",
       "field": "window_end_ts_exclusive",
       "presence": "required",
-      "schema": "cfbenchmarksValuePayload.msg.avg_60s_data"
+      "schema": "cfbenchmarksValuePayload.msg.avg_60s_data",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksAvgData",
       "field": "window_end_ts_exclusive",
       "presence": "required",
-      "schema": "cfbenchmarksValuePayload.msg.last_60s_windowed_average_15min"
+      "schema": "cfbenchmarksValuePayload.msg.last_60s_windowed_average_15min",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksAvgData",
       "field": "window_size",
       "presence": "required",
-      "schema": "cfbenchmarksValuePayload.msg.avg_60s_data"
+      "schema": "cfbenchmarksValuePayload.msg.avg_60s_data",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksAvgData",
       "field": "window_size",
       "presence": "required",
-      "schema": "cfbenchmarksValuePayload.msg.last_60s_windowed_average_15min"
+      "schema": "cfbenchmarksValuePayload.msg.last_60s_windowed_average_15min",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksAvgData",
       "field": "window_start_ts_ms",
       "presence": "required",
-      "schema": "cfbenchmarksValuePayload.msg.avg_60s_data"
+      "schema": "cfbenchmarksValuePayload.msg.avg_60s_data",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksAvgData",
       "field": "window_start_ts_ms",
       "presence": "required",
-      "schema": "cfbenchmarksValuePayload.msg.last_60s_windowed_average_15min"
+      "schema": "cfbenchmarksValuePayload.msg.last_60s_windowed_average_15min",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksIndexListBody",
       "field": "index_ids",
       "presence": "required",
-      "schema": "cfbenchmarks5HzIndexListPayload.msg"
+      "schema": "cfbenchmarks5HzIndexListPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksIndexListBody",
       "field": "index_ids",
       "presence": "required",
-      "schema": "cfbenchmarksIndexListPayload.msg"
+      "schema": "cfbenchmarksIndexListPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksIndexListBody",
       "field": "index_ids",
       "presence": "required",
-      "schema": "subscribedIndicesResponsePayload.msg"
+      "schema": "subscribedIndicesResponsePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksValue5HzBody",
       "field": "data",
       "presence": "required",
-      "schema": "cfbenchmarksValue5HzPayload.msg"
+      "schema": "cfbenchmarksValue5HzPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksValue5HzBody",
       "field": "index_id",
       "presence": "required",
-      "schema": "cfbenchmarksValue5HzPayload.msg"
+      "schema": "cfbenchmarksValue5HzPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksValue5HzBody",
       "field": "received_at",
       "presence": "required",
-      "schema": "cfbenchmarksValue5HzPayload.msg"
+      "schema": "cfbenchmarksValue5HzPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksValue5HzBody",
       "field": "source_ts_ms",
       "presence": "required",
-      "schema": "cfbenchmarksValue5HzPayload.msg"
+      "schema": "cfbenchmarksValue5HzPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksValue5HzBody",
       "field": "value_usd",
       "presence": "required",
-      "schema": "cfbenchmarksValue5HzPayload.msg"
+      "schema": "cfbenchmarksValue5HzPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksValueBody",
       "field": "avg_60s_data",
       "presence": "required",
-      "schema": "cfbenchmarksValuePayload.msg"
+      "schema": "cfbenchmarksValuePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksValueBody",
       "field": "data",
       "presence": "required",
-      "schema": "cfbenchmarksValuePayload.msg"
+      "schema": "cfbenchmarksValuePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksValueBody",
       "field": "index_id",
       "presence": "required",
-      "schema": "cfbenchmarksValuePayload.msg"
+      "schema": "cfbenchmarksValuePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksValueBody",
       "field": "last_60s_windowed_average_15min",
       "presence": "optional",
-      "schema": "cfbenchmarksValuePayload.msg"
+      "schema": "cfbenchmarksValuePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "CfBenchmarksValueBody",
       "field": "received_at",
       "presence": "required",
-      "schema": "cfbenchmarksValuePayload.msg"
+      "schema": "cfbenchmarksValuePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "ClientCommand::ListSubscriptions",
       "field": "id",
       "presence": "required",
-      "schema": "listSubscriptionsCommandPayload"
+      "schema": "listSubscriptionsCommandPayload",
+      "deprecated": false
     },
     {
       "owner": "ClientCommand::Subscribe",
       "field": "id",
       "presence": "required",
-      "schema": "subscribeCommandPayload"
+      "schema": "subscribeCommandPayload",
+      "deprecated": false
     },
     {
       "owner": "ClientCommand::Subscribe",
       "field": "params",
       "presence": "required",
-      "schema": "subscribeCommandPayload"
+      "schema": "subscribeCommandPayload",
+      "deprecated": false
     },
     {
       "owner": "ClientCommand::Unsubscribe",
       "field": "id",
       "presence": "required",
-      "schema": "unsubscribeCommandPayload"
+      "schema": "unsubscribeCommandPayload",
+      "deprecated": false
     },
     {
       "owner": "ClientCommand::Unsubscribe",
       "field": "params",
       "presence": "required",
-      "schema": "unsubscribeCommandPayload"
+      "schema": "unsubscribeCommandPayload",
+      "deprecated": false
     },
     {
       "owner": "ClientCommand::UpdateSubscription",
       "field": "id",
       "presence": "required",
-      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload"
+      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload",
+      "deprecated": false
     },
     {
       "owner": "ClientCommand::UpdateSubscription",
       "field": "id",
       "presence": "required",
-      "schema": "pythUpdateSubscriptionCommandPayload"
+      "schema": "pythUpdateSubscriptionCommandPayload",
+      "deprecated": false
     },
     {
       "owner": "ClientCommand::UpdateSubscription",
       "field": "id",
       "presence": "required",
-      "schema": "updateSubscriptionCommandPayload"
+      "schema": "updateSubscriptionCommandPayload",
+      "deprecated": false
     },
     {
       "owner": "ClientCommand::UpdateSubscription",
       "field": "params",
       "presence": "required",
-      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload"
+      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload",
+      "deprecated": false
     },
     {
       "owner": "ClientCommand::UpdateSubscription",
       "field": "params",
       "presence": "required",
-      "schema": "pythUpdateSubscriptionCommandPayload"
+      "schema": "pythUpdateSubscriptionCommandPayload",
+      "deprecated": false
     },
     {
       "owner": "ClientCommand::UpdateSubscription",
       "field": "params",
       "presence": "required",
-      "schema": "updateSubscriptionCommandPayload"
+      "schema": "updateSubscriptionCommandPayload",
+      "deprecated": false
     },
     {
       "owner": "ErrorBody",
       "field": "code",
       "presence": "required",
-      "schema": "errorResponsePayload.msg"
+      "schema": "errorResponsePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "ErrorBody",
       "field": "market_ticker",
       "presence": "optional",
-      "schema": "errorResponsePayload.msg"
+      "schema": "errorResponsePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "ErrorBody",
       "field": "market_tickers",
       "presence": "optional",
-      "schema": "errorResponsePayload.msg"
+      "schema": "errorResponsePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "ErrorBody",
       "field": "msg",
       "presence": "required",
-      "schema": "errorResponsePayload.msg"
+      "schema": "errorResponsePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "EventFeeBody",
       "field": "event_ticker",
       "presence": "required",
-      "schema": "eventFeeUpdatePayload.msg"
+      "schema": "eventFeeUpdatePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "EventFeeBody",
       "field": "fee_multiplier_override",
       "presence": "required_nullable",
-      "schema": "eventFeeUpdatePayload.msg"
+      "schema": "eventFeeUpdatePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "EventFeeBody",
       "field": "fee_type_override",
       "presence": "required_nullable",
-      "schema": "eventFeeUpdatePayload.msg"
+      "schema": "eventFeeUpdatePayload.msg",
+      "deprecated": false,
+      "enum": [
+        "quadratic",
+        "quadratic_with_maker_fees",
+        "quadratic_with_combo_maker_fees",
+        "flat",
+        "margin_market_maker_program_fees"
+      ]
     },
     {
       "owner": "EventLifecycleBody",
       "field": "collateral_return_type",
       "presence": "required",
-      "schema": "eventLifecyclePayload.msg"
+      "schema": "eventLifecyclePayload.msg",
+      "deprecated": false,
+      "enum": [
+        "MECNET",
+        "DIRECNET",
+        ""
+      ]
     },
     {
       "owner": "EventLifecycleBody",
       "field": "event_ticker",
       "presence": "required",
-      "schema": "eventLifecyclePayload.msg"
+      "schema": "eventLifecyclePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "EventLifecycleBody",
       "field": "exchange_index",
       "presence": "required",
-      "schema": "eventLifecyclePayload.msg"
+      "schema": "eventLifecyclePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "EventLifecycleBody",
       "field": "series_ticker",
       "presence": "required",
-      "schema": "eventLifecyclePayload.msg"
+      "schema": "eventLifecyclePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "EventLifecycleBody",
       "field": "strike_date",
       "presence": "optional",
-      "schema": "eventLifecyclePayload.msg"
+      "schema": "eventLifecyclePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "EventLifecycleBody",
       "field": "strike_period",
       "presence": "optional",
-      "schema": "eventLifecyclePayload.msg"
+      "schema": "eventLifecyclePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "EventLifecycleBody",
       "field": "subtitle",
       "presence": "required",
-      "schema": "eventLifecyclePayload.msg"
+      "schema": "eventLifecyclePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "EventLifecycleBody",
       "field": "title",
       "presence": "required",
-      "schema": "eventLifecyclePayload.msg"
+      "schema": "eventLifecyclePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "FillBody",
       "field": "action",
       "presence": "required",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": true,
+      "enum": [
+        "buy",
+        "sell",
+        "sell_partial",
+        "sell_to_close",
+        ""
+      ]
     },
     {
       "owner": "FillBody",
       "field": "book_side",
       "presence": "required",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": false,
+      "enum": [
+        "bid",
+        "ask"
+      ]
     },
     {
       "owner": "FillBody",
       "field": "client_order_id",
       "presence": "optional",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "FillBody",
       "field": "count_fp",
       "presence": "required",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "FillBody",
       "field": "exchange_index",
       "presence": "required",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "FillBody",
       "field": "fee_cost",
       "presence": "required",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "FillBody",
       "field": "is_taker",
       "presence": "required",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "FillBody",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "FillBody",
       "field": "order_id",
       "presence": "required",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "FillBody",
       "field": "outcome_side",
       "presence": "required",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": false,
+      "enum": [
+        "yes",
+        "no"
+      ]
     },
     {
       "owner": "FillBody",
       "field": "post_position_fp",
       "presence": "required",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "FillBody",
       "field": "purchased_side",
       "presence": "required",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": true,
+      "enum": [
+        "yes",
+        "no"
+      ]
     },
     {
       "owner": "FillBody",
       "field": "side",
       "presence": "required",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": true,
+      "enum": [
+        "yes",
+        "no"
+      ]
     },
     {
       "owner": "FillBody",
       "field": "subaccount",
       "presence": "optional",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "FillBody",
       "field": "trade_id",
       "presence": "required",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "FillBody",
       "field": "ts",
       "presence": "required",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": true
     },
     {
       "owner": "FillBody",
       "field": "ts_ms",
       "presence": "required",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "FillBody",
       "field": "yes_price_dollars",
       "presence": "required",
-      "schema": "fillPayload.msg"
+      "schema": "fillPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "Incoming::BatchQuoteAccepted",
       "field": "msg",
       "presence": "required",
-      "schema": "batchQuoteAcceptedPayload"
+      "schema": "batchQuoteAcceptedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::BatchQuoteAccepted",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "batchQuoteAcceptedPayload"
+      "schema": "batchQuoteAcceptedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::BatchQuoteAccepted",
       "field": "seq",
       "presence": "required",
-      "schema": "batchQuoteAcceptedPayload"
+      "schema": "batchQuoteAcceptedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::BatchQuoteAccepted",
       "field": "sid",
       "presence": "required",
-      "schema": "batchQuoteAcceptedPayload"
+      "schema": "batchQuoteAcceptedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::BatchQuoteCreated",
       "field": "msg",
       "presence": "required",
-      "schema": "batchQuoteCreatedPayload"
+      "schema": "batchQuoteCreatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::BatchQuoteCreated",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "batchQuoteCreatedPayload"
+      "schema": "batchQuoteCreatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::BatchQuoteCreated",
       "field": "seq",
       "presence": "required",
-      "schema": "batchQuoteCreatedPayload"
+      "schema": "batchQuoteCreatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::BatchQuoteCreated",
       "field": "sid",
       "presence": "required",
-      "schema": "batchQuoteCreatedPayload"
+      "schema": "batchQuoteCreatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::BatchQuoteExecuted",
       "field": "msg",
       "presence": "required",
-      "schema": "batchQuoteExecutedPayload"
+      "schema": "batchQuoteExecutedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::BatchQuoteExecuted",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "batchQuoteExecutedPayload"
+      "schema": "batchQuoteExecutedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::BatchQuoteExecuted",
       "field": "seq",
       "presence": "required",
-      "schema": "batchQuoteExecutedPayload"
+      "schema": "batchQuoteExecutedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::BatchQuoteExecuted",
       "field": "sid",
       "presence": "required",
-      "schema": "batchQuoteExecutedPayload"
+      "schema": "batchQuoteExecutedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksIndexList",
       "field": "id",
       "presence": "optional",
-      "schema": "cfbenchmarksIndexListPayload"
+      "schema": "cfbenchmarksIndexListPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksIndexList",
       "field": "msg",
       "presence": "required",
-      "schema": "cfbenchmarksIndexListPayload"
+      "schema": "cfbenchmarksIndexListPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksIndexList",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "cfbenchmarksIndexListPayload"
+      "schema": "cfbenchmarksIndexListPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksIndexList",
       "field": "seq",
       "presence": "required",
-      "schema": "cfbenchmarksIndexListPayload"
+      "schema": "cfbenchmarksIndexListPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksIndexList",
       "field": "sid",
       "presence": "required",
-      "schema": "cfbenchmarksIndexListPayload"
+      "schema": "cfbenchmarksIndexListPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksIndexList5Hz",
       "field": "id",
       "presence": "optional",
-      "schema": "cfbenchmarks5HzIndexListPayload"
+      "schema": "cfbenchmarks5HzIndexListPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksIndexList5Hz",
       "field": "msg",
       "presence": "required",
-      "schema": "cfbenchmarks5HzIndexListPayload"
+      "schema": "cfbenchmarks5HzIndexListPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksIndexList5Hz",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "cfbenchmarks5HzIndexListPayload"
+      "schema": "cfbenchmarks5HzIndexListPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksIndexList5Hz",
       "field": "seq",
       "presence": "required",
-      "schema": "cfbenchmarks5HzIndexListPayload"
+      "schema": "cfbenchmarks5HzIndexListPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksIndexList5Hz",
       "field": "sid",
       "presence": "required",
-      "schema": "cfbenchmarks5HzIndexListPayload"
+      "schema": "cfbenchmarks5HzIndexListPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksValue",
       "field": "msg",
       "presence": "required",
-      "schema": "cfbenchmarksValuePayload"
+      "schema": "cfbenchmarksValuePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksValue",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "cfbenchmarksValuePayload"
+      "schema": "cfbenchmarksValuePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksValue",
       "field": "seq",
       "presence": "required",
-      "schema": "cfbenchmarksValuePayload"
+      "schema": "cfbenchmarksValuePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksValue",
       "field": "sid",
       "presence": "required",
-      "schema": "cfbenchmarksValuePayload"
+      "schema": "cfbenchmarksValuePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksValue5Hz",
       "field": "msg",
       "presence": "required",
-      "schema": "cfbenchmarksValue5HzPayload"
+      "schema": "cfbenchmarksValue5HzPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksValue5Hz",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "cfbenchmarksValue5HzPayload"
+      "schema": "cfbenchmarksValue5HzPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksValue5Hz",
       "field": "seq",
       "presence": "required",
-      "schema": "cfbenchmarksValue5HzPayload"
+      "schema": "cfbenchmarksValue5HzPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::CfBenchmarksValue5Hz",
       "field": "sid",
       "presence": "required",
-      "schema": "cfbenchmarksValue5HzPayload"
+      "schema": "cfbenchmarksValue5HzPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Error",
       "field": "id",
       "presence": "optional",
-      "schema": "errorResponsePayload"
+      "schema": "errorResponsePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Error",
       "field": "msg",
       "presence": "required",
-      "schema": "errorResponsePayload"
+      "schema": "errorResponsePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Error",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "errorResponsePayload"
+      "schema": "errorResponsePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Error",
       "field": "seq",
       "presence": "optional",
-      "schema": "errorResponsePayload"
+      "schema": "errorResponsePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Error",
       "field": "sid",
       "presence": "optional",
-      "schema": "errorResponsePayload"
+      "schema": "errorResponsePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::EventFeeUpdate",
       "field": "msg",
       "presence": "required",
-      "schema": "eventFeeUpdatePayload"
+      "schema": "eventFeeUpdatePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::EventFeeUpdate",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "eventFeeUpdatePayload"
+      "schema": "eventFeeUpdatePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::EventFeeUpdate",
       "field": "seq",
       "presence": "required",
-      "schema": "eventFeeUpdatePayload"
+      "schema": "eventFeeUpdatePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::EventFeeUpdate",
       "field": "sid",
       "presence": "required",
-      "schema": "eventFeeUpdatePayload"
+      "schema": "eventFeeUpdatePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::EventLifecycle",
       "field": "msg",
       "presence": "required",
-      "schema": "eventLifecyclePayload"
+      "schema": "eventLifecyclePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::EventLifecycle",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "eventLifecyclePayload"
+      "schema": "eventLifecyclePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::EventLifecycle",
       "field": "seq",
       "presence": "required",
-      "schema": "eventLifecyclePayload"
+      "schema": "eventLifecyclePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::EventLifecycle",
       "field": "sid",
       "presence": "required",
-      "schema": "eventLifecyclePayload"
+      "schema": "eventLifecyclePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Fill",
       "field": "msg",
       "presence": "required",
-      "schema": "fillPayload"
+      "schema": "fillPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Fill",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "fillPayload"
+      "schema": "fillPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Fill",
       "field": "sid",
       "presence": "required",
-      "schema": "fillPayload"
+      "schema": "fillPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::MarketLifecycleV2",
       "field": "msg",
       "presence": "required",
-      "schema": "marketLifecycleV2Payload"
+      "schema": "marketLifecycleV2Payload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::MarketLifecycleV2",
       "field": "msg",
       "presence": "required",
-      "schema": "marketMetadataUpdatedPayload"
+      "schema": "marketMetadataUpdatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::MarketLifecycleV2",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "marketLifecycleV2Payload"
+      "schema": "marketLifecycleV2Payload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::MarketLifecycleV2",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "marketMetadataUpdatedPayload"
+      "schema": "marketMetadataUpdatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::MarketLifecycleV2",
       "field": "seq",
       "presence": "required",
-      "schema": "marketLifecycleV2Payload"
+      "schema": "marketLifecycleV2Payload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::MarketLifecycleV2",
       "field": "seq",
       "presence": "required",
-      "schema": "marketMetadataUpdatedPayload"
+      "schema": "marketMetadataUpdatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::MarketLifecycleV2",
       "field": "sid",
       "presence": "required",
-      "schema": "marketLifecycleV2Payload"
+      "schema": "marketLifecycleV2Payload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::MarketLifecycleV2",
       "field": "sid",
       "presence": "required",
-      "schema": "marketMetadataUpdatedPayload"
+      "schema": "marketMetadataUpdatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::MarketPosition",
       "field": "msg",
       "presence": "required",
-      "schema": "marketPositionPayload"
+      "schema": "marketPositionPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::MarketPosition",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "marketPositionPayload"
+      "schema": "marketPositionPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::MarketPosition",
       "field": "sid",
       "presence": "required",
-      "schema": "marketPositionPayload"
+      "schema": "marketPositionPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::MultivariateMarketLifecycle",
       "field": "msg",
       "presence": "required",
-      "schema": "multivariateMarketLifecyclePayload"
+      "schema": "multivariateMarketLifecyclePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::MultivariateMarketLifecycle",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "multivariateMarketLifecyclePayload"
+      "schema": "multivariateMarketLifecyclePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::MultivariateMarketLifecycle",
       "field": "seq",
       "presence": "required",
-      "schema": "multivariateMarketLifecyclePayload"
+      "schema": "multivariateMarketLifecyclePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::MultivariateMarketLifecycle",
       "field": "sid",
       "presence": "required",
-      "schema": "multivariateMarketLifecyclePayload"
+      "schema": "multivariateMarketLifecyclePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Ok",
       "field": "id",
       "presence": "optional",
-      "schema": "okResponsePayload"
+      "schema": "okResponsePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Ok",
       "field": "msg",
       "presence": "optional",
-      "schema": "okResponsePayload"
+      "schema": "okResponsePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Ok",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "okResponsePayload"
+      "schema": "okResponsePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Ok",
       "field": "seq",
       "presence": "optional",
-      "schema": "okResponsePayload"
+      "schema": "okResponsePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Ok",
       "field": "sid",
       "presence": "optional",
-      "schema": "okResponsePayload"
+      "schema": "okResponsePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::OrderGroupUpdates",
       "field": "msg",
       "presence": "required",
-      "schema": "orderGroupUpdatesPayload"
+      "schema": "orderGroupUpdatesPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::OrderGroupUpdates",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "orderGroupUpdatesPayload"
+      "schema": "orderGroupUpdatesPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::OrderGroupUpdates",
       "field": "seq",
       "presence": "required",
-      "schema": "orderGroupUpdatesPayload"
+      "schema": "orderGroupUpdatesPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::OrderGroupUpdates",
       "field": "sid",
       "presence": "required",
-      "schema": "orderGroupUpdatesPayload"
+      "schema": "orderGroupUpdatesPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::OrderbookDelta",
       "field": "msg",
       "presence": "required",
-      "schema": "orderbookDeltaPayload"
+      "schema": "orderbookDeltaPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::OrderbookDelta",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "orderbookDeltaPayload"
+      "schema": "orderbookDeltaPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::OrderbookDelta",
       "field": "seq",
       "presence": "required",
-      "schema": "orderbookDeltaPayload"
+      "schema": "orderbookDeltaPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::OrderbookDelta",
       "field": "sid",
       "presence": "required",
-      "schema": "orderbookDeltaPayload"
+      "schema": "orderbookDeltaPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::OrderbookSnapshot",
       "field": "id",
       "presence": "optional",
-      "schema": "orderbookSnapshotPayload"
+      "schema": "orderbookSnapshotPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::OrderbookSnapshot",
       "field": "msg",
       "presence": "required",
-      "schema": "orderbookSnapshotPayload"
+      "schema": "orderbookSnapshotPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::OrderbookSnapshot",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "orderbookSnapshotPayload"
+      "schema": "orderbookSnapshotPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::OrderbookSnapshot",
       "field": "seq",
       "presence": "required",
-      "schema": "orderbookSnapshotPayload"
+      "schema": "orderbookSnapshotPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::OrderbookSnapshot",
       "field": "sid",
       "presence": "required",
-      "schema": "orderbookSnapshotPayload"
+      "schema": "orderbookSnapshotPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::PythUnderlyingList",
       "field": "id",
       "presence": "optional",
-      "schema": "pythUnderlyingListPayload"
+      "schema": "pythUnderlyingListPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::PythUnderlyingList",
       "field": "msg",
       "presence": "required",
-      "schema": "pythUnderlyingListPayload"
+      "schema": "pythUnderlyingListPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::PythUnderlyingList",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "pythUnderlyingListPayload"
+      "schema": "pythUnderlyingListPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::PythUnderlyingList",
       "field": "seq",
       "presence": "required",
-      "schema": "pythUnderlyingListPayload"
+      "schema": "pythUnderlyingListPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::PythUnderlyingList",
       "field": "sid",
       "presence": "required",
-      "schema": "pythUnderlyingListPayload"
+      "schema": "pythUnderlyingListPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::PythValue",
       "field": "msg",
       "presence": "required",
-      "schema": "pythValuePayload"
+      "schema": "pythValuePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::PythValue",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "pythValuePayload"
+      "schema": "pythValuePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::PythValue",
       "field": "seq",
       "presence": "required",
-      "schema": "pythValuePayload"
+      "schema": "pythValuePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::PythValue",
       "field": "sid",
       "presence": "required",
-      "schema": "pythValuePayload"
+      "schema": "pythValuePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::QuoteAccepted",
       "field": "msg",
       "presence": "required",
-      "schema": "quoteAcceptedPayload"
+      "schema": "quoteAcceptedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::QuoteAccepted",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "quoteAcceptedPayload"
+      "schema": "quoteAcceptedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::QuoteAccepted",
       "field": "seq",
       "presence": "required",
-      "schema": "quoteAcceptedPayload"
+      "schema": "quoteAcceptedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::QuoteAccepted",
       "field": "sid",
       "presence": "required",
-      "schema": "quoteAcceptedPayload"
+      "schema": "quoteAcceptedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::QuoteCreated",
       "field": "msg",
       "presence": "required",
-      "schema": "quoteCreatedPayload"
+      "schema": "quoteCreatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::QuoteCreated",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "quoteCreatedPayload"
+      "schema": "quoteCreatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::QuoteCreated",
       "field": "seq",
       "presence": "required",
-      "schema": "quoteCreatedPayload"
+      "schema": "quoteCreatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::QuoteCreated",
       "field": "sid",
       "presence": "required",
-      "schema": "quoteCreatedPayload"
+      "schema": "quoteCreatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::QuoteExecuted",
       "field": "msg",
       "presence": "required",
-      "schema": "quoteExecutedPayload"
+      "schema": "quoteExecutedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::QuoteExecuted",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "quoteExecutedPayload"
+      "schema": "quoteExecutedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::QuoteExecuted",
       "field": "seq",
       "presence": "required",
-      "schema": "quoteExecutedPayload"
+      "schema": "quoteExecutedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::QuoteExecuted",
       "field": "sid",
       "presence": "required",
-      "schema": "quoteExecutedPayload"
+      "schema": "quoteExecutedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqBatchBestQuotes",
       "field": "msg",
       "presence": "required",
-      "schema": "rfqBatchBestQuotesPayload"
+      "schema": "rfqBatchBestQuotesPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqBatchBestQuotes",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "rfqBatchBestQuotesPayload"
+      "schema": "rfqBatchBestQuotesPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqBatchBestQuotes",
       "field": "seq",
       "presence": "required",
-      "schema": "rfqBatchBestQuotesPayload"
+      "schema": "rfqBatchBestQuotesPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqBatchBestQuotes",
       "field": "sid",
       "presence": "required",
-      "schema": "rfqBatchBestQuotesPayload"
+      "schema": "rfqBatchBestQuotesPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqBatchCreated",
       "field": "msg",
       "presence": "required",
-      "schema": "rfqBatchCreatedPayload"
+      "schema": "rfqBatchCreatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqBatchCreated",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "rfqBatchCreatedPayload"
+      "schema": "rfqBatchCreatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqBatchCreated",
       "field": "seq",
       "presence": "required",
-      "schema": "rfqBatchCreatedPayload"
+      "schema": "rfqBatchCreatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqBatchCreated",
       "field": "sid",
       "presence": "required",
-      "schema": "rfqBatchCreatedPayload"
+      "schema": "rfqBatchCreatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqBatchDeleted",
       "field": "msg",
       "presence": "required",
-      "schema": "rfqBatchDeletedPayload"
+      "schema": "rfqBatchDeletedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqBatchDeleted",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "rfqBatchDeletedPayload"
+      "schema": "rfqBatchDeletedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqBatchDeleted",
       "field": "seq",
       "presence": "required",
-      "schema": "rfqBatchDeletedPayload"
+      "schema": "rfqBatchDeletedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqBatchDeleted",
       "field": "sid",
       "presence": "required",
-      "schema": "rfqBatchDeletedPayload"
+      "schema": "rfqBatchDeletedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqBatchExecuted",
       "field": "msg",
       "presence": "required",
-      "schema": "rfqBatchExecutedPayload"
+      "schema": "rfqBatchExecutedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqBatchExecuted",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "rfqBatchExecutedPayload"
+      "schema": "rfqBatchExecutedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqBatchExecuted",
       "field": "seq",
       "presence": "required",
-      "schema": "rfqBatchExecutedPayload"
+      "schema": "rfqBatchExecutedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqBatchExecuted",
       "field": "sid",
       "presence": "required",
-      "schema": "rfqBatchExecutedPayload"
+      "schema": "rfqBatchExecutedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqCreated",
       "field": "msg",
       "presence": "required",
-      "schema": "rfqCreatedPayload"
+      "schema": "rfqCreatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqCreated",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "rfqCreatedPayload"
+      "schema": "rfqCreatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqCreated",
       "field": "seq",
       "presence": "required",
-      "schema": "rfqCreatedPayload"
+      "schema": "rfqCreatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqCreated",
       "field": "sid",
       "presence": "required",
-      "schema": "rfqCreatedPayload"
+      "schema": "rfqCreatedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqDeleted",
       "field": "msg",
       "presence": "required",
-      "schema": "rfqDeletedPayload"
+      "schema": "rfqDeletedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqDeleted",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "rfqDeletedPayload"
+      "schema": "rfqDeletedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqDeleted",
       "field": "seq",
       "presence": "required",
-      "schema": "rfqDeletedPayload"
+      "schema": "rfqDeletedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::RfqDeleted",
       "field": "sid",
       "presence": "required",
-      "schema": "rfqDeletedPayload"
+      "schema": "rfqDeletedPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Subscribed",
       "field": "id",
       "presence": "optional",
-      "schema": "subscribedResponsePayload"
+      "schema": "subscribedResponsePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Subscribed",
       "field": "msg",
       "presence": "required",
-      "schema": "subscribedResponsePayload"
+      "schema": "subscribedResponsePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Subscribed",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "subscribedResponsePayload"
+      "schema": "subscribedResponsePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Ticker",
       "field": "msg",
       "presence": "required",
-      "schema": "tickerPayload"
+      "schema": "tickerPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Ticker",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "tickerPayload"
+      "schema": "tickerPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Ticker",
       "field": "sid",
       "presence": "required",
-      "schema": "tickerPayload"
+      "schema": "tickerPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Trade",
       "field": "msg",
       "presence": "required",
-      "schema": "tradePayload"
+      "schema": "tradePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Trade",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "tradePayload"
+      "schema": "tradePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Trade",
       "field": "seq",
       "presence": "required",
-      "schema": "tradePayload"
+      "schema": "tradePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Trade",
       "field": "sid",
       "presence": "required",
-      "schema": "tradePayload"
+      "schema": "tradePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Unsubscribed",
       "field": "id",
       "presence": "optional",
-      "schema": "unsubscribedResponsePayload"
+      "schema": "unsubscribedResponsePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Unsubscribed",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "unsubscribedResponsePayload"
+      "schema": "unsubscribedResponsePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Unsubscribed",
       "field": "seq",
       "presence": "required",
-      "schema": "unsubscribedResponsePayload"
+      "schema": "unsubscribedResponsePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::Unsubscribed",
       "field": "sid",
       "presence": "required",
-      "schema": "unsubscribedResponsePayload"
+      "schema": "unsubscribedResponsePayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::UserOrder",
       "field": "msg",
       "presence": "required",
-      "schema": "userOrderPayload"
+      "schema": "userOrderPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::UserOrder",
       "field": "sending_ts_ms",
       "presence": "optional",
-      "schema": "userOrderPayload"
+      "schema": "userOrderPayload",
+      "deprecated": false
     },
     {
       "owner": "Incoming::UserOrder",
       "field": "sid",
       "presence": "required",
-      "schema": "userOrderPayload"
+      "schema": "userOrderPayload",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "can_close_early",
       "presence": "required",
-      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "can_close_early",
       "presence": "required",
-      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "cap_strike",
       "presence": "optional",
-      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "cap_strike",
       "presence": "optional",
-      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "custom_strike",
       "presence": "optional",
-      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "custom_strike",
       "presence": "optional",
-      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "event_ticker",
       "presence": "required",
-      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "event_ticker",
       "presence": "required",
-      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "expected_expiration_ts",
       "presence": "required",
-      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "expected_expiration_ts",
       "presence": "required",
-      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "floor_strike",
       "presence": "optional",
-      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "floor_strike",
       "presence": "optional",
-      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "name",
       "presence": "required",
-      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "name",
       "presence": "required",
-      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "no_sub_title",
       "presence": "required",
-      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "no_sub_title",
       "presence": "required",
-      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "rules_primary",
       "presence": "required",
-      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "rules_primary",
       "presence": "required",
-      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "rules_secondary",
       "presence": "required",
-      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "rules_secondary",
       "presence": "required",
-      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "strike_type",
       "presence": "optional",
-      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "strike_type",
       "presence": "optional",
-      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "title",
       "presence": "required",
-      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "title",
       "presence": "required",
-      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "yes_sub_title",
       "presence": "required",
-      "schema": "marketLifecycleV2Payload.msg.additional_metadata"
+      "schema": "marketLifecycleV2Payload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "LifecycleAdditionalMetadata",
       "field": "yes_sub_title",
       "presence": "required",
-      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata"
+      "schema": "multivariateMarketLifecyclePayload.msg.additional_metadata",
+      "deprecated": false
     },
     {
       "owner": "MarketLifecycleBody",
       "field": "additional_metadata",
       "presence": "optional",
-      "schema": "marketLifecycleV2Payload.msg"
+      "schema": "marketLifecycleV2Payload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketLifecycleBody",
       "field": "close_ts",
       "presence": "optional",
-      "schema": "marketLifecycleV2Payload.msg"
+      "schema": "marketLifecycleV2Payload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketLifecycleBody",
       "field": "determination_ts",
       "presence": "optional",
-      "schema": "marketLifecycleV2Payload.msg"
+      "schema": "marketLifecycleV2Payload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketLifecycleBody",
       "field": "event_type",
       "presence": "required",
-      "schema": "marketLifecycleV2Payload.msg"
+      "schema": "marketLifecycleV2Payload.msg",
+      "deprecated": false,
+      "enum": [
+        "created",
+        "deactivated",
+        "activated",
+        "close_date_updated",
+        "determined",
+        "settled",
+        "price_level_structure_updated"
+      ]
     },
     {
       "owner": "MarketLifecycleBody",
       "field": "exchange_index",
       "presence": "optional",
-      "schema": "marketLifecycleV2Payload.msg"
+      "schema": "marketLifecycleV2Payload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketLifecycleBody",
       "field": "is_deactivated",
       "presence": "optional",
-      "schema": "marketLifecycleV2Payload.msg"
+      "schema": "marketLifecycleV2Payload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketLifecycleBody",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "marketLifecycleV2Payload.msg"
+      "schema": "marketLifecycleV2Payload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketLifecycleBody",
       "field": "open_ts",
       "presence": "optional",
-      "schema": "marketLifecycleV2Payload.msg"
+      "schema": "marketLifecycleV2Payload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketLifecycleBody",
       "field": "price_level_structure",
       "presence": "optional",
-      "schema": "marketLifecycleV2Payload.msg"
+      "schema": "marketLifecycleV2Payload.msg",
+      "deprecated": false,
+      "enum": [
+        "banded_centi_cent",
+        "",
+        "linear_cent",
+        "deci_cent",
+        "tapered_deci_cent",
+        "center_whole_edge_half_cent",
+        "center_whole_edge_quint_cent",
+        "center_half_edge_half_cent",
+        "center_half_edge_quint_cent",
+        "center_half_edge_deci_cent",
+        "center_quint_edge_quint_cent",
+        "center_quint_edge_deci_cent",
+        "center_centi_edge_centi_cent",
+        "center_deci_edge_centi_cent"
+      ]
     },
     {
       "owner": "MarketLifecycleBody",
       "field": "price_ranges",
       "presence": "optional",
-      "schema": "marketLifecycleV2Payload.msg"
+      "schema": "marketLifecycleV2Payload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketLifecycleBody",
       "field": "result",
       "presence": "optional",
-      "schema": "marketLifecycleV2Payload.msg"
+      "schema": "marketLifecycleV2Payload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketLifecycleBody",
       "field": "settled_ts",
       "presence": "optional",
-      "schema": "marketLifecycleV2Payload.msg"
+      "schema": "marketLifecycleV2Payload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketLifecycleBody",
       "field": "settlement_value",
       "presence": "optional",
-      "schema": "marketLifecycleV2Payload.msg"
+      "schema": "marketLifecycleV2Payload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketMetadataBody",
       "field": "cap_strike",
       "presence": "optional",
-      "schema": "marketMetadataUpdatedPayload.msg"
+      "schema": "marketMetadataUpdatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketMetadataBody",
       "field": "custom_strike",
       "presence": "optional",
-      "schema": "marketMetadataUpdatedPayload.msg"
+      "schema": "marketMetadataUpdatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketMetadataBody",
       "field": "event_type",
       "presence": "required",
-      "schema": "marketMetadataUpdatedPayload.msg"
+      "schema": "marketMetadataUpdatedPayload.msg",
+      "deprecated": false,
+      "enum": [
+        "metadata_updated"
+      ]
     },
     {
       "owner": "MarketMetadataBody",
       "field": "floor_strike",
       "presence": "optional",
-      "schema": "marketMetadataUpdatedPayload.msg"
+      "schema": "marketMetadataUpdatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketMetadataBody",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "marketMetadataUpdatedPayload.msg"
+      "schema": "marketMetadataUpdatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketMetadataBody",
       "field": "strike_type",
       "presence": "optional",
-      "schema": "marketMetadataUpdatedPayload.msg"
+      "schema": "marketMetadataUpdatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketMetadataBody",
       "field": "yes_sub_title",
       "presence": "optional",
-      "schema": "marketMetadataUpdatedPayload.msg"
+      "schema": "marketMetadataUpdatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketPositionBody",
       "field": "fees_paid_dollars",
       "presence": "required",
-      "schema": "marketPositionPayload.msg"
+      "schema": "marketPositionPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketPositionBody",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "marketPositionPayload.msg"
+      "schema": "marketPositionPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketPositionBody",
       "field": "position_cost_dollars",
       "presence": "required",
-      "schema": "marketPositionPayload.msg"
+      "schema": "marketPositionPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketPositionBody",
       "field": "position_fee_cost_dollars",
       "presence": "required",
-      "schema": "marketPositionPayload.msg"
+      "schema": "marketPositionPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketPositionBody",
       "field": "position_fp",
       "presence": "required",
-      "schema": "marketPositionPayload.msg"
+      "schema": "marketPositionPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketPositionBody",
       "field": "realized_pnl_dollars",
       "presence": "required",
-      "schema": "marketPositionPayload.msg"
+      "schema": "marketPositionPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketPositionBody",
       "field": "subaccount",
       "presence": "optional",
-      "schema": "marketPositionPayload.msg"
+      "schema": "marketPositionPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketPositionBody",
       "field": "user_id",
       "presence": "required",
-      "schema": "marketPositionPayload.msg"
+      "schema": "marketPositionPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MarketPositionBody",
       "field": "volume_fp",
       "presence": "required",
-      "schema": "marketPositionPayload.msg"
+      "schema": "marketPositionPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MultivariateLifecycleBody",
       "field": "additional_metadata",
       "presence": "optional",
-      "schema": "multivariateMarketLifecyclePayload.msg"
+      "schema": "multivariateMarketLifecyclePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MultivariateLifecycleBody",
       "field": "close_ts",
       "presence": "optional",
-      "schema": "multivariateMarketLifecyclePayload.msg"
+      "schema": "multivariateMarketLifecyclePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MultivariateLifecycleBody",
       "field": "determination_ts",
       "presence": "optional",
-      "schema": "multivariateMarketLifecyclePayload.msg"
+      "schema": "multivariateMarketLifecyclePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MultivariateLifecycleBody",
       "field": "event_type",
       "presence": "required",
-      "schema": "multivariateMarketLifecyclePayload.msg"
+      "schema": "multivariateMarketLifecyclePayload.msg",
+      "deprecated": false,
+      "enum": [
+        "created",
+        "deactivated",
+        "activated",
+        "close_date_updated",
+        "determined",
+        "settled"
+      ]
     },
     {
       "owner": "MultivariateLifecycleBody",
       "field": "exchange_index",
       "presence": "optional",
-      "schema": "multivariateMarketLifecyclePayload.msg"
+      "schema": "multivariateMarketLifecyclePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MultivariateLifecycleBody",
       "field": "is_deactivated",
       "presence": "optional",
-      "schema": "multivariateMarketLifecyclePayload.msg"
+      "schema": "multivariateMarketLifecyclePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MultivariateLifecycleBody",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "multivariateMarketLifecyclePayload.msg"
+      "schema": "multivariateMarketLifecyclePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MultivariateLifecycleBody",
       "field": "open_ts",
       "presence": "optional",
-      "schema": "multivariateMarketLifecyclePayload.msg"
+      "schema": "multivariateMarketLifecyclePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MultivariateLifecycleBody",
       "field": "price_level_structure",
       "presence": "optional",
-      "schema": "multivariateMarketLifecyclePayload.msg"
+      "schema": "multivariateMarketLifecyclePayload.msg",
+      "deprecated": false,
+      "enum": [
+        "banded_centi_cent",
+        "",
+        "linear_cent",
+        "deci_cent",
+        "tapered_deci_cent",
+        "center_whole_edge_half_cent",
+        "center_whole_edge_quint_cent",
+        "center_half_edge_half_cent",
+        "center_half_edge_quint_cent",
+        "center_half_edge_deci_cent",
+        "center_quint_edge_quint_cent",
+        "center_quint_edge_deci_cent",
+        "center_centi_edge_centi_cent",
+        "center_deci_edge_centi_cent"
+      ]
     },
     {
       "owner": "MultivariateLifecycleBody",
       "field": "result",
       "presence": "optional",
-      "schema": "multivariateMarketLifecyclePayload.msg"
+      "schema": "multivariateMarketLifecyclePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MultivariateLifecycleBody",
       "field": "settled_ts",
       "presence": "optional",
-      "schema": "multivariateMarketLifecyclePayload.msg"
+      "schema": "multivariateMarketLifecyclePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "MultivariateLifecycleBody",
       "field": "settlement_value",
       "presence": "optional",
-      "schema": "multivariateMarketLifecyclePayload.msg"
+      "schema": "multivariateMarketLifecyclePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OkMarketsBody",
       "field": "market_ids",
       "presence": "optional",
-      "schema": "okResponsePayload.msg"
+      "schema": "okResponsePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OkMarketsBody",
       "field": "market_tickers",
       "presence": "optional",
-      "schema": "okResponsePayload.msg"
+      "schema": "okResponsePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OrderGroupBody",
       "field": "contracts_limit_fp",
       "presence": "optional",
-      "schema": "orderGroupUpdatesPayload.msg"
+      "schema": "orderGroupUpdatesPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OrderGroupBody",
       "field": "event_type",
       "presence": "required",
-      "schema": "orderGroupUpdatesPayload.msg"
+      "schema": "orderGroupUpdatesPayload.msg",
+      "deprecated": false,
+      "enum": [
+        "created",
+        "triggered",
+        "reset",
+        "deleted",
+        "limit_updated"
+      ]
     },
     {
       "owner": "OrderGroupBody",
       "field": "order_group_id",
       "presence": "required",
-      "schema": "orderGroupUpdatesPayload.msg"
+      "schema": "orderGroupUpdatesPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OrderGroupBody",
       "field": "ts_ms",
       "presence": "required",
-      "schema": "orderGroupUpdatesPayload.msg"
+      "schema": "orderGroupUpdatesPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OrderbookDeltaBody",
       "field": "client_order_id",
       "presence": "optional",
-      "schema": "orderbookDeltaPayload.msg"
+      "schema": "orderbookDeltaPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OrderbookDeltaBody",
       "field": "clock",
       "presence": "required",
-      "schema": "orderbookDeltaPayload.msg"
+      "schema": "orderbookDeltaPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OrderbookDeltaBody",
       "field": "delta_fp",
       "presence": "required",
-      "schema": "orderbookDeltaPayload.msg"
+      "schema": "orderbookDeltaPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OrderbookDeltaBody",
       "field": "market_id",
       "presence": "required",
-      "schema": "orderbookDeltaPayload.msg"
+      "schema": "orderbookDeltaPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OrderbookDeltaBody",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "orderbookDeltaPayload.msg"
+      "schema": "orderbookDeltaPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OrderbookDeltaBody",
       "field": "price_dollars",
       "presence": "required",
-      "schema": "orderbookDeltaPayload.msg"
+      "schema": "orderbookDeltaPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OrderbookDeltaBody",
       "field": "side",
       "presence": "required",
-      "schema": "orderbookDeltaPayload.msg"
+      "schema": "orderbookDeltaPayload.msg",
+      "deprecated": false,
+      "enum": [
+        "yes",
+        "no"
+      ]
     },
     {
       "owner": "OrderbookDeltaBody",
       "field": "subaccount",
       "presence": "optional",
-      "schema": "orderbookDeltaPayload.msg"
+      "schema": "orderbookDeltaPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OrderbookDeltaBody",
       "field": "ts",
       "presence": "optional",
-      "schema": "orderbookDeltaPayload.msg"
+      "schema": "orderbookDeltaPayload.msg",
+      "deprecated": true
     },
     {
       "owner": "OrderbookDeltaBody",
       "field": "ts_ms",
       "presence": "optional",
-      "schema": "orderbookDeltaPayload.msg"
+      "schema": "orderbookDeltaPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OrderbookSnapshotBody",
       "field": "clock",
       "presence": "required",
-      "schema": "orderbookSnapshotPayload.msg"
+      "schema": "orderbookSnapshotPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OrderbookSnapshotBody",
       "field": "market_id",
       "presence": "required",
-      "schema": "orderbookSnapshotPayload.msg"
+      "schema": "orderbookSnapshotPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OrderbookSnapshotBody",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "orderbookSnapshotPayload.msg"
+      "schema": "orderbookSnapshotPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OrderbookSnapshotBody",
       "field": "no_dollars_fp",
       "presence": "optional",
-      "schema": "orderbookSnapshotPayload.msg"
+      "schema": "orderbookSnapshotPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "OrderbookSnapshotBody",
       "field": "yes_dollars_fp",
       "presence": "optional",
-      "schema": "orderbookSnapshotPayload.msg"
+      "schema": "orderbookSnapshotPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "PriceRange",
       "field": "end",
       "presence": "required",
-      "schema": "marketLifecycleV2Payload.msg.price_ranges"
+      "schema": "marketLifecycleV2Payload.msg.price_ranges",
+      "deprecated": false
     },
     {
       "owner": "PriceRange",
       "field": "start",
       "presence": "required",
-      "schema": "marketLifecycleV2Payload.msg.price_ranges"
+      "schema": "marketLifecycleV2Payload.msg.price_ranges",
+      "deprecated": false
     },
     {
       "owner": "PriceRange",
       "field": "step",
       "presence": "required",
-      "schema": "marketLifecycleV2Payload.msg.price_ranges"
+      "schema": "marketLifecycleV2Payload.msg.price_ranges",
+      "deprecated": false
     },
     {
       "owner": "PythValueBody",
       "field": "received_at",
       "presence": "required",
-      "schema": "pythValuePayload.msg"
+      "schema": "pythValuePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "PythValueBody",
       "field": "source_ts_ms",
       "presence": "required",
-      "schema": "pythValuePayload.msg"
+      "schema": "pythValuePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "PythValueBody",
       "field": "underlying_ticker",
       "presence": "required",
-      "schema": "pythValuePayload.msg"
+      "schema": "pythValuePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "PythValueBody",
       "field": "value_usd",
       "presence": "required",
-      "schema": "pythValuePayload.msg"
+      "schema": "pythValuePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteAcceptedBody",
       "field": "accepted_side",
       "presence": "optional",
-      "schema": "quoteAcceptedPayload.msg"
+      "schema": "quoteAcceptedPayload.msg",
+      "deprecated": false,
+      "enum": [
+        "yes",
+        "no"
+      ]
     },
     {
       "owner": "QuoteAcceptedBody",
       "field": "contracts_accepted_fp",
       "presence": "optional",
-      "schema": "quoteAcceptedPayload.msg"
+      "schema": "quoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteAcceptedBody",
       "field": "event_ticker",
       "presence": "optional",
-      "schema": "quoteAcceptedPayload.msg"
+      "schema": "quoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteAcceptedBody",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "quoteAcceptedPayload.msg"
+      "schema": "quoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteAcceptedBody",
       "field": "no_bid_dollars",
       "presence": "required",
-      "schema": "quoteAcceptedPayload.msg"
+      "schema": "quoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteAcceptedBody",
       "field": "no_contracts_offered_fp",
       "presence": "optional",
-      "schema": "quoteAcceptedPayload.msg"
+      "schema": "quoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteAcceptedBody",
       "field": "quote_creator_id",
       "presence": "required",
-      "schema": "quoteAcceptedPayload.msg"
+      "schema": "quoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteAcceptedBody",
       "field": "quote_id",
       "presence": "required",
-      "schema": "quoteAcceptedPayload.msg"
+      "schema": "quoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteAcceptedBody",
       "field": "rfq_creator_id",
       "presence": "required",
-      "schema": "quoteAcceptedPayload.msg"
+      "schema": "quoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteAcceptedBody",
       "field": "rfq_id",
       "presence": "required",
-      "schema": "quoteAcceptedPayload.msg"
+      "schema": "quoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteAcceptedBody",
       "field": "rfq_target_cost_dollars",
       "presence": "optional",
-      "schema": "quoteAcceptedPayload.msg"
+      "schema": "quoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteAcceptedBody",
       "field": "subaccount",
       "presence": "optional",
-      "schema": "quoteAcceptedPayload.msg"
+      "schema": "quoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteAcceptedBody",
       "field": "yes_bid_dollars",
       "presence": "required",
-      "schema": "quoteAcceptedPayload.msg"
+      "schema": "quoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteAcceptedBody",
       "field": "yes_contracts_offered_fp",
       "presence": "optional",
-      "schema": "quoteAcceptedPayload.msg"
+      "schema": "quoteAcceptedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteCreatedBody",
       "field": "created_ts",
       "presence": "required",
-      "schema": "quoteCreatedPayload.msg"
+      "schema": "quoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteCreatedBody",
       "field": "event_ticker",
       "presence": "optional",
-      "schema": "quoteCreatedPayload.msg"
+      "schema": "quoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteCreatedBody",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "quoteCreatedPayload.msg"
+      "schema": "quoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteCreatedBody",
       "field": "no_bid_dollars",
       "presence": "required",
-      "schema": "quoteCreatedPayload.msg"
+      "schema": "quoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteCreatedBody",
       "field": "no_contracts_offered_fp",
       "presence": "optional",
-      "schema": "quoteCreatedPayload.msg"
+      "schema": "quoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteCreatedBody",
       "field": "quote_creator_id",
       "presence": "required",
-      "schema": "quoteCreatedPayload.msg"
+      "schema": "quoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteCreatedBody",
       "field": "quote_id",
       "presence": "required",
-      "schema": "quoteCreatedPayload.msg"
+      "schema": "quoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteCreatedBody",
       "field": "rfq_creator_id",
       "presence": "required",
-      "schema": "quoteCreatedPayload.msg"
+      "schema": "quoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteCreatedBody",
       "field": "rfq_id",
       "presence": "required",
-      "schema": "quoteCreatedPayload.msg"
+      "schema": "quoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteCreatedBody",
       "field": "rfq_target_cost_dollars",
       "presence": "optional",
-      "schema": "quoteCreatedPayload.msg"
+      "schema": "quoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteCreatedBody",
       "field": "subaccount",
       "presence": "optional",
-      "schema": "quoteCreatedPayload.msg"
+      "schema": "quoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteCreatedBody",
       "field": "yes_bid_dollars",
       "presence": "required",
-      "schema": "quoteCreatedPayload.msg"
+      "schema": "quoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteCreatedBody",
       "field": "yes_contracts_offered_fp",
       "presence": "optional",
-      "schema": "quoteCreatedPayload.msg"
+      "schema": "quoteCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteExecutedBody",
       "field": "client_order_id",
       "presence": "required",
-      "schema": "quoteExecutedPayload.msg"
+      "schema": "quoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteExecutedBody",
       "field": "executed_ts",
       "presence": "required",
-      "schema": "quoteExecutedPayload.msg"
+      "schema": "quoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteExecutedBody",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "quoteExecutedPayload.msg"
+      "schema": "quoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteExecutedBody",
       "field": "order_id",
       "presence": "required",
-      "schema": "quoteExecutedPayload.msg"
+      "schema": "quoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteExecutedBody",
       "field": "quote_creator_id",
       "presence": "required",
-      "schema": "quoteExecutedPayload.msg"
+      "schema": "quoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteExecutedBody",
       "field": "quote_id",
       "presence": "required",
-      "schema": "quoteExecutedPayload.msg"
+      "schema": "quoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteExecutedBody",
       "field": "rfq_batch_id",
       "presence": "optional",
-      "schema": "quoteExecutedPayload.msg"
+      "schema": "quoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteExecutedBody",
       "field": "rfq_creator_id",
       "presence": "required",
-      "schema": "quoteExecutedPayload.msg"
+      "schema": "quoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteExecutedBody",
       "field": "rfq_id",
       "presence": "required",
-      "schema": "quoteExecutedPayload.msg"
+      "schema": "quoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "QuoteExecutedBody",
       "field": "subaccount",
       "presence": "optional",
-      "schema": "quoteExecutedPayload.msg"
+      "schema": "quoteExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchBestQuote",
       "field": "contracts_fp",
       "presence": "optional",
-      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchBestQuote",
       "field": "event_ticker",
       "presence": "optional",
-      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchBestQuote",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchBestQuote",
       "field": "no_bid_dollars",
       "presence": "optional",
-      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchBestQuote",
       "field": "no_contracts_offered_fp",
       "presence": "optional",
-      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchBestQuote",
       "field": "rfq_id",
       "presence": "required",
-      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchBestQuote",
       "field": "rfq_target_cost_dollars",
       "presence": "optional",
-      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchBestQuote",
       "field": "yes_bid_dollars",
       "presence": "optional",
-      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchBestQuote",
       "field": "yes_contracts_offered_fp",
       "presence": "optional",
-      "schema": "rfqBatchBestQuotesPayload.msg.rfqs"
+      "schema": "rfqBatchBestQuotesPayload.msg.rfqs",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchBestQuotesBody",
       "field": "client_batch_id",
       "presence": "optional",
-      "schema": "rfqBatchBestQuotesPayload.msg"
+      "schema": "rfqBatchBestQuotesPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchBestQuotesBody",
       "field": "no_complete",
       "presence": "required",
-      "schema": "rfqBatchBestQuotesPayload.msg"
+      "schema": "rfqBatchBestQuotesPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchBestQuotesBody",
       "field": "rfq_batch_id",
       "presence": "required",
-      "schema": "rfqBatchBestQuotesPayload.msg"
+      "schema": "rfqBatchBestQuotesPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchBestQuotesBody",
       "field": "rfqs",
       "presence": "required",
-      "schema": "rfqBatchBestQuotesPayload.msg"
+      "schema": "rfqBatchBestQuotesPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchBestQuotesBody",
       "field": "subaccount",
       "presence": "optional",
-      "schema": "rfqBatchBestQuotesPayload.msg"
+      "schema": "rfqBatchBestQuotesPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchBestQuotesBody",
       "field": "updated_ts",
       "presence": "required",
-      "schema": "rfqBatchBestQuotesPayload.msg"
+      "schema": "rfqBatchBestQuotesPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchBestQuotesBody",
       "field": "version",
       "presence": "required",
-      "schema": "rfqBatchBestQuotesPayload.msg"
+      "schema": "rfqBatchBestQuotesPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchBestQuotesBody",
       "field": "yes_complete",
       "presence": "required",
-      "schema": "rfqBatchBestQuotesPayload.msg"
+      "schema": "rfqBatchBestQuotesPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchChildRfq",
       "field": "contracts_fp",
       "presence": "optional",
-      "schema": "rfqBatchCreatedPayload.msg.rfqs"
+      "schema": "rfqBatchCreatedPayload.msg.rfqs",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchChildRfq",
       "field": "event_ticker",
       "presence": "optional",
-      "schema": "rfqBatchCreatedPayload.msg.rfqs"
+      "schema": "rfqBatchCreatedPayload.msg.rfqs",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchChildRfq",
       "field": "id",
       "presence": "required",
-      "schema": "rfqBatchCreatedPayload.msg.rfqs"
+      "schema": "rfqBatchCreatedPayload.msg.rfqs",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchChildRfq",
       "field": "leg_indices",
       "presence": "required",
-      "schema": "rfqBatchCreatedPayload.msg.rfqs"
+      "schema": "rfqBatchCreatedPayload.msg.rfqs",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchChildRfq",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "rfqBatchCreatedPayload.msg.rfqs"
+      "schema": "rfqBatchCreatedPayload.msg.rfqs",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchChildRfq",
       "field": "mve_collection_ticker",
       "presence": "optional",
-      "schema": "rfqBatchCreatedPayload.msg.rfqs"
+      "schema": "rfqBatchCreatedPayload.msg.rfqs",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchChildRfq",
       "field": "target_cost_dollars",
       "presence": "optional",
-      "schema": "rfqBatchCreatedPayload.msg.rfqs"
+      "schema": "rfqBatchCreatedPayload.msg.rfqs",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchCreatedBody",
       "field": "created_ts",
       "presence": "required",
-      "schema": "rfqBatchCreatedPayload.msg"
+      "schema": "rfqBatchCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchCreatedBody",
       "field": "creator_id",
       "presence": "required",
-      "schema": "rfqBatchCreatedPayload.msg"
+      "schema": "rfqBatchCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchCreatedBody",
       "field": "id",
       "presence": "required",
-      "schema": "rfqBatchCreatedPayload.msg"
+      "schema": "rfqBatchCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchCreatedBody",
       "field": "legs",
       "presence": "required",
-      "schema": "rfqBatchCreatedPayload.msg"
+      "schema": "rfqBatchCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchCreatedBody",
       "field": "rfqs",
       "presence": "required",
-      "schema": "rfqBatchCreatedPayload.msg"
+      "schema": "rfqBatchCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchDeletedBody",
       "field": "creator_id",
       "presence": "required",
-      "schema": "rfqBatchDeletedPayload.msg"
+      "schema": "rfqBatchDeletedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchDeletedBody",
       "field": "deleted_ts",
       "presence": "required",
-      "schema": "rfqBatchDeletedPayload.msg"
+      "schema": "rfqBatchDeletedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchDeletedBody",
       "field": "id",
       "presence": "required",
-      "schema": "rfqBatchDeletedPayload.msg"
+      "schema": "rfqBatchDeletedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchDeletedBody",
       "field": "rfq_ids",
       "presence": "required",
-      "schema": "rfqBatchDeletedPayload.msg"
+      "schema": "rfqBatchDeletedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchExecutedBody",
       "field": "client_batch_id",
       "presence": "optional",
-      "schema": "rfqBatchExecutedPayload.msg"
+      "schema": "rfqBatchExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchExecutedBody",
       "field": "close_reason",
       "presence": "required",
-      "schema": "rfqBatchExecutedPayload.msg"
+      "schema": "rfqBatchExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchExecutedBody",
       "field": "executed_rfq_ids",
       "presence": "required",
-      "schema": "rfqBatchExecutedPayload.msg"
+      "schema": "rfqBatchExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchExecutedBody",
       "field": "executed_ts",
       "presence": "required",
-      "schema": "rfqBatchExecutedPayload.msg"
+      "schema": "rfqBatchExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchExecutedBody",
       "field": "failed_rfq_ids",
       "presence": "required",
-      "schema": "rfqBatchExecutedPayload.msg"
+      "schema": "rfqBatchExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchExecutedBody",
       "field": "rfq_batch_id",
       "presence": "required",
-      "schema": "rfqBatchExecutedPayload.msg"
+      "schema": "rfqBatchExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchExecutedBody",
       "field": "rfq_creator_id",
       "presence": "required",
-      "schema": "rfqBatchExecutedPayload.msg"
+      "schema": "rfqBatchExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqBatchExecutedBody",
       "field": "subaccount",
       "presence": "optional",
-      "schema": "rfqBatchExecutedPayload.msg"
+      "schema": "rfqBatchExecutedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqCreatedBody",
       "field": "contracts_fp",
       "presence": "optional",
-      "schema": "rfqCreatedPayload.msg"
+      "schema": "rfqCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqCreatedBody",
       "field": "created_ts",
       "presence": "required",
-      "schema": "rfqCreatedPayload.msg"
+      "schema": "rfqCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqCreatedBody",
       "field": "creator_id",
       "presence": "required",
-      "schema": "rfqCreatedPayload.msg"
+      "schema": "rfqCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqCreatedBody",
       "field": "event_ticker",
       "presence": "optional",
-      "schema": "rfqCreatedPayload.msg"
+      "schema": "rfqCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqCreatedBody",
       "field": "id",
       "presence": "required",
-      "schema": "rfqCreatedPayload.msg"
+      "schema": "rfqCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqCreatedBody",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "rfqCreatedPayload.msg"
+      "schema": "rfqCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqCreatedBody",
       "field": "mve_collection_ticker",
       "presence": "optional",
-      "schema": "rfqCreatedPayload.msg"
+      "schema": "rfqCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqCreatedBody",
       "field": "mve_selected_legs",
       "presence": "optional",
-      "schema": "rfqCreatedPayload.msg"
+      "schema": "rfqCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqCreatedBody",
       "field": "target_cost_dollars",
       "presence": "optional",
-      "schema": "rfqCreatedPayload.msg"
+      "schema": "rfqCreatedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqDeletedBody",
       "field": "contracts_fp",
       "presence": "optional",
-      "schema": "rfqDeletedPayload.msg"
+      "schema": "rfqDeletedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqDeletedBody",
       "field": "creator_id",
       "presence": "required",
-      "schema": "rfqDeletedPayload.msg"
+      "schema": "rfqDeletedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqDeletedBody",
       "field": "deleted_ts",
       "presence": "required",
-      "schema": "rfqDeletedPayload.msg"
+      "schema": "rfqDeletedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqDeletedBody",
       "field": "event_ticker",
       "presence": "optional",
-      "schema": "rfqDeletedPayload.msg"
+      "schema": "rfqDeletedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqDeletedBody",
       "field": "id",
       "presence": "required",
-      "schema": "rfqDeletedPayload.msg"
+      "schema": "rfqDeletedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqDeletedBody",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "rfqDeletedPayload.msg"
+      "schema": "rfqDeletedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "RfqDeletedBody",
       "field": "target_cost_dollars",
       "presence": "optional",
-      "schema": "rfqDeletedPayload.msg"
+      "schema": "rfqDeletedPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "SelectedLeg",
       "field": "event_ticker",
       "presence": "required",
-      "schema": "rfqBatchCreatedPayload.msg.legs"
+      "schema": "rfqBatchCreatedPayload.msg.legs",
+      "deprecated": false
     },
     {
       "owner": "SelectedLeg",
       "field": "event_ticker",
       "presence": "required",
-      "schema": "rfqCreatedPayload.msg.mve_selected_legs"
+      "schema": "rfqCreatedPayload.msg.mve_selected_legs",
+      "deprecated": false
     },
     {
       "owner": "SelectedLeg",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "rfqBatchCreatedPayload.msg.legs"
+      "schema": "rfqBatchCreatedPayload.msg.legs",
+      "deprecated": false
     },
     {
       "owner": "SelectedLeg",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "rfqCreatedPayload.msg.mve_selected_legs"
+      "schema": "rfqCreatedPayload.msg.mve_selected_legs",
+      "deprecated": false
     },
     {
       "owner": "SelectedLeg",
       "field": "side",
       "presence": "required",
-      "schema": "rfqBatchCreatedPayload.msg.legs"
+      "schema": "rfqBatchCreatedPayload.msg.legs",
+      "deprecated": false,
+      "enum": [
+        "yes",
+        "no"
+      ]
     },
     {
       "owner": "SelectedLeg",
       "field": "side",
       "presence": "required",
-      "schema": "rfqCreatedPayload.msg.mve_selected_legs"
+      "schema": "rfqCreatedPayload.msg.mve_selected_legs",
+      "deprecated": false,
+      "enum": [
+        "yes",
+        "no"
+      ]
     },
     {
       "owner": "SelectedLeg",
       "field": "yes_settlement_value_dollars",
       "presence": "optional",
-      "schema": "rfqBatchCreatedPayload.msg.legs"
+      "schema": "rfqBatchCreatedPayload.msg.legs",
+      "deprecated": false
     },
     {
       "owner": "SelectedLeg",
       "field": "yes_settlement_value_dollars",
       "presence": "optional",
-      "schema": "rfqCreatedPayload.msg.mve_selected_legs"
+      "schema": "rfqCreatedPayload.msg.mve_selected_legs",
+      "deprecated": false
     },
     {
       "owner": "SubscribeParams",
       "field": "channels",
       "presence": "required",
-      "schema": "subscribeCommandPayload.params"
+      "schema": "subscribeCommandPayload.params",
+      "deprecated": false,
+      "enum": [
+        "orderbook_delta",
+        "ticker",
+        "trade",
+        "fill",
+        "market_positions",
+        "market_lifecycle_v2",
+        "multivariate_market_lifecycle",
+        "communications",
+        "order_group_updates",
+        "user_orders",
+        "cfbenchmarks_value",
+        "cfbenchmarks_value_5hz",
+        "pyth_value"
+      ]
     },
     {
       "owner": "SubscribeParams",
       "field": "index_ids",
       "presence": "optional",
-      "schema": "subscribeCommandPayload.params"
+      "schema": "subscribeCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "SubscribeParams",
       "field": "market_id",
       "presence": "optional",
-      "schema": "subscribeCommandPayload.params"
+      "schema": "subscribeCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "SubscribeParams",
       "field": "market_ids",
       "presence": "optional",
-      "schema": "subscribeCommandPayload.params"
+      "schema": "subscribeCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "SubscribeParams",
       "field": "market_ticker",
       "presence": "optional",
-      "schema": "subscribeCommandPayload.params"
+      "schema": "subscribeCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "SubscribeParams",
       "field": "market_tickers",
       "presence": "optional",
-      "schema": "subscribeCommandPayload.params"
+      "schema": "subscribeCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "SubscribeParams",
       "field": "send_initial_snapshot",
       "presence": "optional",
-      "schema": "subscribeCommandPayload.params"
+      "schema": "subscribeCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "SubscribeParams",
       "field": "shard_factor",
       "presence": "optional",
-      "schema": "subscribeCommandPayload.params"
+      "schema": "subscribeCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "SubscribeParams",
       "field": "shard_key",
       "presence": "optional",
-      "schema": "subscribeCommandPayload.params"
+      "schema": "subscribeCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "SubscribeParams",
       "field": "skip_ticker_ack",
       "presence": "optional",
-      "schema": "subscribeCommandPayload.params"
+      "schema": "subscribeCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "SubscribeParams",
       "field": "underlying_tickers",
       "presence": "optional",
-      "schema": "subscribeCommandPayload.params"
+      "schema": "subscribeCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "SubscribeParams",
       "field": "use_yes_price",
       "presence": "optional",
-      "schema": "subscribeCommandPayload.params"
+      "schema": "subscribeCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "SubscribeParams",
       "field": "user_filter",
       "presence": "optional",
-      "schema": "subscribeCommandPayload.params"
+      "schema": "subscribeCommandPayload.params",
+      "deprecated": false,
+      "enum": [
+        "",
+        "self"
+      ]
     },
     {
       "owner": "SubscribedBody",
       "field": "channel",
       "presence": "required",
-      "schema": "listSubscriptionsResponsePayload.msg"
+      "schema": "listSubscriptionsResponsePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "SubscribedBody",
       "field": "channel",
       "presence": "required",
-      "schema": "subscribedResponsePayload.msg"
+      "schema": "subscribedResponsePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "SubscribedBody",
       "field": "sid",
       "presence": "required",
-      "schema": "listSubscriptionsResponsePayload.msg"
+      "schema": "listSubscriptionsResponsePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "SubscribedBody",
       "field": "sid",
       "presence": "required",
-      "schema": "subscribedResponsePayload.msg"
+      "schema": "subscribedResponsePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TickerBody",
       "field": "dollar_open_interest",
       "presence": "required",
-      "schema": "tickerPayload.msg"
+      "schema": "tickerPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TickerBody",
       "field": "dollar_volume",
       "presence": "required",
-      "schema": "tickerPayload.msg"
+      "schema": "tickerPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TickerBody",
       "field": "last_trade_size_fp",
       "presence": "required",
-      "schema": "tickerPayload.msg"
+      "schema": "tickerPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TickerBody",
       "field": "market_id",
       "presence": "required",
-      "schema": "tickerPayload.msg"
+      "schema": "tickerPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TickerBody",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "tickerPayload.msg"
+      "schema": "tickerPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TickerBody",
       "field": "open_interest_fp",
       "presence": "required",
-      "schema": "tickerPayload.msg"
+      "schema": "tickerPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TickerBody",
       "field": "price_dollars",
       "presence": "required",
-      "schema": "tickerPayload.msg"
+      "schema": "tickerPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TickerBody",
       "field": "time",
       "presence": "required",
-      "schema": "tickerPayload.msg"
+      "schema": "tickerPayload.msg",
+      "deprecated": true
     },
     {
       "owner": "TickerBody",
       "field": "ts",
       "presence": "required",
-      "schema": "tickerPayload.msg"
+      "schema": "tickerPayload.msg",
+      "deprecated": true
     },
     {
       "owner": "TickerBody",
       "field": "ts_ms",
       "presence": "required",
-      "schema": "tickerPayload.msg"
+      "schema": "tickerPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TickerBody",
       "field": "volume_fp",
       "presence": "required",
-      "schema": "tickerPayload.msg"
+      "schema": "tickerPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TickerBody",
       "field": "yes_ask_dollars",
       "presence": "required",
-      "schema": "tickerPayload.msg"
+      "schema": "tickerPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TickerBody",
       "field": "yes_ask_size_fp",
       "presence": "required",
-      "schema": "tickerPayload.msg"
+      "schema": "tickerPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TickerBody",
       "field": "yes_bid_dollars",
       "presence": "required",
-      "schema": "tickerPayload.msg"
+      "schema": "tickerPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TickerBody",
       "field": "yes_bid_size_fp",
       "presence": "required",
-      "schema": "tickerPayload.msg"
+      "schema": "tickerPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TradeBody",
       "field": "count_fp",
       "presence": "required",
-      "schema": "tradePayload.msg"
+      "schema": "tradePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TradeBody",
       "field": "is_block_trade",
       "presence": "required",
-      "schema": "tradePayload.msg"
+      "schema": "tradePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TradeBody",
       "field": "market_ticker",
       "presence": "required",
-      "schema": "tradePayload.msg"
+      "schema": "tradePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TradeBody",
       "field": "no_price_dollars",
       "presence": "required",
-      "schema": "tradePayload.msg"
+      "schema": "tradePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TradeBody",
       "field": "taker_book_side",
       "presence": "required",
-      "schema": "tradePayload.msg"
+      "schema": "tradePayload.msg",
+      "deprecated": false,
+      "enum": [
+        "bid",
+        "ask"
+      ]
     },
     {
       "owner": "TradeBody",
       "field": "taker_outcome_side",
       "presence": "required",
-      "schema": "tradePayload.msg"
+      "schema": "tradePayload.msg",
+      "deprecated": false,
+      "enum": [
+        "yes",
+        "no"
+      ]
     },
     {
       "owner": "TradeBody",
       "field": "taker_side",
       "presence": "required",
-      "schema": "tradePayload.msg"
+      "schema": "tradePayload.msg",
+      "deprecated": true,
+      "enum": [
+        "yes",
+        "no"
+      ]
     },
     {
       "owner": "TradeBody",
       "field": "trade_id",
       "presence": "required",
-      "schema": "tradePayload.msg"
+      "schema": "tradePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TradeBody",
       "field": "ts",
       "presence": "required",
-      "schema": "tradePayload.msg"
+      "schema": "tradePayload.msg",
+      "deprecated": true
     },
     {
       "owner": "TradeBody",
       "field": "ts_ms",
       "presence": "required",
-      "schema": "tradePayload.msg"
+      "schema": "tradePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "TradeBody",
       "field": "yes_price_dollars",
       "presence": "required",
-      "schema": "tradePayload.msg"
+      "schema": "tradePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UnderlyingListBody",
       "field": "underlying_tickers",
       "presence": "required",
-      "schema": "pythUnderlyingListPayload.msg"
+      "schema": "pythUnderlyingListPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UnderlyingListBody",
       "field": "underlying_tickers",
       "presence": "required",
-      "schema": "subscribedUnderlyingsResponsePayload.msg"
+      "schema": "subscribedUnderlyingsResponsePayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UnsubscribeParams",
       "field": "sids",
       "presence": "required",
-      "schema": "unsubscribeCommandPayload.params"
+      "schema": "unsubscribeCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "UpdateSubscriptionParams",
       "field": "action",
       "presence": "required",
-      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload.params"
+      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload.params",
+      "deprecated": false,
+      "enum": [
+        "subscribe_indices",
+        "unsubscribe_indices",
+        "indexlist"
+      ]
     },
     {
       "owner": "UpdateSubscriptionParams",
       "field": "action",
       "presence": "required",
-      "schema": "pythUpdateSubscriptionCommandPayload.params"
+      "schema": "pythUpdateSubscriptionCommandPayload.params",
+      "deprecated": false,
+      "enum": [
+        "subscribe_underlyings",
+        "unsubscribe_underlyings",
+        "underlying_list"
+      ]
     },
     {
       "owner": "UpdateSubscriptionParams",
       "field": "action",
       "presence": "required",
-      "schema": "updateSubscriptionCommandPayload.params"
+      "schema": "updateSubscriptionCommandPayload.params",
+      "deprecated": false,
+      "enum": [
+        "add_markets",
+        "delete_markets",
+        "get_snapshot"
+      ]
     },
     {
       "owner": "UpdateSubscriptionParams",
       "field": "index_ids",
       "presence": "optional",
-      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload.params"
+      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "UpdateSubscriptionParams",
       "field": "market_id",
       "presence": "optional",
-      "schema": "updateSubscriptionCommandPayload.params"
+      "schema": "updateSubscriptionCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "UpdateSubscriptionParams",
       "field": "market_ids",
       "presence": "optional",
-      "schema": "updateSubscriptionCommandPayload.params"
+      "schema": "updateSubscriptionCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "UpdateSubscriptionParams",
       "field": "market_ticker",
       "presence": "optional",
-      "schema": "updateSubscriptionCommandPayload.params"
+      "schema": "updateSubscriptionCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "UpdateSubscriptionParams",
       "field": "market_tickers",
       "presence": "optional",
-      "schema": "updateSubscriptionCommandPayload.params"
+      "schema": "updateSubscriptionCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "UpdateSubscriptionParams",
       "field": "send_initial_snapshot",
       "presence": "optional",
-      "schema": "updateSubscriptionCommandPayload.params"
+      "schema": "updateSubscriptionCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "UpdateSubscriptionParams",
       "field": "sid",
       "presence": "optional",
-      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload.params"
+      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "UpdateSubscriptionParams",
       "field": "sid",
       "presence": "optional",
-      "schema": "pythUpdateSubscriptionCommandPayload.params"
+      "schema": "pythUpdateSubscriptionCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "UpdateSubscriptionParams",
       "field": "sid",
       "presence": "optional",
-      "schema": "updateSubscriptionCommandPayload.params"
+      "schema": "updateSubscriptionCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "UpdateSubscriptionParams",
       "field": "sids",
       "presence": "optional",
-      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload.params"
+      "schema": "cfbenchmarksUpdateSubscriptionCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "UpdateSubscriptionParams",
       "field": "sids",
       "presence": "optional",
-      "schema": "pythUpdateSubscriptionCommandPayload.params"
+      "schema": "pythUpdateSubscriptionCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "UpdateSubscriptionParams",
       "field": "sids",
       "presence": "optional",
-      "schema": "updateSubscriptionCommandPayload.params"
+      "schema": "updateSubscriptionCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "UpdateSubscriptionParams",
       "field": "underlying_tickers",
       "presence": "optional",
-      "schema": "pythUpdateSubscriptionCommandPayload.params"
+      "schema": "pythUpdateSubscriptionCommandPayload.params",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "book_side",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false,
+      "enum": [
+        "bid",
+        "ask"
+      ]
     },
     {
       "owner": "UserOrderBody",
       "field": "client_order_id",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "created_time",
       "presence": "required_nullable",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": true
     },
     {
       "owner": "UserOrderBody",
       "field": "created_ts_ms",
       "presence": "required_nullable",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "exchange_index",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "expiration_time",
       "presence": "optional",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": true
     },
     {
       "owner": "UserOrderBody",
       "field": "expiration_ts_ms",
       "presence": "optional",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "fill_count_fp",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "initial_count_fp",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "is_yes",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": true
     },
     {
       "owner": "UserOrderBody",
       "field": "last_update_reason",
       "presence": "optional",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false,
+      "enum": [
+        "Decrease",
+        "Amend",
+        "MarginCancel",
+        "SelfTradeCancel",
+        "ExpiryCancel",
+        "CloseCancel",
+        "HaltCancel",
+        "Trade",
+        "PostOnlyCrossCancel",
+        "ReduceOnlyCancel",
+        "SettlementBoundsCancel"
+      ]
     },
     {
       "owner": "UserOrderBody",
       "field": "last_update_time",
       "presence": "optional",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": true
     },
     {
       "owner": "UserOrderBody",
       "field": "last_updated_ts_ms",
       "presence": "optional",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "maker_fees_dollars",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "maker_fill_cost_dollars",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "order_group_id",
       "presence": "optional",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "order_id",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "outcome_side",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false,
+      "enum": [
+        "yes",
+        "no"
+      ]
     },
     {
       "owner": "UserOrderBody",
       "field": "remaining_count_fp",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "self_trade_prevention_type",
       "presence": "optional",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false,
+      "enum": [
+        "taker_at_cross",
+        "maker"
+      ]
     },
     {
       "owner": "UserOrderBody",
       "field": "side",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": true,
+      "enum": [
+        "yes",
+        "no"
+      ]
     },
     {
       "owner": "UserOrderBody",
       "field": "status",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false,
+      "enum": [
+        "resting",
+        "canceled",
+        "executed",
+        "unknown"
+      ]
     },
     {
       "owner": "UserOrderBody",
       "field": "subaccount_number",
       "presence": "optional",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "taker_fees_dollars",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "taker_fill_cost_dollars",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "ticker",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "user_id",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     },
     {
       "owner": "UserOrderBody",
       "field": "yes_price_dollars",
       "presence": "required",
-      "schema": "userOrderPayload.msg"
+      "schema": "userOrderPayload.msg",
+      "deprecated": false
     }
   ]
 }

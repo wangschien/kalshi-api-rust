@@ -5,7 +5,8 @@ Each row is one property of a message this crate types by hand. ``presence``
 is ``required``, ``optional``, or ``required_nullable`` (the key must appear;
 JSON null is accepted). The committed list is checked by drift. Nested
 objects that this crate types are expanded. Channel payloads outside that set
-are not listed.
+are not listed. ``deprecated`` mirrors the document flag, and ``enum`` lists
+the string wire values of an enum or const property.
 """
 
 from __future__ import annotations
@@ -159,6 +160,20 @@ def presence(schemas: dict, name: str, prop: dict, required: set[str]) -> str:
     return "optional"
 
 
+def wire_values(schemas: dict, prop: dict) -> list[str] | None:
+    """String enum or const values of a property (or of its array items)."""
+    node = resolve(schemas, prop)
+    if node.get("type") == "array" and isinstance(node.get("items"), dict):
+        node = resolve(schemas, node["items"])
+    if "enum" not in node and "const" not in node:
+        return None
+    values = node.get("enum", [node.get("const")])
+    strings = [value for value in values if isinstance(value, str)]
+    if not strings:
+        return None
+    return strings
+
+
 def child_object(schemas: dict, prop: dict) -> dict | None:
     resolved = resolve(schemas, prop)
     if resolved.get("type") == "array" and isinstance(resolved.get("items"), dict):
@@ -188,14 +203,17 @@ def walk(
             continue
         if not isinstance(prop, dict):
             raise SystemExit(f"{path}.{name} is not a schema object")
-        rows.append(
-            {
-                "owner": owner,
-                "field": name,
-                "presence": presence(schemas, name, prop, required),
-                "schema": path,
-            }
-        )
+        row = {
+            "owner": owner,
+            "field": name,
+            "presence": presence(schemas, name, prop, required),
+            "schema": path,
+            "deprecated": bool(prop.get("deprecated")),
+        }
+        values = wire_values(schemas, prop)
+        if values is not None:
+            row["enum"] = values
+        rows.append(row)
         child = child_object(schemas, prop)
         if child is None:
             continue

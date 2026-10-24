@@ -1,5 +1,6 @@
 #![allow(clippy::disallowed_methods)]
 
+use std::collections::{BTreeMap, BTreeSet};
 use std::fs;
 use std::path::PathBuf;
 
@@ -20,6 +21,8 @@ struct Row {
     field: String,
     presence: String,
     schema: String,
+    deprecated: bool,
+    wire: Vec<String>,
 }
 
 fn type_string(ty: &syn::Type) -> String {
@@ -156,6 +159,16 @@ fn load_rows() -> Vec<Row> {
             field: row["field"].as_str().unwrap().to_owned(),
             presence: row["presence"].as_str().unwrap().to_owned(),
             schema: row["schema"].as_str().unwrap().to_owned(),
+            deprecated: row["deprecated"].as_bool().unwrap(),
+            wire: row["enum"]
+                .as_array()
+                .map(|values| {
+                    values
+                        .iter()
+                        .map(|value| value.as_str().unwrap().to_owned())
+                        .collect()
+                })
+                .unwrap_or_default(),
         })
         .collect()
 }
@@ -343,5 +356,230 @@ fn required_nullable_fields_reject_a_missing_key_and_keep_null() {
             row.owner,
             row.field
         );
+    }
+}
+
+fn generated_file() -> syn::File {
+    let path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("src/ws/generated.rs");
+    syn::parse_file(&fs::read_to_string(path).unwrap()).unwrap()
+}
+
+/// (owner, field) → (has `#[deprecated]`, innermost type name).
+fn field_markers(file: &syn::File) -> BTreeMap<(String, String), (bool, String)> {
+    fn scan(owner: &str, fields: &Fields, out: &mut BTreeMap<(String, String), (bool, String)>) {
+        let Fields::Named(named) = fields else {
+            return;
+        };
+        for field in &named.named {
+            let deprecated = field
+                .attrs
+                .iter()
+                .any(|attr| attr.path().is_ident("deprecated"));
+            let mut ty = type_string(&field.ty);
+            while let Some(inner) = ty
+                .strip_prefix("Option<")
+                .or_else(|| ty.strip_prefix("Vec<"))
+                .and_then(|rest| rest.strip_suffix('>'))
+            {
+                ty = inner.to_owned();
+            }
+            let name = field.ident.as_ref().unwrap().to_string();
+            out.insert((owner.to_owned(), name), (deprecated, ty));
+        }
+    }
+    let mut out = BTreeMap::new();
+    for item in &file.items {
+        match item {
+            syn::Item::Struct(item) => scan(&item.ident.to_string(), &item.fields, &mut out),
+            syn::Item::Enum(item) => {
+                for variant in &item.variants {
+                    scan(
+                        &format!("{}::{}", item.ident, variant.ident),
+                        &variant.fields,
+                        &mut out,
+                    );
+                }
+            }
+            _ => {}
+        }
+    }
+    out
+}
+
+/// Enum name → wire names it reads. Closed enums use `#[serde(rename)]`;
+/// open enums list their names in the `Deserialize` match.
+fn enum_wire_names(file: &syn::File) -> BTreeMap<String, BTreeSet<String>> {
+    struct Arms<'a>(&'a mut BTreeSet<String>);
+    impl<'ast> syn::visit::Visit<'ast> for Arms<'_> {
+        fn visit_arm(&mut self, arm: &'ast syn::Arm) {
+            if let syn::Pat::Lit(syn::PatLit {
+                lit: syn::Lit::Str(text),
+                ..
+            }) = &arm.pat
+            {
+                self.0.insert(text.value());
+            }
+            syn::visit::visit_arm(self, arm);
+        }
+    }
+    let mut out: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
+    for item in &file.items {
+        match item {
+            syn::Item::Enum(item) => {
+                let names = out.entry(item.ident.to_string()).or_default();
+                for variant in &item.variants {
+                    for attr in &variant.attrs {
+                        if !attr.path().is_ident("serde") {
+                            continue;
+                        }
+                        let syn::Meta::List(list) = &attr.meta else {
+                            continue;
+                        };
+                        let metas = list
+                            .parse_args_with(
+                                syn::punctuated::Punctuated::<syn::Meta, syn::Token![,]>::parse_terminated,
+                            )
+                            .unwrap();
+                        for meta in metas {
+                            if let syn::Meta::NameValue(item) = meta {
+                                if item.path.is_ident("rename") {
+                                    names.insert(lit_str(&item.value).unwrap());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            syn::Item::Impl(item) => {
+                let is_deserialize = item.trait_.as_ref().is_some_and(|(_, path, _)| {
+                    path.segments
+                        .last()
+                        .is_some_and(|s| s.ident == "Deserialize")
+                });
+                if !is_deserialize {
+                    continue;
+                }
+                let name = type_string(&item.self_ty);
+                let names = out.entry(name).or_default();
+                syn::visit::Visit::visit_item_impl(&mut Arms(names), item);
+            }
+            _ => {}
+        }
+    }
+    out
+}
+
+fn assert_wire_and_deprecated(file: &syn::File, rows: &[Row]) {
+    let markers = field_markers(file);
+    let enums = enum_wire_names(file);
+    let mut deprecated: BTreeMap<(String, String), bool> = BTreeMap::new();
+    for row in rows {
+        *deprecated
+            .entry((row.owner.clone(), row.field.clone()))
+            .or_default() |= row.deprecated;
+        if row.wire.is_empty() {
+            continue;
+        }
+        let (_, ty) = markers
+            .get(&(row.owner.clone(), row.field.clone()))
+            .unwrap_or_else(|| panic!("missing {}.{}", row.owner, row.field));
+        let names = enums
+            .get(ty)
+            .unwrap_or_else(|| panic!("{}.{} is {ty}, not a generated enum", row.owner, row.field));
+        for value in &row.wire {
+            assert!(
+                names.contains(value),
+                "{}.{}: {ty} does not read wire name {value:?} ({})",
+                row.owner,
+                row.field,
+                row.schema
+            );
+        }
+    }
+    for (key, spec) in &deprecated {
+        let (rust, _) = markers
+            .get(key)
+            .unwrap_or_else(|| panic!("missing {}.{}", key.0, key.1));
+        assert_eq!(
+            rust, spec,
+            "{}.{}: #[deprecated] is {rust}, the AsyncAPI document says {spec}",
+            key.0, key.1
+        );
+    }
+}
+
+#[test]
+fn enum_wire_names_and_deprecated_markers_match_the_asyncapi_field_list() {
+    let rows = load_rows();
+    assert!(rows.iter().filter(|row| row.deprecated).count() >= 10);
+    assert!(rows.iter().filter(|row| !row.wire.is_empty()).count() >= 20);
+    assert_wire_and_deprecated(&generated_file(), &rows);
+}
+
+#[test]
+fn closed_enum_wire_names_round_trip() {
+    use kalshi_api::ws::{LifecycleEvent, MarketSide, UserOrderStatus};
+    for (value, wire) in [
+        (UserOrderStatus::Resting, "resting"),
+        (UserOrderStatus::Canceled, "canceled"),
+        (UserOrderStatus::Executed, "executed"),
+    ] {
+        assert_eq!(serde_json::to_value(value).unwrap(), wire);
+        assert_eq!(
+            serde_json::from_value::<UserOrderStatus>(serde_json::json!(wire)).unwrap(),
+            value
+        );
+    }
+    assert_eq!(serde_json::to_value(MarketSide::Yes).unwrap(), "yes");
+    assert_eq!(
+        serde_json::to_value(LifecycleEvent::Created).unwrap(),
+        "created"
+    );
+}
+
+#[test]
+fn ok_reply_with_an_unlisted_key_still_parses() {
+    use kalshi_api::ws::{Incoming, OkBody};
+    let markets = r#"{"type":"ok","id":1,"msg":{"market_tickers":["A"],"note":"x"}}"#;
+    match parse_incoming(markets).unwrap() {
+        Incoming::Ok {
+            msg: Some(OkBody::Markets(body)),
+            ..
+        } => assert_eq!(body.market_tickers.as_deref(), Some(&["A".to_owned()][..])),
+        other => panic!("extra key changed the ok reply: {other:?}"),
+    }
+    let cases = [
+        (
+            r#"{"type":"ok","id":1,"sid":1,"seq":1,"msg":{"index_ids":["I"]}}"#,
+            "Indices",
+        ),
+        (
+            r#"{"type":"ok","id":1,"sid":1,"seq":1,"msg":{"underlying_tickers":["U"]}}"#,
+            "Underlyings",
+        ),
+        (
+            r#"{"type":"ok","id":3,"msg":[{"channel":"ticker","sid":2}]}"#,
+            "Subscriptions",
+        ),
+        (r#"{"type":"ok","id":3,"msg":[]}"#, "Subscriptions"),
+        (
+            r#"{"type":"ok","id":1,"msg":{"market_tickers":["A"]}}"#,
+            "Markets",
+        ),
+        (r#"{"type":"ok","id":1,"msg":{}}"#, "Markets"),
+    ];
+    for (frame, arm) in cases {
+        let got = match parse_incoming(frame).unwrap() {
+            Incoming::Ok {
+                msg: Some(body), ..
+            } => match body {
+                OkBody::Indices(_) => "Indices",
+                OkBody::Underlyings(_) => "Underlyings",
+                OkBody::Subscriptions(_) => "Subscriptions",
+                OkBody::Markets(_) => "Markets",
+            },
+            other => panic!("{frame}: {other:?}"),
+        };
+        assert_eq!(got, arm, "{frame}");
     }
 }

@@ -12,6 +12,10 @@
 
 ## [Unreleased]
 
+- Remove `RetryMiddleware`. The OpenAPI document specifies no retry or backoff policy; server errors are returned on the first response.
+- `_raw` methods report a request that was sent but got no reply as `Transport { kind: Timeout }`, as the typed methods do, instead of `Connect`.
+- The `ok` reply body accepts keys the AsyncAPI document does not list.
+- `ws_codegen.py` fails when a tagged AsyncAPI message has no Rust owner, when payloads merged into one variant disagree on the tag, or when an extra `ok` payload is not tagged `ok`. `ws_fields.json` also records enum wire values and deprecated flags, which the tests check against the generated types.
 - WebSocket message types are generated from the pinned AsyncAPI document. Fields the document marks deprecated carry `#[deprecated]`. `SubscribeParams::user_filter` is `UserFilter`, and lifecycle `price_level_structure` is `PriceLevelStructure`, which keeps values outside the document as `Unknown`.
 - Typed reads for the user-data timestamp, historical cutoff, account limits, endpoint costs, and a market order book. `get_signed_raw` accepts an origin or a `/trade-api/v2` base, requests `/trade-api/v2/...`, and signs that path. A query in the path is rejected.
 - `CreateOrderV2::build` requires `OrderFlag` for `post_only`, `reduce_only`, and `cancel_order_on_pause`. `True` and `False` are sent. `VenueDefault` omits the field.

@@ -15,7 +15,6 @@ mod error;
 mod filters;
 mod money;
 mod order;
-mod retry;
 mod sign;
 mod subaccount;
 pub mod ws;
@@ -30,7 +29,6 @@ pub use filters::{
 };
 pub use money::{parse_decimal, FixedPointError, QtyCenti};
 pub use order::{BuildError, CreateOrderV2, ExchangeIndexChoice, OrderFlag};
-pub use retry::RetryMiddleware;
 pub use sign::{Clock, SignMiddleware, SystemClock};
 pub use subaccount::{Subaccount, SubaccountChoice, SubaccountError, SubaccountFilter};
 pub use ws::{

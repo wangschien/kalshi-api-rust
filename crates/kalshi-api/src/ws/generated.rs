@@ -600,7 +600,6 @@ pub struct MultivariateLifecycleBody {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
-#[serde(deny_unknown_fields)]
 pub struct OkMarketsBody {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub market_tickers: Option<Vec<String>>,

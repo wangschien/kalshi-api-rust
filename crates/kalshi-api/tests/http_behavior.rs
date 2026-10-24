@@ -895,3 +895,100 @@ where
         .await
         .unwrap_or_else(|err| panic!("legal value {legal} was rejected: {err:?}"));
 }
+
+/// Accepts every connection, reads the request, never answers.
+async fn silent_server() -> String {
+    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let addr = listener.local_addr().unwrap();
+    tokio::spawn(async move {
+        while let Ok((mut socket, _)) = listener.accept().await {
+            tokio::spawn(async move {
+                let mut buf = vec![0u8; 65536];
+                while let Ok(n) = socket.read(&mut buf).await {
+                    if n == 0 {
+                        return;
+                    }
+                }
+            });
+        }
+    });
+    format!("http://{addr}/trade-api/v2")
+}
+
+#[tokio::test]
+async fn raw_writes_without_a_reply_are_timeouts_not_connect_failures() {
+    let (pem, _) = key_pair();
+    let base = silent_server().await;
+    let client = Client::new(config(
+        base,
+        &pem,
+        10_000,
+        10_000,
+        Duration::from_millis(300),
+    ))
+    .unwrap();
+    let cancel_item = BatchCancelItem::build(
+        "ord-synthetic-1",
+        SubaccountChoice::Primary,
+        ExchangeIndexChoice::Omit,
+        Some("SYNTH-1".to_owned()),
+    )
+    .unwrap();
+    let decrease = DecreaseOrderV2::build(
+        Decrease::By(QtyCenti::parse("1.00").unwrap()),
+        ExchangeIndexChoice::Omit,
+        Some("SYNTH-1".to_owned()),
+    )
+    .unwrap();
+    let order = sample_order(SubaccountChoice::Primary);
+    let results = [
+        ("typed create", client.create_order_v2(&order).await.err()),
+        ("create", client.create_order_v2_raw(&order).await.err()),
+        (
+            "cancel",
+            client
+                .cancel_order_v2_raw("ord-synthetic-1", Some(0), None, None)
+                .await
+                .err(),
+        ),
+        (
+            "amend",
+            client
+                .amend_order_v2_raw("ord-synthetic-1", &sample_amend(), Some(0))
+                .await
+                .err(),
+        ),
+        (
+            "decrease",
+            client
+                .decrease_order_v2_raw("ord-synthetic-1", &decrease, Some(0))
+                .await
+                .err(),
+        ),
+        (
+            "batch create",
+            client
+                .batch_create_orders_v2_raw(std::slice::from_ref(&order))
+                .await
+                .err(),
+        ),
+        (
+            "batch cancel",
+            client
+                .batch_cancel_orders_v2_raw(&[cancel_item])
+                .await
+                .err(),
+        ),
+    ];
+    for (name, err) in results {
+        assert!(
+            matches!(
+                err,
+                Some(VenueError::Transport {
+                    kind: kalshi_api::TransportKind::Timeout
+                })
+            ),
+            "{name}: {err:?}"
+        );
+    }
+}

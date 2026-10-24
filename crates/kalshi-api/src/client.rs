@@ -171,12 +171,12 @@ impl Client {
     pub async fn get_order_raw(&self, order_id: &str) -> Result<(StatusCode, Value), VenueError> {
         let order_id = order_id.to_owned();
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "get_order_raw",
             orders_api::get_order(configuration, GetOrderParams { order_id }),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Subaccount number (0 for primary, 1-63 for subaccounts). If omitted, defaults to all subaccounts.
@@ -210,12 +210,12 @@ impl Client {
     ) -> Result<(StatusCode, Value), VenueError> {
         let params = orders_params(filter, subaccount)?;
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "get_orders_raw",
             orders_api::get_orders(configuration, params),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Subaccount number (0 for primary, 1-63 for subaccounts). If omitted, defaults to all subaccounts.
@@ -249,12 +249,12 @@ impl Client {
     ) -> Result<(StatusCode, Value), VenueError> {
         let params = fills_params(filter, subaccount)?;
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "get_fills_raw",
             portfolio_api::get_fills(configuration, params),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
@@ -288,12 +288,12 @@ impl Client {
     ) -> Result<(StatusCode, Value), VenueError> {
         let params = positions_params(filter, subaccount)?;
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "get_positions_raw",
             portfolio_api::get_positions(configuration, params),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Get Market.
@@ -315,12 +315,12 @@ impl Client {
     pub async fn get_market_raw(&self, ticker: &str) -> Result<(StatusCode, Value), VenueError> {
         let ticker = ticker.to_owned();
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "get_market_raw",
             market_api::get_market(configuration, GetMarketParams { ticker }),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
@@ -365,7 +365,7 @@ impl Client {
     ) -> Result<(StatusCode, Value), VenueError> {
         let body = amend.to_generated().map_err(show_err)?;
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "amend_order_v2_raw",
             orders_api::amend_order_v2(
                 configuration,
@@ -377,7 +377,7 @@ impl Client {
             ),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
@@ -422,7 +422,7 @@ impl Client {
     ) -> Result<(StatusCode, Value), VenueError> {
         let body = decrease.to_generated();
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "decrease_order_v2_raw",
             orders_api::decrease_order_v2(
                 configuration,
@@ -434,7 +434,7 @@ impl Client {
             ),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
@@ -481,7 +481,7 @@ impl Client {
         market_ticker: Option<String>,
     ) -> Result<(StatusCode, Value), VenueError> {
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "cancel_order_v2_raw",
             orders_api::cancel_order_v2(
                 configuration,
@@ -494,7 +494,7 @@ impl Client {
             ),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// The subaccount number to use for this order. 0 is the primary subaccount. Subaccount-restricted API keys must omit this field or pass their locked subaccount.
@@ -530,7 +530,7 @@ impl Client {
     ) -> Result<(StatusCode, Value), VenueError> {
         let body = batch_create_body(orders)?;
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "batch_create_orders_v2_raw",
             orders_api::batch_create_orders_v2(
                 configuration,
@@ -540,7 +540,7 @@ impl Client {
             ),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Optional subaccount number to use for this cancellation (0 for primary, 1-63 for subaccounts). Subaccount-restricted API keys must omit this field or pass their locked subaccount.
@@ -576,7 +576,7 @@ impl Client {
     ) -> Result<(StatusCode, Value), VenueError> {
         let body = batch_cancel_body(orders)?;
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "batch_cancel_orders_v2_raw",
             orders_api::batch_cancel_orders_v2(
                 configuration,
@@ -586,7 +586,7 @@ impl Client {
             ),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Get Order Queue Position.
@@ -613,7 +613,7 @@ impl Client {
         order_id: &str,
     ) -> Result<(StatusCode, Value), VenueError> {
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "get_order_queue_position_raw",
             orders_api::get_order_queue_position(
                 configuration,
@@ -623,7 +623,7 @@ impl Client {
             ),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
@@ -653,12 +653,12 @@ impl Client {
     ) -> Result<(StatusCode, Value), VenueError> {
         let params = queue_params(filter, subaccount);
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "get_order_queue_positions_raw",
             orders_api::get_order_queue_positions(configuration, params),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
@@ -697,7 +697,7 @@ impl Client {
         exchange_index: Option<i64>,
     ) -> Result<(StatusCode, Value), VenueError> {
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "get_balance_raw",
             portfolio_api::get_balance(
                 configuration,
@@ -708,7 +708,7 @@ impl Client {
             ),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Get Markets.
@@ -731,12 +731,12 @@ impl Client {
     ) -> Result<(StatusCode, Value), VenueError> {
         let params = markets_params(filter);
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "get_markets_raw",
             market_api::get_markets(configuration, params),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Get Exchange Status.
@@ -751,12 +751,12 @@ impl Client {
     /// Get Exchange Status.
     pub async fn get_exchange_status_raw(&self) -> Result<(StatusCode, Value), VenueError> {
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "get_exchange_status_raw",
             exchange_api::get_exchange_status(configuration),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Get Exchange Schedule.
@@ -771,12 +771,12 @@ impl Client {
     /// Get Exchange Schedule.
     pub async fn get_exchange_schedule_raw(&self) -> Result<(StatusCode, Value), VenueError> {
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "get_exchange_schedule_raw",
             exchange_api::get_exchange_schedule(configuration),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Approximate time through which user data endpoints were last validated.
@@ -793,12 +793,12 @@ impl Client {
     /// Approximate time through which user data endpoints were last validated.
     pub async fn get_user_data_timestamp_raw(&self) -> Result<(StatusCode, Value), VenueError> {
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "get_user_data_timestamp_raw",
             exchange_api::get_user_data_timestamp(configuration),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Cutoff between live and historical trades, orders, markets, and positions.
@@ -813,12 +813,12 @@ impl Client {
     /// Cutoff between live and historical trades, orders, markets, and positions.
     pub async fn get_historical_cutoff_raw(&self) -> Result<(StatusCode, Value), VenueError> {
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "get_historical_cutoff_raw",
             historical_api::get_historical_cutoff(configuration),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Authenticated API tier and token-bucket limits.
@@ -833,12 +833,12 @@ impl Client {
     /// Authenticated API tier and token-bucket limits.
     pub async fn get_account_api_limits_raw(&self) -> Result<(StatusCode, Value), VenueError> {
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "get_account_api_limits_raw",
             account_api::get_account_api_limits(configuration),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Endpoints whose token cost differs from the default.
@@ -855,12 +855,12 @@ impl Client {
     /// Endpoints whose token cost differs from the default.
     pub async fn get_account_endpoint_costs_raw(&self) -> Result<(StatusCode, Value), VenueError> {
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "get_account_endpoint_costs_raw",
             account_api::get_account_endpoint_costs(configuration),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Current bid book for one market. `depth` is sent only when `Some`; `Some(100)` asks for 100 levels.
@@ -891,7 +891,7 @@ impl Client {
     ) -> Result<(StatusCode, Value), VenueError> {
         let ticker = ticker.to_owned();
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "get_market_orderbook_raw",
             market_api::get_market_orderbook(
                 configuration,
@@ -899,7 +899,7 @@ impl Client {
             ),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// Signed GET on this client's origin.
@@ -913,10 +913,10 @@ impl Client {
         let client = &self.configuration.client;
         let (sent, slot) = scope("get_signed_raw", client.get(&url).send()).await;
         if slot.status.is_some() || slot.too_large || slot.body_error.is_some() {
-            return finish_raw(&slot);
+            return finish_captured(&slot);
         }
         match sent {
-            Ok(_) => finish_raw(&slot),
+            Ok(_) => finish_captured(&slot),
             Err(reqwest_middleware::Error::Reqwest(err)) => {
                 Err(transport_from_reqwest(&err, &slot))
             }
@@ -959,7 +959,7 @@ impl Client {
     ) -> Result<(StatusCode, Value), VenueError> {
         let request = order.to_generated().map_err(show_err)?;
         let configuration = &self.configuration;
-        let (_typed, slot) = scope(
+        let (typed, slot) = scope(
             "create_order_v2_raw",
             orders_api::create_order_v2(
                 configuration,
@@ -969,7 +969,7 @@ impl Client {
             ),
         )
         .await;
-        finish_raw(&slot)
+        finish_raw(typed, &slot)
     }
 
     /// A request that does not open the capture slot. The middleware counts it and still returns the response.
@@ -1180,7 +1180,25 @@ fn batch_cancel_body(orders: &[BatchCancelItem]) -> Result<BatchCancelOrdersV2Re
     Ok(BatchCancelOrdersV2Request::new(generated))
 }
 
-fn finish_raw(slot: &CaptureSlot) -> Result<(StatusCode, Value), VenueError> {
+/// Result of a `_raw` call. When no status line was captured, the generated
+/// call's own error decides the kind, as on the typed path: a request that was
+/// sent but got no reply is `Timeout` (outcome unknown), not `Connect`.
+fn finish_raw<T, E: std::fmt::Debug>(
+    typed: Result<T, Error<E>>,
+    slot: &CaptureSlot,
+) -> Result<(StatusCode, Value), VenueError> {
+    if slot.status.is_none() && slot.body_error.is_none() && !slot.too_large {
+        return Err(match typed {
+            Err(err) => map_generated(err, slot),
+            Ok(_) => VenueError::Transport {
+                kind: TransportKind::Other,
+            },
+        });
+    }
+    finish_captured(slot)
+}
+
+fn finish_captured(slot: &CaptureSlot) -> Result<(StatusCode, Value), VenueError> {
     if let Some(kind) = slot.body_error {
         return Err(VenueError::HttpBodyFailed {
             status: slot.status.unwrap_or(0),

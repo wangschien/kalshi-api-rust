@@ -6,7 +6,7 @@
 use std::sync::{Arc, Mutex};
 
 use async_trait::async_trait;
-use kalshi_api::{Environment, RetryMiddleware};
+use kalshi_api::Environment;
 use reqwest::{Method, Request, Response};
 use reqwest_middleware::{ClientBuilder, Middleware, Next, Result};
 
@@ -39,31 +39,30 @@ impl Middleware for Responses {
 }
 
 #[tokio::test]
-async fn opt_in_retries_use_python_method_and_status_rules() {
-    for (method, statuses, attempts, expected_calls) in [
-        (Method::GET, vec![500, 503, 200], 3, 3),
-        (Method::DELETE, vec![500, 204], 2, 2),
-        (Method::PUT, vec![500, 200], 2, 2),
-        (Method::POST, vec![500, 200], 3, 1),
-        (Method::PATCH, vec![500, 200], 3, 1),
-        (Method::GET, vec![429, 200], 3, 1),
-        (Method::GET, vec![500], 0, 1),
-    ] {
-        let calls = Arc::new(Mutex::new(Vec::new()));
-        let client = ClientBuilder::new(reqwest::Client::new())
-            .with(RetryMiddleware::new(attempts))
+async fn server_errors_are_returned_without_a_retry() {
+    use kalshi_api_openapi::apis::{
+        configuration::Configuration, exchange_api::get_exchange_status, Error,
+    };
+    let calls = Arc::new(Mutex::new(Vec::new()));
+    let configuration = Configuration {
+        base_path: "https://example.invalid/trade-api/v2".to_owned(),
+        client: ClientBuilder::new(reqwest::Client::new())
             .with(Responses {
-                statuses,
+                statuses: vec![500, 200],
                 calls: Arc::clone(&calls),
             })
-            .build();
-        let _ = client
-            .request(method, "https://example.invalid/")
-            .send()
-            .await
-            .unwrap();
-        assert_eq!(calls.lock().unwrap().len(), expected_calls);
+            .build(),
+        ..Configuration::new(
+            std::time::Duration::from_secs(5),
+            std::time::Duration::from_secs(30),
+        )
+        .unwrap()
+    };
+    match get_exchange_status(&configuration).await {
+        Err(Error::ResponseError(error)) => assert_eq!(error.status.as_u16(), 500),
+        other => panic!("500 lost: {other:?}"),
     }
+    assert_eq!(calls.lock().unwrap().as_slice(), [Method::GET]);
 }
 
 #[test]

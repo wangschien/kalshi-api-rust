@@ -79,7 +79,6 @@ ALIASES = {
     ("OrderbookSnapshotBody", "yes_dollars_fp"): "yes_dollars",
     ("OrderbookSnapshotBody", "no_dollars_fp"): "no_dollars",
 }
-DENY_UNKNOWN = {"OkMarketsBody"}
 
 # One Incoming variant can carry several payload shapes.
 UNTAGGED = {
@@ -222,7 +221,49 @@ class Gen:
     def struct(self, owner: str, schema: dict, path: str) -> None:
         self.merge(self.structs, owner, self.fields(owner, schema, path, ()), path)
 
+    def pointer(self, ref: dict, where: str) -> dict:
+        node = self.spec
+        for part in (ref.get("$ref") or "").lstrip("#/").split("/"):
+            node = node.get(part) if isinstance(node, dict) else None
+            if node is None:
+                raise SystemExit(f"{where}: broken $ref {ref}")
+        return node
+
+    def reconcile(self) -> None:
+        """Every tagged message in the document must have a Rust owner."""
+        rooted = {name for name, _ in ROOTS} | {name for name, _ in EXTRA_OK}
+        for key, message in (self.spec["components"].get("messages") or {}).items():
+            payload = message.get("payload") or {}
+            name = self.ref(payload)
+            node = self.schemas[name] if name else payload
+            props = node.get("properties") or {}
+            tag = (props.get("type") or {}).get("const") or (props.get("cmd") or {}).get("const")
+            if tag is None:
+                continue
+            if name not in rooted:
+                raise SystemExit(
+                    f"message {key} ({name or 'inline payload'}, tag {tag!r}) has no entry in ROOTS or EXTRA_OK"
+                )
+        for operation, item in (self.spec.get("operations") or {}).items():
+            for ref in item.get("messages") or []:
+                node = self.pointer(ref, operation)
+                while "$ref" in node:
+                    node = self.pointer(node, operation)
+                payload = node.get("payload") or {}
+                name = self.ref(payload)
+                props = (self.schemas[name] if name else payload).get("properties") or {}
+                tag = (props.get("type") or {}).get("const") or (props.get("cmd") or {}).get("const")
+                if tag is not None and name not in rooted:
+                    raise SystemExit(
+                        f"operation {operation}: {name or 'inline payload'} (tag {tag!r}) has no entry in ROOTS or EXTRA_OK"
+                    )
+        for name, _ in EXTRA_OK:
+            tag = ((self.schemas.get(name) or {}).get("properties") or {}).get("type", {}).get("const")
+            if tag != "ok":
+                raise SystemExit(f"EXTRA_OK {name} has type const {tag!r}, expected 'ok'")
+
     def run(self) -> None:
+        self.reconcile()
         for schema_name, owner in ROOTS:
             schema = self.schemas.get(schema_name) or self.fail(f"missing schema {schema_name}")
             props = schema.get("properties") or {}
@@ -236,7 +277,9 @@ class Gen:
                     if field["name"] == "msg":
                         field["ty"] = UNTAGGED[owner][0]
             self.merge(self.variants, owner, fields, schema_name)
-            self.variants[owner].setdefault("tag", tag)
+            known = self.variants[owner].setdefault("tag", tag)
+            if known != tag:
+                raise SystemExit(f"{owner} merges tag {known!r} and {tag!r} ({schema_name})")
         for schema_name, owner in EXTRA_OK:
             schema = self.schemas[schema_name]
             msg = schema["properties"]["msg"]
@@ -346,8 +389,6 @@ def render(gen: Gen) -> str:
     for owner in sorted(gen.structs):
         out.append("")
         out.append("#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]")
-        if owner in DENY_UNKNOWN:
-            out.append("#[serde(deny_unknown_fields)]")
         out.append(f"pub struct {owner} {{")
         for field in gen.structs[owner]["fields"]:
             field = dict(field, alias=ALIASES.get((owner, field["name"])))
