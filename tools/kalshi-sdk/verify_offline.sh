@@ -36,6 +36,7 @@ run parity python3 -I tools/kalshi-sdk/parity.py \
     --output "$LOGS/parity" --check
 run fixed_point python3 -I tools/kalshi-sdk/fixed_point_fields.py --check
 run ws_fields python3 -I tools/kalshi-sdk/ws_fields.py --check
+run ws_codegen python3 -I tools/kalshi-sdk/ws_codegen.py --check
 run subaccounts python3 -I tools/kalshi-sdk/subaccount_semantics.py --check
 run lib timeout 1800 "$CARGO_TOOL" test --workspace --lib --locked -j 2
 run integration timeout 1800 "$CARGO_TOOL" test --workspace --test '*' --no-fail-fast --locked -j 2

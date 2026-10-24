@@ -13,6 +13,7 @@ bash "$ROOT/tools/kalshi-sdk/generate.sh" "$WORK/crate" "$WORK/generator.log"
 
 python3 "$ROOT/tools/kalshi-sdk/fixed_point_fields.py" --check
 python3 "$ROOT/tools/kalshi-sdk/ws_fields.py" --check
+python3 "$ROOT/tools/kalshi-sdk/ws_codegen.py" --check
 python3 "$ROOT/tools/kalshi-sdk/subaccount_semantics.py" --check
 if ! diff -ru "$ROOT/crates/kalshi-api-openapi" "$WORK/crate"; then
   echo "drift: regenerated client differs from crates/kalshi-api-openapi" >&2

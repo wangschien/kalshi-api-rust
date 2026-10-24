@@ -398,6 +398,7 @@ fn lifecycle_close_update_keeps_the_new_close_time() {
 }
 
 #[test]
+#[allow(deprecated)]
 fn user_order_keeps_order_update_timestamp_and_null_created_keys() {
     let mut value = fixture("user_order.json");
     value["msg"]["last_updated_ts_ms"] = serde_json::json!(1_700_000_100_123_i64);

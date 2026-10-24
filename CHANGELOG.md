@@ -12,6 +12,7 @@
 
 ## [Unreleased]
 
+- WebSocket message types are generated from the pinned AsyncAPI document. Fields the document marks deprecated carry `#[deprecated]`. `SubscribeParams::user_filter` is `UserFilter`, and lifecycle `price_level_structure` is `PriceLevelStructure`, which keeps values outside the document as `Unknown`.
 - Typed reads for the user-data timestamp, historical cutoff, account limits, endpoint costs, and a market order book. `get_signed_raw` accepts an origin or a `/trade-api/v2` base, requests `/trade-api/v2/...`, and signs that path. A query in the path is rejected.
 - `CreateOrderV2::build` requires `OrderFlag` for `post_only`, `reduce_only`, and `cancel_order_on_pause`. `True` and `False` are sent. `VenueDefault` omits the field.
 - Order and amend prices are written with four decimal places.

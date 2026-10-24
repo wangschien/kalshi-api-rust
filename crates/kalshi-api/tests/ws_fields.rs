@@ -48,7 +48,7 @@ fn type_string(ty: &syn::Type) -> String {
             })
             .collect::<Vec<_>>()
             .join("::"),
-        _ => panic!("unsupported type in ws/types.rs"),
+        _ => panic!("unsupported type in ws/generated.rs"),
     }
 }
 
@@ -118,7 +118,7 @@ fn scan_fields(owner: &str, fields: &Fields, out: &mut Vec<Scanned>) {
 
 fn scan_types() -> Vec<Scanned> {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-    let source = ["src/ws/types.rs", "src/ws/payloads.rs"]
+    let source = ["src/ws/generated.rs"]
         .iter()
         .map(|path| fs::read_to_string(root.join(path)).unwrap())
         .collect::<Vec<_>>()

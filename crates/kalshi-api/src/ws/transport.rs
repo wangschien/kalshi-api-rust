@@ -10,7 +10,7 @@ use tokio_tungstenite::tungstenite::http::header::{HeaderName, HeaderValue};
 use tokio_tungstenite::tungstenite::Message;
 
 use crate::sign::{Clock, SignMiddleware};
-use crate::ws::types::{parse_incoming, ClientCommand, Incoming};
+use crate::ws::{parse_incoming, ClientCommand, Incoming};
 
 const INCOMING_CAPACITY: usize = 256;
 const SIGN_PATH: &str = "/trade-api/ws/v2";
