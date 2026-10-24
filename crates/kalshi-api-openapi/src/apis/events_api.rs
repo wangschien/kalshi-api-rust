@@ -260,7 +260,10 @@ pub async fn get_event_without_preload_content(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -341,7 +344,10 @@ pub async fn get_event_fee_changes_without_preload_content(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -475,7 +481,10 @@ pub async fn get_event_forecast_percentiles_history_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -550,7 +559,10 @@ pub async fn get_event_metadata_without_preload_content(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -648,7 +660,10 @@ pub async fn get_events_without_preload_content(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -735,7 +750,10 @@ pub async fn get_market_candlesticks_by_event_without_preload_content(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -827,7 +845,10 @@ pub async fn get_multivariate_events_without_preload_content(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }

@@ -428,7 +428,10 @@ pub async fn apply_subaccount_transfer_without_preload_content(
     };
     req_builder = req_builder.json(&params.apply_subaccount_transfer_request);
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -529,7 +532,10 @@ pub async fn create_subaccount_without_preload_content(
         req_builder = req_builder.json(body);
     }
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -630,7 +636,10 @@ pub async fn get_balance_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -731,7 +740,10 @@ pub async fn get_deposits_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -853,7 +865,10 @@ pub async fn get_fills_without_preload_content(
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -963,7 +978,10 @@ pub async fn get_intra_exchange_instance_transfer_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -1078,7 +1096,10 @@ pub async fn get_intra_exchange_instance_transfers_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -1184,7 +1205,10 @@ pub async fn get_portfolio_resting_order_total_value_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -1306,7 +1330,10 @@ pub async fn get_positions_without_preload_content(
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -1422,7 +1449,10 @@ pub async fn get_settlements_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -1517,7 +1547,10 @@ pub async fn get_subaccount_balances_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -1612,7 +1645,10 @@ pub async fn get_subaccount_netting_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -1719,7 +1755,10 @@ pub async fn get_subaccount_transfers_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -1821,7 +1860,10 @@ pub async fn get_target_balance_allocation_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -1922,7 +1964,10 @@ pub async fn get_withdrawals_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -2033,7 +2078,10 @@ pub async fn intra_exchange_instance_transfer_without_preload_content(
     };
     req_builder = req_builder.json(&params.intra_exchange_instance_transfer_request);
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -2136,7 +2184,10 @@ pub async fn set_target_balance_allocation_without_preload_content(
     };
     req_builder = req_builder.json(&params.set_target_balance_allocation_request);
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -2222,7 +2273,10 @@ pub async fn update_subaccount_netting_without_preload_content(
     };
     req_builder = req_builder.json(&params.update_subaccount_netting_request);
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }

@@ -119,7 +119,10 @@ pub async fn get_exchange_schedule_without_preload_content(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -187,7 +190,10 @@ pub async fn get_exchange_status_without_preload_content(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -264,7 +270,10 @@ pub async fn get_series_fee_changes_without_preload_content(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -335,7 +344,10 @@ pub async fn get_user_data_timestamp_without_preload_content(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }

@@ -32,9 +32,9 @@ async fn main() -> anyhow::Result<()> {
         base_url: Environment::Prod.base_url().to_owned(),
         key_id: "your-api-key-id".to_owned(),
         private_key_pem,
-        connect_timeout: Duration::from_secs(5),
-        request_timeout: Duration::from_secs(30),
-        max_body_bytes: 1_048_576,
+        connect_timeout: Some(Duration::from_secs(5)),
+        request_timeout: Some(Duration::from_secs(30)),
+        max_body_bytes: Some(1_048_576),
         max_capture_bytes: 1_048_576,
     })?;
     let balance = client.get_balance(Subaccount::Primary, None).await?;
@@ -43,7 +43,7 @@ async fn main() -> anyhow::Result<()> {
 }
 ```
 
-The generated client uses `Configuration::new(connect_timeout, request_timeout)?`, with both values supplied as `Duration`; there is no default configuration. Each request retains its deadline when the middleware client is replaced. WebSocket sessions require a caller-supplied `send_timeout` and end with `WsEvent::SendTimedOut` if a write stalls.
+The generated client uses `Configuration::new(connect_timeout, request_timeout)?`, with both values supplied as `Option<Duration>`; there is no default configuration. `None` sets no local deadline, and `ClientConfig::max_body_bytes: None` sets no response body limit. The SDK has no default number for any of them. A request deadline that is set stays on each request when the middleware client is replaced. WebSocket sessions require a caller-supplied `send_timeout` and end with `WsEvent::SendTimedOut` if a write stalls.
 
 ## Documentation
 

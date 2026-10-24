@@ -340,7 +340,10 @@ pub async fn amend_order_v2_without_preload_content(
     };
     req_builder = req_builder.json(&params.amend_order_v2_request);
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -443,7 +446,10 @@ pub async fn batch_cancel_orders_v2_without_preload_content(
     };
     req_builder = req_builder.json(&params.batch_cancel_orders_v2_request);
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -546,7 +552,10 @@ pub async fn batch_create_orders_v2_without_preload_content(
     };
     req_builder = req_builder.json(&params.batch_create_orders_v2_request);
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -635,7 +644,10 @@ pub async fn cancel_all_orders_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -745,7 +757,10 @@ pub async fn cancel_order_v2_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -844,7 +859,10 @@ pub async fn create_order_v2_without_preload_content(
     };
     req_builder = req_builder.json(&params.create_order_v2_request);
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -950,7 +968,10 @@ pub async fn decrease_order_v2_without_preload_content(
     };
     req_builder = req_builder.json(&params.decrease_order_v2_request);
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -1049,7 +1070,10 @@ pub async fn get_order_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -1151,7 +1175,10 @@ pub async fn get_order_queue_position_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -1261,7 +1288,10 @@ pub async fn get_order_queue_positions_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -1383,7 +1413,10 @@ pub async fn get_orders_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }

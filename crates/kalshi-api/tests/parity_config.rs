@@ -53,8 +53,8 @@ async fn server_errors_are_returned_without_a_retry() {
             })
             .build(),
         ..Configuration::new(
-            std::time::Duration::from_secs(5),
-            std::time::Duration::from_secs(30),
+            Some(std::time::Duration::from_secs(5)),
+            Some(std::time::Duration::from_secs(30)),
         )
         .unwrap()
     };
@@ -102,8 +102,8 @@ async fn response_variants_keep_headers_and_allow_unread_error_responses() {
             })
             .build(),
         ..Configuration::new(
-            std::time::Duration::from_secs(5),
-            std::time::Duration::from_secs(30),
+            Some(std::time::Duration::from_secs(5)),
+            Some(std::time::Duration::from_secs(30)),
         )
         .unwrap()
     };
@@ -145,8 +145,8 @@ async fn python_http_exception_classes_keep_their_status_in_rust() {
                 })
                 .build(),
             ..Configuration::new(
-                std::time::Duration::from_secs(5),
-                std::time::Duration::from_secs(30),
+                Some(std::time::Duration::from_secs(5)),
+                Some(std::time::Duration::from_secs(30)),
             )
             .unwrap()
         };

@@ -79,14 +79,18 @@ impl Environment {
 }
 
 /// Every field is required. This struct has no default.
+///
+/// `connect_timeout`, `request_timeout`, and `max_body_bytes` are chosen by
+/// the caller. `None` sets no local deadline or no body limit; the SDK has no
+/// default number for any of them.
 #[derive(Debug, Clone)]
 pub struct ClientConfig {
     pub base_url: String,
     pub key_id: String,
     pub private_key_pem: String,
-    pub connect_timeout: std::time::Duration,
-    pub request_timeout: std::time::Duration,
-    pub max_body_bytes: usize,
+    pub connect_timeout: Option<std::time::Duration>,
+    pub request_timeout: Option<std::time::Duration>,
+    pub max_body_bytes: Option<usize>,
     pub max_capture_bytes: usize,
 }
 
@@ -112,11 +116,14 @@ impl Client {
         )
         .map_err(anyhow::Error::msg)?;
         let sign = SignMiddleware::new(config.key_id, &config.private_key_pem, clock)?;
-        let http = reqwest::Client::builder()
-            .connect_timeout(config.connect_timeout)
-            .timeout(config.request_timeout)
-            .use_rustls_tls()
-            .build()?;
+        let mut http = reqwest::Client::builder().use_rustls_tls();
+        if let Some(timeout) = config.connect_timeout {
+            http = http.connect_timeout(timeout);
+        }
+        if let Some(timeout) = config.request_timeout {
+            http = http.timeout(timeout);
+        }
+        let http = http.build()?;
         // Capture is added first, so it is outside signing. Signing is innermost.
         let client = ClientBuilder::new(http).with(capture).with(sign).build();
         let configuration = Configuration {
@@ -1420,9 +1427,9 @@ mod pass_through_tests {
             base_url: format!("http://{addr}"),
             key_id: "key-synthetic".to_owned(),
             private_key_pem: pem,
-            connect_timeout: Duration::from_secs(2),
-            request_timeout: Duration::from_secs(2),
-            max_body_bytes: 1000,
+            connect_timeout: Some(Duration::from_secs(2)),
+            request_timeout: Some(Duration::from_secs(2)),
+            max_body_bytes: Some(1000),
             max_capture_bytes: 1000,
         })
         .unwrap();

@@ -343,7 +343,10 @@ pub async fn create_fcm_position_transfer_without_preload_content(
     };
     req_builder = req_builder.json(&params.create_fcm_position_transfer_request);
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -443,7 +446,10 @@ pub async fn create_fcm_subtrader_without_preload_content(
     };
     req_builder = req_builder.json(&params.create_fcm_subtrader_request);
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -546,7 +552,10 @@ pub async fn delete_fcm_event_contract_daily_cap_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -655,7 +664,10 @@ pub async fn get_fcm_event_contract_daily_cap_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -759,7 +771,10 @@ pub async fn get_fcm_fills_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -881,7 +896,10 @@ pub async fn get_fcm_orders_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -997,7 +1015,10 @@ pub async fn get_fcm_positions_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -1107,7 +1128,10 @@ pub async fn get_fcm_subtrader_blocked_categories_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -1199,7 +1223,10 @@ pub async fn list_fcm_subtraders_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -1301,7 +1328,10 @@ pub async fn update_fcm_event_contract_daily_cap_without_preload_content(
     };
     req_builder = req_builder.json(&params.update_fcm_event_contract_daily_cap_request);
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }
@@ -1413,7 +1443,10 @@ pub async fn update_fcm_subtrader_blocked_categories_without_preload_content(
     };
     req_builder = req_builder.json(&params.update_fcm_subtrader_blocked_categories_request);
 
-    let req = req_builder.timeout(configuration.request_timeout).build()?;
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
 
     configuration.client.execute(req).await.map_err(Error::from)
 }

@@ -22,8 +22,11 @@ async fn generated_deadline_bounds_headers_and_body_with_a_replaced_client() {
                 }
                 std::future::pending::<()>().await;
             });
-            let mut config =
-                Configuration::new(Duration::from_millis(20), Duration::from_millis(50)).unwrap();
+            let mut config = Configuration::new(
+                Some(Duration::from_millis(20)),
+                Some(Duration::from_millis(50)),
+            )
+            .unwrap();
             config.base_path = format!("http://{address}");
             // Replacing middleware must not remove generated request deadlines.
             config.client = reqwest_middleware::ClientBuilder::new(reqwest::Client::new()).build();
@@ -62,4 +65,34 @@ async fn generated_deadline_bounds_headers_and_body_with_a_replaced_client() {
             assert!(timed_out, "{variant}, body_started={body_started}");
         }
     }
+}
+
+#[tokio::test]
+async fn generated_unset_deadline_sets_no_request_timeout() {
+    let listener = tokio::net::TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let address = listener.local_addr().unwrap();
+    let server = tokio::spawn(async move {
+        let (mut socket, _) = listener.accept().await.unwrap();
+        let mut request = Vec::new();
+        let mut byte = [0];
+        while !request.ends_with(b"\r\n\r\n") {
+            socket.read_exact(&mut byte).await.unwrap();
+            request.push(byte[0]);
+        }
+        tokio::time::sleep(Duration::from_millis(300)).await;
+        socket
+            .write_all(b"HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: 2\r\nConnection: close\r\n\r\n{}")
+            .await
+            .unwrap();
+    });
+    let mut config = Configuration::new(None, None).unwrap();
+    assert!(config.connect_timeout.is_none());
+    assert!(config.request_timeout.is_none());
+    config.base_path = format!("http://{address}");
+    let response = exchange_api::get_exchange_status_without_preload_content(&config)
+        .await
+        .unwrap();
+    assert_eq!(response.status(), 200);
+    assert_eq!(&response.bytes().await.unwrap()[..], b"{}");
+    server.await.unwrap();
 }

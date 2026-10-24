@@ -47,18 +47,18 @@ impl CaptureSlot {
 }
 
 pub struct CaptureMiddleware {
-    max_body_bytes: usize,
+    max_body_bytes: Option<usize>,
     max_capture_bytes: usize,
     pass_through: Arc<AtomicU64>,
 }
 
 impl CaptureMiddleware {
     pub fn new(
-        max_body_bytes: usize,
+        max_body_bytes: Option<usize>,
         max_capture_bytes: usize,
         pass_through: Arc<AtomicU64>,
     ) -> std::result::Result<Self, &'static str> {
-        if max_capture_bytes > max_body_bytes {
+        if max_body_bytes.is_some_and(|max| max_capture_bytes > max) {
             return Err("max_capture_bytes must be <= max_body_bytes");
         }
         Ok(Self {
@@ -140,7 +140,7 @@ impl CaptureMiddleware {
                 }
             };
             total = total.saturating_add(chunk.len() as u64);
-            if total > self.max_body_bytes as u64 {
+            if self.max_body_bytes.is_some_and(|max| total > max as u64) {
                 take_prefix(&mut prefix, &chunk, self.max_capture_bytes);
                 write_slot(|slot| {
                     slot.prefix = prefix;

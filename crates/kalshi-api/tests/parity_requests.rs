@@ -72,8 +72,8 @@ async fn every_python_public_method_builds_the_same_request() {
             .with(Capture(Arc::clone(&captured)))
             .build(),
         ..Configuration::new(
-            std::time::Duration::from_secs(5),
-            std::time::Duration::from_secs(30),
+            Some(std::time::Duration::from_secs(5)),
+            Some(std::time::Duration::from_secs(30)),
         )
         .unwrap()
     };
@@ -88,7 +88,7 @@ async fn every_python_public_method_builds_the_same_request() {
             .unwrap_or_else(|| panic!("{} did not reach request capture", fixture["id"]));
         assert_eq!(
             request.timeout(),
-            Some(&configuration.request_timeout),
+            configuration.request_timeout.as_ref(),
             "{} has no caller deadline",
             fixture["id"]
         );

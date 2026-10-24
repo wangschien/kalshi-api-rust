@@ -10,7 +10,8 @@
 
 use std::time::Duration;
 
-/// Every generated execution requires caller-supplied deadlines.
+/// The caller chooses both deadlines. `None` sets no local deadline; the
+/// SDK has no default duration.
 ///
 /// ```compile_fail
 /// use kalshi_api_openapi::apis::configuration::Configuration;
@@ -18,8 +19,8 @@ use std::time::Duration;
 /// ```
 #[derive(Debug, Clone)]
 pub struct Configuration {
-    pub connect_timeout: Duration,
-    pub request_timeout: Duration,
+    pub connect_timeout: Option<Duration>,
+    pub request_timeout: Option<Duration>,
     pub base_path: String,
     pub user_agent: Option<String>,
     pub client: reqwest_middleware::ClientWithMiddleware,
@@ -39,19 +40,20 @@ pub struct ApiKey {
 
 impl Configuration {
     pub fn new(
-        connect_timeout: Duration,
-        request_timeout: Duration,
+        connect_timeout: Option<Duration>,
+        request_timeout: Option<Duration>,
     ) -> Result<Self, reqwest::Error> {
+        let mut builder = reqwest::Client::builder();
+        if let Some(timeout) = connect_timeout {
+            builder = builder.connect_timeout(timeout);
+        }
+        if let Some(timeout) = request_timeout {
+            builder = builder.timeout(timeout);
+        }
         Ok(Configuration {
             base_path: "https://external-api.kalshi.com/trade-api/v2".to_owned(),
             user_agent: Some("OpenAPI-Generator/3.34.0/rust".to_owned()),
-            client: reqwest_middleware::ClientBuilder::new(
-                reqwest::Client::builder()
-                    .connect_timeout(connect_timeout)
-                    .timeout(request_timeout)
-                    .build()?,
-            )
-            .build(),
+            client: reqwest_middleware::ClientBuilder::new(builder.build()?).build(),
             basic_auth: None,
             oauth_access_token: None,
             bearer_access_token: None,

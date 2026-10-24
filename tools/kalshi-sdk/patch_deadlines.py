@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Require caller deadlines and attach them to every generated HTTP request."""
+"""Take optional caller deadlines and attach them to every generated HTTP request.
+
+None sets no local deadline. The SDK has no default duration."""
 
 import argparse
 import re
@@ -17,11 +19,12 @@ def main():
     fields = defaults[1]
     client = "reqwest_middleware::ClientBuilder::new(reqwest::Client::new()).build()"
     assert fields.count(client) == 1
-    fields = fields.replace(client, "reqwest_middleware::ClientBuilder::new(reqwest::Client::builder().connect_timeout(connect_timeout).timeout(request_timeout).build()?).build()")
+    fields = fields.replace(client, "reqwest_middleware::ClientBuilder::new(builder.build()?).build()")
     prefix = text[:text.index("impl Configuration {")]
     prefix = prefix.replace("#[derive(Debug, Clone)]\npub struct Configuration {", """use std::time::Duration;
 
-/// Every generated execution requires caller-supplied deadlines.
+/// The caller chooses both deadlines. `None` sets no local deadline; the
+/// SDK has no default duration.
 ///
 /// ```compile_fail
 /// use kalshi_api_openapi::apis::configuration::Configuration;
@@ -29,10 +32,17 @@ def main():
 /// ```
 #[derive(Debug, Clone)]
 pub struct Configuration {
-    pub connect_timeout: Duration,
-    pub request_timeout: Duration,""")
+    pub connect_timeout: Option<Duration>,
+    pub request_timeout: Option<Duration>,""")
     path.write_text(prefix + f"""impl Configuration {{
-    pub fn new(connect_timeout: Duration, request_timeout: Duration) -> Result<Self, reqwest::Error> {{
+    pub fn new(connect_timeout: Option<Duration>, request_timeout: Option<Duration>) -> Result<Self, reqwest::Error> {{
+        let mut builder = reqwest::Client::builder();
+        if let Some(timeout) = connect_timeout {{
+            builder = builder.connect_timeout(timeout);
+        }}
+        if let Some(timeout) = request_timeout {{
+            builder = builder.timeout(timeout);
+        }}
         Ok(Configuration {{{fields}
             connect_timeout,
             request_timeout,
@@ -45,7 +55,7 @@ pub struct Configuration {
         text = path.read_text()
         needle = "let req = req_builder.build()?;"
         count += text.count(needle)
-        path.write_text(text.replace(needle, "let req = req_builder.timeout(configuration.request_timeout).build()?;"))
+        path.write_text(text.replace(needle, "if let Some(timeout) = configuration.request_timeout {\n        req_builder = req_builder.timeout(timeout);\n    }\n    let req = req_builder.build()?;"))
     assert count > 0, "no generated execution sites found"
     print(f"caller deadlines applied to {count} generated operations")
 

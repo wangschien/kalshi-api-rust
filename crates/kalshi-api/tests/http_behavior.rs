@@ -33,9 +33,9 @@ fn config(
         base_url,
         key_id: "key-synthetic".to_owned(),
         private_key_pem: pem.to_owned(),
-        connect_timeout: Duration::from_millis(200),
-        request_timeout,
-        max_body_bytes: body,
+        connect_timeout: Some(Duration::from_millis(200)),
+        request_timeout: Some(request_timeout),
+        max_body_bytes: Some(body),
         max_capture_bytes: capture,
     }
 }
@@ -991,4 +991,108 @@ async fn raw_writes_without_a_reply_are_timeouts_not_connect_failures() {
             "{name}: {err:?}"
         );
     }
+}
+
+fn unbounded_config(base_url: String, pem: &str, capture: usize) -> ClientConfig {
+    ClientConfig {
+        base_url,
+        key_id: "key-synthetic".to_owned(),
+        private_key_pem: pem.to_owned(),
+        connect_timeout: None,
+        request_timeout: None,
+        max_body_bytes: None,
+        max_capture_bytes: capture,
+    }
+}
+
+async fn serve_after(delay: Duration, body: String) -> String {
+    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let addr = listener.local_addr().unwrap();
+    tokio::spawn(async move {
+        let Ok((mut socket, _)) = listener.accept().await else {
+            return;
+        };
+        let mut buf = vec![0u8; 8192];
+        let _ = socket.read(&mut buf).await;
+        tokio::time::sleep(delay).await;
+        let head = format!(
+            "HTTP/1.1 200 OK\r\ncontent-type: application/json\r\ncontent-length: {}\r\nconnection: close\r\n\r\n",
+            body.len()
+        );
+        let _ = socket.write_all(head.as_bytes()).await;
+        let _ = socket.write_all(body.as_bytes()).await;
+    });
+    format!("http://{addr}")
+}
+
+#[tokio::test]
+async fn unset_request_timeout_sets_no_local_deadline() {
+    let (pem, _) = key_pair();
+    let delay = Duration::from_millis(600);
+
+    let base = serve_after(delay, order_body("bid", 1)).await;
+    let client = Client::new(config(
+        base,
+        &pem,
+        100_000,
+        100_000,
+        Duration::from_millis(200),
+    ))
+    .unwrap();
+    let err = client.get_order("abc").await.unwrap_err();
+    assert!(
+        matches!(
+            err,
+            VenueError::Transport {
+                kind: kalshi_api::TransportKind::Timeout
+            }
+        ),
+        "Some(request_timeout) still bounds the request: {err:?}"
+    );
+
+    let base = serve_after(delay, order_body("bid", 1)).await;
+    let client = Client::new(unbounded_config(base, &pem, 100_000)).unwrap();
+    let order = client.get_order("abc").await.unwrap();
+    assert_eq!(order.order.order_id, "ord-synthetic-1");
+}
+
+#[tokio::test]
+async fn unset_body_limit_reads_the_whole_body() {
+    let (pem, _) = key_pair();
+    let body = order_body("bid", 4096);
+    assert!(body.len() > 4096);
+
+    let base = serve("200 OK", "application/json", body.as_bytes(), Mode::Full).await;
+    let client = Client::new(config(base, &pem, 64, 16, Duration::from_secs(2))).unwrap();
+    assert!(
+        matches!(
+            client.get_order("abc").await.unwrap_err(),
+            VenueError::BodyTooLarge { .. }
+        ),
+        "Some(max_body_bytes) still rejects a larger body"
+    );
+
+    let base = serve("200 OK", "application/json", body.as_bytes(), Mode::Full).await;
+    let client = Client::new(unbounded_config(base, &pem, 16)).unwrap();
+    let order = client.get_order("abc").await.unwrap();
+    assert_eq!(order.order.ticker.len(), 4096);
+}
+
+#[test]
+fn capture_size_is_checked_only_against_a_set_body_limit() {
+    let (pem, _) = key_pair();
+    assert!(Client::new(unbounded_config(
+        "http://127.0.0.1:1".to_owned(),
+        &pem,
+        1 << 30
+    ))
+    .is_ok());
+    assert!(Client::new(config(
+        "http://127.0.0.1:1".to_owned(),
+        &pem,
+        32,
+        64,
+        Duration::from_secs(2)
+    ))
+    .is_err());
 }

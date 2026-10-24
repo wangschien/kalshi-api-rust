@@ -22,9 +22,9 @@ async fn main() -> anyhow::Result<()> {
         base_url: Environment::Demo.base_url().to_owned(),
         key_id: key_id.clone(),
         private_key_pem: pem.clone(),
-        connect_timeout: Duration::from_secs(10),
-        request_timeout: Duration::from_secs(20),
-        max_body_bytes: 4 * 1024 * 1024,
+        connect_timeout: Some(Duration::from_secs(10)),
+        request_timeout: Some(Duration::from_secs(20)),
+        max_body_bytes: Some(4 * 1024 * 1024),
         max_capture_bytes: 64 * 1024,
     })?;
     let status = client.get_exchange_status().await?;
