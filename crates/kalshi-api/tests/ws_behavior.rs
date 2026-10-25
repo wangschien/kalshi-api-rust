@@ -73,7 +73,6 @@ async fn client_control_ping_preserves_payload_and_bounds() {
         key_id: "synthetic-key".to_owned(),
         private_key_pem: include_str!("fixtures/parity/ed25519_test_private.pem").to_owned(),
         clock: Arc::new(FixedClock),
-        incoming_capacity: 4,
     })
     .await
     .unwrap();
@@ -284,20 +283,13 @@ async fn handshake_signs_the_path_and_pong_is_not_behind_the_channel() {
                 Ok(Some(Ok(Message::Pong(payload)))) => pong = Some(payload.to_vec()),
                 Ok(Some(Ok(_))) => {}
                 other => {
-                    panic!("pong did not arrive while one frame filled the channel: {other:?}")
+                    panic!("pong did not arrive while a frame was unread: {other:?}")
                 }
             }
         }
         socket.send(Message::Text(body.into())).await.unwrap();
-        let close_by = tokio::time::Instant::now() + Duration::from_secs(1);
-        loop {
-            match tokio::time::timeout_at(close_by, socket.next()).await {
-                Ok(Some(Ok(Message::Close(_)))) | Ok(None) => break,
-                Ok(Some(Ok(_))) => {}
-                other => panic!("socket stayed open after the dropped frame: {other:?}"),
-            }
-        }
         pong_tx.send(pong.expect("pong")).await.unwrap();
+        let _ = socket.next().await;
     });
 
     let clock = Arc::new(FixedClock);
@@ -307,7 +299,6 @@ async fn handshake_signs_the_path_and_pong_is_not_behind_the_channel() {
         key_id: "key-synthetic".to_owned(),
         private_key_pem: pem,
         clock,
-        incoming_capacity: 1,
     })
     .await
     .unwrap();
@@ -355,20 +346,12 @@ async fn handshake_signs_the_path_and_pong_is_not_behind_the_channel() {
         .unwrap();
     assert_eq!(pong, b"heartbeat");
     assert_eq!(session.last_ping_rx_ns(), FixedClock.unix_ns());
-    assert_eq!(session.dropped_frames(), 1);
-    let event = tokio::time::timeout(Duration::from_secs(1), session.recv())
-        .await
-        .unwrap()
-        .unwrap();
-    assert!(matches!(
-        event,
-        WsEvent::Frame(frame) if matches!(frame.as_ref(), Incoming::Subscribed { .. })
-    ));
-    assert!(matches!(
-        recv_event(&mut session).await,
-        Some(WsEvent::Lost { .. })
-    ));
-    assert!(recv_event(&mut session).await.is_none());
+    for _ in 0..2 {
+        assert!(matches!(
+            recv_event(&mut session).await,
+            Some(WsEvent::Frame(frame)) if matches!(frame.as_ref(), Incoming::Subscribed { .. })
+        ));
+    }
 }
 
 #[test]
@@ -451,58 +434,11 @@ fn contributing_states_reconnect_is_the_callers_job() {
     let path = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../CONTRIBUTING.md");
     let text = std::fs::read_to_string(path).unwrap();
     assert!(text.contains("`kalshi_api::ws`"));
-    assert!(text.contains("`WsEvent::Lost`"));
+    assert!(text.contains("unbounded"));
     assert!(text.contains("Reconnect, resubscribe, and recovery are the caller's responsibility."));
 }
 
-struct OverflowServer {
-    addr: String,
-    ready: tokio::sync::oneshot::Receiver<bool>,
-    release: tokio::sync::oneshot::Sender<()>,
-    task: tokio::task::JoinHandle<()>,
-}
-
-async fn overflow_server(frames: Vec<serde_json::Value>) -> OverflowServer {
-    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let addr = listener.local_addr().unwrap().to_string();
-    let (ready_tx, ready_rx) = tokio::sync::oneshot::channel();
-    let (release_tx, release_rx) = tokio::sync::oneshot::channel();
-    let task = tokio::spawn(async move {
-        let (stream, _) = listener.accept().await.unwrap();
-        let mut socket = accept_async(stream).await.unwrap();
-        for frame in frames {
-            if socket
-                .send(Message::Text(frame.to_string().into()))
-                .await
-                .is_err()
-            {
-                break;
-            }
-        }
-        let deadline = tokio::time::Instant::now() + Duration::from_secs(1);
-        let mut saw_close = false;
-        loop {
-            match tokio::time::timeout_at(deadline, socket.next()).await {
-                Ok(Some(Ok(Message::Close(_)))) | Ok(None) => {
-                    saw_close = true;
-                    break;
-                }
-                Ok(Some(Ok(_))) => {}
-                _ => break,
-            }
-        }
-        let _ = ready_tx.send(saw_close);
-        let _ = release_rx.await;
-    });
-    OverflowServer {
-        addr,
-        ready: ready_rx,
-        release: release_tx,
-        task,
-    }
-}
-
-async fn connect_capacity(addr: &str, capacity: usize) -> WsSession {
+async fn connect(addr: &str) -> WsSession {
     let (pem, _) = key_pair();
     WsSession::connect_with(WsConfig {
         send_timeout: None,
@@ -510,7 +446,6 @@ async fn connect_capacity(addr: &str, capacity: usize) -> WsSession {
         key_id: "key-synthetic".to_owned(),
         private_key_pem: pem,
         clock: Arc::new(FixedClock),
-        incoming_capacity: capacity,
     })
     .await
     .unwrap()
@@ -519,139 +454,59 @@ async fn connect_capacity(addr: &str, capacity: usize) -> WsSession {
 async fn recv_event(session: &mut WsSession) -> Option<WsEvent> {
     tokio::time::timeout(Duration::from_secs(2), session.recv())
         .await
-        .unwrap_or_else(|_| panic!("recv timed out; dropped={}", session.dropped_frames()))
+        .expect("recv timed out")
 }
 
-async fn finish(server: OverflowServer) {
-    let _ = server.release.send(());
-    server.task.await.unwrap();
-}
+/// Far more than any small fixed queue depth.
+const BURST: usize = 2048;
 
 #[tokio::test]
-async fn private_frame_overflow_ends_with_lost() {
-    let mut server = overflow_server(vec![
-        fixture("subscribed.json"),
-        fixture("fill.json"),
-        fixture("user_order.json"),
-    ])
-    .await;
-    let mut session = connect_capacity(&server.addr, 1).await;
-    let closed = tokio::time::timeout(Duration::from_secs(2), &mut server.ready)
-        .await
-        .unwrap()
-        .unwrap();
-    assert!(closed, "socket stayed open after the dropped frame");
-    assert!(session.dropped_frames() >= 1);
-    let first = recv_event(&mut session).await;
-    assert!(matches!(
-        first,
-        Some(WsEvent::Frame(frame)) if matches!(frame.as_ref(), Incoming::Subscribed { .. })
-    ));
-    match recv_event(&mut session).await {
-        Some(WsEvent::Lost {
-            channel,
-            sid,
-            dropped,
-        }) => {
-            assert_eq!(channel.as_deref(), Some("fill"));
-            assert_eq!(sid, Some(1));
-            assert!(dropped >= 1);
+async fn unread_burst_is_delivered_in_order_and_the_socket_stays_open() {
+    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let addr = listener.local_addr().unwrap().to_string();
+    let (alive_tx, alive_rx) = tokio::sync::oneshot::channel();
+    let (release_tx, release_rx) = tokio::sync::oneshot::channel::<()>();
+    let server = tokio::spawn(async move {
+        let (stream, _) = listener.accept().await.unwrap();
+        let mut socket = accept_async(stream).await.unwrap();
+        for seq in 1..=BURST {
+            let mut frame = fixture("orderbook_delta.json");
+            frame["seq"] = serde_json::json!(seq);
+            socket
+                .send(Message::Text(frame.to_string().into()))
+                .await
+                .unwrap();
         }
-        other => panic!("expected Lost, got {other:?}"),
-    }
-    let end = recv_event(&mut session).await;
-    assert!(end.is_none(), "stream did not end after Lost: {end:?}");
-    finish(server).await;
-}
-
-#[tokio::test]
-async fn orderbook_overflow_ends_with_lost() {
-    let mut server = overflow_server(vec![
-        fixture("orderbook_snapshot.json"),
-        fixture("orderbook_delta.json"),
-    ])
-    .await;
-    let mut session = connect_capacity(&server.addr, 1).await;
-    let closed = tokio::time::timeout(Duration::from_secs(2), &mut server.ready)
-        .await
-        .unwrap()
-        .unwrap();
-    assert!(
-        closed,
-        "socket stayed open after the dropped orderbook frame"
-    );
-    assert_eq!(session.dropped_frames(), 1);
-    let first = recv_event(&mut session).await;
-    assert!(matches!(
-        first,
-        Some(WsEvent::Frame(frame)) if matches!(frame.as_ref(), Incoming::OrderbookSnapshot { .. })
-    ));
-    match recv_event(&mut session).await {
-        Some(WsEvent::Lost {
-            channel,
-            sid,
-            dropped,
-        }) => {
-            assert_eq!(channel.as_deref(), Some("orderbook_delta"));
-            assert_eq!(sid, Some(1));
-            assert_eq!(dropped, 1);
-        }
-        other => panic!("expected Lost, got {other:?}"),
-    }
-    assert!(recv_event(&mut session).await.is_none());
-    finish(server).await;
-}
-
-#[tokio::test]
-async fn lost_closes_the_socket_without_another_ping() {
-    let mut server = overflow_server(vec![fixture("subscribed.json"), fixture("fill.json")]).await;
-    let mut session = connect_capacity(&server.addr, 1).await;
-    let closed = tokio::time::timeout(Duration::from_secs(1), &mut server.ready)
-        .await
-        .unwrap()
-        .unwrap();
-    assert!(
-        closed,
-        "Lost did not close the socket while the server sent nothing further"
-    );
-    assert!(matches!(
-        recv_event(&mut session).await,
-        Some(WsEvent::Frame(_))
-    ));
-    assert!(matches!(
-        recv_event(&mut session).await,
-        Some(WsEvent::Lost { .. })
-    ));
-    assert!(recv_event(&mut session).await.is_none());
-    finish(server).await;
-}
-
-#[tokio::test]
-async fn full_queue_rejection_follows_lost() {
-    let mut invalid = fixture("user_order.json");
-    invalid["msg"]["status"] = serde_json::json!("new-unknown-status");
-    let mut server = overflow_server(vec![fixture("subscribed.json"), invalid]).await;
-    let mut session = connect_capacity(&server.addr, 1).await;
-    assert!(
-        tokio::time::timeout(Duration::from_secs(2), &mut server.ready)
+        socket
+            .send(Message::Ping(Bytes::from_static(b"after-burst")))
             .await
-            .unwrap()
-            .unwrap(),
-        "socket stayed open after the dropped rejection"
+            .unwrap();
+        let alive = loop {
+            match tokio::time::timeout(Duration::from_secs(5), socket.next()).await {
+                Ok(Some(Ok(Message::Pong(payload)))) => break payload.as_ref() == b"after-burst",
+                Ok(Some(Ok(Message::Close(_)) | Err(_)) | None) | Err(_) => break false,
+                Ok(Some(Ok(_))) => {}
+            }
+        };
+        let _ = alive_tx.send(alive);
+        let _ = release_rx.await;
+    });
+    let mut session = connect(&addr).await;
+    assert!(
+        alive_rx.await.unwrap(),
+        "the client closed the socket or stopped answering while frames were unread"
     );
-    assert!(matches!(
-        recv_event(&mut session).await,
-        Some(WsEvent::Frame(frame)) if matches!(frame.as_ref(), Incoming::Subscribed { .. })
-    ));
-    match recv_event(&mut session).await {
-        Some(WsEvent::Lost { channel, sid, .. }) => {
-            assert_eq!(channel.as_deref(), Some("user_order"));
-            assert_eq!(sid, Some(1));
+    for seq in 1..=BURST as u64 {
+        match recv_event(&mut session).await {
+            Some(WsEvent::Frame(frame)) => match *frame {
+                Incoming::OrderbookDelta { seq: got, .. } => assert_eq!(got, seq),
+                other => panic!("unexpected frame {other:?}"),
+            },
+            other => panic!("frame {seq} of {BURST} was not delivered: {other:?}"),
         }
-        other => panic!("full-queue rejection was not Lost: {other:?}"),
     }
-    assert!(recv_event(&mut session).await.is_none());
-    finish(server).await;
+    let _ = release_tx.send(());
+    server.await.unwrap();
 }
 
 #[tokio::test]
@@ -673,7 +528,7 @@ async fn rejected_frame_keeps_raw_identity_and_continues() {
         socket.send(Message::Text(fill.into())).await.unwrap();
         let _ = release_rx.await;
     });
-    let mut session = connect_capacity(&addr, 4).await;
+    let mut session = connect(&addr).await;
     match recv_event(&mut session).await {
         Some(WsEvent::Rejected {
             raw: got,

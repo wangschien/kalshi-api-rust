@@ -12,7 +12,6 @@ use tokio_tungstenite::tungstenite::Message;
 use crate::sign::{Clock, SignMiddleware};
 use crate::ws::{parse_incoming, ClientCommand, Incoming};
 
-const INCOMING_CAPACITY: usize = 256;
 const SIGN_PATH: &str = "/trade-api/ws/v2";
 
 /// Production is the default trading socket. Elections remains available.
@@ -48,10 +47,6 @@ pub struct WsConfig {
     /// deadline: each write is awaited until it completes or fails. The SDK
     /// has no default; a caller that sets `Some` should cite its source.
     pub send_timeout: Option<Duration>,
-    /// Depth of the application channel. A `try_send` that returns full ends
-    /// the stream. [`WsEvent::Lost`] is signaled separately, so that full
-    /// channel cannot block it.
-    pub incoming_capacity: usize,
 }
 
 #[derive(Debug)]
@@ -88,8 +83,6 @@ pub enum WsEvent {
     },
     /// The text did not match a typed message. `raw` is that text, unchanged.
     /// Identity is filled when the JSON has it. The socket stays open.
-    /// A full application channel terminates the stream with [`WsEvent::Lost`]
-    /// instead of delivering this event.
     Rejected {
         detail: String,
         raw: String,
@@ -99,25 +92,19 @@ pub enum WsEvent {
         order_id: Option<String>,
         client_order_id: Option<String>,
     },
-    /// The application channel could not take a text frame. `recv` yields this
-    /// once, then `None`. `dropped` is the count at that moment. The socket closes.
-    /// Reconnect, resubscribe, and recovery belong to the caller.
-    Lost {
-        channel: Option<String>,
-        sid: Option<u64>,
-        dropped: u64,
-    },
 }
 
+/// Both directions use unbounded channels: no text frame is dropped or ends the
+/// stream because the caller has not read it yet, and `send` never waits for
+/// queue space. Memory grows with what the caller leaves unread or unsent.
 pub struct WsSession {
-    outbound: mpsc::Sender<Outbound>,
-    inbound: mpsc::Receiver<WsEvent>,
+    outbound: mpsc::UnboundedSender<Outbound>,
+    inbound: mpsc::UnboundedReceiver<WsEvent>,
     lost_rx: oneshot::Receiver<WsEvent>,
     stashed_lost: Option<WsEvent>,
     lost_taken: bool,
     finished: bool,
     last_ping_rx_ns: Arc<AtomicU64>,
-    dropped_frames: Arc<AtomicU64>,
     task: tokio::task::JoinHandle<()>,
 }
 
@@ -146,7 +133,6 @@ impl WsSession {
             private_key_pem: private_key_pem.into(),
             clock,
             send_timeout,
-            incoming_capacity: INCOMING_CAPACITY,
         })
         .await
     }
@@ -171,11 +157,10 @@ impl WsSession {
             .await
             .map_err(|err| WsError::Connect(err.to_string()))?;
         let (write, read) = socket.split();
-        let (outbound, command_rx) = mpsc::channel(32);
-        let (event_tx, inbound) = mpsc::channel(config.incoming_capacity.max(1));
+        let (outbound, command_rx) = mpsc::unbounded_channel();
+        let (event_tx, inbound) = mpsc::unbounded_channel();
         let (lost_tx, lost_rx) = oneshot::channel();
         let last_ping_rx_ns = Arc::new(AtomicU64::new(0));
-        let dropped_frames = Arc::new(AtomicU64::new(0));
         let task = tokio::spawn(run_io(
             read,
             write,
@@ -184,7 +169,6 @@ impl WsSession {
             lost_tx,
             IoShared {
                 last_ping_rx_ns: Arc::clone(&last_ping_rx_ns),
-                dropped_frames: Arc::clone(&dropped_frames),
                 clock: config.clock,
                 send_timeout: config.send_timeout,
             },
@@ -197,7 +181,6 @@ impl WsSession {
             lost_taken: false,
             finished: false,
             last_ping_rx_ns,
-            dropped_frames,
             task,
         })
     }
@@ -205,7 +188,6 @@ impl WsSession {
     pub async fn send(&self, command: ClientCommand) -> Result<(), WsError> {
         self.outbound
             .send(Outbound::Command(Box::new(command)))
-            .await
             .map_err(|_| WsError::Closed)
     }
 
@@ -218,7 +200,6 @@ impl WsSession {
         }
         self.outbound
             .send(Outbound::Ping(payload))
-            .await
             .map_err(|_| WsError::Closed)
     }
 
@@ -290,11 +271,6 @@ impl WsSession {
     pub fn last_ping_rx_ns(&self) -> u64 {
         self.last_ping_rx_ns.load(Ordering::Relaxed)
     }
-
-    /// Text frames not delivered on [`WsSession::recv`].
-    pub fn dropped_frames(&self) -> u64 {
-        self.dropped_frames.load(Ordering::Relaxed)
-    }
 }
 
 fn sign_path(url: &str) -> Result<String, WsError> {
@@ -322,7 +298,6 @@ fn insert_header(
 
 struct IoShared {
     last_ping_rx_ns: Arc<AtomicU64>,
-    dropped_frames: Arc<AtomicU64>,
     clock: Arc<dyn Clock>,
     send_timeout: Option<Duration>,
 }
@@ -330,8 +305,8 @@ struct IoShared {
 async fn run_io<R, W>(
     mut read: R,
     mut write: W,
-    mut commands: mpsc::Receiver<Outbound>,
-    incoming: mpsc::Sender<WsEvent>,
+    mut commands: mpsc::UnboundedReceiver<Outbound>,
+    incoming: mpsc::UnboundedSender<WsEvent>,
     lost: oneshot::Sender<WsEvent>,
     shared: IoShared,
 ) where
@@ -341,7 +316,6 @@ async fn run_io<R, W>(
     let mut app = AppQueue {
         tx: Some(incoming),
         lost: Some(lost),
-        dropped_frames: shared.dropped_frames,
         stopping: false,
     };
     loop {
@@ -404,9 +378,8 @@ fn json_text(command: &impl Serialize) -> String {
 }
 
 struct AppQueue {
-    tx: Option<mpsc::Sender<WsEvent>>,
+    tx: Option<mpsc::UnboundedSender<WsEvent>>,
     lost: Option<oneshot::Sender<WsEvent>>,
-    dropped_frames: Arc<AtomicU64>,
     stopping: bool,
 }
 
@@ -445,43 +418,19 @@ where
     })
 }
 
+/// `false` means the session receiver is gone, so the socket closes.
 fn deliver_text(app: &mut AppQueue, raw: &str) -> bool {
     if app.stopping {
-        app.dropped_frames.fetch_add(1, Ordering::Relaxed);
         return false;
     }
-    let Some(tx) = app.tx.clone() else {
-        app.dropped_frames.fetch_add(1, Ordering::Relaxed);
+    let Some(tx) = app.tx.as_ref() else {
         return false;
     };
     let event = match parse_incoming(raw) {
         Ok(frame) => WsEvent::Frame(Box::new(frame)),
         Err(err) => rejected(raw, err),
     };
-    match tx.try_send(event) {
-        Ok(()) => true,
-        Err(mpsc::error::TrySendError::Full(_)) => {
-            terminate(app, raw);
-            false
-        }
-        Err(mpsc::error::TrySendError::Closed(_)) => false,
-    }
-}
-
-fn terminate(app: &mut AppQueue, raw: &str) {
-    let dropped = app.dropped_frames.fetch_add(1, Ordering::Relaxed) + 1;
-    let identity = frame_identity(raw);
-    if let Some(tx) = app.lost.take() {
-        let _ = tx.send(WsEvent::Lost {
-            channel: identity.channel,
-            sid: identity.sid,
-            dropped,
-        });
-    }
-    // Drop the data sender so recv ends after queued frames and Lost.
-    // Returning false from the read loop closes the socket in this turn.
-    app.tx.take();
-    app.stopping = true;
+    tx.send(event).is_ok()
 }
 
 fn rejected(raw: &str, err: serde_json::Error) -> WsEvent {
@@ -542,94 +491,8 @@ fn u64_at(value: &serde_json::Value, key: &str) -> Option<u64> {
 }
 
 #[cfg(test)]
-mod queue_race {
-    #![allow(clippy::disallowed_methods)]
-    use super::*;
-    use futures_util::FutureExt;
-    use std::future::Future;
-    use std::sync::Mutex;
-    use std::task::{Context, Poll, Wake, Waker};
-
-    struct ImmediateConsumer {
-        session: Mutex<WsSession>,
-        events: Mutex<Vec<WsEvent>>,
-    }
-
-    impl Wake for ImmediateConsumer {
-        fn wake(self: Arc<Self>) {
-            self.wake_by_ref();
-        }
-
-        fn wake_by_ref(self: &Arc<Self>) {
-            // try_send wakes the receiver before it returns. An executor may
-            // run that receiver before the sender's next statement.
-            let Ok(mut session) = self.session.lock() else {
-                return;
-            };
-            let event = session.recv().now_or_never().flatten();
-            drop(session);
-            if let Some(event) = event {
-                if let Ok(mut events) = self.events.lock() {
-                    events.push(event);
-                }
-            }
-        }
-    }
-
-    #[tokio::test]
-    async fn consumed_frame_does_not_make_the_next_frame_lost() {
-        let (tx, inbound) = mpsc::channel(1);
-        let (outbound, _commands) = mpsc::channel(1);
-        let (lost_tx, lost_rx) = oneshot::channel();
-        let dropped_frames = Arc::new(AtomicU64::new(0));
-        let consumer = Arc::new(ImmediateConsumer {
-            session: Mutex::new(WsSession {
-                outbound,
-                inbound,
-                lost_rx,
-                stashed_lost: None,
-                lost_taken: false,
-                finished: false,
-                last_ping_rx_ns: Arc::new(AtomicU64::new(0)),
-                dropped_frames: Arc::clone(&dropped_frames),
-                task: tokio::spawn(std::future::pending()),
-            }),
-            events: Mutex::new(Vec::new()),
-        });
-        let waker = Waker::from(Arc::clone(&consumer));
-        {
-            let mut session = consumer.session.lock().unwrap();
-            let mut pending = Box::pin(session.recv());
-            assert!(matches!(
-                pending.as_mut().poll(&mut Context::from_waker(&waker)),
-                Poll::Pending
-            ));
-        }
-        let mut app = AppQueue {
-            tx: Some(tx),
-            lost: Some(lost_tx),
-            dropped_frames: Arc::clone(&dropped_frames),
-            stopping: false,
-        };
-        let raw = r#"{"type":"subscribed","id":1,"msg":{"channel":"fill","sid":1}}"#;
-        assert!(deliver_text(&mut app, raw));
-        assert_eq!(consumer.events.lock().unwrap().len(), 1);
-        assert!(consumer.session.lock().unwrap().inbound.is_empty());
-        assert!(deliver_text(&mut app, raw));
-        assert_eq!(dropped_frames.load(Ordering::Relaxed), 0);
-        let next = consumer
-            .session
-            .lock()
-            .unwrap()
-            .recv()
-            .now_or_never()
-            .flatten();
-        assert!(
-            matches!(next, Some(WsEvent::Frame(_))),
-            "a frame consumed before the next send was treated as a full queue: {next:?}"
-        );
-    }
-}
+#[path = "transport_queues.rs"]
+mod queues;
 
 #[cfg(test)]
 #[path = "transport_deadlines.rs"]

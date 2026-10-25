@@ -139,7 +139,6 @@ async fn main() -> anyhow::Result<()> {
                 }
             }
             WsEvent::Rejected { .. } => rejected += 1,
-            WsEvent::Lost { .. } => lost += 1,
             WsEvent::SendTimedOut { .. } => {
                 errors += 1;
                 break;

@@ -12,6 +12,7 @@
 
 ## [Unreleased]
 
+- WebSocket incoming frames and outgoing commands use unbounded channels. Remove `WsConfig::incoming_capacity`, `WsEvent::Lost`, and `WsSession::dropped_frames`: an unread frame is kept instead of ending the stream. The AsyncAPI document sets no client queue depth.
 - `WsConfig::send_timeout` and the last argument of `WsSession::connect` are `Option<Duration>`; `None` sets no local send deadline. The SDK has no default number. A `Some` deadline keeps the `WsEvent::SendTimedOut` behavior.
 - `ClientConfig::connect_timeout`, `ClientConfig::request_timeout`, and generated `Configuration::new` take `Option<Duration>`; `None` sets no local deadline. `ClientConfig::max_body_bytes` is `Option<usize>`; `None` sets no response body limit. The SDK has no default number for any of them.
 - Remove `RetryMiddleware`. The OpenAPI document specifies no retry or backoff policy; server errors are returned on the first response.
@@ -28,5 +29,4 @@
 - Generated `kalshi-api-openapi` 3.31.0 from the pinned OpenAPI document.
 - Added the `kalshi-api` client: signing, response capture, fixed-point helpers, and order builders.
 - Added a hand-written WebSocket client for the trading socket, including typed frames and AsyncAPI checks for the synthetic fixtures.
-- A dropped WebSocket frame ends the stream with `WsEvent::Lost`. Rejected frames keep their original text. Typed messages follow the AsyncAPI field list, including keys that are required and may be null.
-- A full WebSocket application channel is the channel's own full result. Emitting `WsEvent::Lost` closes the socket without waiting for another frame.
+- Rejected WebSocket frames keep their original text. Typed messages follow the AsyncAPI field list, including keys that are required and may be null.
