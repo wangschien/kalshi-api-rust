@@ -2349,9 +2349,10 @@
     {
       "owner": "OrderbookDeltaBody",
       "field": "clock",
-      "presence": "required",
+      "presence": "optional",
       "schema": "orderbookDeltaPayload.msg",
-      "deprecated": false
+      "deprecated": false,
+      "document_presence": "required"
     },
     {
       "owner": "OrderbookDeltaBody",
@@ -2416,9 +2417,10 @@
     {
       "owner": "OrderbookSnapshotBody",
       "field": "clock",
-      "presence": "required",
+      "presence": "optional",
       "schema": "orderbookSnapshotPayload.msg",
-      "deprecated": false
+      "deprecated": false,
+      "document_presence": "required"
     },
     {
       "owner": "OrderbookSnapshotBody",

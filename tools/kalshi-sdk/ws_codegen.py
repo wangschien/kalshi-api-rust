@@ -4,7 +4,8 @@
 Writes crates/kalshi-api/src/ws/generated.rs. ``--check`` fails when the
 committed file differs from a fresh generation. Rust names for payloads and
 nested objects come from ws_fields.py, so the field list and the types share
-one naming table. Every inline enum needs a Rust name in INLINE_ENUMS; an
+one naming table. Fields in ws_fields.NOT_SENT are optional even though the
+document requires them. Every inline enum needs a Rust name in INLINE_ENUMS; an
 unnamed enum, an unknown $ref, or a field type conflict stops generation.
 """
 
@@ -18,7 +19,7 @@ from pathlib import Path
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from ws_fields import CHILD_OWNER, ROOTS, nullable  # noqa: E402
+from ws_fields import CHILD_OWNER, NOT_SENT, ROOTS, nullable  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 SPEC = ROOT / "spec" / "asyncapi.yaml"
@@ -113,6 +114,7 @@ class Gen:
         self.structs: dict[str, dict] = {}
         self.enums: dict[str, list] = {}
         self.variants: dict[str, dict] = {}
+        self.not_sent: set[tuple[str, str]] = set()
 
     def ref(self, prop: dict) -> str | None:
         ref = prop.get("$ref")
@@ -187,12 +189,18 @@ class Gen:
         for name, prop in (schema.get("properties") or {}).items():
             if name in skip:
                 continue
+            not_sent = (owner, name) in NOT_SENT
+            if not_sent:
+                if name not in required:
+                    raise SystemExit(f"NOT_SENT {owner}.{name} is not required in the document ({path})")
+                self.not_sent.add((owner, name))
             out.append({
                 "name": name,
                 "ty": self.type_of(owner, name, prop, f"{path}.{name}"),
-                "required": name in required,
+                "required": name in required and not not_sent,
                 "nullable": nullable(self.schemas, prop),
                 "deprecated": bool(prop.get("deprecated")),
+                "not_sent": not_sent,
             })
         return out
 
@@ -289,12 +297,14 @@ class Gen:
                 k: v for k, v in schema["properties"].items() if k != "msg"}},
                 schema_name, ("type",))
             fields.append({"name": "msg", "ty": "OkBody", "required": "msg" in schema.get("required", []),
-                           "nullable": False, "deprecated": False})
+                           "nullable": False, "deprecated": False, "not_sent": False})
             self.merge(self.variants, "Incoming::Ok", fields, schema_name)
         for name, channel in self.spec.get("channels", {}).items():
             address = channel.get("address")
             if address and address != "/":
                 self.enum("Channel", [address], f"channels.{name}")
+        if self.not_sent != NOT_SENT:
+            raise SystemExit(f"NOT_SENT entries not in the document: {sorted(NOT_SENT - self.not_sent)}")
 
 
 def variant_name(enum: str, value: str) -> str:
@@ -322,6 +332,8 @@ def field_lines(field: dict, indent: str, public: bool) -> list[str]:
     alias = field.get("alias")
     if alias:
         attrs.append(f'alias = "{alias}"')
+    if field.get("not_sent"):
+        lines.append(f"{indent}/// Required in the AsyncAPI document, but the exchange does not send it.")
     if field["deprecated"]:
         lines.append(f"{indent}/// Deprecated in the AsyncAPI document. The key is still sent.")
         lines.append(f"{indent}#[deprecated]")

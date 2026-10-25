@@ -32,6 +32,8 @@ The `demo_read_only` example reads `KALSHI_DEMO_ID` and `KALSHI_DEMO_FILE_PATH`.
 
 `Environment::Prod` is `https://external-api.kalshi.com/trade-api/v2`, the spec's first production server and the official Python async SDK default. `Environment::ProdShared` is `https://api.elections.kalshi.com/trade-api/v2`.
 
+The AsyncAPI document marks `clock` required on `orderbook_snapshot` and `orderbook_delta` messages. The exchange does not send it: production and demo order book frames carry no `clock` key. `OrderbookSnapshotBody::clock` and `OrderbookDeltaBody::clock` are therefore `Option<i64>`, and `None` means the frame had no `clock`. Both fields are listed in `NOT_SENT` in `tools/kalshi-sdk/ws_fields.py`; `ws_codegen.py` and `ws_fields.json` read that table, and generation fails if the document stops requiring either field. Measured on a recorded production session of one market, KXBTC15M-26OCT250945-45 (2026-10-25 13:30 to 13:45 UTC). The file is gzip JSON lines named `<recorder>-KXBTC15M-26OCT250945-45-<window start>-<window end>-<id>.jsonl.gz`, one received message per line with the wire frame under `raw`. It has 425,734 lines (`zcat FILE | wc -l`) and 402,649 order book frames, one snapshot and 402,648 deltas (`zcat FILE | grep -c '"type":"orderbook_'`); 0 of them have `clock` (`zcat FILE | grep '"type":"orderbook_' | grep -c '"clock"'`). Order book frames recorded on demo on 2026-10-24 have no `clock` either. `crates/kalshi-api/tests/fixtures/recorded` holds the first snapshot and the first delta of that session, wire frame only.
+
 ## Operations
 
 Each row has a typed method and, except for cancel-all, a `*_raw` method that returns the JSON value only when the body is complete. Fixtures combine synthetic inputs with official OpenAPI and AsyncAPI examples.
@@ -77,7 +79,7 @@ The handshake is `GET /trade-api/ws/v2`. The signature is `timestamp + GET +` th
 
 `user_order` status is a closed set, and the wire value `unknown` is one of those values. A status outside the set fails that frame. `last_update_reason` keeps an unrecognized reason. The market position frame type is `market_position`.
 
-`tools/kalshi-sdk/ws_fields.py --check` compares `tools/kalshi-sdk/ws_fields.json` with the fields of the typed commands and messages in `spec/asyncapi.yaml`. A required key whose schema allows null must be present. `tools/kalshi-sdk/ws_schema.py --check` validates the synthetic fixtures in `crates/kalshi-api/tests/fixtures/s3` against AsyncAPI `components.schemas`. The schema check needs `jsonschema==4.10.3` and `PyYAML==6.0.1`. The field list needs `PyYAML==6.0.1`.
+`tools/kalshi-sdk/ws_fields.py --check` compares `tools/kalshi-sdk/ws_fields.json` with the fields of the typed commands and messages in `spec/asyncapi.yaml`. A field in `NOT_SENT` is listed as optional, with `document_presence` recording that the document requires it. A required key whose schema allows null must be present. `tools/kalshi-sdk/ws_schema.py --check` validates the synthetic fixtures in `crates/kalshi-api/tests/fixtures/s3` against AsyncAPI `components.schemas`. The schema check needs `jsonschema==4.10.3` and `PyYAML==6.0.1`. The field list needs `PyYAML==6.0.1`.
 
 ## Build
 

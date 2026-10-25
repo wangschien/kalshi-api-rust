@@ -12,6 +12,7 @@
 
 ## [Unreleased]
 
+- `OrderbookSnapshotBody::clock` and `OrderbookDeltaBody::clock` are `Option<i64>`. The AsyncAPI document marks `clock` required, but production and demo order book frames do not carry it, so every real book frame failed to parse.
 - WebSocket incoming frames and outgoing commands use unbounded channels. Remove `WsConfig::incoming_capacity`, `WsEvent::Lost`, and `WsSession::dropped_frames`: an unread frame is kept instead of ending the stream. The AsyncAPI document sets no client queue depth.
 - `WsConfig::send_timeout` and the last argument of `WsSession::connect` are `Option<Duration>`; `None` sets no local send deadline. The SDK has no default number. A `Some` deadline keeps the `WsEvent::SendTimedOut` behavior.
 - `ClientConfig::connect_timeout`, `ClientConfig::request_timeout`, and generated `Configuration::new` take `Option<Duration>`; `None` sets no local deadline. `ClientConfig::max_body_bytes` is `Option<usize>`; `None` sets no response body limit. The SDK has no default number for any of them.

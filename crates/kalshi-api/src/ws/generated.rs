@@ -620,7 +620,9 @@ pub struct OrderGroupBody {
 pub struct OrderbookDeltaBody {
     pub market_ticker: String,
     pub market_id: String,
-    pub clock: i64,
+    /// Required in the AsyncAPI document, but the exchange does not send it.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub clock: Option<i64>,
     pub price_dollars: String,
     pub delta_fp: String,
     pub side: MarketSide,
@@ -640,7 +642,9 @@ pub struct OrderbookDeltaBody {
 pub struct OrderbookSnapshotBody {
     pub market_ticker: String,
     pub market_id: String,
-    pub clock: i64,
+    /// Required in the AsyncAPI document, but the exchange does not send it.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub clock: Option<i64>,
     #[serde(
         default,
         skip_serializing_if = "Option::is_none",

@@ -6,7 +6,8 @@ is ``required``, ``optional``, or ``required_nullable`` (the key must appear;
 JSON null is accepted). The committed list is checked by drift. Nested
 objects that this crate types are expanded. Channel payloads outside that set
 are not listed. ``deprecated`` mirrors the document flag, and ``enum`` lists
-the string wire values of an enum or const property.
+the string wire values of an enum or const property. A field in ``NOT_SENT``
+is listed as ``optional`` with ``document_presence`` set to ``required``.
 """
 
 from __future__ import annotations
@@ -124,6 +125,14 @@ CHILD_OWNER = {
     ("Incoming::BatchQuoteExecuted", "msg"): "BatchQuoteExecutedBody",
 }
 
+# (Rust owner, property) the document marks required but the exchange does not
+# send. Each one is typed as optional. See "Known spec inconsistencies" in
+# CONTRIBUTING.md. An entry the document does not require stops generation.
+NOT_SENT = {
+    ("OrderbookSnapshotBody", "clock"),
+    ("OrderbookDeltaBody", "clock"),
+}
+
 
 def resolve(schemas: dict, prop: object) -> dict:
     if isinstance(prop, dict) and isinstance(prop.get("$ref"), str):
@@ -210,6 +219,11 @@ def walk(
             "schema": path,
             "deprecated": bool(prop.get("deprecated")),
         }
+        if (owner, name) in NOT_SENT:
+            if row["presence"] != "required":
+                raise SystemExit(f"NOT_SENT {owner}.{name} is {row['presence']} in the document ({path})")
+            row["presence"] = "optional"
+            row["document_presence"] = "required"
         values = wire_values(schemas, prop)
         if values is not None:
             row["enum"] = values
@@ -240,6 +254,9 @@ def derive() -> list[dict[str, str]]:
     ):
         child = child_object(schemas, schemas[schema_name]["properties"]["msg"])
         walk(schemas, owner, child, schema_name + ".msg", rows, False)
+    listed = {(row["owner"], row["field"]) for row in rows if "document_presence" in row}
+    if listed != NOT_SENT:
+        raise SystemExit(f"NOT_SENT entries not in the document: {sorted(NOT_SENT - listed)}")
     rows.sort(key=lambda row: (row["owner"], row["field"], row["schema"]))
     return rows
 

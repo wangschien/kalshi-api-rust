@@ -1,0 +1,1 @@
+{"msg":{"delta_fp":"12000.00","market_id":"01a16f80-7f1f-7e13-8392-915951eb471c","market_ticker":"KXBTC15M-26OCT250945-45","price_dollars":"0.0020","side":"yes","ts":"2026-10-25T13:30:00Z","ts_ms":1792935000000},"sending_ts_ms":1792935000005,"seq":2,"sid":1,"type":"orderbook_delta"}

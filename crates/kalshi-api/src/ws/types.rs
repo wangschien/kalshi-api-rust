@@ -41,22 +41,26 @@ mod tests {
     }
 
     #[test]
-    fn orderbook_clock_is_required() {
+    fn orderbook_clock_is_kept_when_sent_and_none_when_absent() {
         let snapshot = r#"{"type":"orderbook_snapshot","sid":1,"seq":1,"msg":{"market_ticker":"SYNTH-1","market_id":"m","clock":4182057}}"#;
         match parse_incoming(snapshot).unwrap() {
-            Incoming::OrderbookSnapshot { msg, .. } => assert_eq!(msg.clock, 4182057),
+            Incoming::OrderbookSnapshot { msg, .. } => assert_eq!(msg.clock, Some(4182057)),
             other => panic!("unexpected {other:?}"),
         }
         let delta = r#"{"type":"orderbook_delta","sid":1,"seq":2,"msg":{"market_ticker":"SYNTH-1","market_id":"m","clock":4182061,"price_dollars":"0.5600","delta_fp":"1.00","side":"yes"}}"#;
         match parse_incoming(delta).unwrap() {
-            Incoming::OrderbookDelta { msg, .. } => assert_eq!(msg.clock, 4182061),
+            Incoming::OrderbookDelta { msg, .. } => assert_eq!(msg.clock, Some(4182061)),
             other => panic!("unexpected {other:?}"),
         }
-        for frame in [
-            r#"{"type":"orderbook_snapshot","sid":1,"seq":1,"msg":{"market_ticker":"SYNTH-1","market_id":"m"}}"#,
-            r#"{"type":"orderbook_delta","sid":1,"seq":2,"msg":{"market_ticker":"SYNTH-1","market_id":"m","price_dollars":"0.5600","delta_fp":"1.00","side":"yes"}}"#,
-        ] {
-            assert!(parse_incoming(frame).is_err(), "{frame}");
+        let snapshot = r#"{"type":"orderbook_snapshot","sid":1,"seq":1,"msg":{"market_ticker":"SYNTH-1","market_id":"m"}}"#;
+        match parse_incoming(snapshot).unwrap() {
+            Incoming::OrderbookSnapshot { msg, .. } => assert_eq!(msg.clock, None),
+            other => panic!("unexpected {other:?}"),
+        }
+        let delta = r#"{"type":"orderbook_delta","sid":1,"seq":2,"msg":{"market_ticker":"SYNTH-1","market_id":"m","price_dollars":"0.5600","delta_fp":"1.00","side":"yes"}}"#;
+        match parse_incoming(delta).unwrap() {
+            Incoming::OrderbookDelta { msg, .. } => assert_eq!(msg.clock, None),
+            other => panic!("unexpected {other:?}"),
         }
     }
 
