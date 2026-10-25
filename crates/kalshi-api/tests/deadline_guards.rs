@@ -77,12 +77,19 @@ async fn serve_after(delay: Duration, body: Vec<u8>) -> String {
 /// A loopback listener whose accept queue is full and never drained. The
 /// kernel drops further SYNs, so a new connect stays pending until a local
 /// deadline ends it. No route or firewall setup is involved.
+///
+/// Only Linux is known to drop the SYN here. Other kernels may refuse or
+/// accept the connect instead, which would fail these tests for a reason
+/// unrelated to the client, so this helper and the connect tests that use it
+/// are compiled on Linux only.
+#[cfg(target_os = "linux")]
 struct Unanswered {
     url: String,
     _listener: TcpListener,
     _held: Vec<std::net::TcpStream>,
 }
 
+#[cfg(target_os = "linux")]
 fn unanswered() -> Unanswered {
     let socket = tokio::net::TcpSocket::new_v4().unwrap();
     socket.bind("127.0.0.1:0".parse().unwrap()).unwrap();
@@ -132,6 +139,7 @@ async fn client_some_request_deadline_still_times_out() {
 
 // ---------- Client layer: connect ----------
 
+#[cfg(target_os = "linux")]
 #[tokio::test(start_paused = true)]
 async fn client_none_has_no_connect_deadline_of_any_length() {
     let target = unanswered();
@@ -143,6 +151,7 @@ async fn client_none_has_no_connect_deadline_of_any_length() {
     );
 }
 
+#[cfg(target_os = "linux")]
 #[tokio::test]
 async fn client_some_connect_deadline_still_fires() {
     let target = unanswered();
@@ -319,6 +328,7 @@ async fn generated_every_operation_some_sets_request_timeout() {
 
 // ---------- Generated layer: connect ----------
 
+#[cfg(target_os = "linux")]
 #[tokio::test]
 async fn generated_some_connect_deadline_still_fires() {
     let mut config = Configuration::new(Some(Duration::from_millis(200)), None).unwrap();
@@ -333,6 +343,7 @@ async fn generated_some_connect_deadline_still_fires() {
     assert!(result.is_err());
 }
 
+#[cfg(target_os = "linux")]
 #[tokio::test(start_paused = true)]
 async fn generated_none_has_no_connect_deadline_of_any_length() {
     let mut config = Configuration::new(None, None).unwrap();
