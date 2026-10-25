@@ -68,7 +68,7 @@ async fn client_control_ping_preserves_payload_and_bounds() {
             .unwrap();
     });
     let session = WsSession::connect_with(WsConfig {
-        send_timeout: Duration::from_secs(1),
+        send_timeout: None,
         url: format!("ws://{address}/trade-api/ws/v2"),
         key_id: "synthetic-key".to_owned(),
         private_key_pem: include_str!("fixtures/parity/ed25519_test_private.pem").to_owned(),
@@ -302,7 +302,7 @@ async fn handshake_signs_the_path_and_pong_is_not_behind_the_channel() {
 
     let clock = Arc::new(FixedClock);
     let mut session = WsSession::connect_with(WsConfig {
-        send_timeout: Duration::from_secs(1),
+        send_timeout: None,
         url: format!("ws://{addr}/trade-api/ws/v2?ticker=SYNTH-1"),
         key_id: "key-synthetic".to_owned(),
         private_key_pem: pem,
@@ -339,7 +339,11 @@ async fn handshake_signs_the_path_and_pong_is_not_behind_the_channel() {
         .send(orderbook_subscribe(1, "SYNTH-1"))
         .await
         .unwrap();
-    let sent = text_rx.recv().await.unwrap();
+    // The test bounds its own wait so a write that never happens fails instead of hanging.
+    let sent = tokio::time::timeout(Duration::from_secs(5), text_rx.recv())
+        .await
+        .expect("subscribe text not seen within the test's own bound")
+        .unwrap();
     assert_eq!(
         serde_json::from_str::<serde_json::Value>(&sent).unwrap(),
         fixture("subscribe.json")
@@ -501,7 +505,7 @@ async fn overflow_server(frames: Vec<serde_json::Value>) -> OverflowServer {
 async fn connect_capacity(addr: &str, capacity: usize) -> WsSession {
     let (pem, _) = key_pair();
     WsSession::connect_with(WsConfig {
-        send_timeout: Duration::from_secs(1),
+        send_timeout: None,
         url: format!("ws://{addr}/trade-api/ws/v2"),
         key_id: "key-synthetic".to_owned(),
         private_key_pem: pem,

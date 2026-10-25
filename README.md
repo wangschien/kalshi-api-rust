@@ -43,7 +43,7 @@ async fn main() -> anyhow::Result<()> {
 }
 ```
 
-The generated client uses `Configuration::new(connect_timeout, request_timeout)?`, with both values supplied as `Option<Duration>`; there is no default configuration. `None` sets no local deadline, and `ClientConfig::max_body_bytes: None` sets no response body limit. The SDK has no default number for any of them, and this README suggests none: the caller chooses each value and should cite the source for any `Some` value it sets. A request deadline that is set stays on each request when the middleware client is replaced. WebSocket sessions require a caller-supplied `send_timeout` and end with `WsEvent::SendTimedOut` if a write stalls.
+The generated client uses `Configuration::new(connect_timeout, request_timeout)?`, with both values supplied as `Option<Duration>`; there is no default configuration. `None` sets no local deadline, and `ClientConfig::max_body_bytes: None` sets no response body limit. The SDK has no default number for any of them, and this README suggests none: the caller chooses each value and should cite the source for any `Some` value it sets. A request deadline that is set stays on each request when the middleware client is replaced. The WebSocket `send_timeout` is also `Option<Duration>`: `None` sets no local send deadline, and a `Some` deadline ends the session with `WsEvent::SendTimedOut` if a write stalls past it.
 
 ## Documentation
 

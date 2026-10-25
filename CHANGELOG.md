@@ -12,6 +12,7 @@
 
 ## [Unreleased]
 
+- `WsConfig::send_timeout` and the last argument of `WsSession::connect` are `Option<Duration>`; `None` sets no local send deadline. The SDK has no default number. A `Some` deadline keeps the `WsEvent::SendTimedOut` behavior.
 - `ClientConfig::connect_timeout`, `ClientConfig::request_timeout`, and generated `Configuration::new` take `Option<Duration>`; `None` sets no local deadline. `ClientConfig::max_body_bytes` is `Option<usize>`; `None` sets no response body limit. The SDK has no default number for any of them.
 - Remove `RetryMiddleware`. The OpenAPI document specifies no retry or backoff policy; server errors are returned on the first response.
 - `_raw` methods report a request that was sent but got no reply as `Transport { kind: Timeout }`, as the typed methods do, instead of `Connect`.

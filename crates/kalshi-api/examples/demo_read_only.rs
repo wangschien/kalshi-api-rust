@@ -27,7 +27,11 @@ async fn main() -> anyhow::Result<()> {
                 .with_context(|| format!("{name} must be milliseconds"))?,
         ))
     };
-    let send_timeout = millis("KALSHI_DEMO_WS_SEND_TIMEOUT_MS")?;
+    // Unset means no local send deadline.
+    let send_timeout = match std::env::var_os("KALSHI_DEMO_WS_SEND_TIMEOUT_MS") {
+        None => None,
+        Some(_) => Some(millis("KALSHI_DEMO_WS_SEND_TIMEOUT_MS")?),
+    };
     let listen_for = millis("KALSHI_DEMO_LISTEN_MS")?;
     let client = Client::new(ClientConfig {
         base_url: Environment::Demo.base_url().to_owned(),

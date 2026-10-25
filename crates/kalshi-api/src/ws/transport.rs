@@ -44,8 +44,10 @@ pub struct WsConfig {
     pub key_id: String,
     pub private_key_pem: String,
     pub clock: Arc<dyn Clock>,
-    /// Maximum duration of each command or control-frame write.
-    pub send_timeout: Duration,
+    /// Local deadline for each command or control-frame write. `None` sets no
+    /// deadline: each write is awaited until it completes or fails. The SDK
+    /// has no default; a caller that sets `Some` should cite its source.
+    pub send_timeout: Option<Duration>,
     /// Depth of the application channel. A `try_send` that returns full ends
     /// the stream. [`WsEvent::Lost`] is signaled separately, so that full
     /// channel cannot block it.
@@ -78,7 +80,8 @@ impl std::error::Error for WsError {}
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum WsEvent {
     Frame(Box<Incoming>),
-    /// The socket is discarded because a write did not finish before the caller's deadline.
+    /// The socket is discarded because a write did not finish before the caller's
+    /// `Some` deadline. Never produced when `send_timeout` is `None`.
     /// Delivered once after queued frames, then `recv` returns `None`.
     SendTimedOut {
         timeout: Duration,
@@ -135,7 +138,7 @@ impl WsSession {
         key_id: impl Into<String>,
         private_key_pem: impl Into<String>,
         clock: Arc<dyn Clock>,
-        send_timeout: Duration,
+        send_timeout: Option<Duration>,
     ) -> Result<Self, WsError> {
         Self::connect_with(WsConfig {
             url: host.url().to_owned(),
@@ -321,7 +324,7 @@ struct IoShared {
     last_ping_rx_ns: Arc<AtomicU64>,
     dropped_frames: Arc<AtomicU64>,
     clock: Arc<dyn Clock>,
-    send_timeout: Duration,
+    send_timeout: Option<Duration>,
 }
 
 async fn run_io<R, W>(
@@ -350,8 +353,8 @@ async fn run_io<R, W>(
                 match handle_frame(&mut write, frame, &mut app, &shared.last_ping_rx_ns, &shared.clock, shared.send_timeout).await {
                     Ok(true) => {},
                     Ok(false) => break,
-                    Err(_) => {
-                        send_timed_out(&mut app, shared.send_timeout);
+                    Err(timeout) => {
+                        send_timed_out(&mut app, timeout);
                         return;
                     },
                 }
@@ -365,33 +368,35 @@ async fn run_io<R, W>(
                 match send_frame(&mut write, message, shared.send_timeout).await {
                     Ok(true) => {},
                     Ok(false) => break,
-                    Err(_) => {
-                        send_timed_out(&mut app, shared.send_timeout);
+                    Err(timeout) => {
+                        send_timed_out(&mut app, timeout);
                         return;
                     },
                 }
             }
         }
     }
-    if send_frame(&mut write, Message::Close(None), shared.send_timeout)
-        .await
-        .is_err()
-    {
-        send_timed_out(&mut app, shared.send_timeout);
+    if let Err(timeout) = send_frame(&mut write, Message::Close(None), shared.send_timeout).await {
+        send_timed_out(&mut app, timeout);
     }
 }
 
+/// `Ok(false)` means the write failed. `Err` carries the deadline that expired.
 async fn send_frame<W>(
     write: &mut W,
     message: Message,
-    send_timeout: Duration,
-) -> Result<bool, tokio::time::error::Elapsed>
+    send_timeout: Option<Duration>,
+) -> Result<bool, Duration>
 where
     W: SinkExt<Message, Error = tokio_tungstenite::tungstenite::Error> + Unpin,
 {
-    tokio::time::timeout(send_timeout, write.send(message))
-        .await
-        .map(|result| result.is_ok())
+    match send_timeout {
+        None => Ok(write.send(message).await.is_ok()),
+        Some(timeout) => tokio::time::timeout(timeout, write.send(message))
+            .await
+            .map(|result| result.is_ok())
+            .map_err(|_| timeout),
+    }
 }
 
 fn json_text(command: &impl Serialize) -> String {
@@ -419,8 +424,8 @@ async fn handle_frame<W>(
     app: &mut AppQueue,
     last_ping_rx_ns: &AtomicU64,
     clock: &Arc<dyn Clock>,
-    send_timeout: Duration,
-) -> Result<bool, tokio::time::error::Elapsed>
+    send_timeout: Option<Duration>,
+) -> Result<bool, Duration>
 where
     W: SinkExt<Message, Error = tokio_tungstenite::tungstenite::Error> + Unpin,
 {
