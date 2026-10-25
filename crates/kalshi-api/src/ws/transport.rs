@@ -316,7 +316,6 @@ async fn run_io<R, W>(
     let mut app = AppQueue {
         tx: Some(incoming),
         lost: Some(lost),
-        stopping: false,
     };
     loop {
         tokio::select! {
@@ -333,7 +332,7 @@ async fn run_io<R, W>(
                     },
                 }
             }
-            command = commands.recv(), if !app.stopping => {
+            command = commands.recv() => {
                 let Some(command) = command else { break };
                 let message = match command {
                     Outbound::Command(command) => Message::Text(json_text(&command).into()),
@@ -380,7 +379,6 @@ fn json_text(command: &impl Serialize) -> String {
 struct AppQueue {
     tx: Option<mpsc::UnboundedSender<WsEvent>>,
     lost: Option<oneshot::Sender<WsEvent>>,
-    stopping: bool,
 }
 
 fn send_timed_out(app: &mut AppQueue, timeout: Duration) {
@@ -388,7 +386,6 @@ fn send_timed_out(app: &mut AppQueue, timeout: Duration) {
         let _ = tx.send(WsEvent::SendTimedOut { timeout });
     }
     app.tx.take();
-    app.stopping = true;
 }
 
 async fn handle_frame<W>(
@@ -408,7 +405,7 @@ where
             if !send_frame(write, Message::Pong(payload), send_timeout).await? {
                 return Ok(false);
             }
-            !app.stopping
+            true
         }
         Message::Pong(_) => true,
         Message::Text(text) => deliver_text(app, text.as_str()),
@@ -420,9 +417,6 @@ where
 
 /// `false` means the session receiver is gone, so the socket closes.
 fn deliver_text(app: &mut AppQueue, raw: &str) -> bool {
-    if app.stopping {
-        return false;
-    }
     let Some(tx) = app.tx.as_ref() else {
         return false;
     };
