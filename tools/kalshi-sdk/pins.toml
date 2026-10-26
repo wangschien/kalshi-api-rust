@@ -15,10 +15,10 @@ servers = [
 [asyncapi]
 asyncapi = "3.0.0"
 info_version = "2.0.0"
-sha256 = "6b27304fe63969da55b326864d82bb0ea13ac53235f324c24d2dec4a544d7021"
+sha256 = "f791a84fced394950343b6427dea88a9a754003d5f4ba9d0c1e43957baa1aea0"
 path = "spec/asyncapi.yaml"
 source = "https://docs.kalshi.com/asyncapi.yaml"
-channel_count = 16
+channel_count = 15
 message_count = 51
 schema_count = 57
 

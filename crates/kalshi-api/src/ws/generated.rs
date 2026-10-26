@@ -49,8 +49,6 @@ pub enum Channel {
     CfBenchmarksValue5Hz,
     #[serde(rename = "pyth_value")]
     PythValue,
-    #[serde(rename = "batch_communications")]
-    BatchCommunications,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
