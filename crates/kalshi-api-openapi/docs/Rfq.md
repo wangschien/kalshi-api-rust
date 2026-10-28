@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **creator_subaccount** | Option<**i64**> | Subaccount number of the RFQ creator (visible when the caller is the RFQ creator) | [optional]
 **cancelled_ts** | Option<**String**> | Timestamp when the RFQ was cancelled | [optional]
 **updated_ts** | Option<**String**> | Timestamp when the RFQ was last updated | [optional]
+**rfq_batch_id** | Option<**String**> | Identifier of the RFQ batch this RFQ is a child of. Omitted for an RFQ outside a batch. A child can be quoted like a single RFQ, with the differences described in [Request for Quote](/getting_started/rfqs#rfq-batch-children). | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,6 +1,6 @@
 {
-  "count": 147,
-  "named_schema_properties": 142,
+  "count": 150,
+  "named_schema_properties": 145,
   "fields": [
     {
       "struct": "AccountApiUsageLevelVolumeGoal",
@@ -237,6 +237,18 @@
       "kind": "FixedPointDollars"
     },
     {
+      "struct": "CreateRfqBatchChild",
+      "field": "contracts_fp",
+      "schema": "CreateRFQBatchChild",
+      "kind": "FixedPointCount"
+    },
+    {
+      "struct": "CreateRfqBatchChild",
+      "field": "target_cost_dollars",
+      "schema": "CreateRFQBatchChild",
+      "kind": "FixedPointDollars"
+    },
+    {
       "struct": "CreateRfqBatchRequest",
       "field": "contracts_fp",
       "schema": "CreateRFQBatchRequest",
@@ -258,6 +270,12 @@
       "struct": "CreateRfqRequest",
       "field": "target_cost_dollars",
       "schema": "CreateRFQRequest",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "CreditHistory",
+      "field": "amount_dollars",
+      "schema": "CreditHistory",
       "kind": "FixedPointDollars"
     },
     {

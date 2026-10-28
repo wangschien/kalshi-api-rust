@@ -20,7 +20,7 @@ fn every_python_model_roundtrips_without_field_loss() {
         .iter()
         .map(|case| case["model"].as_str().unwrap())
         .collect();
-    assert_eq!(names.len(), 207);
+    assert_eq!(names.len(), 217);
     let mut failures = Vec::new();
     for fixture in fixtures {
         let model = fixture["model"].as_str().unwrap();
@@ -53,7 +53,7 @@ fn every_python_required_model_field_rejects_omission() {
         serde_json::from_str(include_str!("fixtures/parity/required_models.json")).unwrap();
     let cases: Vec<Value> =
         serde_json::from_str(include_str!("fixtures/parity/models.json")).unwrap();
-    assert_eq!(required.len(), 207);
+    assert_eq!(required.len(), 217);
     let mut checked = 0;
     for (model, fields) in required {
         let complete = cases

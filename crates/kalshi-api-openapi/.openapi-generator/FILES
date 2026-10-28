@@ -68,6 +68,7 @@ docs/CreateRfqRequest.md
 docs/CreateRfqResponse.md
 docs/CreateSubaccountRequest.md
 docs/CreateSubaccountResponse.md
+docs/CreditHistory.md
 docs/DailySchedule.md
 docs/DecreaseOrderV2Request.md
 docs/DecreaseOrderV2Response.md
@@ -98,6 +99,7 @@ docs/GetApiKeysResponse.md
 docs/GetBalanceResponse.md
 docs/GetBlockTradeProposalsResponse.md
 docs/GetCommunicationsIdResponse.md
+docs/GetCreditHistoryResponse.md
 docs/GetDepositsResponse.md
 docs/GetEventCandlesticksResponse.md
 docs/GetEventFeeChangesResponse.md
@@ -121,6 +123,9 @@ docs/GetLiveDataResponse.md
 docs/GetLiveDatasResponse.md
 docs/GetMarketCandlesticksHistoricalResponse.md
 docs/GetMarketCandlesticksResponse.md
+docs/GetMarketIndexHistoryResponse.md
+docs/GetMarketIndexResponse.md
+docs/GetMarketIndexesResponse.md
 docs/GetMarketOrderbookResponse.md
 docs/GetMarketOrderbooksResponse.md
 docs/GetMarketResponse.md
@@ -179,6 +184,11 @@ docs/MarketApi.md
 docs/MarketCandlestick.md
 docs/MarketCandlestickHistorical.md
 docs/MarketCandlesticksResponse.md
+docs/MarketIndex.md
+docs/MarketIndexLatest.md
+docs/MarketIndexSession.md
+docs/MarketIndexStatus.md
+docs/MarketIndexTimeseriesPoint.md
 docs/MarketMetadata.md
 docs/MarketOrderbookFp.md
 docs/MarketPosition.md
@@ -329,6 +339,7 @@ src/models/create_rfq_request.rs
 src/models/create_rfq_response.rs
 src/models/create_subaccount_request.rs
 src/models/create_subaccount_response.rs
+src/models/credit_history.rs
 src/models/daily_schedule.rs
 src/models/decrease_order_v2_request.rs
 src/models/decrease_order_v2_response.rs
@@ -356,6 +367,7 @@ src/models/get_api_keys_response.rs
 src/models/get_balance_response.rs
 src/models/get_block_trade_proposals_response.rs
 src/models/get_communications_id_response.rs
+src/models/get_credit_history_response.rs
 src/models/get_deposits_response.rs
 src/models/get_event_candlesticks_response.rs
 src/models/get_event_fee_changes_response.rs
@@ -379,6 +391,9 @@ src/models/get_live_data_response.rs
 src/models/get_live_datas_response.rs
 src/models/get_market_candlesticks_historical_response.rs
 src/models/get_market_candlesticks_response.rs
+src/models/get_market_index_history_response.rs
+src/models/get_market_index_response.rs
+src/models/get_market_indexes_response.rs
 src/models/get_market_orderbook_response.rs
 src/models/get_market_orderbooks_response.rs
 src/models/get_market_response.rs
@@ -433,6 +448,11 @@ src/models/market.rs
 src/models/market_candlestick.rs
 src/models/market_candlestick_historical.rs
 src/models/market_candlesticks_response.rs
+src/models/market_index.rs
+src/models/market_index_latest.rs
+src/models/market_index_session.rs
+src/models/market_index_status.rs
+src/models/market_index_timeseries_point.rs
 src/models/market_metadata.rs
 src/models/market_orderbook_fp.rs
 src/models/market_position.rs

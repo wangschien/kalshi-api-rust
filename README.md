@@ -4,7 +4,7 @@ Unofficial async Rust client for the Kalshi Trading API, generated from Kalshi's
 
 Unofficial; not affiliated with Kalshi.
 
-- API version: 3.34.0
+- API version: 3.35.0
 - Crate version: 3.34.0
 - Generator version: openapi-generator 7.17.0
 

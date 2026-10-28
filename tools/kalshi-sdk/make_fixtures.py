@@ -226,7 +226,7 @@ def main():
     parser.add_argument("--asyncapi-json", type=Path, required=True)
     parser.add_argument("--surface", type=Path, required=True)
     args = parser.parse_args()
-    assert importlib.metadata.version("kalshi_python_async") == "3.34.0"
+    assert importlib.metadata.version("kalshi_python_async") == "3.35.0"
     spec = json.loads(args.openapi_json.read_text())
     ws = json.loads(args.asyncapi_json.read_text())
     surface = json.loads(args.surface.read_text())

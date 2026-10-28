@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**apply_subaccount_transfer**](PortfolioApi.md#apply_subaccount_transfer) | **POST** /portfolio/subaccounts/transfer | Transfer Between Subaccounts
 [**create_subaccount**](PortfolioApi.md#create_subaccount) | **POST** /portfolio/subaccounts | Create Subaccount
 [**get_balance**](PortfolioApi.md#get_balance) | **GET** /portfolio/balance | Get Balance
+[**get_credit_history**](PortfolioApi.md#get_credit_history) | **GET** /portfolio/credit_history | Get Credit History
 [**get_deposits**](PortfolioApi.md#get_deposits) | **GET** /portfolio/deposits | Get Deposits
 [**get_fills**](PortfolioApi.md#get_fills) | **GET** /portfolio/fills | Get Fills
 [**get_intra_exchange_instance_transfer**](PortfolioApi.md#get_intra_exchange_instance_transfer) | **GET** /portfolio/intra_exchange_instance_transfers/{transfer_id} | Get Intra Account Transfer
@@ -103,6 +104,39 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::GetBalanceResponse**](GetBalanceResponse.md)
+
+### Authorization
+
+[kalshiAccessSignature](../README.md#kalshiAccessSignature), [kalshiAccessKey](../README.md#kalshiAccessKey), [kalshiAccessTimestamp](../README.md#kalshiAccessTimestamp)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_credit_history
+
+> models::GetCreditHistoryResponse get_credit_history(limit, cursor, min_ts, max_ts)
+Get Credit History
+
+Returns the authenticated member's credit history, newest first. Filters apply to credit creation time: `min_ts` is inclusive and `max_ts` is exclusive. 
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**limit** | Option<**i64**> | Number of results per page. Defaults to 100. |  |[default to 100]
+**cursor** | Option<**String**> | Pagination cursor. Use the cursor value returned from the previous response to get the next page of results. Leave empty for the first page. |  |
+**min_ts** | Option<**i64**> | Filter items after this Unix timestamp |  |
+**max_ts** | Option<**i64**> | Filter items before this Unix timestamp |  |
+
+### Return type
+
+[**models::GetCreditHistoryResponse**](GetCreditHistoryResponse.md)
 
 ### Authorization
 
@@ -350,7 +384,7 @@ Name | Type | Description  | Required | Notes
 > models::GetSubaccountBalancesResponse get_subaccount_balances()
 Get All Subaccount Balances
 
-Gets balances for all subaccounts including the primary account.
+Gets balances for all subaccounts including the primary account. For an API key restricted to a subaccount, returns only that subaccount's balances across exchange indices.
 
 ### Parameters
 
@@ -493,7 +527,7 @@ Name | Type | Description  | Required | Notes
 > models::IntraExchangeInstanceTransferResponse intra_exchange_instance_transfer(intra_exchange_instance_transfer_request)
 Intra Account Transfer
 
-Transfers funds within the same account.  When `source_exchange_shard` and `destination_exchange_shard` are the same, Kalshi treats the request as a subaccount transfer. The returned transfer ID appears in the subaccount transfer history.  Cross-exchange-index subaccount transfers run in up to three non-atomic steps. If a later step fails, completed steps are not undone, so funds may remain in the primary account on the source or destination exchange index. 
+Transfers funds within the same account.  Subaccount-restricted API keys can only transfer between `event_contract` exchange indices, with `source_subaccount` and `destination_subaccount` both set to the key's subaccount.  When `source_exchange_shard` and `destination_exchange_shard` are the same, Kalshi treats the request as a subaccount transfer. The returned transfer ID appears in the subaccount transfer history.  Cross-exchange-index subaccount transfers run in up to three non-atomic steps. If a later step fails, completed steps are not undone, so funds may remain in the primary account on the source or destination exchange index. 
 
 ### Parameters
 

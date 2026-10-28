@@ -196,7 +196,7 @@ Name | Type | Description  | Required | Notes
 > confirm_rfq_batch_quote(rfq_batch_id, batch_quote_id, body)
 Confirm RFQ Batch Quote
 
-Confirm the children your batch quote won, all at once. Nothing executes until every winning maker of the batch has confirmed; the last confirmation starts the execution timer for every child, and each child executes as its own trade. If any winner misses the confirmation deadline, the whole batch closes without trading.
+Confirm the children your batch quote won, all at once. Nothing executes until every winning maker of the batch has confirmed; the last confirmation starts the execution timer for every child, and the children then execute together. If any winner misses the confirmation deadline, the whole batch closes without trading.
 
 ### Parameters
 
@@ -320,7 +320,7 @@ Name | Type | Description  | Required | Notes
 > models::CreateRfqBatchResponse create_rfq_batch(create_rfq_batch_request)
 Create RFQ Batch
 
-Request quotes on several combos at once, for example every parlay of a round robin. Each child is an ordinary RFQ on one combo market. Makers quote the whole batch, but each child is accepted from whichever maker quotes it best on your side, so the batch may fill from several makers. Accepting fills every child or none, and each child then executes as its own trade. Name each child's combo by its market ticker, or by its legs to look up or create the combo in mve_collection_ticker. Every child is sized the same way.
+Request quotes on several combos at once, for example every parlay of a round robin. Each child is an ordinary RFQ on one combo market. Makers quote the whole batch, but each child is accepted from whichever maker quotes it best on your side, so the batch may fill from several makers. Accepting takes every child or none, and the children then execute together as one fill-or-kill: nothing trades unless every child can fill in full. In the rare case that filling one child cancels a maker order another child needed, the batch closes partially executed. Name each child's combo by its market ticker, or by its legs to look up or create the combo in mve_collection_ticker. Size each child with its own contracts_fp or target_cost_dollars, or set one on the batch for every child that has none; every child must be sized the same way, by contracts or by target cost. rest_remainder must be false, and FCM members cannot create RFQ batches yet (403 rfq_batch_unavailable). Makers also see each child as an ordinary RFQ, with rfq_batch_id set, and can quote it as a single RFQ; its best quote counts toward the batch's.
 
 ### Parameters
 

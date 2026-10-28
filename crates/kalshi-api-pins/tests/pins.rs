@@ -156,8 +156,11 @@ fn load_fields() -> Vec<Field> {
 const JSON_NUMBER_FIELDS: &[(&str, &str)] = &[
     ("EventData", "fee_multiplier_override"),
     ("EventFeeChange", "fee_multiplier_override"),
+    ("GetMarketIndexResponse", "value"),
     ("Market", "cap_strike"),
     ("Market", "floor_strike"),
+    ("MarketIndexLatest", "value"),
+    ("MarketIndexTimeseriesPoint", "v"),
     ("PercentilePoint", "numerical_forecast"),
     ("PercentilePoint", "raw_numerical_forecast"),
     ("Series", "fee_multiplier"),

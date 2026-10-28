@@ -56,7 +56,7 @@ impl Middleware for Capture {
 async fn every_python_public_method_builds_the_same_request() {
     let fixtures: Vec<Value> =
         serde_json::from_str(include_str!("fixtures/parity/requests.json")).unwrap();
-    assert_eq!(fixtures.len(), 708);
+    assert_eq!(fixtures.len(), 714);
     let captured = Arc::new(Mutex::new(None));
     let sign = SignMiddleware::new(
         "synthetic-key",
@@ -131,7 +131,7 @@ async fn every_python_public_method_builds_the_same_request() {
             ));
         }
     }
-    println!("REQUEST_TIMEOUT_NONE=0; GENERATED_METHODS=354; OPERATIONS=118; REQUESTS=708");
+    println!("REQUEST_TIMEOUT_NONE=0; GENERATED_METHODS=357; OPERATIONS=119; REQUESTS=714");
     assert!(
         failures.is_empty(),
         "{} request failures. First 12.\n{}",

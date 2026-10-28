@@ -211,6 +211,14 @@
   "CreateSubaccountResponse": [
     "subaccount_number"
   ],
+  "CreditHistory": [
+    "credit_id",
+    "type",
+    "status",
+    "amount_dollars",
+    "reason",
+    "created_time"
+  ],
   "DailySchedule": [
     "open_time",
     "close_time"
@@ -348,6 +356,10 @@
   "GetCommunicationsIDResponse": [
     "communications_id"
   ],
+  "GetCreditHistoryResponse": [
+    "credits",
+    "cursor"
+  ],
   "GetDepositsResponse": [
     "deposits"
   ],
@@ -433,6 +445,27 @@
   "GetMarketCandlesticksResponse": [
     "ticker",
     "candlesticks"
+  ],
+  "GetMarketIndexHistoryResponse": [
+    "id",
+    "source",
+    "status",
+    "interval",
+    "start_ms",
+    "end_ms",
+    "timeseries"
+  ],
+  "GetMarketIndexResponse": [
+    "index",
+    "source",
+    "status",
+    "interval",
+    "start_ms",
+    "end_ms",
+    "timeseries"
+  ],
+  "GetMarketIndexesResponse": [
+    "indexes"
   ],
   "GetMarketOrderbookResponse": [
     "orderbook_fp"
@@ -652,6 +685,30 @@
   "MarketCandlesticksResponse": [
     "market_ticker",
     "candlesticks"
+  ],
+  "MarketIndex": [
+    "id",
+    "name",
+    "family",
+    "currency",
+    "units",
+    "session",
+    "available"
+  ],
+  "MarketIndexLatest": [
+    "source",
+    "status"
+  ],
+  "MarketIndexSession": [
+    "timezone",
+    "open",
+    "close",
+    "days"
+  ],
+  "MarketIndexStatus": [],
+  "MarketIndexTimeseriesPoint": [
+    "t",
+    "v"
   ],
   "MarketMetadata": [
     "market_ticker",

@@ -11,24 +11,6 @@
     ]
   },
   "param_rust_only": {
-    "get_event": [
-      "exclude_markets"
-    ],
-    "get_event_with_http_info": [
-      "exclude_markets"
-    ],
-    "get_event_without_preload_content": [
-      "exclude_markets"
-    ],
-    "get_multivariate_events": [
-      "tickers"
-    ],
-    "get_multivariate_events_with_http_info": [
-      "tickers"
-    ],
-    "get_multivariate_events_without_preload_content": [
-      "tickers"
-    ],
     "get_weather_index": [
       "from"
     ],

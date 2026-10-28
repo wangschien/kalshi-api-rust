@@ -314,7 +314,7 @@ async fn per_request_timeouts(request_timeout: Option<Duration>) -> (usize, usiz
 async fn generated_every_operation_none_sets_no_request_timeout() {
     let (matched, total) = per_request_timeouts(None).await;
     println!("AUDIT_NONE matched={matched} total={total}");
-    assert_eq!(total, 708);
+    assert_eq!(total, 714);
     assert_eq!(matched, total);
 }
 
@@ -322,7 +322,7 @@ async fn generated_every_operation_none_sets_no_request_timeout() {
 async fn generated_every_operation_some_sets_request_timeout() {
     let (matched, total) = per_request_timeouts(Some(Duration::from_secs(30))).await;
     println!("AUDIT_SOME matched={matched} total={total}");
-    assert_eq!(total, 708);
+    assert_eq!(total, 714);
     assert_eq!(matched, total);
 }
 

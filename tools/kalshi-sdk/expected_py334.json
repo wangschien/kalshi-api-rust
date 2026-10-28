@@ -2,11 +2,7 @@
   "enum_python_only": {},
   "enum_rust_only": {},
   "field_python_only": {},
-  "field_rust_only": {
-    "IntraExchangeInstanceTransfer": [
-      "client_transfer_id"
-    ]
-  },
+  "field_rust_only": {},
   "python_only_models": [],
   "required_python_only": {},
   "required_rust_only": {},
