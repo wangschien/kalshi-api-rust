@@ -1,5 +1,5 @@
 {
-  "count": 534,
+  "count": 537,
   "fields": [
     {
       "owner": "BatchQuoteAcceptedBody",
@@ -3107,6 +3107,13 @@
     },
     {
       "owner": "RfqCreatedBody",
+      "field": "rfq_batch_id",
+      "presence": "optional",
+      "schema": "rfqCreatedPayload.msg",
+      "deprecated": false
+    },
+    {
+      "owner": "RfqCreatedBody",
       "field": "target_cost_dollars",
       "presence": "optional",
       "schema": "rfqCreatedPayload.msg",
@@ -3151,6 +3158,13 @@
       "owner": "RfqDeletedBody",
       "field": "market_ticker",
       "presence": "required",
+      "schema": "rfqDeletedPayload.msg",
+      "deprecated": false
+    },
+    {
+      "owner": "RfqDeletedBody",
+      "field": "rfq_batch_id",
+      "presence": "optional",
       "schema": "rfqDeletedPayload.msg",
       "deprecated": false
     },
@@ -3313,6 +3327,13 @@
     {
       "owner": "SubscribeParams",
       "field": "underlying_tickers",
+      "presence": "optional",
+      "schema": "subscribeCommandPayload.params",
+      "deprecated": false
+    },
+    {
+      "owner": "SubscribeParams",
+      "field": "update_interval_ms",
       "presence": "optional",
       "schema": "subscribeCommandPayload.params",
       "deprecated": false

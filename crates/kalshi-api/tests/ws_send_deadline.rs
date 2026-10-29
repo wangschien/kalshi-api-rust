@@ -43,6 +43,7 @@ fn large_subscribe(id: u64) -> ClientCommand {
             send_initial_snapshot: None,
             skip_ticker_ack: None,
             use_yes_price: None,
+            update_interval_ms: None,
             user_filter: None,
             shard_factor: None,
             shard_key: None,

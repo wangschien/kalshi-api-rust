@@ -827,6 +827,8 @@ pub struct RfqCreatedBody {
     pub mve_collection_ticker: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub mve_selected_legs: Option<Vec<SelectedLeg>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub rfq_batch_id: Option<String>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -841,6 +843,8 @@ pub struct RfqDeletedBody {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub target_cost_dollars: Option<String>,
     pub deleted_ts: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub rfq_batch_id: Option<String>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -869,6 +873,8 @@ pub struct SubscribeParams {
     pub skip_ticker_ack: Option<bool>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub use_yes_price: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub update_interval_ms: Option<i64>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub user_filter: Option<UserFilter>,
     #[serde(default, skip_serializing_if = "Option::is_none")]

@@ -119,6 +119,7 @@ fn orderbook_subscribe(id: u64, ticker: &str) -> ClientCommand {
             send_initial_snapshot: None,
             skip_ticker_ack: None,
             use_yes_price: None,
+            update_interval_ms: None,
             user_filter: None,
             shard_factor: None,
             shard_key: None,
@@ -552,4 +553,31 @@ async fn rejected_frame_keeps_raw_identity_and_continues() {
     ));
     let _ = release_tx.send(());
     server.await.unwrap();
+}
+
+#[test]
+fn orderbook_subscribe_update_interval_is_opt_in() {
+    let mut command = orderbook_subscribe(16, "SYNTH-1");
+    let realtime = serde_json::to_value(&command).unwrap();
+    assert!(realtime["params"].get("update_interval_ms").is_none());
+    let ClientCommand::Subscribe { params, .. } = &mut command else {
+        panic!("subscribe");
+    };
+    params.update_interval_ms = Some(100);
+    let conflated = serde_json::to_value(&command).unwrap();
+    assert_eq!(conflated["params"]["update_interval_ms"], 100);
+    let back: ClientCommand = serde_json::from_value(conflated).unwrap();
+    let ClientCommand::Subscribe { params, .. } = back else {
+        panic!("subscribe");
+    };
+    assert_eq!(params.update_interval_ms, Some(100));
+}
+
+#[test]
+fn update_interval_error_code_parses() {
+    let raw = r#"{"id":16,"type":"error","msg":{"code":29,"msg":"update_interval_ms must be 0, 100 or 1000"}}"#;
+    match parse_incoming(raw).unwrap() {
+        Incoming::Error { msg, .. } => assert_eq!(msg.code, 29),
+        other => panic!("expected Error, got {other:?}"),
+    }
 }
