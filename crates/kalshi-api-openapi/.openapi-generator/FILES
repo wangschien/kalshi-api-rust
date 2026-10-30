@@ -21,6 +21,7 @@ docs/ApiKeysApi.md
 docs/ApiUsageLevelGrant.md
 docs/ApplySubaccountTransferRequest.md
 docs/AssociatedEvent.md
+docs/AttachedEventContractExitTrigger.md
 docs/BatchCancelOrdersIndividualResponse.md
 docs/BatchCancelOrdersRequest.md
 docs/BatchCancelOrdersRequestOrder.md
@@ -57,6 +58,7 @@ docs/CreateOrderRequest.md
 docs/CreateOrderResponse.md
 docs/CreateOrderV2Request.md
 docs/CreateOrderV2Response.md
+docs/CreateOrderWithExitTriggerRequest.md
 docs/CreateQuoteRequest.md
 docs/CreateQuoteResponse.md
 docs/CreateRfqBatchChild.md
@@ -75,6 +77,9 @@ docs/DecreaseOrderV2Response.md
 docs/Deposit.md
 docs/EndpointTokenCost.md
 docs/ErrorResponse.md
+docs/EventContractExitSlippage.md
+docs/EventContractExitSlippageNot.md
+docs/EventContractExitTrigger.md
 docs/EventData.md
 docs/EventFeeChange.md
 docs/EventLiveData.md
@@ -102,6 +107,7 @@ docs/GetCommunicationsIdResponse.md
 docs/GetCreditHistoryResponse.md
 docs/GetDepositsResponse.md
 docs/GetEventCandlesticksResponse.md
+docs/GetEventContractExitTriggers200Response.md
 docs/GetEventFeeChangesResponse.md
 docs/GetEventForecastPercentilesHistoryResponse.md
 docs/GetEventLiveDataResponse.md
@@ -231,6 +237,7 @@ docs/SearchApi.md
 docs/SelfTradePreventionType.md
 docs/Series.md
 docs/SeriesFeeChange.md
+docs/SetEventContractExitTriggerRequest.md
 docs/SetTargetBalanceAllocationRequest.md
 docs/Settlement.md
 docs/SettlementSource.md
@@ -293,6 +300,7 @@ src/models/api_key_type.rs
 src/models/api_usage_level_grant.rs
 src/models/apply_subaccount_transfer_request.rs
 src/models/associated_event.rs
+src/models/attached_event_contract_exit_trigger.rs
 src/models/batch_cancel_orders_individual_response.rs
 src/models/batch_cancel_orders_request.rs
 src/models/batch_cancel_orders_request_order.rs
@@ -328,6 +336,7 @@ src/models/create_order_request.rs
 src/models/create_order_response.rs
 src/models/create_order_v2_request.rs
 src/models/create_order_v2_response.rs
+src/models/create_order_with_exit_trigger_request.rs
 src/models/create_quote_request.rs
 src/models/create_quote_response.rs
 src/models/create_rfq_batch_child.rs
@@ -346,6 +355,9 @@ src/models/decrease_order_v2_response.rs
 src/models/deposit.rs
 src/models/endpoint_token_cost.rs
 src/models/error_response.rs
+src/models/event_contract_exit_slippage.rs
+src/models/event_contract_exit_slippage_not.rs
+src/models/event_contract_exit_trigger.rs
 src/models/event_data.rs
 src/models/event_fee_change.rs
 src/models/event_live_data.rs
@@ -370,6 +382,7 @@ src/models/get_communications_id_response.rs
 src/models/get_credit_history_response.rs
 src/models/get_deposits_response.rs
 src/models/get_event_candlesticks_response.rs
+src/models/get_event_contract_exit_triggers_200_response.rs
 src/models/get_event_fee_changes_response.rs
 src/models/get_event_forecast_percentiles_history_response.rs
 src/models/get_event_live_data_response.rs
@@ -490,6 +503,7 @@ src/models/scope_list.rs
 src/models/self_trade_prevention_type.rs
 src/models/series.rs
 src/models/series_fee_change.rs
+src/models/set_event_contract_exit_trigger_request.rs
 src/models/set_target_balance_allocation_request.rs
 src/models/settlement.rs
 src/models/settlement_source.rs

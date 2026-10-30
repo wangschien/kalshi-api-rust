@@ -61,6 +61,12 @@ pub struct CreateOrderV2Params {
     pub create_order_v2_request: models::CreateOrderV2Request,
 }
 
+/// struct for passing parameters to the method [`create_order_with_exit_trigger`]
+#[derive(Clone, Debug)]
+pub struct CreateOrderWithExitTriggerParams {
+    pub create_order_with_exit_trigger_request: models::CreateOrderWithExitTriggerRequest,
+}
+
 /// struct for passing parameters to the method [`decrease_order_v2`]
 #[derive(Clone, Debug)]
 pub struct DecreaseOrderV2Params {
@@ -178,6 +184,20 @@ pub enum CancelOrderV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateOrderV2Error {
+    Status400(models::ErrorResponse),
+    Status401(models::ErrorResponse),
+    Status403(models::ErrorResponse),
+    Status409(models::ErrorResponse),
+    Status429(models::ErrorResponse),
+    Status500(models::ErrorResponse),
+    Status503(models::ErrorResponse),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`create_order_with_exit_trigger`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum CreateOrderWithExitTriggerError {
     Status400(models::ErrorResponse),
     Status401(models::ErrorResponse),
     Status403(models::ErrorResponse),
@@ -858,6 +878,114 @@ pub async fn create_order_v2_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
     req_builder = req_builder.json(&params.create_order_v2_request);
+
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
+
+    configuration.client.execute(req).await.map_err(Error::from)
+}
+
+/// Creates an entry order with attached take-profit or stop-loss protection.
+pub async fn create_order_with_exit_trigger(
+    configuration: &configuration::Configuration,
+    params: CreateOrderWithExitTriggerParams,
+) -> Result<models::CreateOrderV2Response, Error<CreateOrderWithExitTriggerError>> {
+    create_order_with_exit_trigger_with_http_info(configuration, params)
+        .await
+        .map(|response| response.data)
+}
+
+/// Returns the decoded response together with its status, headers, and original body.
+pub async fn create_order_with_exit_trigger_with_http_info(
+    configuration: &configuration::Configuration,
+    params: CreateOrderWithExitTriggerParams,
+) -> Result<super::ApiResponse<models::CreateOrderV2Response>, Error<CreateOrderWithExitTriggerError>>
+{
+    let resp =
+        create_order_with_exit_trigger_without_preload_content(configuration, params).await?;
+    let status = resp.status();
+    let headers = resp.headers().clone();
+    let raw_data = resp.bytes().await?.to_vec();
+    let content = String::from_utf8_lossy(&raw_data).into_owned();
+    let data: Result<models::CreateOrderV2Response, Error<CreateOrderWithExitTriggerError>> = {
+        let content_type = headers
+            .get("content-type")
+            .and_then(|v| v.to_str().ok())
+            .unwrap_or("application/octet-stream");
+        let content_type = super::ContentType::from(content_type);
+
+        if status.is_success() {
+            let content = content.clone();
+            match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CreateOrderV2Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CreateOrderV2Response`")))),
+        }
+        } else {
+            let content = content.clone();
+            let entity: Option<CreateOrderWithExitTriggerError> =
+                serde_json::from_str(&content).ok();
+            Err(Error::ResponseError(ResponseContent {
+                status,
+                content,
+                entity,
+            }))
+        }
+    };
+    data.map(|data| super::ApiResponse {
+        status,
+        headers,
+        data,
+        raw_data,
+    })
+}
+
+/// Returns the HTTP response without reading its body or interpreting its status.
+pub async fn create_order_with_exit_trigger_without_preload_content(
+    configuration: &configuration::Configuration,
+    params: CreateOrderWithExitTriggerParams,
+) -> Result<reqwest::Response, Error<CreateOrderWithExitTriggerError>> {
+    let uri_str = format!(
+        "{}/portfolio/events/orders/with_exit_trigger",
+        configuration.base_path
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    req_builder = req_builder.header(reqwest::header::ACCEPT, "application/json");
+    req_builder = req_builder.header(reqwest::header::CONTENT_TYPE, "application/json");
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-SIGNATURE", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-KEY", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
+    };
+    req_builder = req_builder.json(&params.create_order_with_exit_trigger_request);
 
     if let Some(timeout) = configuration.request_timeout {
         req_builder = req_builder.timeout(timeout);

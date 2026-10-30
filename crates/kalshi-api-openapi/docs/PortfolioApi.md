@@ -6,9 +6,11 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**apply_subaccount_transfer**](PortfolioApi.md#apply_subaccount_transfer) | **POST** /portfolio/subaccounts/transfer | Transfer Between Subaccounts
 [**create_subaccount**](PortfolioApi.md#create_subaccount) | **POST** /portfolio/subaccounts | Create Subaccount
+[**delete_event_contract_exit_trigger**](PortfolioApi.md#delete_event_contract_exit_trigger) | **DELETE** /portfolio/positions/{ticker}/exit_trigger | Cancel Position Exit Trigger
 [**get_balance**](PortfolioApi.md#get_balance) | **GET** /portfolio/balance | Get Balance
 [**get_credit_history**](PortfolioApi.md#get_credit_history) | **GET** /portfolio/credit_history | Get Credit History
 [**get_deposits**](PortfolioApi.md#get_deposits) | **GET** /portfolio/deposits | Get Deposits
+[**get_event_contract_exit_triggers**](PortfolioApi.md#get_event_contract_exit_triggers) | **GET** /portfolio/positions/{ticker}/exit_trigger | Get Position Exit Triggers
 [**get_fills**](PortfolioApi.md#get_fills) | **GET** /portfolio/fills | Get Fills
 [**get_intra_exchange_instance_transfer**](PortfolioApi.md#get_intra_exchange_instance_transfer) | **GET** /portfolio/intra_exchange_instance_transfers/{transfer_id} | Get Intra Account Transfer
 [**get_intra_exchange_instance_transfers**](PortfolioApi.md#get_intra_exchange_instance_transfers) | **GET** /portfolio/intra_exchange_instance_transfers | Get Intra Account Transfers
@@ -21,6 +23,7 @@ Method | HTTP request | Description
 [**get_target_balance_allocation**](PortfolioApi.md#get_target_balance_allocation) | **GET** /portfolio/target_balance_allocation | Get Target Balance Allocation
 [**get_withdrawals**](PortfolioApi.md#get_withdrawals) | **GET** /portfolio/withdrawals | Get Withdrawals
 [**intra_exchange_instance_transfer**](PortfolioApi.md#intra_exchange_instance_transfer) | **POST** /portfolio/intra_exchange_instance_transfer | Intra Account Transfer
+[**set_event_contract_exit_trigger**](PortfolioApi.md#set_event_contract_exit_trigger) | **PUT** /portfolio/positions/{ticker}/exit_trigger | Set Position Exit Trigger
 [**set_target_balance_allocation**](PortfolioApi.md#set_target_balance_allocation) | **POST** /portfolio/target_balance_allocation | Set Target Balance Allocation
 [**update_subaccount_netting**](PortfolioApi.md#update_subaccount_netting) | **PUT** /portfolio/subaccounts/netting | Update Subaccount Netting
 
@@ -81,6 +84,38 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## delete_event_contract_exit_trigger
+
+> delete_event_contract_exit_trigger(ticker, subaccount, kind)
+Cancel Position Exit Trigger
+
+Endpoint for cancelling the take-profit / stop-loss bracket on a position. Succeeds even when nothing is live.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**ticker** | **String** |  | [required] |
+**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount. |  |
+**kind** | Option<**String**> |  |  |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[kalshiAccessSignature](../README.md#kalshiAccessSignature), [kalshiAccessKey](../README.md#kalshiAccessKey), [kalshiAccessTimestamp](../README.md#kalshiAccessTimestamp)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -168,6 +203,38 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::GetDepositsResponse**](GetDepositsResponse.md)
+
+### Authorization
+
+[kalshiAccessSignature](../README.md#kalshiAccessSignature), [kalshiAccessKey](../README.md#kalshiAccessKey), [kalshiAccessTimestamp](../README.md#kalshiAccessTimestamp)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_event_contract_exit_triggers
+
+> models::GetEventContractExitTriggers200Response get_event_contract_exit_triggers(ticker, subaccount, kind)
+Get Position Exit Triggers
+
+Endpoint for retrieving the take-profit / stop-loss bracket on a position. `exit_triggers` lists live brackets, and `exit_trigger` is the most recently updated bracket, including a terminal one.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**ticker** | **String** |  | [required] |
+**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount. |  |
+**kind** | Option<**String**> |  |  |
+
+### Return type
+
+[**models::GetEventContractExitTriggers200Response**](GetEventContractExitTriggers_200_response.md)
 
 ### Authorization
 
@@ -539,6 +606,38 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::IntraExchangeInstanceTransferResponse**](IntraExchangeInstanceTransferResponse.md)
+
+### Authorization
+
+[kalshiAccessSignature](../README.md#kalshiAccessSignature), [kalshiAccessKey](../README.md#kalshiAccessKey), [kalshiAccessTimestamp](../README.md#kalshiAccessTimestamp)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## set_event_contract_exit_trigger
+
+> models::EventContractExitTrigger set_event_contract_exit_trigger(ticker, set_event_contract_exit_trigger_request, subaccount)
+Set Position Exit Trigger
+
+Endpoint for setting a take-profit / stop-loss bracket on a position. Requires an open position and fires a sell capped at the position. Both legs are set from the request, so a leg you omit is cleared; use DELETE to cancel the bracket.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**ticker** | **String** |  | [required] |
+**set_event_contract_exit_trigger_request** | [**SetEventContractExitTriggerRequest**](SetEventContractExitTriggerRequest.md) |  | [required] |
+**subaccount** | Option<**i64**> | Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount. |  |
+
+### Return type
+
+[**models::EventContractExitTrigger**](EventContractExitTrigger.md)
 
 ### Authorization
 

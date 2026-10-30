@@ -14,7 +14,7 @@ Maintainer notes for kalshi-api-rust. The user guide is [README.md](README.md).
 
 The source of truth is `kalshi_python_async` 3.35.0. Its wheel URL and SHA-256 are pinned in `tools/kalshi-sdk/pins.toml`. The 119 operations expose 357 public Python methods when response-loading variants are included. `conformance.py` checks every model field, required key, enum, method, and parameter against this wheel. The model exception file is empty. Every operation also has `_with_http_info`, returning `ApiResponse<T>` with status, headers and original body bytes, and `_without_preload_content`, returning an unread `reqwest::Response` even for HTTP error statuses.
 
-The current official OpenAPI labels itself 3.35.0 and matches the pinned Python async SDK on those operations, except `get_weather_index` uses Rust `from` for Python `var_from`. RFQ batch communications surfaces remain Rust-only in `expected_api_async.json` until the Python SDK exposes them.
+The current official OpenAPI labels itself 3.35.0 and matches the pinned Python async SDK on those operations, except `get_weather_index` uses Rust `from` for Python `var_from`. RFQ batch communications surfaces and the hidden event-contract exit-trigger (TP/SL) surfaces remain Rust-only in `expected_api_async.json` until the Python SDK exposes them.
 
 Generation adds the Python SDK's media headers, omits absent optional request bodies, and preserves its model defaults from `python_model_defaults.json`. JSON number fields use `serde_json::Number` with arbitrary precision. Fixed-point quantities and dollar amounts remain strings. This prevents integer values in Python's integer-or-float fields from being rounded through `f64`.
 

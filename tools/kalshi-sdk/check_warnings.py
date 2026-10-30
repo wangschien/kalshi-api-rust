@@ -12,6 +12,7 @@ PATTERNS = (
     re.compile(r"^ApplicationJson cannot be used as a model name\. Renamed to ApplicationSlashJson$"),
     re.compile(r"^type cannot be used as a field/variable name\. Renamed to r#type$"),
     re.compile(r"^type cannot be used as a parameter name\. Renamed to r#type$"),
+    re.compile(r"^serde_json::value cannot be used as a field/variable name\. Renamed to serde_json_colon_colon_value$"),
     re.compile(r"^.+ cannot be used as a enum variant name\. Renamed to .+$"),
     re.compile(r"^Failed to get the schema name: null$"),
 )

@@ -98,6 +98,7 @@ ENTRIES: tuple[str, ...] = (
     "/components/schemas/RFQBatch/properties/creator_subaccount",
     "/components/schemas/RFQBatchQuote/properties/creator_subaccount",
     "/components/schemas/RFQBatchQuote/properties/rfq_creator_subaccount",
+    "/components/schemas/EventContractExitTrigger/properties/subaccount_number",
 )
 
 

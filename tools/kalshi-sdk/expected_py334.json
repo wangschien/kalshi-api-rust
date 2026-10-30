@@ -9,11 +9,17 @@
   "rust_only_models": [
     "AcceptRfqBatchRequest",
     "AcceptRfqBatchResponse",
+    "AttachedEventContractExitTrigger",
+    "CreateOrderWithExitTriggerRequest",
     "CreateRfqBatchChild",
     "CreateRfqBatchQuoteRequest",
     "CreateRfqBatchQuoteResponse",
     "CreateRfqBatchRequest",
     "CreateRfqBatchResponse",
+    "EventContractExitSlippage",
+    "EventContractExitSlippageNot",
+    "EventContractExitTrigger",
+    "GetEventContractExitTriggers200Response",
     "GetRfqBatchBestQuotesResponse",
     "GetRfqBatchQuotesResponse",
     "GetRfqBatchResponse",
@@ -25,6 +31,7 @@
     "RfqBatchQuote",
     "RfqBatchQuoteEntry",
     "RfqBatchQuoteStatus",
-    "RfqBatchStatus"
+    "RfqBatchStatus",
+    "SetEventContractExitTriggerRequest"
   ]
 }

@@ -127,6 +127,7 @@ Class | Method | HTTP request | Description
 *OrdersApi* | [**cancel_all_orders**](docs/OrdersApi.md#cancel_all_orders) | **DELETE** /portfolio/events/orders | Cancel All Orders
 *OrdersApi* | [**cancel_order_v2**](docs/OrdersApi.md#cancel_order_v2) | **DELETE** /portfolio/events/orders/{order_id} | Cancel Order (V2)
 *OrdersApi* | [**create_order_v2**](docs/OrdersApi.md#create_order_v2) | **POST** /portfolio/events/orders | Create Order (V2)
+*OrdersApi* | [**create_order_with_exit_trigger**](docs/OrdersApi.md#create_order_with_exit_trigger) | **POST** /portfolio/events/orders/with_exit_trigger | Create Order With TP/SL
 *OrdersApi* | [**decrease_order_v2**](docs/OrdersApi.md#decrease_order_v2) | **POST** /portfolio/events/orders/{order_id}/decrease | Decrease Order (V2)
 *OrdersApi* | [**get_order**](docs/OrdersApi.md#get_order) | **GET** /portfolio/orders/{order_id} | Get Order
 *OrdersApi* | [**get_order_queue_position**](docs/OrdersApi.md#get_order_queue_position) | **GET** /portfolio/orders/{order_id}/queue_position | Get Order Queue Position
@@ -134,9 +135,11 @@ Class | Method | HTTP request | Description
 *OrdersApi* | [**get_orders**](docs/OrdersApi.md#get_orders) | **GET** /portfolio/orders | Get Orders
 *PortfolioApi* | [**apply_subaccount_transfer**](docs/PortfolioApi.md#apply_subaccount_transfer) | **POST** /portfolio/subaccounts/transfer | Transfer Between Subaccounts
 *PortfolioApi* | [**create_subaccount**](docs/PortfolioApi.md#create_subaccount) | **POST** /portfolio/subaccounts | Create Subaccount
+*PortfolioApi* | [**delete_event_contract_exit_trigger**](docs/PortfolioApi.md#delete_event_contract_exit_trigger) | **DELETE** /portfolio/positions/{ticker}/exit_trigger | Cancel Position Exit Trigger
 *PortfolioApi* | [**get_balance**](docs/PortfolioApi.md#get_balance) | **GET** /portfolio/balance | Get Balance
 *PortfolioApi* | [**get_credit_history**](docs/PortfolioApi.md#get_credit_history) | **GET** /portfolio/credit_history | Get Credit History
 *PortfolioApi* | [**get_deposits**](docs/PortfolioApi.md#get_deposits) | **GET** /portfolio/deposits | Get Deposits
+*PortfolioApi* | [**get_event_contract_exit_triggers**](docs/PortfolioApi.md#get_event_contract_exit_triggers) | **GET** /portfolio/positions/{ticker}/exit_trigger | Get Position Exit Triggers
 *PortfolioApi* | [**get_fills**](docs/PortfolioApi.md#get_fills) | **GET** /portfolio/fills | Get Fills
 *PortfolioApi* | [**get_intra_exchange_instance_transfer**](docs/PortfolioApi.md#get_intra_exchange_instance_transfer) | **GET** /portfolio/intra_exchange_instance_transfers/{transfer_id} | Get Intra Account Transfer
 *PortfolioApi* | [**get_intra_exchange_instance_transfers**](docs/PortfolioApi.md#get_intra_exchange_instance_transfers) | **GET** /portfolio/intra_exchange_instance_transfers | Get Intra Account Transfers
@@ -149,6 +152,7 @@ Class | Method | HTTP request | Description
 *PortfolioApi* | [**get_target_balance_allocation**](docs/PortfolioApi.md#get_target_balance_allocation) | **GET** /portfolio/target_balance_allocation | Get Target Balance Allocation
 *PortfolioApi* | [**get_withdrawals**](docs/PortfolioApi.md#get_withdrawals) | **GET** /portfolio/withdrawals | Get Withdrawals
 *PortfolioApi* | [**intra_exchange_instance_transfer**](docs/PortfolioApi.md#intra_exchange_instance_transfer) | **POST** /portfolio/intra_exchange_instance_transfer | Intra Account Transfer
+*PortfolioApi* | [**set_event_contract_exit_trigger**](docs/PortfolioApi.md#set_event_contract_exit_trigger) | **PUT** /portfolio/positions/{ticker}/exit_trigger | Set Position Exit Trigger
 *PortfolioApi* | [**set_target_balance_allocation**](docs/PortfolioApi.md#set_target_balance_allocation) | **POST** /portfolio/target_balance_allocation | Set Target Balance Allocation
 *PortfolioApi* | [**update_subaccount_netting**](docs/PortfolioApi.md#update_subaccount_netting) | **PUT** /portfolio/subaccounts/netting | Update Subaccount Netting
 *SearchApi* | [**get_filters_for_sports**](docs/SearchApi.md#get_filters_for_sports) | **GET** /search/filters_by_sport | Get Filters for Sports
@@ -175,6 +179,7 @@ Class | Method | HTTP request | Description
  - [ApiUsageLevelGrant](docs/ApiUsageLevelGrant.md)
  - [ApplySubaccountTransferRequest](docs/ApplySubaccountTransferRequest.md)
  - [AssociatedEvent](docs/AssociatedEvent.md)
+ - [AttachedEventContractExitTrigger](docs/AttachedEventContractExitTrigger.md)
  - [BatchCancelOrdersIndividualResponse](docs/BatchCancelOrdersIndividualResponse.md)
  - [BatchCancelOrdersRequest](docs/BatchCancelOrdersRequest.md)
  - [BatchCancelOrdersRequestOrder](docs/BatchCancelOrdersRequestOrder.md)
@@ -210,6 +215,7 @@ Class | Method | HTTP request | Description
  - [CreateOrderResponse](docs/CreateOrderResponse.md)
  - [CreateOrderV2Request](docs/CreateOrderV2Request.md)
  - [CreateOrderV2Response](docs/CreateOrderV2Response.md)
+ - [CreateOrderWithExitTriggerRequest](docs/CreateOrderWithExitTriggerRequest.md)
  - [CreateQuoteRequest](docs/CreateQuoteRequest.md)
  - [CreateQuoteResponse](docs/CreateQuoteResponse.md)
  - [CreateRfqBatchChild](docs/CreateRfqBatchChild.md)
@@ -228,6 +234,9 @@ Class | Method | HTTP request | Description
  - [Deposit](docs/Deposit.md)
  - [EndpointTokenCost](docs/EndpointTokenCost.md)
  - [ErrorResponse](docs/ErrorResponse.md)
+ - [EventContractExitSlippage](docs/EventContractExitSlippage.md)
+ - [EventContractExitSlippageNot](docs/EventContractExitSlippageNot.md)
+ - [EventContractExitTrigger](docs/EventContractExitTrigger.md)
  - [EventData](docs/EventData.md)
  - [EventFeeChange](docs/EventFeeChange.md)
  - [EventLiveData](docs/EventLiveData.md)
@@ -252,6 +261,7 @@ Class | Method | HTTP request | Description
  - [GetCreditHistoryResponse](docs/GetCreditHistoryResponse.md)
  - [GetDepositsResponse](docs/GetDepositsResponse.md)
  - [GetEventCandlesticksResponse](docs/GetEventCandlesticksResponse.md)
+ - [GetEventContractExitTriggers200Response](docs/GetEventContractExitTriggers200Response.md)
  - [GetEventFeeChangesResponse](docs/GetEventFeeChangesResponse.md)
  - [GetEventForecastPercentilesHistoryResponse](docs/GetEventForecastPercentilesHistoryResponse.md)
  - [GetEventLiveDataResponse](docs/GetEventLiveDataResponse.md)
@@ -371,6 +381,7 @@ Class | Method | HTTP request | Description
  - [SelfTradePreventionType](docs/SelfTradePreventionType.md)
  - [Series](docs/Series.md)
  - [SeriesFeeChange](docs/SeriesFeeChange.md)
+ - [SetEventContractExitTriggerRequest](docs/SetEventContractExitTriggerRequest.md)
  - [SetTargetBalanceAllocationRequest](docs/SetTargetBalanceAllocationRequest.md)
  - [Settlement](docs/Settlement.md)
  - [SettlementSource](docs/SettlementSource.md)

@@ -25,6 +25,15 @@ pub struct CreateSubaccountParams {
     pub create_subaccount_request: Option<models::CreateSubaccountRequest>,
 }
 
+/// struct for passing parameters to the method [`delete_event_contract_exit_trigger`]
+#[derive(Clone, Debug)]
+pub struct DeleteEventContractExitTriggerParams {
+    pub ticker: String,
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
+    pub subaccount: Option<i64>,
+    pub kind: Option<String>,
+}
+
 /// struct for passing parameters to the method [`get_balance`]
 #[derive(Clone, Debug)]
 pub struct GetBalanceParams {
@@ -54,6 +63,15 @@ pub struct GetDepositsParams {
     pub limit: Option<i64>,
     /// Pagination cursor. Use the cursor value returned from the previous response to get the next page of results. Leave empty for the first page.
     pub cursor: Option<String>,
+}
+
+/// struct for passing parameters to the method [`get_event_contract_exit_triggers`]
+#[derive(Clone, Debug)]
+pub struct GetEventContractExitTriggersParams {
+    pub ticker: String,
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
+    pub subaccount: Option<i64>,
+    pub kind: Option<String>,
 }
 
 /// struct for passing parameters to the method [`get_fills`]
@@ -157,6 +175,15 @@ pub struct IntraExchangeInstanceTransferParams {
     pub intra_exchange_instance_transfer_request: models::IntraExchangeInstanceTransferRequest,
 }
 
+/// struct for passing parameters to the method [`set_event_contract_exit_trigger`]
+#[derive(Clone, Debug)]
+pub struct SetEventContractExitTriggerParams {
+    pub ticker: String,
+    pub set_event_contract_exit_trigger_request: models::SetEventContractExitTriggerRequest,
+    /// Subaccount number (0 for primary, 1-63 for subaccounts). Defaults to 0. Subaccount-restricted API keys default to their locked subaccount and must omit this parameter or pass their locked subaccount.
+    pub subaccount: Option<i64>,
+}
+
 /// struct for passing parameters to the method [`set_target_balance_allocation`]
 #[derive(Clone, Debug)]
 pub struct SetTargetBalanceAllocationParams {
@@ -189,6 +216,19 @@ pub enum CreateSubaccountError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`delete_event_contract_exit_trigger`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeleteEventContractExitTriggerError {
+    Status400(models::ErrorResponse),
+    Status401(models::ErrorResponse),
+    Status403(models::ErrorResponse),
+    Status404(models::ErrorResponse),
+    Status429(models::ErrorResponse),
+    Status500(models::ErrorResponse),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_balance`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -215,6 +255,19 @@ pub enum GetCreditHistoryError {
 pub enum GetDepositsError {
     Status400(models::ErrorResponse),
     Status401(models::ErrorResponse),
+    Status500(models::ErrorResponse),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_event_contract_exit_triggers`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetEventContractExitTriggersError {
+    Status400(models::ErrorResponse),
+    Status401(models::ErrorResponse),
+    Status403(models::ErrorResponse),
+    Status404(models::ErrorResponse),
+    Status429(models::ErrorResponse),
     Status500(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
@@ -333,6 +386,19 @@ pub enum IntraExchangeInstanceTransferError {
     Status401(models::ErrorResponse),
     Status403(models::ErrorResponse),
     Status409(models::ErrorResponse),
+    Status500(models::ErrorResponse),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`set_event_contract_exit_trigger`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum SetEventContractExitTriggerError {
+    Status400(models::ErrorResponse),
+    Status401(models::ErrorResponse),
+    Status403(models::ErrorResponse),
+    Status404(models::ErrorResponse),
+    Status429(models::ErrorResponse),
     Status500(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
@@ -555,6 +621,107 @@ pub async fn create_subaccount_without_preload_content(
     if let Some(ref body) = params.create_subaccount_request {
         req_builder = req_builder.json(body);
     }
+
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
+
+    configuration.client.execute(req).await.map_err(Error::from)
+}
+
+/// Endpoint for cancelling the take-profit / stop-loss bracket on a position. Succeeds even when nothing is live.
+pub async fn delete_event_contract_exit_trigger(
+    configuration: &configuration::Configuration,
+    params: DeleteEventContractExitTriggerParams,
+) -> Result<(), Error<DeleteEventContractExitTriggerError>> {
+    delete_event_contract_exit_trigger_with_http_info(configuration, params)
+        .await
+        .map(|response| response.data)
+}
+
+/// Returns the decoded response together with its status, headers, and original body.
+pub async fn delete_event_contract_exit_trigger_with_http_info(
+    configuration: &configuration::Configuration,
+    params: DeleteEventContractExitTriggerParams,
+) -> Result<super::ApiResponse<()>, Error<DeleteEventContractExitTriggerError>> {
+    let resp =
+        delete_event_contract_exit_trigger_without_preload_content(configuration, params).await?;
+    let status = resp.status();
+    let headers = resp.headers().clone();
+    let raw_data = resp.bytes().await?.to_vec();
+    let content = String::from_utf8_lossy(&raw_data).into_owned();
+    let data: Result<(), Error<DeleteEventContractExitTriggerError>> = {
+        if status.is_success() {
+            Ok(())
+        } else {
+            let content = content.clone();
+            let entity: Option<DeleteEventContractExitTriggerError> =
+                serde_json::from_str(&content).ok();
+            Err(Error::ResponseError(ResponseContent {
+                status,
+                content,
+                entity,
+            }))
+        }
+    };
+    data.map(|data| super::ApiResponse {
+        status,
+        headers,
+        data,
+        raw_data,
+    })
+}
+
+/// Returns the HTTP response without reading its body or interpreting its status.
+pub async fn delete_event_contract_exit_trigger_without_preload_content(
+    configuration: &configuration::Configuration,
+    params: DeleteEventContractExitTriggerParams,
+) -> Result<reqwest::Response, Error<DeleteEventContractExitTriggerError>> {
+    let uri_str = format!(
+        "{}/portfolio/positions/{ticker}/exit_trigger",
+        configuration.base_path,
+        ticker = crate::apis::urlencode(params.ticker)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::DELETE, &uri_str);
+
+    if let Some(ref param_value) = params.subaccount {
+        req_builder = req_builder.query(&[("subaccount", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.kind {
+        req_builder = req_builder.query(&[("kind", &param_value.to_string())]);
+    }
+    req_builder = req_builder.header(reqwest::header::ACCEPT, "application/json");
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-SIGNATURE", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-KEY", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
+    };
 
     if let Some(timeout) = configuration.request_timeout {
         req_builder = req_builder.timeout(timeout);
@@ -843,6 +1010,123 @@ pub async fn get_deposits_without_preload_content(
     }
     if let Some(ref param_value) = params.cursor {
         req_builder = req_builder.query(&[("cursor", &param_value.to_string())]);
+    }
+    req_builder = req_builder.header(reqwest::header::ACCEPT, "application/json");
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-SIGNATURE", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-KEY", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
+    };
+
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
+
+    configuration.client.execute(req).await.map_err(Error::from)
+}
+
+/// Endpoint for retrieving the take-profit / stop-loss bracket on a position. `exit_triggers` lists live brackets, and `exit_trigger` is the most recently updated bracket, including a terminal one.
+pub async fn get_event_contract_exit_triggers(
+    configuration: &configuration::Configuration,
+    params: GetEventContractExitTriggersParams,
+) -> Result<models::GetEventContractExitTriggers200Response, Error<GetEventContractExitTriggersError>>
+{
+    get_event_contract_exit_triggers_with_http_info(configuration, params)
+        .await
+        .map(|response| response.data)
+}
+
+/// Returns the decoded response together with its status, headers, and original body.
+pub async fn get_event_contract_exit_triggers_with_http_info(
+    configuration: &configuration::Configuration,
+    params: GetEventContractExitTriggersParams,
+) -> Result<
+    super::ApiResponse<models::GetEventContractExitTriggers200Response>,
+    Error<GetEventContractExitTriggersError>,
+> {
+    let resp =
+        get_event_contract_exit_triggers_without_preload_content(configuration, params).await?;
+    let status = resp.status();
+    let headers = resp.headers().clone();
+    let raw_data = resp.bytes().await?.to_vec();
+    let content = String::from_utf8_lossy(&raw_data).into_owned();
+    let data: Result<
+        models::GetEventContractExitTriggers200Response,
+        Error<GetEventContractExitTriggersError>,
+    > = {
+        let content_type = headers
+            .get("content-type")
+            .and_then(|v| v.to_str().ok())
+            .unwrap_or("application/octet-stream");
+        let content_type = super::ContentType::from(content_type);
+
+        if status.is_success() {
+            let content = content.clone();
+            match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetEventContractExitTriggers200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetEventContractExitTriggers200Response`")))),
+        }
+        } else {
+            let content = content.clone();
+            let entity: Option<GetEventContractExitTriggersError> =
+                serde_json::from_str(&content).ok();
+            Err(Error::ResponseError(ResponseContent {
+                status,
+                content,
+                entity,
+            }))
+        }
+    };
+    data.map(|data| super::ApiResponse {
+        status,
+        headers,
+        data,
+        raw_data,
+    })
+}
+
+/// Returns the HTTP response without reading its body or interpreting its status.
+pub async fn get_event_contract_exit_triggers_without_preload_content(
+    configuration: &configuration::Configuration,
+    params: GetEventContractExitTriggersParams,
+) -> Result<reqwest::Response, Error<GetEventContractExitTriggersError>> {
+    let uri_str = format!(
+        "{}/portfolio/positions/{ticker}/exit_trigger",
+        configuration.base_path,
+        ticker = crate::apis::urlencode(params.ticker)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = params.subaccount {
+        req_builder = req_builder.query(&[("subaccount", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = params.kind {
+        req_builder = req_builder.query(&[("kind", &param_value.to_string())]);
     }
     req_builder = req_builder.header(reqwest::header::ACCEPT, "application/json");
 
@@ -2211,6 +2495,118 @@ pub async fn intra_exchange_instance_transfer_without_preload_content(
         req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
     };
     req_builder = req_builder.json(&params.intra_exchange_instance_transfer_request);
+
+    if let Some(timeout) = configuration.request_timeout {
+        req_builder = req_builder.timeout(timeout);
+    }
+    let req = req_builder.build()?;
+
+    configuration.client.execute(req).await.map_err(Error::from)
+}
+
+/// Endpoint for setting a take-profit / stop-loss bracket on a position. Requires an open position and fires a sell capped at the position. Both legs are set from the request, so a leg you omit is cleared; use DELETE to cancel the bracket.
+pub async fn set_event_contract_exit_trigger(
+    configuration: &configuration::Configuration,
+    params: SetEventContractExitTriggerParams,
+) -> Result<models::EventContractExitTrigger, Error<SetEventContractExitTriggerError>> {
+    set_event_contract_exit_trigger_with_http_info(configuration, params)
+        .await
+        .map(|response| response.data)
+}
+
+/// Returns the decoded response together with its status, headers, and original body.
+pub async fn set_event_contract_exit_trigger_with_http_info(
+    configuration: &configuration::Configuration,
+    params: SetEventContractExitTriggerParams,
+) -> Result<
+    super::ApiResponse<models::EventContractExitTrigger>,
+    Error<SetEventContractExitTriggerError>,
+> {
+    let resp =
+        set_event_contract_exit_trigger_without_preload_content(configuration, params).await?;
+    let status = resp.status();
+    let headers = resp.headers().clone();
+    let raw_data = resp.bytes().await?.to_vec();
+    let content = String::from_utf8_lossy(&raw_data).into_owned();
+    let data: Result<models::EventContractExitTrigger, Error<SetEventContractExitTriggerError>> = {
+        let content_type = headers
+            .get("content-type")
+            .and_then(|v| v.to_str().ok())
+            .unwrap_or("application/octet-stream");
+        let content_type = super::ContentType::from(content_type);
+
+        if status.is_success() {
+            let content = content.clone();
+            match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::EventContractExitTrigger`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::EventContractExitTrigger`")))),
+        }
+        } else {
+            let content = content.clone();
+            let entity: Option<SetEventContractExitTriggerError> =
+                serde_json::from_str(&content).ok();
+            Err(Error::ResponseError(ResponseContent {
+                status,
+                content,
+                entity,
+            }))
+        }
+    };
+    data.map(|data| super::ApiResponse {
+        status,
+        headers,
+        data,
+        raw_data,
+    })
+}
+
+/// Returns the HTTP response without reading its body or interpreting its status.
+pub async fn set_event_contract_exit_trigger_without_preload_content(
+    configuration: &configuration::Configuration,
+    params: SetEventContractExitTriggerParams,
+) -> Result<reqwest::Response, Error<SetEventContractExitTriggerError>> {
+    let uri_str = format!(
+        "{}/portfolio/positions/{ticker}/exit_trigger",
+        configuration.base_path,
+        ticker = crate::apis::urlencode(params.ticker)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    if let Some(ref param_value) = params.subaccount {
+        req_builder = req_builder.query(&[("subaccount", &param_value.to_string())]);
+    }
+    req_builder = req_builder.header(reqwest::header::ACCEPT, "application/json");
+    req_builder = req_builder.header(reqwest::header::CONTENT_TYPE, "application/json");
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-SIGNATURE", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-KEY", value);
+    };
+    if let Some(ref apikey) = configuration.api_key {
+        let key = apikey.key.clone();
+        let value = match apikey.prefix {
+            Some(ref prefix) => format!("{} {}", prefix, key),
+            None => key,
+        };
+        req_builder = req_builder.header("KALSHI-ACCESS-TIMESTAMP", value);
+    };
+    req_builder = req_builder.json(&params.set_event_contract_exit_trigger_request);
 
     if let Some(timeout) = configuration.request_timeout {
         req_builder = req_builder.timeout(timeout);

@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**cancel_all_orders**](OrdersApi.md#cancel_all_orders) | **DELETE** /portfolio/events/orders | Cancel All Orders
 [**cancel_order_v2**](OrdersApi.md#cancel_order_v2) | **DELETE** /portfolio/events/orders/{order_id} | Cancel Order (V2)
 [**create_order_v2**](OrdersApi.md#create_order_v2) | **POST** /portfolio/events/orders | Create Order (V2)
+[**create_order_with_exit_trigger**](OrdersApi.md#create_order_with_exit_trigger) | **POST** /portfolio/events/orders/with_exit_trigger | Create Order With TP/SL
 [**decrease_order_v2**](OrdersApi.md#decrease_order_v2) | **POST** /portfolio/events/orders/{order_id}/decrease | Decrease Order (V2)
 [**get_order**](OrdersApi.md#get_order) | **GET** /portfolio/orders/{order_id} | Get Order
 [**get_order_queue_position**](OrdersApi.md#get_order_queue_position) | **GET** /portfolio/orders/{order_id}/queue_position | Get Order Queue Position
@@ -186,6 +187,36 @@ Endpoint for submitting event-market orders using the V2 request/response shape 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **create_order_v2_request** | [**CreateOrderV2Request**](CreateOrderV2Request.md) |  | [required] |
+
+### Return type
+
+[**models::CreateOrderV2Response**](CreateOrderV2Response.md)
+
+### Authorization
+
+[kalshiAccessSignature](../README.md#kalshiAccessSignature), [kalshiAccessKey](../README.md#kalshiAccessKey), [kalshiAccessTimestamp](../README.md#kalshiAccessTimestamp)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## create_order_with_exit_trigger
+
+> models::CreateOrderV2Response create_order_with_exit_trigger(create_order_with_exit_trigger_request)
+Create Order With TP/SL
+
+Creates an entry order with attached take-profit or stop-loss protection.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**create_order_with_exit_trigger_request** | [**CreateOrderWithExitTriggerRequest**](CreateOrderWithExitTriggerRequest.md) |  | [required] |
 
 ### Return type
 

@@ -1,10 +1,10 @@
 [openapi]
 openapi = "3.0.0"
 info_version = "3.35.0"
-sha256 = "984d842a11b703804f882a16fe9f5c5ede53ae5b7526dcb9275084b5824b77f6"
+sha256 = "d2551d5e204969ee053bd226a485cc666269ffbb5fade0badc1fbd09c70b87db"
 path = "spec/openapi.yaml"
 source = "https://docs.kalshi.com/openapi.yaml"
-operation_count = 129
+operation_count = 133
 servers = [
   "https://external-api.kalshi.com/trade-api/v2",
   "https://api.elections.kalshi.com/trade-api/v2",
@@ -37,8 +37,8 @@ additional_properties = "library=reqwest,supportAsync=true,packageVersion=3.34.0
 [overlay]
 reason = "openapi-generator 7.17.0 rust client emits i32 for an integer that omits format and ignores a type mapping of integer to i64"
 inserted_format = "int64"
-entry_count = 76
-effective_openapi_sha256 = "293de95d1fb9722eb759fea46189d1954731e71b507aed96349ceab9f3fce903"
+entry_count = 77
+effective_openapi_sha256 = "a2f990a3d086f69968e6beea06b2cac3f1bfbb41bccfd7499eb4d795e4fd1e5a"
 
 [python_sdk]
 defaults_path = "tools/kalshi-sdk/python_model_defaults.json"

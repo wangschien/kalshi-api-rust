@@ -1,6 +1,6 @@
 {
-  "count": 150,
-  "named_schema_properties": 145,
+  "count": 156,
+  "named_schema_properties": 151,
   "fields": [
     {
       "struct": "AccountApiUsageLevelVolumeGoal",
@@ -73,6 +73,18 @@
       "field": "remaining_count",
       "schema": "AmendOrderV2Response",
       "kind": "FixedPointCount"
+    },
+    {
+      "struct": "AttachedEventContractExitTrigger",
+      "field": "stop_loss_price",
+      "schema": "AttachedEventContractExitTrigger",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "AttachedEventContractExitTrigger",
+      "field": "take_profit_price",
+      "schema": "AttachedEventContractExitTrigger",
+      "kind": "FixedPointDollars"
     },
     {
       "struct": "BatchCancelOrdersIndividualResponse",
@@ -295,6 +307,18 @@
       "field": "remaining_count",
       "schema": "DecreaseOrderV2Response",
       "kind": "FixedPointCount"
+    },
+    {
+      "struct": "EventContractExitTrigger",
+      "field": "stop_loss_price",
+      "schema": "EventContractExitTrigger",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "EventContractExitTrigger",
+      "field": "take_profit_price",
+      "schema": "EventContractExitTrigger",
+      "kind": "FixedPointDollars"
     },
     {
       "struct": "EventPosition",
@@ -835,6 +859,18 @@
       "field": "volume_fp",
       "schema": "Series",
       "kind": "FixedPointCount"
+    },
+    {
+      "struct": "SetEventContractExitTriggerRequest",
+      "field": "stop_loss_price",
+      "schema": "SetEventContractExitTriggerRequest",
+      "kind": "FixedPointDollars"
+    },
+    {
+      "struct": "SetEventContractExitTriggerRequest",
+      "field": "take_profit_price",
+      "schema": "SetEventContractExitTriggerRequest",
+      "kind": "FixedPointDollars"
     },
     {
       "struct": "Settlement",
