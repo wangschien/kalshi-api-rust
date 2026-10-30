@@ -79,9 +79,9 @@ impl EventContractExitTrigger {
 ///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Side {
-    #[serde(rename = "true")]
+    #[serde(rename = "yes")]
     EventContractExitTriggerSideYes,
-    #[serde(rename = "false")]
+    #[serde(rename = "no")]
     EventContractExitTriggerSideNo,
 }
 

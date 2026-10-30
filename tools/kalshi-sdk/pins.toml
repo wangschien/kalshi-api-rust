@@ -35,10 +35,10 @@ package_version = "3.34.0"
 additional_properties = "library=reqwest,supportAsync=true,packageVersion=3.34.0,preferUnsignedInt=false,bestFitInt=false,useSingleRequestParameter=true,supportMiddleware=true,avoidBoxedModels=true"
 
 [overlay]
-reason = "openapi-generator 7.17.0 rust client emits i32 for an integer that omits format and ignores a type mapping of integer to i64"
+reason = "openapi-generator 7.17.0 rust client emits i32 for an integer that omits format and ignores a type mapping of integer to i64; also quote EventContractExitTrigger.side enum yes/no so YAML 1.1 booleans do not become serde rename true/false"
 inserted_format = "int64"
 entry_count = 77
-effective_openapi_sha256 = "a2f990a3d086f69968e6beea06b2cac3f1bfbb41bccfd7499eb4d795e4fd1e5a"
+effective_openapi_sha256 = "2c493d7bc90bb2cba8ed126c210e93cfb038ba9dbf5963def711811e930a74c2"
 
 [python_sdk]
 defaults_path = "tools/kalshi-sdk/python_model_defaults.json"

@@ -24,6 +24,7 @@ run() {
 }
 
 run pins python3 -I tools/kalshi-sdk/check_pins.py --root "$ROOT"
+run string_enums bash tools/kalshi-sdk/run_string_enums_gate.sh
 run conformance python3 -I tools/kalshi-sdk/conformance.py \
     --python "$KALSHI_PYTHON_SDK" \
     --rust crates/kalshi-api-openapi/src/models \
